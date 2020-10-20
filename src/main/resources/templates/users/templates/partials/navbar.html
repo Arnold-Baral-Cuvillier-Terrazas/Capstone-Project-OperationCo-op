@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<standard_links th:fragment="navbar">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light topnav">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/hello/there">Hello</a>
+                </li>
+<!--                Non-logged in user display-->
+              <li sec:authorize="isAnonymous()" class="nav-item">
+                  <a class="nav-link" href="/sign-up">Sign Up</a>
+              </li>
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+<!--                Drop down toggle nav-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Post Menu
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/posts">Post List</a>
+                        <a class="dropdown-item" href="/posts/create">Post Create</a>
+                        <a class="dropdown-item" href="/ads">Ads List</a>
+                        <a class="dropdown-item" href="/ads/create">Ads Create</a>
+                        <a class="dropdown-item" href="/roll-dice">Roll Dice</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+<!--                Logout button displays only for Logged in users-->
+                <li sec:authorize="isAuthenticated()" class="nav-item">
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="btn-link btn" style="margin-top: 10px">Logout</button>
+                    </form>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</standard_links>
