@@ -4,4 +4,9 @@ import com.codeup.capstone.repositories.UserRepository;
 
 public class UserController {
     private final UserRepository userDao;
+
+//---------constructor
+    public UserController(UserRepository userDao) {
+        this.userDao = userDao;
+    }
 }

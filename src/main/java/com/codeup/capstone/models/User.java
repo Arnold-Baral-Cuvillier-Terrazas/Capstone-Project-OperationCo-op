@@ -22,10 +22,7 @@ public class User {
     private String password;
 
     @Column(nullable = false, length = 100)
-    private String firstName;
-
-    @Column(nullable = false, length = 100)
-    private String lastName;
+    private String fullName;
 
     @Column(nullable = false, length = 100)
     private String pronouns;
@@ -71,7 +68,7 @@ public class User {
     public User() {}
 
 //   ------------------------- with parameters---------------
-    public User(long id, String userName, String email, String password, String firstName, String lastName,
+    public User(long id, String userName, String email, String password, String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
                 String discordInfo) {
@@ -79,8 +76,7 @@ public class User {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.pronouns = pronouns;
         this.birthDate = birthDate;
         this.bio = bio;
@@ -128,20 +124,12 @@ public class User {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName(String fullName) {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirstName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPronouns() {
