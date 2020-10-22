@@ -1,4 +1,4 @@
-package com.codeup.capstone.models;
-
-public class Group {
-}
+//package com.codeup.capstone.models;
+//
+//public class Group {
+//}
