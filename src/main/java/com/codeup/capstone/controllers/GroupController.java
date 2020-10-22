@@ -14,15 +14,6 @@ public class GroupController {
         this.groupDao = groupDao;
     }
 
-
-//    @GetMapping("/groups")
-//    @ResponseBody
-//    public String group() {
-//
-//        return "This is the group page!";
-//    }
-
-
     @RequestMapping(path = "/groups", method = RequestMethod.GET)
     public String showAllGroups(Model model) {
         model.addAttribute("groups", groupDao.findAll());
