@@ -22,6 +22,9 @@ public class User {
     private String password;
 
     @Column(nullable = false, length = 100)
+    private String ConfirmPassword;
+
+    @Column(nullable = false, length = 100)
     private String fullName;
 
     @Column(nullable = false, length = 100)
