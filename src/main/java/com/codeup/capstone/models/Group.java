@@ -72,5 +72,6 @@ public class Group {
 
     public void setGameId(String gameId) {
         this.gameId = gameId;
+
     }
 }
