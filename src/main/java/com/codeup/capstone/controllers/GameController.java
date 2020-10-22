@@ -2,9 +2,12 @@ package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.Game;
 import com.codeup.capstone.repositories.GameRepository;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+@Controller
 public class GameController {
     private final GameRepository gameRepo;
 
@@ -17,15 +20,15 @@ public class GameController {
     @GetMapping("/games")
     public String index(Model model) {
         model.addAttribute("games", gameRepo.findAll());
-        return " games/index";
+        return "/games/games";
     }
 
-    @RequestMapping(path = "games/{id}", method = RequestMethod.GET)
-    public String showSingleGame(@PathVariable long id, Model model){
-        Game game = gameRepo.getOne(id);
-        model.addAttribute("game", gameRepo.getOne(id));
-        return "games/show";
-    }
+//    @RequestMapping(path = "games/{id}", method = RequestMethod.GET)
+//    public String showSingleGame(@PathVariable long id, Model model){
+//        Game game = gameRepo.getOne(id);
+//        model.addAttribute("game", gameRepo.getOne(id));
+//        return "games/show";
+//    }
 //    @GetMapping("game/create")
 //    public String showCreateView(Model model) {
 //        public String createGame(@ModelAttribute Game game) {

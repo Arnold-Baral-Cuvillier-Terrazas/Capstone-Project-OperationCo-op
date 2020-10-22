@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "games")
-public class Game<Games_tags, Games> {
+public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -33,15 +33,15 @@ public class Game<Games_tags, Games> {
 
 //    @ManyToOne
 //    @JoinColumn(name = "user_id")
-//    private Game games_id;
+//    private User user;
 
 //    @ManyToMany(cascade = CascadeType.All)
 //    @JoinTable(
-//            name="games_tags",
-//            joinColumns = {@JoinColumn(name="game_id")},
-//            inverseJoinColumns ={@JoinColumn(name="user_id")}
+//            name="tags",
+//            joinColumns = {@JoinColumn(name="games_id")},
+//            inverseJoinColumns ={@JoinColumn(name="tags_id")}
 //    )
-//    private List<Game> tags;
+//    private List<tags> tags;
 
     public Game(){
     }
