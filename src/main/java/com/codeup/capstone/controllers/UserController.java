@@ -32,6 +32,7 @@ public class UserController {
         model.addAttribute("user", new User());
         return "users/signup";
     }
+
     // What happens when a new user submits the register form?
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user) {
