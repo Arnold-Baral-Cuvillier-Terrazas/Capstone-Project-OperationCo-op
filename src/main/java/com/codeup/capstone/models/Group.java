@@ -3,6 +3,9 @@ package com.codeup.capstone.models;
 import javax.persistence.*;
 import java.util.List;
 
+
+//Group will most likely have a OneToMany relationship with User
+
 @Entity
 @Table(name = "groups")
 
@@ -21,7 +24,18 @@ public class Group {
     private String discordUserId;
 
     @Column(nullable = false)
-    private String gameId;
+    private String gameId
+
+
+    // Determine whether it will be ManyToMany or ManyToOne below.
+
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
+//
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<User> users;
+
 
     public Group(long id, String name, String description, String discordUserId, String gameId) {
         this.id = id;
