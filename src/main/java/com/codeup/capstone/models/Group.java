@@ -24,7 +24,7 @@ public class Group {
     private String discordUserId;
 
     @Column(nullable = false)
-    private String gameId
+    private String gameId;
 
 
     // Determine whether it will be ManyToMany or ManyToOne below.
