@@ -5,11 +5,12 @@
     <title>Sign up</title>
 </head>
 <body>
+<!--<header th:replace="partials/head :: head"></header>-->
 <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
 
     <label for="name">Full Name</label>
-    <input id="name" type="text" th:field="*{full_name}" />
+    <input id="name" type="text" th:field="*{fullName}" />
 
     <label for="pnouns">Pronouns</label>
     <input id="pnouns" type="text" th:field="*{pronouns}" />
@@ -18,16 +19,16 @@
     <input id="email" th:field="*{email}" />
 
     <label for="username">Username</label>
-    <input id="username" th:field="*{user_name}" />
+    <input id="username" th:field="*{userName}" />
 
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
 
     <label for="C-password">Confirm Password</label>
-    <input id="C-password" type="password" th:field="*{confirm_password}" />
+    <input id="C-password" type="password" th:field="*{confirmPassword}" />
 
     <label for="DOB">Date Of Birth(D.O.B) </label>
-    <input id="DOB" type="password" th:field="*{birth_date}" />
+    <input id="DOB" type="password" th:field="*{birthDate}" />
 
     <input value="Sign me up!" type="submit" />
 </form>

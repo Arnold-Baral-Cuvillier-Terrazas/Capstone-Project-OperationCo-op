@@ -63,15 +63,13 @@ public class User {
     @Column(nullable = false, length = 500)
     private String discordInfo;
 
-    //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<Post> posts;
 
 //    ------------constructors----------------------------
 
     public User() {}
 
 //   ------------------------- with parameters---------------
-    public User(long id, String userName, String email, String password, String fullName,
+    public User(long id, String userName, String email, String password, String confirmPassword, String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
                 String discordInfo) {
@@ -79,6 +77,7 @@ public class User {
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.ConfirmPassword = confirmPassword;
         this.fullName = fullName;
         this.pronouns = pronouns;
         this.birthDate = birthDate;
@@ -102,6 +101,7 @@ public class User {
         this.email = copy.email;
         this.userName = copy.userName;
         this.password = copy.password;
+        this.fullName = copy.fullName;
     }
 
 
@@ -236,6 +236,22 @@ public class User {
 
     public String getDiscordInfo() {
         return discordInfo;
+    }
+
+    public String getConfirmPassword() {
+        return ConfirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        ConfirmPassword = confirmPassword;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setDiscordInfo(String discordInfo) {
