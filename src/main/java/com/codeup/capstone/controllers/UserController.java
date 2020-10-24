@@ -2,13 +2,11 @@ package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.User;
 import com.codeup.capstone.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -20,11 +18,8 @@ public class UserController {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
-    @GetMapping("user/{id}")
-    public String profilePage(@PathVariable long id, Model model) {
-        model.addAttribute("user", userDao.getOne(id));
-        return "/users/profile";
-    }
+
+// ---------methods for work flow------------
 
     // Want the user to be able to access a sign-up page
     @GetMapping("/sign-up")
@@ -35,13 +30,28 @@ public class UserController {
 
     // What happens when a new user submits the register form?
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user) {
+    public String saveUser(@ModelAttribute User user, @RequestParam(name="confirmPassword")  String confirmPassword,
+                           @RequestParam(name="password") String password)  {
+        if(!user.getPassword().equals(confirmPassword)){
+            return "users/signup";
+        }
+
         String hash = passwordEncoder.encode(user.getPassword()); // ~plaintext password
         user.setPassword(hash); // immediately no longer have access to the plaintext password. It's hashed
-        userDao.save(user);
-        return "redirect:/login";
-        // we can also redirect directly to the profile page, which we will do later
+        if(user.getId() == 0){
+            userDao.save(user);
+            return "redirect:/login";
+        }else {
+            userDao.save(user);
+            return "users/profile";
+        }
     }
 
+//    redirecting login user into their profile page
+    @GetMapping("/profile")
+    public String profilePage( Model model) {
+        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        return "users/profile";
+    }
 
 }

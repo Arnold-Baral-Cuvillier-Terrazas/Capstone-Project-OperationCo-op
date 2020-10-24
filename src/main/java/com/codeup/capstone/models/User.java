@@ -1,5 +1,8 @@
 package com.codeup.capstone.models;
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 
@@ -12,17 +15,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100,unique = true)
     private String userName;
 
-    @Column(nullable = false, length = 100)
+    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message="email must be" +
+            " valid email address" )
+    @Column(nullable = false,  unique = true)
     private String email;
 
+
+    //one upper case, one lower case, one digit, one special character, minimum 8 characters in length
+    @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$",message="Password length must be at least 8 characters " +
+            "with one uppercase letter and one digit")
     @Column(nullable = false, length = 100)
     private String password;
-
-    @Column(nullable = false, length = 100)
-    private String ConfirmPassword;
 
     @Column(nullable = false, length = 100)
     private String fullName;
@@ -33,34 +39,35 @@ public class User {
     @Column(nullable = false, length = 100)
     private Date birthDate;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String bio;
 
-    @Column(nullable = false, length = 100)
+    @Column( length = 100 )
+    @ColumnDefault("true")
     private Boolean isSiteAdmin;
 
-    @Column(nullable = false, length = 100)
+    @Column( length = 100)
     private Boolean isBanned;
 
-    @Column(nullable = false, length = 500)
+    @Column(columnDefinition = "TEXT")
     private String profilePic;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String twitchInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String steamInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String xboxLiveInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String psnInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String nintenDoInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String discordInfo;
 
 
@@ -69,7 +76,7 @@ public class User {
     public User() {}
 
 //   ------------------------- with parameters---------------
-    public User(long id, String userName, String email, String password, String confirmPassword, String fullName,
+    public User(long id, String userName, String email, String password,  String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
                 String discordInfo) {
@@ -77,7 +84,6 @@ public class User {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.ConfirmPassword = confirmPassword;
         this.fullName = fullName;
         this.pronouns = pronouns;
         this.birthDate = birthDate;
@@ -102,6 +108,9 @@ public class User {
         this.userName = copy.userName;
         this.password = copy.password;
         this.fullName = copy.fullName;
+        this.pronouns = copy.pronouns;
+        this.birthDate = copy.birthDate;
+        this.bio = copy.bio;
     }
 
 
@@ -238,14 +247,6 @@ public class User {
         return discordInfo;
     }
 
-    public String getConfirmPassword() {
-        return ConfirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        ConfirmPassword = confirmPassword;
-    }
-
     public String getFullName() {
         return fullName;
     }
@@ -257,5 +258,10 @@ public class User {
     public void setDiscordInfo(String discordInfo) {
         this.discordInfo = discordInfo;
     }
+
+
+//    public boolean isSiteAdmin() {
+//        return boolean;
+//    }
 }
 
