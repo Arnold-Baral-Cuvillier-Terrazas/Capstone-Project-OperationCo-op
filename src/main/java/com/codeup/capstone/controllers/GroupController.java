@@ -15,6 +15,7 @@ public class GroupController {
         this.groupDao = groupDao;
     }
 
+    //Will need this one in final result?
     @RequestMapping(path = "/groups", method = RequestMethod.GET)
     public String showAllGroups(Model model) {
         model.addAttribute("groups", groupDao.findAll());
