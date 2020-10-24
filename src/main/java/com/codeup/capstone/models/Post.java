@@ -1,6 +1,5 @@
 package com.codeup.capstone.models;
 
-import org.apache.catalina.Group;
 
 import javax.persistence.*;
 
@@ -27,7 +26,7 @@ public class Post {
     private String message_body;
 
 
-//  ----------- Constructors
+    //  ----------- Constructors
     public Post() {
     }
 
