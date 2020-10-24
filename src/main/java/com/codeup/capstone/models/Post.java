@@ -1,6 +1,5 @@
 package com.codeup.capstone.models;
 
-import org.apache.catalina.Group;
 
 import javax.persistence.*;
 

@@ -1,4 +1,6 @@
 package com.codeup.capstone.models;
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,17 +14,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100,unique = true)
     private String userName;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100 , unique = true)
     private String email;
 
     @Column(nullable = false, length = 100)
     private String password;
-
-    @Column(nullable = false, length = 100)
-    private String ConfirmPassword;
 
     @Column(nullable = false, length = 100)
     private String fullName;
@@ -33,34 +32,35 @@ public class User {
     @Column(nullable = false, length = 100)
     private Date birthDate;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String bio;
 
-    @Column(nullable = false, length = 100)
+    @Column( length = 100 )
+    @ColumnDefault("false")
     private Boolean isSiteAdmin;
 
-    @Column(nullable = false, length = 100)
+    @Column( length = 100)
     private Boolean isBanned;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String profilePic;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String twitchInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String steamInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String xboxLiveInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String psnInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String nintenDoInfo;
 
-    @Column(nullable = false, length = 500)
+    @Column( length = 500)
     private String discordInfo;
 
 
@@ -69,7 +69,7 @@ public class User {
     public User() {}
 
 //   ------------------------- with parameters---------------
-    public User(long id, String userName, String email, String password, String confirmPassword, String fullName,
+    public User(long id, String userName, String email, String password,  String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
                 String discordInfo) {
@@ -77,7 +77,6 @@ public class User {
         this.userName = userName;
         this.email = email;
         this.password = password;
-        this.ConfirmPassword = confirmPassword;
         this.fullName = fullName;
         this.pronouns = pronouns;
         this.birthDate = birthDate;
@@ -236,14 +235,6 @@ public class User {
 
     public String getDiscordInfo() {
         return discordInfo;
-    }
-
-    public String getConfirmPassword() {
-        return ConfirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        ConfirmPassword = confirmPassword;
     }
 
     public String getFullName() {

@@ -24,11 +24,11 @@
     <label for="password">Password</label>
     <input id="password" type="password" th:field="*{password}" />
 
-    <label for="C-password">Confirm Password</label>
-    <input id="C-password" type="password" th:field="*{confirmPassword}" />
+    <label for="confirmPassword">Confirm Password</label>
+    <input id="confirmPassword" type="password" name="confirmPassword"  />
 
     <label for="DOB">Date Of Birth(D.O.B) </label>
-    <input id="DOB" type="password" th:field="*{birthDate}" />
+    <input id="DOB" type="text" th:field="*{birthDate}" />
 
     <input value="Sign me up!" type="submit" />
 </form>
