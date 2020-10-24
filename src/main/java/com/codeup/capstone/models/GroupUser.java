@@ -23,4 +23,56 @@ public class GroupUser {
 
     @Column(nullable = false)
     private Boolean isApproved;
+
+    public GroupUser(long id, String userId, Boolean isGroupAdmin, String groupId, Boolean isApproved) {
+        this.id = id;
+        this.userId = userId;
+        this.isGroupAdmin = isGroupAdmin;
+        this.groupId = groupId;
+        this.isApproved = isApproved;
+    }
+
+    public GroupUser() {
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Boolean getGroupAdmin() {
+        return isGroupAdmin;
+    }
+
+    public void setGroupAdmin(Boolean groupAdmin) {
+        isGroupAdmin = groupAdmin;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public Boolean getApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(Boolean approved) {
+        isApproved = approved;
+    }
 }
