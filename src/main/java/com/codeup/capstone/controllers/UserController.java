@@ -19,11 +19,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-// ---------methods for work flow
-    @GetMapping("/")
-    public String welcome() {
-        return "home";
-    }
+// ---------methods for work flow------------
 
     // Want the user to be able to access a sign-up page
     @GetMapping("/sign-up")
@@ -35,12 +31,13 @@ public class UserController {
     // What happens when a new user submits the register form?
     @PostMapping("/sign-up")
     public String saveUser(@ModelAttribute User user, @RequestParam(name="confirmPassword")  String confirmPassword, @RequestParam(name="password") String password)  {
-        if(user.getPassword() != confirmPassword){
-            return "users/register";
+        if(!user.getPassword().equals(confirmPassword)){
+            return "users/signup";
         }
+
         String hash = passwordEncoder.encode(user.getPassword()); // ~plaintext password
         user.setPassword(hash); // immediately no longer have access to the plaintext password. It's hashed
-        if(user.getId()==0){
+        if(user.getId() == 0){
             userDao.save(user);
             return "redirect:/login";
         }else {
@@ -49,27 +46,11 @@ public class UserController {
         }
     }
 
-    @GetMapping("/login")
-    public String showLoginPage() {
-        return "users/login";
-    }
-
+//    redirecting login user into their profile page
     @GetMapping("/profile")
-    public String profilePage( Model model){
+    public String profilePage( Model model) {
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "users/profile";
     }
-
-    @GetMapping("/user/edit")
-    public String editUserInformation(@ModelAttribute User user,Model model){
-        model.addAttribute("user",(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "users/signup";
-    }
-
-//    @GetMapping("user/{id}")
-//    public String profilePage(@PathVariable long id, Model model) {
-//        model.addAttribute("user", userDao.getOne(id));
-//        return "/users/profile";
-//    }
 
 }

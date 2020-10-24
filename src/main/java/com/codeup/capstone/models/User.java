@@ -2,6 +2,7 @@ package com.codeup.capstone.models;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 
@@ -17,9 +18,15 @@ public class User {
     @Column(nullable = false, length = 100,unique = true)
     private String userName;
 
-    @Column(nullable = false, length = 100 , unique = true)
+    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message="email must be" +
+            " valid email address" )
+    @Column(nullable = false,  unique = true)
     private String email;
 
+
+    //one upper case, one lower case, one digit, one special character, minimum 8 characters in length
+    @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$",message="Password length must be at least 8 characters " +
+            "with one uppercase letter and one digit")
     @Column(nullable = false, length = 100)
     private String password;
 
@@ -36,13 +43,13 @@ public class User {
     private String bio;
 
     @Column( length = 100 )
-    @ColumnDefault("false")
+    @ColumnDefault("true")
     private Boolean isSiteAdmin;
 
     @Column( length = 100)
     private Boolean isBanned;
 
-    @Column( length = 500)
+    @Column(columnDefinition = "TEXT")
     private String profilePic;
 
     @Column( length = 500)
@@ -101,6 +108,9 @@ public class User {
         this.userName = copy.userName;
         this.password = copy.password;
         this.fullName = copy.fullName;
+        this.pronouns = copy.pronouns;
+        this.birthDate = copy.birthDate;
+        this.bio = copy.bio;
     }
 
 
@@ -248,5 +258,10 @@ public class User {
     public void setDiscordInfo(String discordInfo) {
         this.discordInfo = discordInfo;
     }
+
+
+//    public boolean isSiteAdmin() {
+//        return boolean;
+//    }
 }
 

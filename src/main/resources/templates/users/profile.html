@@ -2,17 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Show Posts</title>
-    <link th:replace="partials/links :: links"/>
+    <title>Profile page</title>
+<!--    <link th:replace="partials/links :: links"/>-->
 </head>
 <body>
 <!--<header th:replace="partials/head :: head"></header>-->
-<nav th:replace="partials/navbar :: navbar"></nav>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+<h1>hello user</h1>
+<h2>Welcome to <span th:text="${user.fullName}"></span>'s Profile Page</h2>
 
-<h2>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h2>
-
-<main class="container">
-    <h2> hello there : </h2>
+<!--<main class="container">-->
+<!--    <h2> hello there : </h2>-->
 <!--    <show_post th:if="${user.posts}">-->
 <!--        <div th:each="item : ${user.posts}">-->
 <!--            <p th:text=" ${item.title}"></p>-->
@@ -20,9 +20,9 @@
 <!--            <br>-->
 <!--        </div>-->
 <!--    </show_post>-->
-</main>
+<!--</main>-->
 
-<footer th:replace="partials/footer :: footer"></footer>
-<scripts th:replace="partials/scripts :: scripts"></scripts>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
+<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
 </body>
 </html>
