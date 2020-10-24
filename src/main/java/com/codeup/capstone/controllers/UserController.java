@@ -30,7 +30,8 @@ public class UserController {
 
     // What happens when a new user submits the register form?
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user, @RequestParam(name="confirmPassword")  String confirmPassword, @RequestParam(name="password") String password)  {
+    public String saveUser(@ModelAttribute User user, @RequestParam(name="confirmPassword")  String confirmPassword,
+                           @RequestParam(name="password") String password)  {
         if(!user.getPassword().equals(confirmPassword)){
             return "users/signup";
         }
