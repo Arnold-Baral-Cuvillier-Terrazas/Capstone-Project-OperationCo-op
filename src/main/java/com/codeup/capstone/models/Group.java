@@ -30,6 +30,7 @@ public class Group {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> posts;
 
+
     //Check out user_rating table and Group_table to see if it can me in one rating.
 
 
