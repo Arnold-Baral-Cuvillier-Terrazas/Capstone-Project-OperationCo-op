@@ -24,6 +24,10 @@ public class BannedFromGroup {
         this.groupId = groupId;
     }
 
+    public BannedFromGroup() {
+
+    }
+
     public long getId() {
         return id;
     }
