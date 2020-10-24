@@ -42,4 +42,6 @@ public class UserController {
         return "redirect:/login";
         // we can also redirect directly to the profile page, which we will do later
     }
+
+
 }
