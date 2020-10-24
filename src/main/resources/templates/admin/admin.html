@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Admin Controll Room</title>
+</head>
+<body>
+<h1 class="center-align">USERS</h1>
+<div class="user-list" th:each="user : ${user}">
+    <div><p class="bold-font ">User ID: <span th:text="${user.id}">ID</span></p></div>
+    <p class="bold-font ">Username: <a th:href="@{|/users/profile/${user.userName}|}"><span
+            th:text="${user.userName}">USERNAME</span></a>
+    </p>
+<!--    <p class="bold-font" id="admin-status">User Role:-->
+<!--        <th:block th:if="${user.isSiteAdmin()}">Admin</th:block>-->
+<!--        <th:block th:if="${!user.isSiteAdmin()}">User</th:block>-->
+<!--    </p>-->
+</div>
+</body>
+</html>

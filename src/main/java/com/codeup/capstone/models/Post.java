@@ -1,9 +1,10 @@
 package com.codeup.capstone.models;
 
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "post")
+@Table(name="post")
 public class Post {
 
     @Id
@@ -11,11 +12,11 @@ public class Post {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn (name = "group_id")
     private Group group;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn (name = "user_id")
     private User user;
 
     @Column(nullable = false, length = 500)
