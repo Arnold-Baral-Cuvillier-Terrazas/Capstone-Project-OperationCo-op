@@ -16,4 +16,6 @@ public class BannedFromGroup {
 
     @Column(nullable = false)
     private String groupId;
+
+
 }
