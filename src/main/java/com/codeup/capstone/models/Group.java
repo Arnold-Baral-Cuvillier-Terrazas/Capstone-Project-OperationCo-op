@@ -26,6 +26,10 @@ public class Group {
     @Column(nullable = false)
     private String gameId;
 
+    //This is the OneToMany relationship. One Group should have many Posts.
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+//    private List<Post> posts;
+
 
     // Determine whether it will be ManyToMany or ManyToOne below.
 

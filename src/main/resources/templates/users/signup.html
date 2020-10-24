@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sign up</title>
+</head>
+<body>
+<!--<header th:replace="partials/head :: head"></header>-->
+<h1>Create an account</h1>
+<form th:action="@{/sign-up}" method="POST" th:object="${user}">
+
+    <label for="name">Full Name</label>
+    <input id="name" type="text" th:field="*{fullName}" />
+
+    <label for="pnouns">Pronouns</label>
+    <input id="pnouns" type="text" th:field="*{pronouns}" />
+
+    <label for="email">Email</label>
+    <input id="email" th:field="*{email}" />
+
+    <label for="username">Username</label>
+    <input id="username" th:field="*{userName}" />
+
+    <label for="password">Password</label>
+    <input id="password" type="password" th:field="*{password}" />
+
+    <label for="C-password">Confirm Password</label>
+    <input id="C-password" type="password" th:field="*{confirmPassword}" />
+
+    <label for="DOB">Date Of Birth(D.O.B) </label>
+    <input id="DOB" type="password" th:field="*{birthDate}" />
+
+    <input value="Sign me up!" type="submit" />
+</form>
+
+<div>
+    <h1> Already a user ?</h1>
+<form th:action="@{/login}" method="post">
+    <label for="uname">Username</label>
+    <input id="uname" name="uname" type="text" />
+    <br>
+    <label for="pw">Password</label>
+    <input id="pw" name="pw" type="password" />
+    <br>
+    <input type="submit" value="Login"  />
+</form>
+</div>
+</body>
+</html>
