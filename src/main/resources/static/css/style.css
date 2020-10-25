@@ -1,3 +1,9 @@
+* {
+    width: 98%;
+    margin: auto;
+
+}
+
 .profileImg {
     height: 200px;
     width: 200px;
