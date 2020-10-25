@@ -35,3 +35,7 @@ button {
 .pb,.ib {
     float: right;
 }
+
+.admin {
+    color: cornflowerblue;
+}

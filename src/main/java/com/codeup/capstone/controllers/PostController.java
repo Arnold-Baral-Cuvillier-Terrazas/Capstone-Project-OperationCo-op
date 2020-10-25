@@ -64,8 +64,6 @@ public class PostController {
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             post.setDate(sqlDate);
         }
-
-        // save Post in the database
         adDao.save(post);
         return "redirect:/posts";
     }

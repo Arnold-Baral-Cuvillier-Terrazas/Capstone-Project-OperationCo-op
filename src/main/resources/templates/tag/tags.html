@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:replace="partials/links :: links"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<body>
+<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+    Single toggle
+</button>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+</body>
+</html>
