@@ -9,18 +9,36 @@
 <!--<header th:replace="partials/header :: header"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
-<h1>Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>
+<h1>Welcome to <span th:text="${group.name}"></span>'s Pro
+    file Page</h1>
 
-<!--<main class="container">-->
-<!--    <h2>Ads by this user:</h2>-->
-<!--    <show_post th:if="${user.ads}">-->
-<!--        <div th:each="item : ${user.ads}">-->
-<!--            <h2 th:text="${item.title}"></h2>-->
-<!--            <p th:text="${item.description}"></p>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--    </show_post>-->
-<!--</main>-->
+<div class="groupProfile">
+
+    <div class="profileImg"></div>
+
+    <button  class="pb" type="button">Edit profile Image</button>
+
+    <div class="reviews">
+        <p> review:
+            <i class="star fa fa-star checked" data-value="1"></i>
+            <i class="star fa fa-star checked" data-value="2"></i>
+            <i class="star fa fa-star checked" data-value="3"></i>
+            <i class="star fa fa-star checked" data-value="4"></i>
+            <i class="star fa fa-star checked" data-value="5"></i>
+        </p></div>
+
+    <h4>Name: <span th:text="${group.name}"></span></h4>
+    <h4>Username: <span th:text="${group.description}"></span></h4>
+</div>
+
+<button  class="ib" type="button">Edit profile</button>
+<br>
+<div class="bio"> Bio
+    <form>
+        <textarea> </textarea>
+    </form>
+
+</div>
 
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->

@@ -40,7 +40,6 @@ public class GroupController {
         group.setDescription(description);
         groupDao.save(group);
         return "groups/profile";
-
     }
 
 
