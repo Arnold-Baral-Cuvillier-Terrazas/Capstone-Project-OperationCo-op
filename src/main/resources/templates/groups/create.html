@@ -9,10 +9,10 @@
 <h1>Create a Group!</h1>
 <form th:action="@{/group/create}" method="POST" th:object="${group}">
 
-    <label for="name">Enter a Group Name</label>
+    <label for="name">Enter a Group Name:</label>
     <input id="name" type="text" th:field="*{name}"/>
     <br><br>
-    <label for="pnouns">Enter a Description</label>
+    <label for="pnouns">Enter a Description:</label>
     <input id="pnouns" type="text" th:field="*{description}"/>
     <br><br>
     <input value="Create my Group!" type="submit"/>

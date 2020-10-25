@@ -17,7 +17,7 @@ public class GroupController {
     }
 
     //Will need this one in final result?
-    @RequestMapping(path = "/groups", method = RequestMethod.GET)
+    @GetMapping("/groups")
     public String showAllGroups(Model model) {
         model.addAttribute("groups", groupDao.findAll());
         return "/groups/index";
@@ -32,9 +32,9 @@ public class GroupController {
 
     //This should save the new Group
     @PostMapping("/group/create")
-    public String createGroup(@ModelAttribute Group group,
-                             @RequestParam(name = "name") String name,
-                             @RequestParam(name = "description") String description){
+    public String saveGroup(@ModelAttribute Group group,
+                            @RequestParam(name = "name") String name,
+                            @RequestParam(name = "description") String description) {
 
         group.setName(name);
         group.setDescription(description);
@@ -42,7 +42,6 @@ public class GroupController {
         return "groups/index";
 
     }
-
 
 
     //Double check on this mapping for displaying group profile.
