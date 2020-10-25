@@ -24,11 +24,14 @@ textarea {
     resize: none;
 }
 
-.fa-star {
+i {
     display: inline-block;
-    background-color: yellow;
 }
 
 button {
-    background-color: burlywood;
+    background-color: skyblue;
+}
+
+.pb,.ib {
+    float: right;
 }
