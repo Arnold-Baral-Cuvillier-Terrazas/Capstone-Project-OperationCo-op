@@ -4,6 +4,7 @@ import com.codeup.capstone.models.*;
 import com.codeup.capstone.repositories.GroupRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +23,27 @@ public class GroupController {
         return "/groups/index";
     }
 
+    @GetMapping("/group/create")
+    public String showCreateGroupForm(Model model) {
+        model.addAttribute("group", new Group());
+        return "groups/create";
+    }
+
+
+    //This should save the new Group
+    @PostMapping("/group/create")
+    public String createGroup(@ModelAttribute Group group,
+                             @RequestParam(name = "name") String name,
+                             @RequestParam(name = "description") String description){
+
+        group.setName(name);
+        group.setDescription(description);
+        groupDao.save(group);
+        return "groups/index";
+
+    }
+
+
 
     //Double check on this mapping for displaying group profile.
     @GetMapping("group/{id}")
@@ -30,5 +52,4 @@ public class GroupController {
         return "/groups/profile";
     }
 
-//    (Group) SecurityContextHolder.getContext().getAuthentication().getPrincipal()
 }

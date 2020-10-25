@@ -1,5 +1,7 @@
 package com.codeup.capstone.models;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 
 
@@ -15,13 +17,14 @@ public class GroupUser {
     @Column(nullable = false)
     private String userId;
 
-    @Column(nullable = false)
+    @Column( length = 100 )
+    @ColumnDefault("true")
     private Boolean isGroupAdmin;
 
     @Column(nullable = false)
     private String groupId;
 
-    @Column(nullable = false)
+    @Column( length = 100)
     private Boolean isApproved;
 
     public GroupUser(long id, String userId, Boolean isGroupAdmin, String groupId, Boolean isApproved) {
