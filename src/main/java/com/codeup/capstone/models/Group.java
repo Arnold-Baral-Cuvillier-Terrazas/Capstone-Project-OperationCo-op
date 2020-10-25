@@ -21,15 +21,14 @@ public class Group {
     private String description;
 
     // Made nullable true to make Create Group DB to work.
-    @Column( unique = true)
+    @Column(unique = true)
     private String discordUserId;
 
     //Check if no parameters in this is ok.
     @Column()
     private String gameId;
 
-//    This is the OneToMany relationship. One Group should have many Posts.
-
+    //This is the OneToMany relationship. One Group should have many Posts.
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> posts;
 

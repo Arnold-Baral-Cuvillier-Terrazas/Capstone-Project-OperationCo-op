@@ -16,7 +16,7 @@ public class GroupController {
         this.groupDao = groupDao;
     }
 
-   //To show all groups
+    //To show all groups
     @GetMapping("/groups")
     public String showAllGroups(Model model) {
         model.addAttribute("groups", groupDao.findAll());
@@ -39,7 +39,7 @@ public class GroupController {
         group.setName(name);
         group.setDescription(description);
         groupDao.save(group);
-        return "groups/index";
+        return "groups/profile";
 
     }
 
