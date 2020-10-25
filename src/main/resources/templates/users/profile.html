@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Profile page</title>
-<!--    <link th:replace="partials/links :: links"/>-->
+    <link th:replace="partials/links :: links"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+
 </head>
-<body>
+
 <!--<header th:replace="partials/head :: head"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
-
 <h1>Welcome to <span th:text="${user.fullName}"></span>'s Profile Page</h1>
 
-<div class = "profileImg" > This is the placeholder for user profile picture </div>
+<div class="profile">
+<div class = "profileImg" >
+    <p> profile picture </p>
+    </div>
+    <h4>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span> )</h4>
+    <h4>Username: <span th:text="${user.userName}"></span> </h4>
+    <h4>Email: <span th:text="${user.email}"> </span> </h4>
+</div>
 
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
-<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{/js/filestack.js}" rel="stylesheet"> </script>
 </body>
 </html>

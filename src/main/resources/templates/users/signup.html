@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Sign up</title>
+    <link th:replace="partials/links :: links"/>
 </head>
 <body>
 <!--<header th:replace="partials/head :: head"></header>-->
@@ -12,8 +13,20 @@
     <label for="name">Full Name</label>
     <input id="name" type="text" th:field="*{fullName}" />
 
-    <label for="pnouns">Pronouns</label>
-    <input id="pnouns" type="text" th:field="*{pronouns}" />
+    <label for="pn">Pronouns</label>
+    <input id="pn" type="text" th:field="*{pronouns}" />
+
+
+
+    <!--        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"-->
+<!--           aria-haspopup="true" aria-expanded="false"  th:field="*{pronouns}" >-->
+<!--            Pronouns </a>-->
+<!--    <div class="dropdown-menu">-->
+<!--        <a class="dropdown-item" href="#">she/her</a>-->
+<!--        <a class="dropdown-item" href="#">he/his</a>-->
+<!--        <a class="dropdown-item" href="#">they/them</a>-->
+<!--        <a class="dropdown-item" href="#">xe/xem</a>-->
+<!--    </div>-->
 
     <label for="email">Email</label>
     <input id="email" th:field="*{email}" />
@@ -39,11 +52,13 @@
     <label for="uname">Username</label>
     <input id="uname" name="uname" type="text" />
     <br>
+    <br>
     <label for="pw">Password</label>
     <input id="pw" name="pw" type="password" />
     <br>
     <input type="submit" value="Login"  />
 </form>
 </div>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
