@@ -20,10 +20,12 @@ public class Group {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false, unique = true)
+    // Made nullable true to make Create Group DB to work.
+    @Column( unique = true)
     private String discordUserId;
 
-    @Column(nullable = false)
+    //Check if no parameters in this is ok.
+    @Column()
     private String gameId;
 
 //    This is the OneToMany relationship. One Group should have many Posts.

@@ -16,7 +16,7 @@ public class GroupController {
         this.groupDao = groupDao;
     }
 
-    //Will need this one in final result?
+   //To show all groups
     @GetMapping("/groups")
     public String showAllGroups(Model model) {
         model.addAttribute("groups", groupDao.findAll());
