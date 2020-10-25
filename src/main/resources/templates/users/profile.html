@@ -4,27 +4,54 @@
     <meta charset="UTF-8">
     <title>Profile page</title>
     <link th:replace="partials/links :: links"/>
-    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
 </head>
 
 <!--<header th:replace="partials/head :: head"></header>-->
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+<nav th:replace="partials/navbar :: navbar"></nav>
 
-<h1>Welcome to <span th:text="${user.fullName}"></span>'s Profile Page</h1>
+<div class="box">
+
+<h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
 
 <div class="profile">
-<div class = "profileImg" >
-    <p> profile picture </p>
+    <div class="profileImg">
+        <p> profile picture </p>
     </div>
+
+    <div class="reviews">
+        reviews area
+    </div>
+
     <h4>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span> )</h4>
-    <h4>Username: <span th:text="${user.userName}"></span> </h4>
-    <h4>Email: <span th:text="${user.email}"> </span> </h4>
+    <h4>Username: <span th:text="${user.userName}"></span></h4>
+    <h4>Email: <span th:text="${user.email}"></span></h4>
+</div>
+
+<div class="bio"> Bio
+    <form>
+        <textarea> </textarea>
+    </form>
+</div>
+
+<div class="dtag"> Descriptive tags
+    <form>
+        <textarea> </textarea>
+    </form>
+</div>
+
+<div class="Group "> Group <span th:text="${user.fullName}"></span> is in
+    <form>
+        <textarea> </textarea>
+    </form>
+</div>
+
 </div>
 
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script th:src="@{/js/filestack.js}" rel="stylesheet"> </script>
+<script th:src="@{/js/filestack.js}" rel="stylesheet"></script>
 </body>
 </html>

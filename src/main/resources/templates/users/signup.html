@@ -13,20 +13,16 @@
     <label for="name">Full Name</label>
     <input id="name" type="text" th:field="*{fullName}" />
 
-    <label for="pn">Pronouns</label>
-    <input id="pn" type="text" th:field="*{pronouns}" />
 
-
-
-    <!--        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"-->
-<!--           aria-haspopup="true" aria-expanded="false"  th:field="*{pronouns}" >-->
-<!--            Pronouns </a>-->
-<!--    <div class="dropdown-menu">-->
-<!--        <a class="dropdown-item" href="#">she/her</a>-->
-<!--        <a class="dropdown-item" href="#">he/his</a>-->
-<!--        <a class="dropdown-item" href="#">they/them</a>-->
-<!--        <a class="dropdown-item" href="#">xe/xem</a>-->
-<!--    </div>-->
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Pronouns</label>
+        <select class="form-control" id="exampleFormControlSelect1" th:field="*{pronouns}">
+            <option value="he/his">he/his</option>
+            <option value="she/her">she/her</option>
+            <option value="they/them">they/them</option>
+            <option value="xe/xem">xe/xem</option>
+        </select>
+    </div>
 
     <label for="email">Email</label>
     <input id="email" th:field="*{email}" />
