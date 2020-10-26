@@ -10,7 +10,7 @@ import java.util.Date;
 @Table(name="user")
 public class User {
 
-//   ------------------Instance variables-------------
+    //   ------------------Instance variables-------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -79,7 +79,7 @@ public class User {
 
     public User() {}
 
-//   ------------------------- with parameters---------------
+    //   ------------------------- with parameters---------------
     public User(long id, String userName, String email, String password,  String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
@@ -272,4 +272,3 @@ public class User {
         this.user = user;
     }
 }
-

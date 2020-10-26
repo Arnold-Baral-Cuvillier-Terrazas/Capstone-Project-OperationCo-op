@@ -13,7 +13,7 @@ public class UserController {
     private final UserRepository userDao;
     private final  PasswordEncoder passwordEncoder;
 
-//---------constructor
+    //---------constructor
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
@@ -47,7 +47,7 @@ public class UserController {
         }
     }
 
-//    redirecting login user into their profile page
+    //    redirecting login user into their profile page
     @GetMapping("/profile")
     public String profilePage( Model model) {
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
