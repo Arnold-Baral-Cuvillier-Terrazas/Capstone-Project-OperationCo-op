@@ -17,9 +17,26 @@
 
     <div class="profile">
 
-        <div class="profileImg"></div>
 
-        <button  class="pb" type="button">Edit profile Image</button>
+        <div class="card">
+            <img src="static/img/game.png" style="width:100%">
+            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span> )</h6>
+            <h6>Username: <span th:text="${user.userName}"></span></h6>
+            <h6>Email: <span th:text="${user.email}"></span></h6>
+
+            <div class="icons">
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            </div>
+
+            <p>
+                <button>Contact</button>
+            </p>
+        </div>
+
+        <button class="pb" type="button">Edit profile Image</button>
 
         <div class="reviews">
             <p> review:
@@ -29,13 +46,9 @@
                 <i class="star fa fa-star checked" data-value="4"></i>
                 <i class="star fa fa-star checked" data-value="5"></i>
             </p></div>
-
-        <h4>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span> )</h4>
-        <h4>Username: <span th:text="${user.userName}"></span></h4>
-        <h4>Email: <span th:text="${user.email}"></span></h4>
     </div>
 
-    <button  class="ib" type="button">Edit profile</button>
+    <button class="ib" type="button">Edit profile</button>
     <br>
     <div class="bio"> Bio
         <form>
