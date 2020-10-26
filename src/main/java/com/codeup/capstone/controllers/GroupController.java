@@ -25,6 +25,7 @@ public class GroupController {
         return "/groups/index";
     }
 
+    //Mapping to get group/create.html
     @GetMapping("/group/create")
     public String showCreateGroupForm(Model model) {
         model.addAttribute("group", new Group());
