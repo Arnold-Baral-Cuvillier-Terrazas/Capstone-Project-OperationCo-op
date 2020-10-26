@@ -3,47 +3,60 @@
 <head>
     <meta charset="UTF-8" />
     <title>Sign up</title>
+    <link th:replace="partials/links :: links"/>
 </head>
 <body>
-<!--<header th:replace="partials/head :: head"></header>-->
 <h1>Create an account</h1>
 <form th:action="@{/sign-up}" method="POST" th:object="${user}">
 
-    <label for="name">Full Name</label>
+    <label for="name"><strong>Full Name</strong></label>
     <input id="name" type="text" th:field="*{fullName}" />
 
-    <label for="pnouns">Pronouns</label>
-    <input id="pnouns" type="text" th:field="*{pronouns}" />
 
-    <label for="email">Email</label>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1"><strong>Pronouns</strong></label>
+        <select class="form-control" id="exampleFormControlSelect1" th:field="*{pronouns}">
+            <option value="he/his">he/his</option>
+            <option value="she/her">she/her</option>
+            <option value="they/them">they/them</option>
+            <option value="xe/xem">xe/xem</option>
+        </select>
+    </div>
+
+    <label for="email"><strong>Email</strong></label>
     <input id="email" th:field="*{email}" />
 
-    <label for="username">Username</label>
+    <label for="username"><strong>Username</strong></label>
     <input id="username" th:field="*{userName}" />
 
-    <label for="password">Password</label>
+    <label for="password"><strong>Password</strong></label>
     <input id="password" type="password" th:field="*{password}" />
 
-    <label for="confirmPassword">Confirm Password</label>
+    <label for="confirmPassword"><strong>Confirm Password</strong></label>
     <input id="confirmPassword" type="password" name="confirmPassword"  />
 
-    <label for="DOB">Date Of Birth(D.O.B) </label>
+    <label for="DOB"><strong>Date Of Birth(D.O.B)</strong> </label>
     <input id="DOB" type="text" th:field="*{birthDate}" />
+
+    <br>
 
     <input value="Sign me up!" type="submit" />
 </form>
 
-<div>
+<div class="container">
     <h1> Already a user ?</h1>
 <form th:action="@{/login}" method="post">
-    <label for="uname">Username</label>
+    <label for="uname"><strong>Username</strong></label>
     <input id="uname" name="uname" type="text" />
     <br>
-    <label for="pw">Password</label>
+    <br>
+    <label for="pw"><strong>Password</strong></label>
     <input id="pw" name="pw" type="password" />
+    <br>
     <br>
     <input type="submit" value="Login"  />
 </form>
 </div>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>

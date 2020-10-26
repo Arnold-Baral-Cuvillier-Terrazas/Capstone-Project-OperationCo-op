@@ -2,6 +2,7 @@ package com.codeup.capstone.models;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="post")
@@ -10,6 +11,9 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
+    private Date date;
 
     @ManyToOne
     @JoinColumn (name = "group_id")
@@ -26,12 +30,13 @@ public class Post {
     private String message_body;
 
 
-//  ----------- Constructors
+    //  ----------- Constructors
     public Post() {
     }
 
-    public Post(long id, Group group, User user, String parent_post_id, String message_body) {
+    public Post(long id, Date date, Group group, User user, String parent_post_id, String message_body) {
         this.id = id;
+        this.date = date;
         this.group = group;
         this.user = user;
         this.parent_post_id = parent_post_id;
@@ -39,6 +44,14 @@ public class Post {
     }
 
 //    getters and setters
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public long getId() {
         return id;
