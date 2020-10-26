@@ -1,4 +1,80 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile page</title>
+    <link th:replace="partials/links :: links"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
+</head>
+
+<!--<header th:replace="partials/head :: head"></header>-->
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="box">
+
+    <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
+
+    <div class="profile">
+
+
+        <div class="card">
+            <img src="static/img/game.png" style="width:100%">
+            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span> )</h6>
+            <h6>Username: <span th:text="${user.userName}"></span></h6>
+            <h6>Email: <span th:text="${user.email}"></span></h6>
+
+            <div class="icons">
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            </div>
+
+            <p>
+                <button>Contact</button>
+            </p>
+        </div>
+
+        <button class="pb" type="button">Edit profile Image</button>
+
+        <div class="reviews">
+            <p> review:
+                <i class="star fa fa-star checked" data-value="1"></i>
+                <i class="star fa fa-star checked" data-value="2"></i>
+                <i class="star fa fa-star checked" data-value="3"></i>
+                <i class="star fa fa-star checked" data-value="4"></i>
+                <i class="star fa fa-star checked" data-value="5"></i>
+            </p></div>
+    </div>
+
+    <button class="ib" type="button">Edit profile</button>
+    <br>
+    <div class="bio"> Bio
+        <form>
+            <textarea> </textarea>
+        </form>
+
+    </div>
+
+    <div class="dtag"> Descriptive tags
+        <form>
+            <textarea> </textarea>
+        </form>
+    </div>
+
+    <div class="Group "> Group <span th:text="${user.fullName}"></span> is in
+        <form>
+            <textarea> </textarea>
+        </form>
+    </div>
+
+</div>
+
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{/js/keys.js}"></script>
+<script th:src="@{/js/filestack.js}"></script>
 </body>
 </html>
