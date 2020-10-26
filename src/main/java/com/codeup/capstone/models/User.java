@@ -10,22 +10,22 @@ import java.util.Date;
 @Table(name="user")
 public class User {
 
-//   ------------------Instance variables-------------
+    //   ------------------Instance variables-------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100,unique = true)
+    @Column(nullable = false, length = 100, unique = true)
     private String userName;
 
-    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message="email must be" +
-            " valid email address" )
-    @Column(nullable = false,  unique = true)
+    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
+            " valid email address")
+    @Column(nullable = false, unique = true)
     private String email;
 
 
     //one upper case, one lower case, one digit, one special character, minimum 8 characters in length
-    @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$",message="Password length must be at least 8 characters " +
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$", message = "Password length must be at least 8 characters " +
             "with one uppercase letter and one digit")
     @Column(nullable = false, length = 100)
     private String password;
@@ -39,48 +39,45 @@ public class User {
     @Column(nullable = false, length = 100)
     private Date birthDate;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String bio;
 
-    @Column( length = 100 )
+    @Column(length = 100)
     @ColumnDefault("true")
     private Boolean isSiteAdmin;
 
-    @Column( length = 100)
+    @Column(length = 100)
     private Boolean isBanned;
 
     @Column(columnDefinition = "TEXT")
     private String profilePic;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String twitchInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String steamInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String xboxLiveInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String psnInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String nintenDoInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String discordInfo;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
 
 //    ------------constructors----------------------------
 
-    public User() {}
+    public User() {
+    }
 
-//   ------------------------- with parameters---------------
-    public User(long id, String userName, String email, String password,  String fullName,
+    //   ------------------------- with parameters---------------
+    public User(long id, String userName, String email, String password, String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
                 String discordInfo, User user) {
@@ -101,7 +98,6 @@ public class User {
         this.psnInfo = psnInfo;
         this.nintenDoInfo = nintenDoInfo;
         this.discordInfo = discordInfo;
-        this.user = user;
     }
 
     // implement the Copy Constructor right here in the User model!
@@ -264,12 +260,5 @@ public class User {
         this.discordInfo = discordInfo;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
 
