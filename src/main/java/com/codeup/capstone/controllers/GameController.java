@@ -22,6 +22,7 @@ public class GameController {
         return "/games/games";
     }
 
+
 //    @RequestMapping(path = "games/{id}", method = RequestMethod.GET)
 //    public String showSingleGame(@PathVariable long id, Model model){
 //        Game game = gameRepo.getOne(id);
