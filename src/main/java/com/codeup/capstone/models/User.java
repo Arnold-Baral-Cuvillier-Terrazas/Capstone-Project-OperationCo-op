@@ -70,6 +70,10 @@ public class User {
     @Column( length = 500)
     private String discordInfo;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 //    ------------constructors----------------------------
 
@@ -79,7 +83,7 @@ public class User {
     public User(long id, String userName, String email, String password,  String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
-                String discordInfo) {
+                String discordInfo, User user) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -97,6 +101,7 @@ public class User {
         this.psnInfo = psnInfo;
         this.nintenDoInfo = nintenDoInfo;
         this.discordInfo = discordInfo;
+        this.user = user;
     }
 
     // implement the Copy Constructor right here in the User model!
@@ -259,8 +264,11 @@ public class User {
         this.discordInfo = discordInfo;
     }
 
+    public User getUser() {
+        return user;
+    }
 
-//    public boolean isSiteAdmin() {
-//        return boolean;
-//    }
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

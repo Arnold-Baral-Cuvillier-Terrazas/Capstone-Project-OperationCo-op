@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <link th:replace="partials/links :: links"/>
+</head>
+<body>
+<div th:replace="partials/navbar :: navbar"></div>
+
+<div class="container">
+    <form th:action="@{/create}" th:object="${post}" method="post">
+
+        <label for="ppost">parent post </label>
+        <br>
+        <textarea th:field="*{parent_post_id}" id="ppost" cols="72" rows="4"></textarea>
+        <br>
+        <label for="mbody">Message </label>
+        <br>
+        <textarea type="text" id="mbody" th:field="*{message_body}" cols="70" rows="4"></textarea>
+        <br>
+        <button type="submit">Update</button>
+    </form>
+</div>
+<scripts th:replace="partials/scripts :: scripts"/>
+</body>
+</html>
