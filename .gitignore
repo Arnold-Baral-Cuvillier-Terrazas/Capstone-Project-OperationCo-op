@@ -33,4 +33,4 @@ build/
 .vscode/
 
 src/main/resources/application.properties
-src/main/resources/static/keys.js
+src/main/resources/static/gamekeys.js
