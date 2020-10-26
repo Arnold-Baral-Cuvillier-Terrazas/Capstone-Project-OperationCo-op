@@ -29,8 +29,12 @@ public class Group {
     private String gameId;
 
     //This is the OneToMany relationship. One Group should have many Posts.
+    //This should be right.
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> posts;
+
+    //ManytoMany to group and users
+
 
 
     //Check out user_rating table and Group_table to see if it can me in one rating.
