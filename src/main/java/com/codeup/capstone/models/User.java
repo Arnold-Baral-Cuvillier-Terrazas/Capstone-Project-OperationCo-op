@@ -77,7 +77,7 @@ public class User {
     }
 
     //   ------------------------- with parameters---------------
-    public User(long id, String userName, String email, String password, String fullName,
+    public User(long id, String userName, String email, String password,  String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
                 String discordInfo, User user) {
@@ -261,4 +261,3 @@ public class User {
     }
 
 }
-
