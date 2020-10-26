@@ -1,4 +1,4 @@
-const url = 'http://localhost:8010/proxy/v4/games/';
+const url = 'http://localhost:8010/proxy/v4/games/';//need to change this back to original api url
 const options = {
     method: 'POST',
     headers: {
