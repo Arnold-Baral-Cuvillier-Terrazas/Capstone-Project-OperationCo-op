@@ -20,8 +20,8 @@ public class GroupUser {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Group> groups;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<User> users;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<User> users;
 
 
     @Column(length = 100)
@@ -64,13 +64,13 @@ public class GroupUser {
         this.groups = groups;
     }
 
-//    public List<User> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(List<User> users) {
-//        this.users = users;
-//    }
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
     public Boolean getGroupAdmin() {
         return isGroupAdmin;

@@ -60,4 +60,11 @@ public class GroupController {
         return "/groups/profile";
     }
 
+    @GetMapping("/groups/edit/{id}")
+    public String editGroup(@PathVariable long id, Model model) {
+        model.addAttribute("group", groupDao.getOne(id));
+        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        return "groups/profile";
+    }
+
 }
