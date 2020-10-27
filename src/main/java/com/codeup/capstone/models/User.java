@@ -47,6 +47,10 @@ public class User {
     private Boolean isSiteAdmin;
 
     @Column(length = 100)
+    @ColumnDefault("true")
+    private Boolean isGroupAdmin;
+
+    @Column(length = 100)
     private Boolean isBanned;
 
     @Column(columnDefinition = "TEXT")
@@ -87,11 +91,12 @@ public class User {
     }
 
 
+
     //   ------------------------- with parameters---------------
     public User(long id, String userName, String email, String password,  String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
+                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isGroupAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
-                String discordInfo,List<Tag> tags) {
+                String discordInfo,List<Tag> tags ) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -101,6 +106,7 @@ public class User {
         this.birthDate = birthDate;
         this.bio = bio;
         this.isSiteAdmin = isSiteAdmin;
+        this.isGroupAdmin = isGroupAdmin;
         this.isBanned = isBanned;
         this.profilePic = profilePic;
         this.twitchInfo = twitchInfo;
@@ -280,5 +286,11 @@ public class User {
         this.tags = tags;
     }
 
+    public Boolean getGroupAdmin() {
+        return isGroupAdmin;
+    }
 
+    public void setGroupAdmin(Boolean groupAdmin) {
+        isGroupAdmin = groupAdmin;
+    }
 }
