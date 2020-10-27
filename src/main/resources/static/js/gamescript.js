@@ -7,7 +7,8 @@ const options = {
         'Client-ID' : CLIENT_ID,
 
     },
-    body : "fields *; sort rating desc; where first_release_date > 1577836800; "
+    body : "fields *; sort title desc; limit 100;"
+
 };
 fetch(url, options)
     .then(function (data){
@@ -19,3 +20,26 @@ fetch(url, options)
        })
     })
     .catch();
+// const coverUrl = "http://localhost:8010/proxy/v4/covers";
+// const coverOptions = {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer' + BEARER,
+//         'Client-ID': CLIENT_ID ,
+//     },
+//     data: "fields game,height,image_id,url,width;"
+// }
+
+// fetch(coverUrl, coverOptions)
+//     .then(function (data){
+//         data.json().then(function(json){
+//             console.log(json)
+//             for(let game of json){
+//                 console.log(`INSERT INTO games(art_cover) VALUES('${game.art_cover}'`)
+//             }
+//         })
+// })
+//     .catch(err => {
+//         console.error(err);
+//     });

@@ -9,3 +9,4 @@ INSERT INTO games(title, art_cover, description) VALUES ('Just a Phrase by POWGI
 INSERT INTO games(title, art_cover, description) VALUES ('Alphaset by POWGI','118352','undefined');
 INSERT INTO games(title, art_cover, description) VALUES ('Living in the Ending World','118325','"Living in the Ending World" is a simple text-based adventure game. Make do with meager rations, establish a base of operation, travel through a crumbling world, build tools to protect yourself, preserve your sanity.');
 INSERT INTO games(title, art_cover, description) VALUES ('The Fairy''s Song','118324','Marnie, a bored goth girl, accidentally stumbles upon a sleeping female knight in the forest. Together, the pair must work to break a centuries-old curse, while romantic feelings between them begin to grow.');
+INSERT INTO games()
