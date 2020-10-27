@@ -1,56 +1,29 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <standard_links th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Game Group</a>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light topnav">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/hello/there">Hello</a>
-                </li>
-<!--                Non-logged in user display-->
-<!--              <li sec:authorize="isAnonymous()" class="nav-item">-->
-<!--                  <a class="nav-link" href="/sign-up">Sign Up</a>-->
-<!--              </li>-->
-<!--                <li sec:authorize="isAnonymous()" class="nav-item">-->
-<!--                    <a class="nav-link" href="/login">Login</a>-->
-<!--                </li>-->
-<!--&lt;!&ndash;                Drop down toggle nav&ndash;&gt;-->
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                        Post Menu-->
-<!--                    </a>-->
-<!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
-<!--                        <a class="dropdown-item" href="/posts">Post List</a>-->
-<!--                        <a class="dropdown-item" href="/posts/create">Post Create</a>-->
-<!--                        <a class="dropdown-item" href="/games">Games List</a>-->
-<!--                        <a class="dropdown-item" href="/games/create">Games Create</a>-->
+            <!-- If the user is not logged in (anonymous to the site), display the login form and register button -->
+            <div sec:authorize="isAnonymous()" class="nav-item">
+                <a class="nav-link" href="/register">Register</a>
+            </div>
 
-<!--                        <div class="dropdown-divider"></div>-->
-<!--                        <a class="dropdown-item" href="#">Example</a>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--&lt;!&ndash;                Logout button displays only for Logged in users&ndash;&gt;-->
-<!--                <li sec:authorize="isAuthenticated()" class="nav-item">-->
-<!--                    <form th:action="@{/logout}" th:method="post">-->
-<!--                        <button class="btn-link btn" style="margin-top: 10px">Logout</button>-->
-<!--                    </form>-->
-<!--                </li>-->
-<!--            </ul>-->
-<!--            <form class="form-inline my-2 my-lg-0">-->
-<!--                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--            </form>-->
+            <div sec:authorize="isAnonymous()" class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </div>
 
-<!--                close ul this Ul tag under this line is needed due to the code lines above is commented out-->
-            </ul>
+            <!-- If the user is already logged in / authenticated, display the logout button (form) -->
+            <div sec:authorize="isAuthenticated()" class="nav-item">
+                <form th:action="@{/logout}" th:method="post">
+                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                </form>
+            </div>
+
         </div>
     </nav>
+
 </standard_links>

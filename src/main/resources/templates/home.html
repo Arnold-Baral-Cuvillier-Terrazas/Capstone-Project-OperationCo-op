@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-<!--    <link th:replace="partials/links :: links"/>-->
+    <link th:replace="partials/links :: links"/>
+
+    <!--    <link th:replace="partials/links :: links"/>-->
 </head>
 <body>
 <!--<header th:replace="partials/header :: header"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
-<main class="container">
-    <h1>This is the home page</h1>
-</main>
+<div class="container">
+<!--    <img src="game.png" alt="welcome board" width="auto" >-->
+    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
+        Single toggle
+    </button>
+</div>
 
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <!--<div th:replace="partials/scripts :: scripts"/>-->
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+
 </body>
 </html>

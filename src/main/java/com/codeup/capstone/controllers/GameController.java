@@ -12,7 +12,6 @@ public class GameController {
     private final GameRepository gameRepo;
 
 
-
     public GameController(GameRepository gameRepo) {
         this.gameRepo = gameRepo;
     }
@@ -22,6 +21,7 @@ public class GameController {
         model.addAttribute("games", gameRepo.findAll());
         return "/games/games";
     }
+
 
 //    @RequestMapping(path = "games/{id}", method = RequestMethod.GET)
 //    public String showSingleGame(@PathVariable long id, Model model){
