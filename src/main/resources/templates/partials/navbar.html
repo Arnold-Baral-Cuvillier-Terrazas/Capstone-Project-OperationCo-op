@@ -2,28 +2,51 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <standard_links th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Game Group</a>
-
-
-            <!-- If the user is not logged in (anonymous to the site), display the login form and register button -->
-            <div sec:authorize="isAnonymous()" class="nav-item">
-                <a class="nav-link" href="/register">Register</a>
+<div id="wrapper">
+    <div class="text-sm-left d-xl-flex page-content-wrapper">
+        <div class="container-fluid d-xl-block justify-content-xl-start">
+            <div class="row">
+                <div class="col-lg-12 col-xl-1"><a class="btn btn-link text-right" role="button" id="menu-toggle" href="#menu-toggle"><i class="fa fa-bars"></i></a></div>
             </div>
-
-            <div sec:authorize="isAnonymous()" class="nav-item">
-                <a class="nav-link" href="/login">Login</a>
-            </div>
-
-            <!-- If the user is already logged in / authenticated, display the logout button (form) -->
-            <div sec:authorize="isAuthenticated()" class="nav-item">
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                </form>
-            </div>
-
         </div>
-    </nav>
+    </div>
+    <div class="text-capitalize d-flex justify-content-xl-start align-items-xl-start" id="sidebar-wrapper">
+        <div class="d-inline"><img src="assets/img/gaga.jpg">
+            <h4 class="text-center">Name</h4>
+            <h6 class="text-center">@Username</h6>
+            <ul class="d-xl-flex flex-column sidebar-nav">
+                <li class="d-flex justify-content-start align-items-center"> <i class="fa fa-search d-flex justify-content-start align-items-center"></i><a class="d-flex justify-content-start align-items-center" href="#">Explore</a></li>
+                <li class="d-flex justify-content-start align-items-center"> <i class="fa fa-user d-flex justify-content-start align-items-center"></i><a class="d-flex justify-content-start align-items-center" href="#">Profile</a></li>
+                <li class="d-flex justify-content-start align-items-center"> <i class="fa fa-group d-flex justify-content-start align-items-center"></i><a class="d-flex justify-content-start align-items-center" href="#">Groups</a></li>
+                <li class="d-flex justify-content-start align-items-center"> <i class="fa fa-gamepad d-flex justify-content-start align-items-center"></i><a class="d-flex justify-content-start align-items-center" href="#">Games</a></li>
+                <li class="d-flex justify-content-start align-items-center"> <i class="fa fa-star d-lg-flex align-items-lg-center"></i><a class="d-flex" href="#">About Us</a></li>
+                <li class="d-flex justify-content-start align-items-center"> <i class="fa fa-sign-out d-lg-flex align-items-lg-center"></i><a class="d-flex" href="#">Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</standard_links>
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--        <div class="container-fluid">-->
+<!--            <a class="navbar-brand" href="/">Game Group</a>-->
 
+
+<!--            &lt;!&ndash; If the user is not logged in (anonymous to the site), display the login form and register button &ndash;&gt;-->
+<!--            <div sec:authorize="isAnonymous()" class="nav-item">-->
+<!--                <a class="nav-link" href="/register">Register</a>-->
+<!--            </div>-->
+
+<!--            <div sec:authorize="isAnonymous()" class="nav-item">-->
+<!--                <a class="nav-link" href="/login">Login</a>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; If the user is already logged in / authenticated, display the logout button (form) &ndash;&gt;-->
+<!--            <div sec:authorize="isAuthenticated()" class="nav-item">-->
+<!--                <form th:action="@{/logout}" th:method="post">-->
+<!--                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+<!--                </form>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </nav>-->
 </standard_links>
