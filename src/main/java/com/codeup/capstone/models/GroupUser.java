@@ -39,6 +39,9 @@ public class GroupUser {
     public GroupUser(long id, List<Group> groups, Boolean isGroupAdmin, Boolean isApproved) {
         this.id = id;
         this.groups = groups;
+
+
+//        this.users = users;
         this.isGroupAdmin = isGroupAdmin;
         this.isApproved = isApproved;
     }
@@ -62,7 +65,6 @@ public class GroupUser {
     public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
-
 
     public Boolean getGroupAdmin() {
         return isGroupAdmin;
