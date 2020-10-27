@@ -84,18 +84,15 @@ public class User {
     private List<Tag> tags;
 
 
-
 //    ------------constructors----------------------------
 
     public User() {
     }
 
-
-
-    //   ------------------------- with parameters---------------
     public User(long id, String userName, String email, String password,  String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isGroupAdmin, Boolean isBanned, String profilePic,
-                String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
+                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isGroupAdmin,
+                Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
+                String psnInfo, String nintenDoInfo,
                 String discordInfo,List<Tag> tags ) {
         this.id = id;
         this.userName = userName;
@@ -131,7 +128,6 @@ public class User {
         this.birthDate = copy.birthDate;
         this.bio = copy.bio;
     }
-
 
     //  ------------ getters and setters-------------------
     public long getId() {
