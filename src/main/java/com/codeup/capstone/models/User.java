@@ -4,6 +4,7 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -22,7 +23,6 @@ public class User {
             " valid email address")
     @Column(nullable = false, unique = true)
     private String email;
-
 
     //one upper case, one lower case, one digit, one special character, minimum 8 characters in length
     @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$", message = "Password length must be at least 8 characters " +
@@ -70,17 +70,28 @@ public class User {
     @Column(length = 500)
     private String discordInfo;
 
+// -----------   relationship with user and tag class
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="user_tags",
+            joinColumns={@JoinColumn(name="tag_id")},
+            inverseJoinColumns={@JoinColumn(name="user_id")}
+    )
+    private List<Tag> tags;
+
+
 
 //    ------------constructors----------------------------
 
     public User() {
     }
 
+
     //   ------------------------- with parameters---------------
     public User(long id, String userName, String email, String password,  String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
                 String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
-                String discordInfo, User user) {
+                String discordInfo,List<Tag> tags) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -98,6 +109,7 @@ public class User {
         this.psnInfo = psnInfo;
         this.nintenDoInfo = nintenDoInfo;
         this.discordInfo = discordInfo;
+        this.tags = tags;
     }
 
     // implement the Copy Constructor right here in the User model!
@@ -259,5 +271,14 @@ public class User {
     public void setDiscordInfo(String discordInfo) {
         this.discordInfo = discordInfo;
     }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
 
 }

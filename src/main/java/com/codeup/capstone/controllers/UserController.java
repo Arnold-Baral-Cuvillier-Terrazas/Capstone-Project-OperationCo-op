@@ -50,8 +50,20 @@ public class UserController {
     //    redirecting login user into their profile page
     @GetMapping("/profile")
     public String profilePage( Model model) {
-        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+       User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userDao.getOne(getUser.getId()));
         return "users/profile";
     }
+
+    //user biography area
+    @PostMapping("/profile/bio")
+    public String saveProfileBio(@RequestParam long userId,@ModelAttribute User user ) {
+        User saveProfileBio = userDao.getOne(userId);
+        saveProfileBio.setBio(user.getBio());
+        userDao.save(saveProfileBio);
+        return "redirect:/profile";
+    }
+
+
 
 }

@@ -1,10 +1,11 @@
 package com.codeup.capstone.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
-@Table(name="tag")
+@Table(name="tags")
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,11 +14,23 @@ public class Tag {
     @Column(nullable = false, length = 100,unique = true)
     private String name;
 
+
+// ----------- Creating Relationship for tags and group
+    @ManyToMany(mappedBy = "tags")
+    private List<User> users;
+
+    @ManyToOne
+    @JoinColumn (name = "group_id")
+    private Group group;
+
+
 // ---------------- Constructor
 
-    public Tag(long id, String name) {
+    public Tag(long id, String name, List<User> users, Group group) {
         this.id = id;
         this.name = name;
+        this.users = users;
+        this.group = group;
     }
 
     public Tag() {
@@ -39,5 +52,21 @@ public class Tag {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }
