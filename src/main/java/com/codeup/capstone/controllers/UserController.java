@@ -46,7 +46,7 @@ public class UserController {
         }
     }
 
-    //    redirecting login user into their profile page
+    // redirecting login user into their profile page
     @GetMapping("/profile")
     public String profilePage(Model model) {
         User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -64,15 +64,6 @@ public class UserController {
         userDao.save(saveProfileBio);
         return "redirect:/profile";
     }
-
-    //for profile pic
-//    @PostMapping("/profile/pic")
-//    public String saveProfilePic(@RequestParam long userId, @ModelAttribute User user) {
-//        User saveProfilePic = userDao.getOne(userId);
-////        saveProfilePic.setProfilePic(url);
-//        userDao.save(saveProfilePic);
-//        return "redirect:/profile";
-//    }
 
 
 }
