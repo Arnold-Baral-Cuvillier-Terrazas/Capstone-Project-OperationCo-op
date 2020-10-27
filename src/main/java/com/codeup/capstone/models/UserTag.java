@@ -1,4 +1,4 @@
-package com.codeup.capstone.models;
+//package com.codeup.capstone.models;
 //
 //
 //import javax.persistence.Entity;
