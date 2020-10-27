@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>View games</title>
-    <script src="../../static/gamekeys.js"></script>
     <!--    <div th:replace="partials/links :: links"/>-->
 </head>
 <body>
@@ -16,20 +15,23 @@
 </div>
 
 
-<!--<main class="container">-->
-<!--    <div th:each="item : ${games}">-->
+<main class="container">
+    <div th:each="game : ${games}">
 <!--        <form th:action="@{'/games/' + ${games.id}">-->
-<!--            <h2-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</main>-->
+            <h2 th:text="${game.title}"></h2>
+            <p th:text="${game.description}"></p>
+            <p th:text="${game.release_date}"></p>
+            <img th:src="${game.art_cover}"/>
+
+    </div>
+</main>
 <!--<header th:replace="partials/header :: header"/>-->
 <!--<nav th:replace="partials/navbar :: navbar"/>-->
 
 <!--<footer th:replace="partials/footer :: footer"/>-->
 <!--<div th:replace="partials/scripts :: scripts"/>-->
 <!--</body>-->
-<script src="gamekeys.js"></script>
-<script src="gamescript.js"></script>
+<script src="js/gamekeys.js"></script>
+<script src="js/gamescript.js"></script>
 </body>
 </html>
