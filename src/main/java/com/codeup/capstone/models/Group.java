@@ -27,8 +27,7 @@ public class Group {
     @ColumnDefault("true")
     private String discordUserId;
 
-    //Check if no parameters in this is ok.
-    @Column()
+    @Column(unique = true)
     private String gameId;
 
     //This is the OneToMany relationship. One Group should have many Posts.
