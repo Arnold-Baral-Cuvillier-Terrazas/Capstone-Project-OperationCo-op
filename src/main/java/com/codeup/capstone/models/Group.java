@@ -1,5 +1,7 @@
 package com.codeup.capstone.models;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class Group {
 
     // Made nullable true to make Create Group DB to work.
     @Column(unique = true)
+    @ColumnDefault("true")
     private String discordUserId;
 
     //Check if no parameters in this is ok.
