@@ -1,14 +1,15 @@
 package com.codeup.capstone.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="user_tag")
 public class UserTag {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @ManyToOne
     @JoinColumn (name = "user_id")
@@ -23,7 +24,8 @@ public class UserTag {
     public UserTag() {
     }
 
-    public UserTag(User user, Tag tag) {
+    public UserTag(long id, User user, Tag tag) {
+        this.id = id;
         this.user = user;
         this.tag = tag;
     }
@@ -44,5 +46,13 @@ public class UserTag {
 
     public void setTag(Tag tag) {
         this.tag = tag;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
