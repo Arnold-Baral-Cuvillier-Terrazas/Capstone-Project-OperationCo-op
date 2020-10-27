@@ -60,11 +60,37 @@ public class GroupController {
         return "/groups/profile";
     }
 
-    @GetMapping("/groups/edit/{id}")
-    public String editGroup(@PathVariable long id, Model model) {
-        model.addAttribute("group", groupDao.getOne(id));
+//    @GetMapping("/groups/edit/{id}")
+//    public String editAd(@PathVariable long id, Model model) {
+//        Group group = groupDao.getOne(id);
+//        model.addAttribute("group", group);
+//        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+//        return "groups/profile";
+//    }
+//
+//    @PostMapping("/groups/edit")
+//    public String updateGroup(@ModelAttribute Group group) {
+//        groupDao.save(group);
+//        return "groups/profile" + groupDao.getOne(group.getId());
+//    }
+
+    @GetMapping("/groups/edit")
+    public String showUserEditForm(Model model, Group group) {
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "groups/profile";
+        model.addAttribute("group", group);
+        return "/groups/edit";
     }
 
+    @PostMapping("/group/edit")
+    public String updateGroup(@ModelAttribute Group group, Model model,
+                            @RequestParam(name = "name") String name,
+                            @RequestParam(name = "description") String description) {
+
+        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        group.setName(name);
+        group.setDescription(description);
+        groupDao.save(group);
+        return "groups/profile";
+
+    }
 }
