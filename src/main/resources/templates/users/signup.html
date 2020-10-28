@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Sign Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link th:replace="partials/links :: links"/>
     <link rel="stylesheet" th:href="@{/css/signup.css}">
 </head>
 
 <body>
 <div class="container login">
-
     <div class="row">
         <div class="col">
             <h1>Not A Member?</h1>
@@ -22,17 +22,18 @@
         </div>
     </div>
 
-    <div class="row" style="margin: 0px;">
+    <div class="row" style="margin: 0;">
         <div class="col-md-9 col-lg-8 col-xl-6 offset-md-2 offset-xl-3">
             <form th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <div class="form-row">
                     <div class="col-lg-12 offset-lg-0 d-flex align-items-lg-start">
 
                         <input class="form-control" id="name" type="text" placeholder="Name" th:field="*{fullName}">
-                        <input class="form-control" id="username" type="text" placeholder="Username" th:field="*{userName}">
+                        <input class="form-control" id="username" type="text" placeholder="Username"
+                               th:field="*{userName}">
                         <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1" th:field="*{pronouns}">
-                                <optgroup label="Prounouns">
+                                <optgroup label="Pronouns">
                                     <option value="he/him" selected="">He/Him</option>
                                     <option value="she/her">She/Her</option>
                                     <option value="they/them">They/Them</option>
@@ -46,7 +47,8 @@
                 <input class="form-control" id="email" type="text" placeholder="Email" th:field="*{email}">
                 <div class="form-row">
                     <div class="col d-flex">
-                        <input class="form-control" type="password" id="password" placeholder="Password" th:field="*{password}">
+                        <input class="form-control" type="password" id="password" placeholder="Password"
+                               th:field="*{password}">
                         <input class="form-control" type="password" id="confirmPassword" placeholder="Confirm Password">
                     </div>
                 </div>
@@ -54,14 +56,14 @@
 
                 <button class="btn btn-primary" value="Sign me up!" type="submit">Register</button>
                 <div>
-                    <a class="d-lg-flex d-xl-flex justify-content-lg-center justify-content-xl-center align-items-xl-end" href="#">Already A User? Sign In!</a>
+                    <a class="d-lg-flex d-xl-flex justify-content-lg-center justify-content-xl-center align-items-xl-end"
+                       href="#">Already A User? Sign In!</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
 
