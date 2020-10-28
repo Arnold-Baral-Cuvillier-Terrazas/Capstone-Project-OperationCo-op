@@ -15,33 +15,26 @@ public class GroupUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    //    @Column(nullable = false)
-//    private String userId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
-    private List<Group> groups;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
 
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<User> users;
-
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(length = 100)
     @ColumnDefault("true")
     private Boolean isGroupAdmin;
 
 
-//    @Column(nullable = false)
-//    private String groupId;
-
     @Column(length = 100)
     private Boolean isApproved;
 
-
-    public GroupUser(long id, List<Group> groups, Boolean isGroupAdmin, Boolean isApproved) {
+    public GroupUser(long id, Group group, User user, Boolean isGroupAdmin, Boolean isApproved) {
         this.id = id;
-        this.groups = groups;
-
-
-//        this.users = users;
+        this.group = group;
+        this.user = user;
         this.isGroupAdmin = isGroupAdmin;
         this.isApproved = isApproved;
     }
@@ -58,12 +51,20 @@ public class GroupUser {
         this.id = id;
     }
 
-    public List<Group> getGroups() {
-        return groups;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Boolean getGroupAdmin() {
