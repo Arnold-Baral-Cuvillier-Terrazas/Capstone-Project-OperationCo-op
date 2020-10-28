@@ -23,7 +23,7 @@
                 <img th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
             </div>
 
-            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span> )</h6>
+            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
             <h6>Username: <span th:text="${user.userName}"></span></h6>
             <h6>Email: <span th:text="${user.email}"></span></h6>
 
@@ -47,7 +47,6 @@
             </p></div>
     </div>
 
-    <button class="ib" type="button">Edit profile</button>
     <br>
     <div class="bio"> Bio
         <form action="/profile/bio" name="editProfile" id="editProfile" method="post">
@@ -79,7 +78,6 @@
 </div>
 
 <!--grabbing userid from controller and linked it into js-->
-<script th:inline="javascript">const userId =/*[[@{${user.id}}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
