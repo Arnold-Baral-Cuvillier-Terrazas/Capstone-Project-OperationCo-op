@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8"/>
     <title>Create Group</title>
@@ -7,7 +7,7 @@
 <body>
 <!--<header th:replace="partials/head :: head"></header>-->
 <h1>Create a Group!</h1>
-<form th:action="@{/edit}" method="post" th:object="${group}">
+<form th:action="'/groups/edit/' + ${editGroup.id}" method="post" th:object="${editGroup}">
 
     <label for="name">Enter a Group Name:</label>
     <input id="name" type="text" th:field="*{name}"/>
