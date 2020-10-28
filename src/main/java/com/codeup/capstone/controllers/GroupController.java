@@ -74,4 +74,18 @@ public class GroupController {
         groupDao.save(group);
         return "redirect:/groups/" + group.getId();
     }
+
+    @GetMapping("/groups/delete/{id}")
+    public String deleteGroup(@PathVariable long id) {
+        Group group = groupDao.getOne(id);
+//        post.setUser(postRepo.getPostById(post.getId()).getUser()); // Get the user from the database
+
+        // send email for a post delete
+//        emailService.prepareAndSend(post.getUser().getEmail(),
+//                "Created Post: " + post.getTitle(),
+//                post.getTitle() + "\n\n" + post.getBody());
+        groupDao.delete(group);
+        return "redirect:/groups";
+    }
+
 }
