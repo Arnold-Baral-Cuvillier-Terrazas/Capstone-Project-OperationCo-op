@@ -83,9 +83,9 @@ public class User {
     )
     private List<Tag> tags;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private List<GroupUser> users;
-
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+//    private List<GroupUser> users;
+//
 
 //    ------------constructors----------------------------
 
