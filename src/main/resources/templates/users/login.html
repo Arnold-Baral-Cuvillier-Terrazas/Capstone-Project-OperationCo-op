@@ -41,7 +41,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>gamelogin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 
@@ -59,11 +60,20 @@
     </div>
     <div class="row" style="margin: 0;">
         <div class="col-md-9 col-lg-8 col-xl-6 offset-md-2 offset-xl-3">
-            <form>
-                <div><i class="material-icons" style="width: 100%;text-align: center;">lock_open</i></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Username"></div>
-                <div class="form-group"><input class="form-control" type="text" placeholder="Password"></div>
-                <div><button class="btn btn-primary" type="button">Button</button><a class="d-xl-flex justify-content-xl-center align-items-xl-end" href="#">Not A User? Sign Up!</a></div>
+            <form th:action="@{/login}" method="post">
+                <div>
+                    <i class="material-icons" style="width: 100%;text-align: center;">lock_open</i>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="username" name="username" type="text" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="password" name="password" type="password" placeholder="Password">
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit">Sign In</button>
+                    <a class="d-xl-flex justify-content-xl-center align-items-xl-end" href="#">Not A User? Sign Up!</a>
+                </div>
             </form>
         </div>
     </div>
