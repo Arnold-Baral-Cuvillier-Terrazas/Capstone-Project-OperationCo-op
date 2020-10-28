@@ -7,7 +7,7 @@ const options = {
         'Client-ID' : CLIENT_ID,
 
     },
-    body : "fields *; sort title desc; limit 100;"
+    body : "fields *; where first_release_date > 1577836800 & multiplayer_modes != null; limit 100;"
 
 };
 fetch(url, options)

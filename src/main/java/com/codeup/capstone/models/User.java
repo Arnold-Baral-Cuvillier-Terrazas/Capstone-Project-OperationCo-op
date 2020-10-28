@@ -4,28 +4,28 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
 @Table(name="user")
 public class User {
 
-//   ------------------Instance variables-------------
+    //   ------------------Instance variables-------------
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100,unique = true)
+    @Column(nullable = false, length = 100, unique = true)
     private String userName;
 
-    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message="email must be" +
-            " valid email address" )
-    @Column(nullable = false,  unique = true)
+    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
+            " valid email address")
+    @Column(nullable = false, unique = true)
     private String email;
 
-
     //one upper case, one lower case, one digit, one special character, minimum 8 characters in length
-    @Pattern(regexp="^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$",message="Password length must be at least 8 characters " +
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$", message = "Password length must be at least 8 characters " +
             "with one uppercase letter and one digit")
     @Column(nullable = false, length = 100)
     private String password;
@@ -39,51 +39,61 @@ public class User {
     @Column(nullable = false, length = 100)
     private Date birthDate;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String bio;
 
-    @Column( length = 100 )
+    @Column(length = 100)
     @ColumnDefault("true")
     private Boolean isSiteAdmin;
 
-    @Column( length = 100)
+    @Column(length = 100)
+    @ColumnDefault("true")
+    private Boolean isGroupAdmin;
+
+    @Column(length = 100)
     private Boolean isBanned;
 
     @Column(columnDefinition = "TEXT")
     private String profilePic;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String twitchInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String steamInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String xboxLiveInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String psnInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String nintenDoInfo;
 
-    @Column( length = 500)
+    @Column(length = 500)
     private String discordInfo;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+// -----------   relationship with user and tag class
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="user_tags",
+            joinColumns={@JoinColumn(name="tag_id")},
+            inverseJoinColumns={@JoinColumn(name="user_id")}
+    )
+    private List<Tag> tags;
 
 
 //    ------------constructors----------------------------
 
-    public User() {}
+    public User() {
+    }
 
-//   ------------------------- with parameters---------------
     public User(long id, String userName, String email, String password,  String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
-                String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo,
-                String discordInfo, User user) {
+                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isGroupAdmin,
+                Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
+                String psnInfo, String nintenDoInfo,
+                String discordInfo,List<Tag> tags ) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -93,6 +103,7 @@ public class User {
         this.birthDate = birthDate;
         this.bio = bio;
         this.isSiteAdmin = isSiteAdmin;
+        this.isGroupAdmin = isGroupAdmin;
         this.isBanned = isBanned;
         this.profilePic = profilePic;
         this.twitchInfo = twitchInfo;
@@ -101,7 +112,7 @@ public class User {
         this.psnInfo = psnInfo;
         this.nintenDoInfo = nintenDoInfo;
         this.discordInfo = discordInfo;
-        this.user = user;
+        this.tags = tags;
     }
 
     // implement the Copy Constructor right here in the User model!
@@ -117,7 +128,6 @@ public class User {
         this.birthDate = copy.birthDate;
         this.bio = copy.bio;
     }
-
 
     //  ------------ getters and setters-------------------
     public long getId() {
@@ -264,12 +274,19 @@ public class User {
         this.discordInfo = discordInfo;
     }
 
-    public User getUser() {
-        return user;
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public Boolean getGroupAdmin() {
+        return isGroupAdmin;
+    }
+
+    public void setGroupAdmin(Boolean groupAdmin) {
+        isGroupAdmin = groupAdmin;
     }
 }
-

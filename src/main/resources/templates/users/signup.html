@@ -45,17 +45,17 @@
 
 <div class="container">
     <h1> Already a user ?</h1>
-<form th:action="@{/login}" method="post">
-    <label for="uname"><strong>Username</strong></label>
-    <input id="uname" name="uname" type="text" />
-    <br>
-    <br>
-    <label for="pw"><strong>Password</strong></label>
-    <input id="pw" name="pw" type="password" />
-    <br>
-    <br>
-    <input type="submit" value="Login"  />
-</form>
+    <form th:action="@{/login}" method="post">
+        <label for="uname"><strong>Username</strong></label>
+        <input id="uname" name="uname" type="text" />
+        <br>
+        <br>
+        <label for="pw"><strong>Password</strong></label>
+        <input id="pw" name="pw" type="password" />
+        <br>
+        <br>
+        <input type="submit" value="Login"  />
+    </form>
 </div>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>

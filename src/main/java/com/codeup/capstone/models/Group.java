@@ -1,7 +1,12 @@
 package com.codeup.capstone.models;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.List;
+
+
+//Group will most likely have a OneToMany relationship with User
 
 @Entity
 @Table(name = "groups")
@@ -11,17 +16,45 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    // Made nullable true to make Create Group DB to work.
+    @Column(unique = true)
+    @ColumnDefault("true")
     private String discordUserId;
 
-    @Column(nullable = false)
+    @Column(unique = true)
     private String gameId;
+
+    //This is the OneToMany relationship. One Group should have many Posts.
+    //This should be right.
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    private List<Post> posts;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    //ManytoMany to group and users
+
+
+
+    //Check out user_rating table and Group_table to see if it can me in one rating.
+
+
+    // Determine whether it will be ManyToMany or ManyToOne below.
+
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
+//
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    private List<User> users;
+
 
     public Group(long id, String name, String description, String discordUserId, String gameId) {
         this.id = id;

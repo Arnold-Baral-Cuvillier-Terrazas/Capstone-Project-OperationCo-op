@@ -1,6 +1,6 @@
 
 
-// const client = filestack.init(FILESTACKKEY);
+const stackClient = filestack.init(FILESTACKKEY);
 // const options = {
 //     onFileUploadFinished: file => {
 //         // If you throw any error in this function it will reject the file selection.

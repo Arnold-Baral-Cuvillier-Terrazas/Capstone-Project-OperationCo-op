@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
     private final UserRepository userDao;
-    private final  PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-//---------constructor
+    //---------constructor
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
@@ -30,28 +30,49 @@ public class UserController {
 
     // What happens when a new user submits the register form?
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user, @RequestParam(name="confirmPassword")  String confirmPassword,
-                           @RequestParam(name="password") String password)  {
-        if(!user.getPassword().equals(confirmPassword)){
+    public String saveUser(@ModelAttribute User user, @RequestParam(name = "confirmPassword") String confirmPassword,
+                           @RequestParam(name = "password") String password) {
+        if (!user.getPassword().equals(confirmPassword)) {
             return "users/signup";
         }
-
         String hash = passwordEncoder.encode(user.getPassword()); // ~plaintext password
         user.setPassword(hash); // immediately no longer have access to the plaintext password. It's hashed
-        if(user.getId() == 0){
+        if (user.getId() == 0) {
             userDao.save(user);
             return "redirect:/login";
-        }else {
+        } else {
             userDao.save(user);
             return "users/profile";
         }
     }
 
-//    redirecting login user into their profile page
+    //    redirecting login user into their profile page
     @GetMapping("/profile")
-    public String profilePage( Model model) {
-        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+    public String profilePage(Model model) {
+        User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", userDao.getOne(getUser.getId()));
+        model.addAttribute("photoUrl", userDao.getOne(getUser.getId()).getProfilePic());
         return "users/profile";
     }
+
+    //user's biography area
+    @PostMapping("/profile/bio")
+    public String saveProfileBio(@RequestParam long userId, @RequestParam String url, @ModelAttribute User user) {
+        User saveProfileBio = userDao.getOne(userId);
+        saveProfileBio.setBio(user.getBio());
+        saveProfileBio.setProfilePic(url);
+        userDao.save(saveProfileBio);
+        return "redirect:/profile";
+    }
+
+    //for profile pic
+//    @PostMapping("/profile/pic")
+//    public String saveProfilePic(@RequestParam long userId, @ModelAttribute User user) {
+//        User saveProfilePic = userDao.getOne(userId);
+////        saveProfilePic.setProfilePic(url);
+//        userDao.save(saveProfilePic);
+//        return "redirect:/profile";
+//    }
+
 
 }
