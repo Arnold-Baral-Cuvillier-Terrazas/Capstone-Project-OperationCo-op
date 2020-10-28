@@ -26,7 +26,7 @@ public class GroupController {
     }
 
     //Mapping to get group/create.html
-    @GetMapping("/group/create")
+    @GetMapping("/groups/create")
     public String showCreateGroupForm(Model model) {
         model.addAttribute("group", new Group());
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
@@ -36,7 +36,7 @@ public class GroupController {
 
     //This should save the new Group should there be a user authentication for the user to access this page?
     // Also the redirect mapping doesn't show the
-    @PostMapping("/group/create")
+    @PostMapping("/groups/create")
     public String saveGroup(@ModelAttribute Group group,
                             @RequestParam(name = "name") String name,
                             @RequestParam(name = "description") String description) {
@@ -49,15 +49,37 @@ public class GroupController {
         group.setName(name);
         group.setDescription(description);
         groupDao.save(group);
-        return "groups/profile";
+        return "redirect:/groups/" + group.getId();
     }
 
     //Double check on this mapping for displaying group profile.
-    @GetMapping("group/{id}")
+    @GetMapping("/groups/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "/groups/profile";
+    }
+
+    @GetMapping("/groups/edit/{id}")
+    public String EditGroup(@PathVariable long id, Model model) {
+        model.addAttribute("editGroup", groupDao.getOne(id));
+        return "/groups/edit";
+    }
+
+    @PostMapping("/groups/edit/{id}")
+    public String postEditGroup(@PathVariable long id, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description) {
+        Group group = groupDao.getOne(id);
+        group.setName(name);
+        group.setDescription(description);
+        groupDao.save(group);
+        return "redirect:/groups/" + group.getId();
+    }
+
+    @GetMapping("/groups/delete/{id}")
+    public String deleteGroup(@PathVariable long id) {
+        Group group = groupDao.getOne(id);
+        groupDao.delete(group);
+        return "redirect:/groups";
     }
 
 }

@@ -23,7 +23,7 @@ public class AdminController {
         this.groupDao = groupDao;
     }
 
-//    print-out all the users
+    //    print-out all the users
     @GetMapping("/admin")
     public String siteAdmin(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -34,7 +34,6 @@ public class AdminController {
         } else {
             return "users/login";
         }
-
     }
 
     //delete the user

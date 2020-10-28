@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <title>Create Group</title>
 </head>
 <body>
+<!--<header th:replace="partials/head :: head"></header>-->
+<h1>Create a Group!</h1>
+<form th:action="'/groups/edit/' + ${editGroup.id}" method="post" th:object="${editGroup}">
 
+    <label for="name">Enter a Group Name:</label>
+    <input id="name" type="text" th:field="*{name}"/>
+    <br><br>
+    <label for="description">Enter a Description:</label>
+    <input id="description" type="text" th:field="*{description}"/>
+    <br><br>
+    <input value="Update Group" type="submit"/>
+</form>
 </body>
 </html>

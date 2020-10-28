@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Show Posts</title>
     <link th:replace="partials/links :: links"/>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
+<body>
+<header th:replace="partials/head :: head"></header>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-<body>
-<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-    Single toggle
-</button>
+<!--<main class="container">-->
+<!--    <show_post th:if="${posts}">-->
+<!--        <div th:each="item : ${posts}">-->
+
+<!--            <h2 th:text=" 'Title : ' + ${item.title}"> </h2>-->
+<!--            <a th:href="'posts/delete/'+ ${item.id}"> Delete</a>-->
+<!--            <a th:href="'posts/edit/'+ ${item.id}"> Edit</a>-->
+<!--            <h4 th:text=" 'Body : '+${item.body}"> </h4>-->
+<!--            <p th:text=" 'UserEmail : '+ ${item.getUser().getEmail()}"></p>-->
+<!--            <br>-->
+<!--        </div>-->
+<!--    </show_post>-->
+<!--</main>-->
+<footer th:replace="partials/footer :: footer"></footer>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
