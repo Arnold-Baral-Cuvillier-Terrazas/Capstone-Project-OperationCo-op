@@ -53,7 +53,7 @@ public class GroupController {
     }
 
     //Double check on this mapping for displaying group profile.
-    @GetMapping("groups/{id}")
+    @GetMapping("/groups/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
@@ -63,11 +63,11 @@ public class GroupController {
     @GetMapping("/groups/edit/{id}")
     public String EditGroup(@PathVariable long id, Model model) {
         model.addAttribute("editGroup", groupDao.getOne(id));
-        return "groups/edit";
+        return "/groups/edit";
     }
 
     @PostMapping("/groups/edit/{id}")
-    public String newEditPost(@PathVariable long id, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description) {
+    public String postEditGroup(@PathVariable long id, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description) {
         Group group = groupDao.getOne(id);
         group.setName(name);
         group.setDescription(description);

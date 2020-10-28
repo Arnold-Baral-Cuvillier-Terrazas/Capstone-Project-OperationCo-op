@@ -31,7 +31,12 @@
     <h4>Username: <span th:text="${group.description}"></span></h4>
 </div>
 
-<button  class="ib" type="button">Edit profile</button>
+<!--<button  class="ib" type="button">Edit profile</button>-->
+
+<form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}"><button>Edit</button></form>
+<form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}"><button>Delete</button></form>
+
+
 <br>
 <div class="bio"> Bio
     <form>
