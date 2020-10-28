@@ -53,45 +53,33 @@ public class GroupController {
     }
 
     //Double check on this mapping for displaying group profile.
-    @GetMapping("groups/{id}")
+    @GetMapping("/groups/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "/groups/profile";
     }
 
-//    @GetMapping("/groups/edit/{id}")
-//    public String editAd(@PathVariable long id, Model model) {
-//        Group group = groupDao.getOne(id);
-//        model.addAttribute("group", group);
-//        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-//        return "groups/profile";
-//    }
-//
-//    @PostMapping("/groups/edit")
-//    public String updateGroup(@ModelAttribute Group group) {
-//        groupDao.save(group);
-//        return "groups/profile" + groupDao.getOne(group.getId());
-//    }
-
-    //Below are the getMapping and PostMapping meth
     @GetMapping("/groups/edit/{id}")
-    public String editGroup(@PathVariable (name = "id") long id, Model model) {
-        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        Group group = groupDao.findById(id).orElse(null);
+    public String EditGroup(@PathVariable long id, Model model) {
+        model.addAttribute("editGroup", groupDao.getOne(id));
         return "/groups/edit";
     }
 
-//    @PostMapping("/groups/edit/{id}")
-//    public String updateGroup(@ModelAttribute Group group, Model model,
-//                            @RequestParam(name = "name") String name,
-//                            @RequestParam(name = "description") String description) {
-//
-//        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-//        group.setName(name);
-//        group.setDescription(description);
-//        groupDao.save(group);
-//        return "groups/profile";
-//
-//    }
+    @PostMapping("/groups/edit/{id}")
+    public String postEditGroup(@PathVariable long id, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description) {
+        Group group = groupDao.getOne(id);
+        group.setName(name);
+        group.setDescription(description);
+        groupDao.save(group);
+        return "redirect:/groups/" + group.getId();
+    }
+
+    @GetMapping("/groups/delete/{id}")
+    public String deleteGroup(@PathVariable long id) {
+        Group group = groupDao.getOne(id);
+        groupDao.delete(group);
+        return "redirect:/groups";
+    }
+
 }
