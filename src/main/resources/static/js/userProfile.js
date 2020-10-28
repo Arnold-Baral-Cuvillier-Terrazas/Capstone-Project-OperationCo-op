@@ -52,6 +52,9 @@ $(document).ready(function() {
 
 })
 
+
+//testing merge conflict
+
 //starting functionality for profile page
 
 
@@ -78,3 +81,4 @@ $(document).ready(function () {
     });
 
 })
+
