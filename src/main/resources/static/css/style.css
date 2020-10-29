@@ -59,6 +59,7 @@ button:hover, a:hover {
 
 /*--------pills for tags*/
 .pill {
+    display: inline-block;
     border: 2px solid black;
     border-radius: 32px;
     margin: 1em;
@@ -67,13 +68,13 @@ button:hover, a:hover {
 
 }
 
-.pill.active {
-    background: cyan;
-}
+/*.pill.active {*/
+/*    background: cyan;*/
+/*}*/
 
-.tags{
-    width: auto;
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 2%;
-}
+/*.tags{*/
+/*    width: auto;*/
+/*    padding: 10px;*/
+/*    border: 2px solid gray;*/
+/*    margin: 2%;*/
+/*}*/

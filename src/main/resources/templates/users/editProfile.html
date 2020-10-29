@@ -8,18 +8,22 @@
 
 <div class="container">
 <h1>Editing Information</h1>
-<form th:action="'/profile/tags/' + ${editProfile.id}" method="post" th:object="${editProfile}">
+<form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
 
-<!--    <label for="bio">Updated your bio</label>-->
-<!--    <input id="bio" type="text" th:value="*{tags.name}"/>-->
-<!--    <br><br>-->
-<!--    <label for="tags">Select your interests:</label>-->
-<!--    <input id="tags" type="text" th:field="*{tag.name}"/>-->
-<!--    <br><br>-->
-<!--    <input value="Update Info" type="submit"/>-->
+    <label for="bio">Updated your bio</label>
+    <input id="bio" type="text"  name="bio" th:value="*{bio}"/>
+    <br><br>
+
+    <div class="tags">
+        <div th:each="tag : ${tagsList}">
+            <input type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}" name="tags" th:value="${tag.id}"/>
+            <label th:for="${tag.name}" th:text="${tag.name}"></label>
+        </div>
+    </div>
+    <input value="Update Info" type="submit"/>
 
 
-<!--    <label for="body">Tags</label><textarea th:value="${recipe.notes}" name="notes" id="body" cols="72" rows="4"></textarea>-->
+    <!--    <label for="body">Tags</label><textarea th:value="${recipe.notes}" name="notes" id="body" cols="72" rows="4"></textarea>-->
 <!--    <div class="d-flex justify-content-between">-->
 <!--        <div th:each="ingredient : ${ingredientsList}">-->
 <!--            <input type="checkbox" th:id="${ingredient.name}" name="ingredients" th:value="${ingredient.id}" />-->
