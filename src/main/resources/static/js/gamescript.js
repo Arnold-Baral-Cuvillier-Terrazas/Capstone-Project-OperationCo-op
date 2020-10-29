@@ -139,15 +139,15 @@ const get_cover = (id) => {
                 console.log(games);
                 // so now 'games' is sorted into it's json object
                 // grab the game cover based on each id
-                games.forEach(function(thisGame) {
-                    thisGame.cover = get_cover(thisGame.id)
-                        .then(response => {
-                            response.json().then(function (json) {
-                                return json.url;
-                            })
-                                .catch(err => console.error(err));
-                        })
-                });
+                // games.forEach(function(thisGame) {
+                //     thisGame.cover = get_cover(thisGame.id)
+                //         .then(response => {
+                //             response.json().then(function (json) {
+                //                 return json.url;
+                //             })
+                //                 .catch(err => console.error(err));
+                //         })
+                // });
                 if (games.length > 0) {
                     // Game IDs to CSV
                     // let ids = games
