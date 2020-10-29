@@ -16,8 +16,8 @@
         <h2 th:text="${group.name}"></h2>
         <p th:text="${group.description}"></p>
         <p th:text="${group.discordUserId}"></p>
-
     </div>
+    <form style="display: inline" th:action="@{'/groups/create/'}"><button>Create A Group</button></form>
 </main>
 </body>
 </html>
