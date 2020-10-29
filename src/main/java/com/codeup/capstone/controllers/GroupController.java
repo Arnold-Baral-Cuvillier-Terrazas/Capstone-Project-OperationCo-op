@@ -2,19 +2,24 @@ package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.*;
 import com.codeup.capstone.repositories.GroupRepository;
+import com.codeup.capstone.repositories.GroupUserRepository;
+import com.codeup.capstone.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class GroupController {
     private final GroupRepository groupDao;
+    private final UserRepository userDao;
+    private final GroupUserRepository groupUserDao;
 
-    public GroupController(GroupRepository groupDao) {
+    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao) {
         this.groupDao = groupDao;
+        this.userDao = userDao;
+        this.groupUserDao = groupUserDao;
     }
 
     //To show all groups
@@ -37,7 +42,7 @@ public class GroupController {
     //This should save the new Group should there be a user authentication for the user to access this page?
     // Also the redirect mapping doesn't show the
     @PostMapping("/groups/create")
-    public String saveGroup(@ModelAttribute Group group,
+    public String saveGroup(
                             @RequestParam(name = "name") String name,
                             @RequestParam(name = "description") String description) {
 
@@ -46,10 +51,14 @@ public class GroupController {
             return "redirect:/login";
         }
         User user = (User) obj;
+        Group group = new Group();
         group.setName(name);
         group.setDescription(description);
         groupDao.save(group);
-        return "redirect:/groups/" + group.getId();
+        Group newGroup = groupDao.getOne()
+        GroupUser groupUser = new GroupUser(newGroup,user,true, true);
+        groupUserDao.save(groupUser);
+        return "redirect:/groups/" + newGroup.getId();
     }
 
     //Double check on this mapping for displaying group profile.
