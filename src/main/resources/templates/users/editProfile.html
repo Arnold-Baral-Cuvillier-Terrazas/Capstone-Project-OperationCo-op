@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user Profile</title>
+</head>
+<body>
+
+<div class="container">
+<h1>Editing Information</h1>
+<form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
+
+    <label for="bio">Updated your bio</label>
+    <input id="bio" type="text"  name="bio" th:value="*{bio}"/>
+    <br><br>
+
+    <div class="tags">
+        <div th:each="tag : ${tagsList}">
+            <input type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}" name="tags" th:value="${tag.id}"/>
+            <label th:for="${tag.name}" th:text="${tag.name}"></label>
+        </div>
+    </div>
+    <input value="Update Info" type="submit"/>
+
+
+    <!--    <label for="body">Tags</label><textarea th:value="${recipe.notes}" name="notes" id="body" cols="72" rows="4"></textarea>-->
+<!--    <div class="d-flex justify-content-between">-->
+<!--        <div th:each="ingredient : ${ingredientsList}">-->
+<!--            <input type="checkbox" th:id="${ingredient.name}" name="ingredients" th:value="${ingredient.id}" />-->
+<!--            <label th:for="${ingredient.name}"  th:text="${ingredient.name}"></label>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <br>-->
+</form>
+</div>
+</body>
+</html>

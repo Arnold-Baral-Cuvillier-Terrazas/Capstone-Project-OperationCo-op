@@ -1,6 +1,9 @@
 package com.codeup.capstone.controllers;
 
+import com.codeup.capstone.models.Tag;
 import com.codeup.capstone.models.User;
+import com.codeup.capstone.repositories.GroupRepository;
+import com.codeup.capstone.repositories.TagRepository;
 import com.codeup.capstone.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,15 +11,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
+    private final TagRepository tagDao;
+    private final GroupRepository groupDao;
+
+
 
     //---------constructor
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, TagRepository tagDao, GroupRepository groupDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.tagDao = tagDao;
+        this.groupDao = groupDao;
     }
 
 // ---------methods for work flow------------
@@ -56,14 +68,38 @@ public class UserController {
     }
 
     //user's biography area
-    @PostMapping("/profile/bio")
-    public String saveProfileBio(@RequestParam long userId, @RequestParam String url, @ModelAttribute User user) {
-        User saveProfileBio = userDao.getOne(userId);
-        saveProfileBio.setBio(user.getBio());
-        saveProfileBio.setProfilePic(url);
-        userDao.save(saveProfileBio);
+    @PostMapping("/profile/pic")
+    public String saveProfile(@RequestParam long userId, @RequestParam String url, @ModelAttribute User user) {
+        User saveProfile = userDao.getOne(userId);
+        saveProfile.setProfilePic(url);
+        userDao.save(saveProfile);
         return "redirect:/profile";
     }
+
+//    editing user profile information like bio and tags
+    @GetMapping("/users/edit/{id}")
+    public String EditProfile(@PathVariable long id, Model model) {
+        model.addAttribute("editUser", userDao.getOne(id));
+        List<Tag> tagsList = tagDao.findAll();
+        model.addAttribute("tagsList", tagsList);
+        return "/users/editProfile";
+    }
+
+    @PostMapping("/users/edit/{id}")
+    public String postEditGroup(@PathVariable long id, @RequestParam(name = "bio") String bio,
+                                @RequestParam List<Long> tags) {
+        List<Tag> tagList = new ArrayList<>();
+        for(int i= 0; i< tags.size(); i++){
+            Tag thisTag = tagDao.getOne(tags.get(i));
+            tagList.add(thisTag);
+        }
+        User user = userDao.getOne(id);
+        user.setBio(bio);
+        user.setTags(tagList);
+        userDao.save(user);
+        return "redirect:/profile";
+    }
+
 
 }
 
