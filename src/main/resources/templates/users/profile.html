@@ -5,6 +5,8 @@
     <title>Profile page</title>
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/tag.css}" rel="stylesheet"/>
+
 
 </head>
 
@@ -46,7 +48,6 @@
                 <i class="star fa fa-star checked" data-value="5"></i>
             </p></div>
     </div>
-
     <br>
     <div class="bio"> Bio
         <form action="/profile/bio" name="editProfile" id="editProfile" method="post">
@@ -59,14 +60,20 @@
         </form>
     </div>
 
-    <div class="dtag"> Descriptive tags
-        <form>
-            <label>
-                <textarea></textarea>
-            </label>
-        </form>
-    </div>
+<!--    tags------------->
+<!--    <div class="tag"> Descriptive tags-->
+<!--        <form>-->
+<!--            <label for="myFilter"></label>-->
+<!--                <select id="myFilter" class="multiple_select" multiple>-->
+<!--                <option>Foodie</option>-->
+<!--                <option>Animals lover</option>-->
+<!--                <option>Sports</option>-->
+<!--                <option>Comedy</option>-->
+<!--            </select>-->
+<!--        </form>-->
+<!--    </div>-->
 
+<!--    Groups they are in-->
     <div class="Group"> Group <span th:text="${user.fullName}"></span> is in
         <form>
             <label>

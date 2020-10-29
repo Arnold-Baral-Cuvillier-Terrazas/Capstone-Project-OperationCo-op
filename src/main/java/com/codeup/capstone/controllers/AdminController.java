@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminController {
 
-    private UserRepository userDao;
+    private final UserRepository userDao;
     private final GroupRepository groupDao;
 
 
