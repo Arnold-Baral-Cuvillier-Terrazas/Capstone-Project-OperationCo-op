@@ -46,51 +46,29 @@
             </form>
         </div>
 
-
         <!--        extra user information -->
-        <div class="reviews">
-            <p> review:
-                <i class="star fa fa-star checked" data-value="1"></i>
-                <i class="star fa fa-star checked" data-value="2"></i>
-                <i class="star fa fa-star checked" data-value="3"></i>
-                <i class="star fa fa-star checked" data-value="4"></i>
-                <i class="star fa fa-star checked" data-value="5"></i>
-            </p>
-        </div>
+<!--        <div class="reviews">-->
+<!--            <p> review:-->
+<!--                <i class="star fa fa-star checked" data-value="1"></i>-->
+<!--                <i class="star fa fa-star checked" data-value="2"></i>-->
+<!--                <i class="star fa fa-star checked" data-value="3"></i>-->
+<!--                <i class="star fa fa-star checked" data-value="4"></i>-->
+<!--                <i class="star fa fa-star checked" data-value="5"></i>-->
+<!--            </p>-->
+<!--        </div>-->
 
-        <br>
-        <!--        name="editProfile" id="editProfile" -->
-
-        <div class="bio">
-            <h4>About me:<p><span th:text="${user.bio}"></span></p></h4>
-<!--            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>-->
-        </div>
+<!--        User bio and tags area-->
         <a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a>
-
-
-        <!--        <label>-->
-        <!--            <textarea th:name="userBio" th:field="${user.bio}"> </textarea>-->
-        <!--        </label>-->
-
-        <!--    tags------------->
-        <!--    <div class="tags">-->
-        <!--        <h3>Choose your Interest:<h6><span id="selected"></span></h6></h3>-->
-        <!--        <span class="pill">Foodie</span>-->
-        <!--        <span class="pill">Game</span>-->
-        <!--        <span class="pill">Arts</span>-->
-        <!--        <span class="pill">Music</span>-->
-        <!--        <span class="pill">Fandom</span>-->
-        <!--        <span class="pill">Games</span>-->
-        <!--        <span class="pill">Cooking</span>-->
-        <!--        <span class="pill">Plants</span>-->
-        <!--    </div>-->
-        <!--        -->
-
-
-        <div>
-            <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
+        <br>
+        <div class="bio">
+            <h4>About me: <br><span th:text="${user.bio}"></span></h4>
         </div>
+        <br>
 
+       <div>
+           <h4> Tags defines me : </h4>
+        <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
+     </div>
 
     </div>
 

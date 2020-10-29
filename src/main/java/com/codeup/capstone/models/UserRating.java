@@ -11,12 +11,12 @@ public class UserRating {
     private long id;
 
     @Column(nullable = false, length = 500)
-    private String rating;
+    private Integer rating;
 
     @Column(nullable = false, length = 500)
-    private String rating_user_id;
+    private Long rating_user_id;
 
     @Column(nullable = false, length = 500)
-    private String rated_user_id;
+    private Long rated_user_id;
 
 }
