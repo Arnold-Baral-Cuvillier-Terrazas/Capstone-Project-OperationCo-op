@@ -56,3 +56,25 @@ a {
 button:hover, a:hover {
     opacity: 0.7;
 }
+
+/*--------pills for tags*/
+.pill {
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 32px;
+    margin: 1em;
+    padding: 8px 16px;
+    background: none;
+
+}
+
+/*.pill.active {*/
+/*    background: cyan;*/
+/*}*/
+
+/*.tags{*/
+/*    width: auto;*/
+/*    padding: 10px;*/
+/*    border: 2px solid gray;*/
+/*    margin: 2%;*/
+/*}*/
