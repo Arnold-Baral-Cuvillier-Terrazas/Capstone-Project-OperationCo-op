@@ -43,8 +43,8 @@ public class GroupController {
     // Also the redirect mapping doesn't show the
     @PostMapping("/groups/create")
     public String saveGroup(
-                            @RequestParam(name = "name") String name,
-                            @RequestParam(name = "description") String description) {
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "description") String description) {
 
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!(obj instanceof UserDetails)) {
@@ -55,10 +55,10 @@ public class GroupController {
         group.setName(name);
         group.setDescription(description);
         groupDao.save(group);
-        Group newGroup = groupDao.getOne()
-        GroupUser groupUser = new GroupUser(newGroup,user,true, true);
+        GroupUserKey groupUserKey = new GroupUserKey(user.getId(), group.getId());
+        GroupUser groupUser = new GroupUser(groupUserKey,group, user,true, true);
         groupUserDao.save(groupUser);
-        return "redirect:/groups/" + newGroup.getId();
+        return "redirect:/groups/" + group.getId();
     }
 
     //Double check on this mapping for displaying group profile.
