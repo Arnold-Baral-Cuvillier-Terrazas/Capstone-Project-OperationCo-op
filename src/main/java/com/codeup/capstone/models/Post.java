@@ -92,4 +92,5 @@ public class Post {
     public void setMessage_body(String message_body) {
         this.message_body = message_body;
     }
+
 }
