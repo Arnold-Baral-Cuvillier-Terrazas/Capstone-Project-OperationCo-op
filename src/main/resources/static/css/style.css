@@ -72,7 +72,7 @@ button:hover, a:hover {
 }
 
 .tags{
-    width: 50%;
+    width: auto;
     padding: 10px;
     border: 2px solid gray;
     margin: 2%;

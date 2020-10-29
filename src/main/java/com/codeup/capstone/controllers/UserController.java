@@ -1,6 +1,8 @@
 package com.codeup.capstone.controllers;
 
+import com.codeup.capstone.models.Tag;
 import com.codeup.capstone.models.User;
+import com.codeup.capstone.repositories.TagRepository;
 import com.codeup.capstone.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,15 +10,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
+    private final TagRepository tagDao;
+
 
     //---------constructor
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, TagRepository tagDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
+        this.tagDao = tagDao;
     }
 
 // ---------methods for work flow------------
@@ -52,6 +59,19 @@ public class UserController {
         User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", userDao.getOne(getUser.getId()));
         model.addAttribute("photoUrl", userDao.getOne(getUser.getId()).getProfilePic());
+        List<Tag> tagsList = tagDao.findAll();
+        model.addAttribute("tagsList", tagsList);
+        return "users/profile";
+    }
+
+    @PostMapping("/profile")
+    public String createTag( @RequestParam List<Tag> tags) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        for(Tag tag: tags){
+//            tag.getName();
+//        }
+        user.setTags(tags);
+        userDao.save(user);
         return "users/profile";
     }
 
@@ -64,6 +84,7 @@ public class UserController {
         userDao.save(saveProfileBio);
         return "redirect:/profile";
     }
+
 
 }
 

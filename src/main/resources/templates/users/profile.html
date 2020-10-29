@@ -19,7 +19,7 @@
 
     <div class="profile">
 
-<!--        card for user Information-->
+        <!--        card for user Information-->
         <div class="card">
             <div class="profileImg">
                 <img th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
@@ -28,68 +28,79 @@
             <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
             <h6>Username: <span th:text="${user.userName}"></span></h6>
             <h6>Email: <span th:text="${user.email}"></span></h6>
-
-            <div class="icons">
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-facebook"></i></a>
+            <div th:switch="${user.tags != null}">
+                <div th:case="${true}">
+                    <div class="card" th:each="tag:${user.tags}">
+                        <div class="card-text"><p th:text="${tag.name}"></p></div>
+                    </div>
+                </div>
             </div>
+
+                <div class="icons">
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                </div>
+            </div>
+            <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+
+            <!--        extra user information -->
+            <div class="reviews">
+                <p> review:
+                    <i class="star fa fa-star checked" data-value="1"></i>
+                    <i class="star fa fa-star checked" data-value="2"></i>
+                    <i class="star fa fa-star checked" data-value="3"></i>
+                    <i class="star fa fa-star checked" data-value="4"></i>
+                    <i class="star fa fa-star checked" data-value="5"></i>
+                </p>
+            </div>
+
+            <br>
+            <!--        name="editProfile" id="editProfile" -->
+            <div class="bio"> Bio
+                <form th:action="@{/profile/bio}" method="post"><i class="fas fa-edit"></i>
+                    <label>
+                        <textarea th:name="userBio" th:field="${user.bio}"> </textarea>
+                    </label>
+                    <input type="hidden" name="userId" th:value="${user.id}">
+                    <input type="hidden" id="profileUrl" name="url" th:value="${photoUrl}"><br>
+                    <button class="bio-btn" value="button" type="submit">submit</button>
+                </form>
+            </div>
+
+            <!--    tags------------->
+            <!--    <div class="tags">-->
+            <!--        <h3>Choose your Interest:<h6><span id="selected"></span></h6></h3>-->
+            <!--        <span class="pill">Foodie</span>-->
+            <!--        <span class="pill">Game</span>-->
+            <!--        <span class="pill">Arts</span>-->
+            <!--        <span class="pill">Music</span>-->
+            <!--        <span class="pill">Fandom</span>-->
+            <!--        <span class="pill">Games</span>-->
+            <!--        <span class="pill">Cooking</span>-->
+            <!--        <span class="pill">Plants</span>-->
+            <!--    </div>-->
+            <!--        -->
+
+
+            <form th:action="@{/profile}" method="POST">
+                <div th:each="tag : ${tagsList}">
+                    <input type="checkbox" th:id="${tag.name}" name="tags" th:value="${tag.id}"/>
+                    <label th:for="${tag.name}" th:text="${tag.name}"></label>
+                </div>
+                <button class="btn" type="submit"></button>
+            </form>
+
+
         </div>
-        <button id="profile-btn" class="pb" type="button">Edit Image</button>
 
-<!--        extra user information -->
-        <div class="reviews">
-            <p> review:
-                <i class="star fa fa-star checked" data-value="1"></i>
-                <i class="star fa fa-star checked" data-value="2"></i>
-                <i class="star fa fa-star checked" data-value="3"></i>
-                <i class="star fa fa-star checked" data-value="4"></i>
-                <i class="star fa fa-star checked" data-value="5"></i>
-            </p></div>
-    </div>
-    <br>
-    <div class="bio"> Bio
-        <form action="/profile/bio" name="editProfile" id="editProfile" method="post">
-            <label>
-                <textarea th:name="userBio" th:field="${user.bio}"> </textarea>
-            </label>
-            <input type="hidden" name="userId" th:value="${user.id}">
-            <input type="hidden" id="profileUrl" name="url" th:value="${photoUrl}"><br>
-            <button class="bio-btn" value="button" type="submit" form="editProfile">submit</button>
-        </form>
-    </div>
-
-<!--    tags------------->
-    <div class="tags">
-        <h3>Choose your Interest:<h6><span id="selected"></span></h6></h3>
-        <span class="pill">Foodie</span>
-        <span class="pill">Game</span>
-        <span class="pill">Arts</span>
-        <span class="pill">Music</span>
-        <span class="pill">Fandom</span>
-        <span class="pill">Travel</span>
-        <span class="pill">Animals</span>
-    </div>
-    <br>
-<!--    Groups they are in-->
-    <div class="Group">
-        Group<span th:text="${user.fullName}"></span> is in
-        <form>
-            <label>
-                <textarea> </textarea>
-            </label>
-        </form>
-    </div>
-
-</div>
-
-<!--grabbing userid from controller and linked it into js-->
-<script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
-<scripts th:replace="partials/scripts :: scripts"></scripts>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script th:src="@{/js/keys.js}"></script>
-<script th:src="@{/js/filestack.js}"></script>
-<script th:src="@{/js/userProfile.js}"></script>
-</body>
+        <!--grabbing userid from controller and linked it into js-->
+        <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
+        <scripts th:replace="partials/scripts :: scripts"></scripts>
+        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+        <script th:src="@{/js/keys.js}"></script>
+        <script th:src="@{/js/filestack.js}"></script>
+        <script th:src="@{/js/userProfile.js}"></script>
+        </body>
 </html>
