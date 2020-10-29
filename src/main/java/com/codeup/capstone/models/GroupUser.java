@@ -3,6 +3,7 @@ package com.codeup.capstone.models;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import javax.swing.*;
 import java.util.List;
 
 
@@ -10,38 +11,31 @@ import java.util.List;
 @Table(name = "group_user")
 
 public class GroupUser {
+    @EmbeddedId
+    private GroupUserKey id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @ManyToOne
+    @MapsId("groupId")
+    @JoinColumn(name = "group_id")
+    private Group group;
 
-    //    @Column(nullable = false)
-//    private String userId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
-    private List<Group> groups;
-
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//    private List<User> users;
-
+    @ManyToOne
+    @MapsId("userId")
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(length = 100)
     @ColumnDefault("true")
     private Boolean isGroupAdmin;
 
 
-//    @Column(nullable = false)
-//    private String groupId;
-
     @Column(length = 100)
     private Boolean isApproved;
 
-
-    public GroupUser(long id, List<Group> groups, Boolean isGroupAdmin, Boolean isApproved) {
+    public GroupUser(GroupUserKey id, Group group, User user, Boolean isGroupAdmin, Boolean isApproved) {
         this.id = id;
-        this.groups = groups;
-
-
-//        this.users = users;
+        this.group = group;
+        this.user = user;
         this.isGroupAdmin = isGroupAdmin;
         this.isApproved = isApproved;
     }
@@ -50,20 +44,28 @@ public class GroupUser {
 
     }
 
-    public long getId() {
+    public GroupUserKey getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(GroupUserKey id) {
         this.id = id;
     }
 
-    public List<Group> getGroups() {
-        return groups;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setGroups(List<Group> groups) {
-        this.groups = groups;
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Boolean getGroupAdmin() {

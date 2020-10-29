@@ -4,9 +4,7 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.List;
-
-
-//Group will most likely have a OneToMany relationship with User
+import java.util.Set;
 
 @Entity
 @Table(name = "groups")
@@ -30,41 +28,32 @@ public class Group {
     @Column(unique = true)
     private String gameId;
 
-    //This is the OneToMany relationship. One Group should have many Posts.
-    //This should be right.
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> posts;
 
-    @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @OneToMany(mappedBy = "user")
+    List<GroupUser> users;
 
-    //ManytoMany to group and users
-
-
-
-    //Check out user_rating table and Group_table to see if it can me in one rating.
-
-
-    // Determine whether it will be ManyToMany or ManyToOne below.
-
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-//
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    private List<User> users;
-
-
-    public Group(long id, String name, String description, String discordUserId, String gameId) {
+    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.discordUserId = discordUserId;
         this.gameId = gameId;
+        this.posts = posts;
+        this.users = users;
     }
 
     public Group() {
+
+    }
+
+    public List<GroupUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<GroupUser> users) {
+        this.users = users;
     }
 
     public long getId() {
@@ -105,7 +94,14 @@ public class Group {
 
     public void setGameId(String gameId) {
         this.gameId = gameId;
-
-
     }
+
+    public List<Post> getPosts() {
+        return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
 }
