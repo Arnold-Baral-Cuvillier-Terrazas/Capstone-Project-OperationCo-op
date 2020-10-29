@@ -31,21 +31,29 @@ public class Group {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> posts;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
-    private List<GroupUser> groups;
+    @OneToMany(mappedBy = "user")
+    List<GroupUser> users;
 
-    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> groups) {
+    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.discordUserId = discordUserId;
         this.gameId = gameId;
         this.posts = posts;
-        this.groups = groups;
+        this.users = users;
     }
 
     public Group() {
 
+    }
+
+    public List<GroupUser> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<GroupUser> users) {
+        this.users = users;
     }
 
     public long getId() {
@@ -96,11 +104,4 @@ public class Group {
         this.posts = posts;
     }
 
-    public List<GroupUser> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<GroupUser> groups) {
-        this.groups = groups;
-    }
 }

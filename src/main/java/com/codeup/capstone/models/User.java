@@ -1,4 +1,5 @@
 package com.codeup.capstone.models;
+
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
 
     //   ------------------Instance variables-------------
@@ -47,10 +48,6 @@ public class User {
     private Boolean isSiteAdmin;
 
     @Column(length = 100)
-    @ColumnDefault("true")
-    private Boolean isGroupAdmin;
-
-    @Column(length = 100)
     private Boolean isBanned;
 
     @Column(columnDefinition = "TEXT")
@@ -74,26 +71,28 @@ public class User {
     @Column(length = 500)
     private String discordInfo;
 
-// -----------   relationship with user and tag class
+    // -----------   relationship with user and tag class
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="user_tags",
-            joinColumns={@JoinColumn(name="tag_id")},
-            inverseJoinColumns={@JoinColumn(name="user_id")}
+            name = "user_tags",
+            joinColumns = {@JoinColumn(name = "tag_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
     private List<Tag> tags;
 
+    @OneToMany(mappedBy = "group")
+    List<GroupUser> groups;
 
 //    ------------constructors----------------------------
 
     public User() {
     }
 
-    public User(long id, String userName, String email, String password,  String fullName,
+    public User(long id, String userName, String email, String password, String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isGroupAdmin,
                 Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
                 String psnInfo, String nintenDoInfo,
-                String discordInfo,List<Tag> tags ) {
+                String discordInfo, List<Tag> tags) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -103,7 +102,6 @@ public class User {
         this.birthDate = birthDate;
         this.bio = bio;
         this.isSiteAdmin = isSiteAdmin;
-        this.isGroupAdmin = isGroupAdmin;
         this.isBanned = isBanned;
         this.profilePic = profilePic;
         this.twitchInfo = twitchInfo;
@@ -280,13 +278,5 @@ public class User {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
-    }
-
-    public Boolean getGroupAdmin() {
-        return isGroupAdmin;
-    }
-
-    public void setGroupAdmin(Boolean groupAdmin) {
-        isGroupAdmin = groupAdmin;
     }
 }
