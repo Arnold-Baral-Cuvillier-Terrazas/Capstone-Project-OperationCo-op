@@ -49,15 +49,16 @@
                     <div class="col d-flex">
                         <input class="form-control" type="password" id="password" placeholder="Password"
                                th:field="*{password}">
-                        <input class="form-control" type="password" id="confirmPassword" placeholder="Confirm Password">
+                        <!--    <label for="confirmPassword"><strong>Confirm Password</strong></label>-->
+                        <!--    <input id="confirmPassword" type="password" name="confirmPassword"  />-->
+                        <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" >
                     </div>
                 </div>
                 <input class="form-control" id="DOB" type="text" placeholder="MM/DD/YYYY" th:field="*{birthDate}">
 
                 <button class="btn btn-primary" type="submit" value="Sign me up!">Register</button>
                 <div>
-                    <a class="d-lg-flex d-xl-flex justify-content-lg-center justify-content-xl-center align-items-xl-end"
-                       href="#">Already A User? Sign In!</a>
+                    <a class="d-lg-flex d-xl-flex justify-content-lg-center justify-content-xl-center align-items-xl-end" th:href="@{/login}">Already A User? Sign In!</a>
                 </div>
             </form>
         </div>
