@@ -19,9 +19,9 @@ public class Tag {
     @ManyToMany(mappedBy = "tags")
     private List<User> users;
 
-    @ManyToOne
-    @JoinColumn (name = "group_id")
-    private Group group;
+//    @ManyToOne
+//    @JoinColumn (name = "group_id")
+//    private Group group;
 
 
 // ---------------- Constructor
@@ -30,7 +30,7 @@ public class Tag {
         this.id = id;
         this.name = name;
         this.users = users;
-        this.group = group;
+//        this.group = group;
     }
 
     public Tag() {
@@ -62,11 +62,11 @@ public class Tag {
         this.users = users;
     }
 
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
+//    public Group getGroup() {
+//        return group;
+//    }
+//
+//    public void setGroup(Group group) {
+//        this.group = group;
+//    }
 }
