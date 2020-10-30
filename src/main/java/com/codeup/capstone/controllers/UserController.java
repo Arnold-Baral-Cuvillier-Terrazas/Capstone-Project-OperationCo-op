@@ -104,6 +104,14 @@ public class UserController {
         return "redirect:/profile";
     }
 
+//    user rating stars
+    @PostMapping("/users/rating/{id}")
+    public String userRating(@RequestParam long userId, @ModelAttribute User user) {
+        User userRating = userDao.getOne(userId);
+        userDao.save(userRating);
+        return "redirect:/profile";
+    }
+
 
 }
 
