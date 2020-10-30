@@ -24,6 +24,8 @@ public class GroupAdminController {
     }
 
     //    print-out all the users
+
+
 //    @GetMapping("/groups/admin/{id}")
 //    public String groupAdmin(Model model) {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
