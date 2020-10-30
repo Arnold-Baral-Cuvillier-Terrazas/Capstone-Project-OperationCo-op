@@ -12,7 +12,16 @@ const options = {
 function updateImage(result){
     const filedata = result.filesUploaded[0];
     console.log(filedata);
-    $("#profileUrl").val(filedata.url);
+    // $("#profileUrl").val(filedata.url);
+    $("#img").attr("src",filedata.url);
+
+    let formData = new FormData();
+    formData.append("userId", userId);
+    formData.append("url", filedata.url);
+    fetch("/profile/pic", {
+        method:"POST",
+        body:formData,
+    }).catch(err => { console.log(err) });
 }
 
 
@@ -29,16 +38,16 @@ $(document).ready(function() {
 
 
 //------------ Descriptive tags
-let selected = [];
-
-$('.pill').on('click', function (ev) {
-  $(this).toggleClass('active');
-
-  if($(this).hasClass('active')) {
-    selected.push($(this).text());
-  } else {
-    selected.splice(selected.indexOf($(this).text()), 1);
-  }
-
-  $('#selected').text(selected.sort().join(', '));
-});
+// let selected = [];
+//
+// $('.pill').on('click', function (ev) {
+//   $(this).toggleClass('active');
+//
+//   if($(this).hasClass('active')) {
+//     selected.push($(this).text());
+//   } else {
+//     selected.splice(selected.indexOf($(this).text()), 1);
+//   }
+//
+//   $('#selected').text(selected.sort().join(', '));
+// });
