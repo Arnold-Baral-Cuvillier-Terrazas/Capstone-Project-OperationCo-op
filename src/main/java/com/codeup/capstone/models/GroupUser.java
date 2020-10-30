@@ -14,6 +14,10 @@ public class GroupUser {
     @EmbeddedId
     private GroupUserKey id;
 
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
+
     @ManyToOne
     @MapsId("groupId")
     @JoinColumn(name = "group_id")
@@ -34,6 +38,13 @@ public class GroupUser {
 
     public GroupUser(GroupUserKey id, Group group, User user, Boolean isGroupAdmin, Boolean isApproved) {
         this.id = id;
+        this.group = group;
+        this.user = user;
+        this.isGroupAdmin = isGroupAdmin;
+        this.isApproved = isApproved;
+    }
+
+    public GroupUser(Group group, User user, Boolean isGroupAdmin, Boolean isApproved) {
         this.group = group;
         this.user = user;
         this.isGroupAdmin = isGroupAdmin;

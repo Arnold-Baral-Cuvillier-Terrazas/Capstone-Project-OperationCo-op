@@ -3,6 +3,7 @@ package com.codeup.capstone.models;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class GroupUserKey implements Serializable {
@@ -17,6 +18,20 @@ public class GroupUserKey implements Serializable {
     public GroupUserKey(Long userId, Long groupId) {
         this.userId = userId;
         this.groupId = groupId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GroupUserKey that = (GroupUserKey) o;
+        return Objects.equals(userId, that.userId) &&
+                Objects.equals(groupId, that.groupId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, groupId);
     }
 
     public GroupUserKey() {

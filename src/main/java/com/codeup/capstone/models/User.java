@@ -89,10 +89,10 @@ public class User {
     }
 
     public User(long id, String userName, String email, String password, String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isGroupAdmin,
+                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
                 Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
                 String psnInfo, String nintenDoInfo,
-                String discordInfo, List<Tag> tags) {
+                String discordInfo, List<Tag> tags,List<GroupUser> groups) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -111,6 +111,7 @@ public class User {
         this.nintenDoInfo = nintenDoInfo;
         this.discordInfo = discordInfo;
         this.tags = tags;
+        this.groups = groups;
     }
 
     // implement the Copy Constructor right here in the User model!
@@ -125,6 +126,14 @@ public class User {
         this.pronouns = copy.pronouns;
         this.birthDate = copy.birthDate;
         this.bio = copy.bio;
+    }
+
+    public List<GroupUser> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GroupUser> groups) {
+        this.groups = groups;
     }
 
     //  ------------ getters and setters-------------------
