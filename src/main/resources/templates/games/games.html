@@ -15,16 +15,16 @@
 </div>
 
 
-<!--<main class="container">-->
-<!--    <div th:each="game : ${games}">-->
-<!--&lt;!&ndash;        <form th:action="@{'/games/' + ${games.id}">&ndash;&gt;-->
-<!--            <h2 th:text="${game.title}"></h2>-->
-<!--            <p th:text="${game.description}"></p>-->
-<!--            <p th:text="${game.release_date}"></p>-->
-<!--&lt;!&ndash;            <img th:src="${game.art_cover}"/>&ndash;&gt;-->
-
-<!--    </div>-->
-<!--</main>-->
+<main class="container">
+    <div th:each="game : ${games}">
+<!--        <form th:action="@{'/games/' + ${games.id}">-->
+        <img th:src="${game.art_cover}"/>
+        <h2 th:text="${game.title}"></h2>
+        <p>Description:</p> <p th:text="${game.description}"></p>
+        <!--            <p th:text="${game.release_date}"></p>-->
+        <p>Critics Rating: </p><p th:text="${game.critics_rating}"></p>
+    </div>
+</main>
 <!--<header th:replace="partials/header :: header"/>-->
 <!--<nav th:replace="partials/navbar :: navbar"/>-->
 

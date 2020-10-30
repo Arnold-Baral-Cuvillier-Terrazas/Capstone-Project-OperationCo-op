@@ -17,14 +17,14 @@ public class Game {
     @Column
     private String description;
 
-    @Column
-    private Date release_date;
+//    @Column
+//    private Date release_date;
 
     @Column
     private long critics_rating;
 
-    @Column
-    private String esrb_rating;
+//    @Column
+//    private String esrb_rating;
 
     @Column String art_cover;
 
@@ -72,13 +72,13 @@ public class Game {
         this.description = description;
     }
 
-    public Date getRelease_date() {
-        return release_date;
-    }
-
-    public void setRelease_date(Date release_date) {
-        this.release_date = release_date;
-    }
+//    public Date getRelease_date() {
+//        return release_date;
+//    }
+//
+//    public void setRelease_date(Date release_date) {
+//        this.release_date = release_date;
+//    }
 
     public long getCritics_rating() {
         return critics_rating;
@@ -88,13 +88,13 @@ public class Game {
         this.critics_rating = critics_rating;
     }
 
-    public String getEsrb_rating() {
-        return esrb_rating;
-    }
-
-    public void setEsrb_rating(String esrb_rating) {
-        this.esrb_rating = esrb_rating;
-    }
+//    public String getEsrb_rating() {
+//        return esrb_rating;
+//    }
+//
+//    public void setEsrb_rating(String esrb_rating) {
+//        this.esrb_rating = esrb_rating;
+//    }
 
     public String getArt_cover() {
         return art_cover;
@@ -115,9 +115,9 @@ public class Game {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.release_date = release_date;
+//        this.release_date = release_date;
         this.critics_rating = critics_rating;
-        this.esrb_rating = esrb_rating;
+//        this.esrb_rating = esrb_rating;
         this.art_cover = art_cover;
         this.igdb_api_id = igdb_api_id;
 //        this.tags = tags;
