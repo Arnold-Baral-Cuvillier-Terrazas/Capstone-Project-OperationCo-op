@@ -85,7 +85,10 @@ public class UserController {
     }
 
     @PostMapping("/users/edit/{id}")
-    public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags, @RequestParam String bio , @RequestParam String psnInfo) {
+    public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags,
+                                @RequestParam String bio ,
+                                @RequestParam String psnInfo,@RequestParam String steamInfo,
+                                @RequestParam String twitchInfo,@RequestParam String xboxLiveInfo) {
         List<Tag> tagList = new ArrayList<>();
         for(int i= 0; i< tags.size(); i++){
             Tag thisTag = tagDao.getOne(tags.get(i));
@@ -94,6 +97,9 @@ public class UserController {
         User user = userDao.getOne(id);
         user.setTags(tagList);
         user.setPsnInfo(psnInfo);
+        user.setSteamInfo(steamInfo);
+        user.setTwitchInfo(twitchInfo);
+//        user.setXboxLiveInfo(xboxLiveInfo);
         userDao.save(user);
         return "redirect:/profile";
     }

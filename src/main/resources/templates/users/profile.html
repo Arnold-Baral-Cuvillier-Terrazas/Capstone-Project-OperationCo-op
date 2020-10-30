@@ -28,26 +28,15 @@
             <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
             <h6>Username: <span th:text="${user.userName}"></span></h6>
             <h6>Email: <span th:text="${user.email}"></span></h6>
+            <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>
+            <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>
+            <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>
         </div>
+               <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
 
-        <div class="usernames">
-            <h4>Psn username: <br><span th:text="${user.psnInfo}"></span></h4>
-            <h4>Psn username: <br><span th:text="${user.psnInfo}"></span></h4>
-            <h4>Psn username: <br><span th:text="${user.psnInfo}"></span></h4>
-            <h4>Psn username: <br><span th:text="${user.psnInfo}"></span></h4>
 
-        </div>
 
-        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
-        <div class="profile pic">
-<!--            <form th:action="@{/profile/pic}" method="post">-->
-<!--                <input type="hidden" name="userId" th:value="${user.id}">-->
-<!--                <input type="hidden" id="profileUrl" name="url" th:value="${photoUrl}"><br>-->
-<!--&lt;!&ndash;                <button class="bio-btn" value="button" type="submit">submit</button>&ndash;&gt;-->
-<!--            </form>-->
-        </div>
-
-        <!--        extra user information -->
+<!--              extra user information-->
         <!--        <div class="reviews">-->
         <!--            <p> review:-->
         <!--                <i class="star fa fa-star checked" data-value="1"></i>-->
@@ -59,21 +48,21 @@
         <!--        </div>-->
 
         <!--        User bio and tags area-->
-        <a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a>
-        <br>
+        <div>
+            <h5> <a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
+        </div>
+
         <div class="bio">
             <h4>About me:<br></h4>
             <p><span th:text="${user.bio}"></span></p>
         </div>
-        <br>
 
         <div>
             <h4> Tags defines me : </h4>
             <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
         </div>
 
-    </div>
-
+</div>
 </div>
 
 <!--grabbing userid from controller and linked it into js-->
