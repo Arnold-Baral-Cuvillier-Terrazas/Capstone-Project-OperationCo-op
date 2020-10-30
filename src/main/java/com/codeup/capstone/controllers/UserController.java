@@ -22,7 +22,6 @@ public class UserController {
     private final GroupRepository groupDao;
 
 
-
     //---------constructor
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, TagRepository tagDao, GroupRepository groupDao) {
         this.userDao = userDao;
@@ -86,16 +85,15 @@ public class UserController {
     }
 
     @PostMapping("/users/edit/{id}")
-    public String postEditGroup(@PathVariable long id, @RequestParam(name = "bio") String bio,
-                                @RequestParam List<Long> tags) {
+    public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags, @RequestParam String bio , @RequestParam String psnInfo) {
         List<Tag> tagList = new ArrayList<>();
         for(int i= 0; i< tags.size(); i++){
             Tag thisTag = tagDao.getOne(tags.get(i));
             tagList.add(thisTag);
         }
         User user = userDao.getOne(id);
-        user.setBio(bio);
         user.setTags(tagList);
+        user.setPsnInfo(psnInfo);
         userDao.save(user);
         return "redirect:/profile";
     }

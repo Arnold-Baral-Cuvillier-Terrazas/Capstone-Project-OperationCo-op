@@ -89,7 +89,7 @@ public class User {
     }
 
     public User(long id, String userName, String email, String password, String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isGroupAdmin,
+                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
                 Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
                 String psnInfo, String nintenDoInfo,
                 String discordInfo, List<Tag> tags) {

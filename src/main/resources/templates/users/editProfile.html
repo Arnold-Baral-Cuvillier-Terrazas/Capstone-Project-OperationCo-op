@@ -9,6 +9,10 @@
 <div class="container">
 <h1>Editing Information</h1>
 <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
+    <div class="usernames">
+        <p>Psn info: <input id="psn" type="text" name="psnInfo" th:value="*{psnInfo}"/></p>
+    </div>
+
 
     <label for="bio">Updated your bio</label>
     <input id="bio" type="text"  name="bio" th:value="*{bio}"/>
