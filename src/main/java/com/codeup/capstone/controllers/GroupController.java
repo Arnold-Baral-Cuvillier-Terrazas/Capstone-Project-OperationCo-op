@@ -58,11 +58,11 @@ public class GroupController {
         GroupUserKey groupUserKey = new GroupUserKey(user.getId(), group.getId());
         GroupUser groupUser = new GroupUser(groupUserKey,group, user,true, true);
         groupUserDao.save(groupUser);
-        return "redirect:/groups/" + group.getId();
+        return "redirect:/groups/profile/" + group.getId();
     }
 
     //Double check on this mapping for displaying group profile.
-    @GetMapping("/groups/{id}")
+    @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
@@ -81,7 +81,7 @@ public class GroupController {
         group.setName(name);
         group.setDescription(description);
         groupDao.save(group);
-        return "redirect:/groups/" + group.getId();
+        return "redirect:/groups/profile/" + group.getId();
     }
 
     @GetMapping("/groups/delete/{id}")
