@@ -7,18 +7,20 @@
 </head>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
-<!--<header th:replace="partials/head :: head"></header>-->
-<h1 class="text-center">Create a Group!</h1>
-<form th:action="@{/groups/create}" method="POST" th:object="${group}">
+<div class="container-fluid">
+    <!--<header th:replace="partials/head :: head"></header>-->
+    <h1 class="text-center">Create a Group!</h1>
+    <form th:action="@{/groups/create}" method="POST" th:object="${group}">
 
-    <label for="name">Enter a Group Name:</label>
-    <input id="name" type="text" th:field="*{name}"/>
-    <br><br>
-    <label for="description">Enter a Description:</label>
-    <input id="description" type="text" th:field="*{description}"/>
-    <br><br>
-    <input value="Create my Group!" type="submit"/>
-</form>
+        <label for="name">Enter a Group Name:</label>
+        <input id="name" type="text" th:field="*{name}"/>
+        <br><br>
+        <label for="description">Enter a Description:</label>
+        <input id="description" type="text" th:field="*{description}"/>
+        <br><br>
+        <input value="Create my Group!" type="submit"/>
+    </form>
+</div>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:src="@{/js/keys.js}"></script>

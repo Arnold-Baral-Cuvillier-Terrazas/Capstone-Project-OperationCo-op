@@ -9,21 +9,21 @@
 </head>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
-<div class="container">
+<div class="container-fluid">
     <h1 class="text-center">This is the groups index page!</h1>
-
-    <div th:each="group : ${groups}" class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 th:text="${group.name}" class="card-title"></h5>
-            <p th:text="${group.description}" class="card-text"></p>
-            <a th:href="'/groups/profile/' + ${group.id}"  class="card-link">Join Group</a>
+    <div class="row">
+        <div th:each="group : ${groups}" class="card col-3 border-info mb-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 th:text="${group.name}" class="card-title"></h5>
+                <p th:text="${group.description}" class="card-text"></p>
+                <a th:href="'/groups/profile/' + ${group.id}" class="card-link">Join Group</a>
+            </div>
         </div>
     </div>
 
     <form style="display: inline" th:action="@{'/groups/create/'}">
         <button>Create A Group</button>
     </form>
-
 </div>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
