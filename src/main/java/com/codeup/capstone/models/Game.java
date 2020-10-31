@@ -17,8 +17,8 @@ public class Game {
     @Column
     private String description;
 
-//    @Column
-//    private Date release_date;
+    @Column
+    private Date release_date;
 
     @Column
     private long critics_rating;
@@ -72,13 +72,13 @@ public class Game {
         this.description = description;
     }
 
-//    public Date getRelease_date() {
-//        return release_date;
-//    }
-//
-//    public void setRelease_date(Date release_date) {
-//        this.release_date = release_date;
-//    }
+    public Date getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
+    }
 
     public long getCritics_rating() {
         return critics_rating;
@@ -115,7 +115,7 @@ public class Game {
         this.id = id;
         this.title = title;
         this.description = description;
-//        this.release_date = release_date;
+        this.release_date = release_date;
         this.critics_rating = critics_rating;
 //        this.esrb_rating = esrb_rating;
         this.art_cover = art_cover;

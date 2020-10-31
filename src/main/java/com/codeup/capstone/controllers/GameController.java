@@ -23,12 +23,12 @@ public class GameController {
     }
 
 
-//    @RequestMapping(path = "games/{id}", method = RequestMethod.GET)
-//    public String showSingleGame(@PathVariable long id, Model model){
-//        Game game = gameRepo.getOne(id);
-//        model.addAttribute("game", gameRepo.getOne(id));
-//        return "games/show";
-//    }
+    @RequestMapping(path = "games/{id}", method = RequestMethod.GET)
+    public String showSingleGame(@PathVariable long id, Model model){
+        Game game = gameRepo.getOne(id);
+        model.addAttribute("game", gameRepo.getOne(id));
+        return "games/show";
+    }
 //    @GetMapping("game/create")
 //    public String showCreateView(Model model) {
 //        public String createGame(@ModelAttribute Game game) {
