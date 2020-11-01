@@ -85,7 +85,7 @@ public class GroupController {
         return "/groups/groupProfile";
     }
 
-//    for editing group profile informations
+//-------------for editing group profile information
 
     @GetMapping("/groups/edit/{id}")
     public String EditGroup(@PathVariable long id, Model model) {
@@ -111,6 +111,7 @@ public class GroupController {
         groupDao.save(group);
         return "redirect:/groups/" + group.getId();
     }
+
 
     @GetMapping("/groups/delete/{id}")
     public String deleteGroup(@PathVariable long id) {

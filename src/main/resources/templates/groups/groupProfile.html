@@ -38,8 +38,15 @@
             <i class="star fa fa-star checked" data-value="5"></i>
         </p></div>
 
-    <h4>Description: <br>
-        <span th:text="${group.description}"></span></h4>
+    <h4>Description: </h4>
+    <br>
+       <p><span th:text="${group.description}"></span></p>
+
+    <div>
+        <h4> Tags defines me : </h4>
+        <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
+    </div>
+
 </div>
 
 <!--<button  class="ib" type="button">Edit profile</button>-->
