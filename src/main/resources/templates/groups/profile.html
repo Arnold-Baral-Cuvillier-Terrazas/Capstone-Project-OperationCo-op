@@ -53,13 +53,14 @@
     <!--</div>-->
 
     <br>
-
-    <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
-        <button>Edit</button>
-    </form>
-    <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">
-        <button>Delete</button>
-    </form>
+    <show_post th:if="${groupUser.getGroupAdmin()}">
+        <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
+            <button>Edit</button>
+        </form>
+        <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">
+            <button>Delete</button>
+        </form>
+    </show_post>
     <!--<script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>-->
 </div>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
