@@ -108,7 +108,7 @@ public class GroupController {
     }
 
 //---------- for editing tags
-    @GetMapping("/groups/editTags/{id}")
+    @GetMapping("/groups/edit/{id}")
     public String EditProfile(@PathVariable long id, Model model) {
         model.addAttribute("editGroup", groupDao.getOne(id));
         List<Tag> tagsList = tagDao.findAll();
@@ -118,26 +118,19 @@ public class GroupController {
 
 
     //Used (required false) because every user will not have all gaming accounts so it is optional for user
-    @PostMapping("/users/edit/{id}")
+    @PostMapping("/groups/edit/{id}")
     public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags,
-                                @RequestParam String bio ,
-                                @RequestParam (required = false) String psnInfo ,@RequestParam (required = false) String steamInfo ,
-                                @RequestParam (required = false) String twitchInfo,@RequestParam(required = false) String xboxLiveInfo,
-                                @RequestParam (required = false) String nintenDoInfo) {
-        List<Tag> tagList = new ArrayList<>();
+                                @RequestParam String description , @RequestParam String name)  {
+        List<Tag> tagLists = new ArrayList<>();
         for(int i= 0; i< tags.size(); i++){
             Tag thisTag = tagDao.getOne(tags.get(i));
-            tagList.add(thisTag);
+            tagLists.add(thisTag);
         }
-        User user = userDao.getOne(id);
-        user.setBio(bio);
-        user.setTags(tagList);
-        user.setPsnInfo(psnInfo);
-        user.setSteamInfo(steamInfo);
-        user.setTwitchInfo(twitchInfo);
-        user.setXboxLiveInfo(xboxLiveInfo);
-        user.setNintenDoInfo(nintenDoInfo);
-        userDao.save(user);
+        Group group = groupDao.getOne(id);
+        group.setDescription(description);
+        group.setTags(tagLists);
+        group.setName(name);
+        groupDao.save(group);
         return "redirect:/profile";
     }
 

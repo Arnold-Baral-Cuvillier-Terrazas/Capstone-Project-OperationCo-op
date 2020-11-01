@@ -49,7 +49,7 @@ public class Group {
 //-----------Constructor
 
     public Group(long id, String name, String description, String profilePic, String discordUserId,
-                 String gameId, List<Post> posts, List<GroupUser> users) {
+                 String gameId, List<Post> posts, List<GroupUser> users, List<Tag> tags) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -58,7 +58,9 @@ public class Group {
         this.gameId = gameId;
         this.posts = posts;
         this.users = users;
+        this.tags = tags;
     }
+
 
     public Group() {
 
@@ -128,5 +130,13 @@ public class Group {
 
     public void setProfilePic(String profilePic) {
         this.profilePic = profilePic;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 }
