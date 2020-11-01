@@ -20,7 +20,7 @@
             <img th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
         </div>
 
-        <h6>Group Name: <span th:text="${group.name}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
+        <h6>Group Name: <span th:text="${group.name}"></span></h6>
         <h6>Description: <span th:text="${group.description}"></span></h6>
 
         <div class="icons">
@@ -55,10 +55,10 @@
     <br>
 
     <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
-        <button>Edit</button>
+        <button>Edit Profile </button>
     </form>
     <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">
-        <button>Delete</button>
+        <button>Delete the group</button>
     </form>
 </div>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
