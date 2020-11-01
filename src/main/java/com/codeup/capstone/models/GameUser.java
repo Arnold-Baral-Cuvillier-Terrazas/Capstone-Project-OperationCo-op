@@ -4,26 +4,27 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="groups")
-public class GameGroup {
+@Table(name="user")
+public class GameUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(nullable = false)
-    private String name;
+    private String GameUserName;
 
-    @ManyToMany(mappedBy = "groups")
+    @OneToMany(mappedBy = "user")
     private List<Game> games;
 
-    public GameGroup(){
-
+    public GameUser(long id, String GameUserName, List<Game> games) {
+        this.id = id;
+        this.GameUserName = GameUserName;
+        this.games = games;
     }
 
-    public GameGroup(long id, String name, List<Game> games) {
-        this.id = id;
-        this.name = name;
-        this.games = games;
+    public GameUser() {
+
     }
 
     public long getId() {
@@ -34,12 +35,12 @@ public class GameGroup {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getGameUserName() {
+        return GameUserName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGameUserName(String user_name) {
+        this.GameUserName = GameUserName;
     }
 
     public List<Game> getGames() {

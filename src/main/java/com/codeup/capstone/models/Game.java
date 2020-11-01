@@ -47,10 +47,16 @@ public class Game {
             )
     private List<GameGroup> groups;
 
+//    Game Relationship with User
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Game(){
     }
 
-    public Game(long id, String title, String description, Date release_date, Long critics_rating, String art_cover, Long igdb_api_id, List<GameTag> tags) {
+
+    public Game(long id, String title, String description, Date release_date, Long critics_rating, String art_cover, Long igdb_api_id, List<GameTag> tags, List<GameGroup> groups, User user) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -59,6 +65,32 @@ public class Game {
         this.art_cover = art_cover;
         this.igdb_api_id = igdb_api_id;
         this.tags = tags;
+        this.user = user;
+        this.groups = groups;
+    }
+
+    public List<GameTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<GameTag> tags) {
+        this.tags = tags;
+    }
+
+    public List<GameGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GameGroup> groups) {
+        this.groups = groups;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getId() {
