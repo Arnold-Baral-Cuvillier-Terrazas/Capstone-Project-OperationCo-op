@@ -51,7 +51,7 @@ public class UserController {
             return "users/signup";
         }
         String hash = passwordEncoder.encode(user.getPassword()); // ~plaintext password
-        user.setPassword(hash); // immediately no longer have access to the plaintext password. It's hashed
+        user.setPassword(hash); // It's hashed
         if (user.getId() == 0) {
             userDao.save(user);
             return "redirect:/login";
@@ -70,7 +70,7 @@ public class UserController {
         return "users/profile";
     }
 
-    //user's biography area
+    //user's Profile pic  area
     @PostMapping("/profile/pic")
     public String saveProfile(@RequestParam long userId, @RequestParam String url, @ModelAttribute User user) {
         User saveProfile = userDao.getOne(userId);
@@ -79,7 +79,7 @@ public class UserController {
         return "redirect:/profile";
     }
 
-//    editing user profile information like bio and tags
+//    editing user profile information like bio, tags and other usernames
     @GetMapping("/users/edit/{id}")
     public String EditProfile(@PathVariable long id, Model model) {
         model.addAttribute("editUser", userDao.getOne(id));
@@ -88,23 +88,36 @@ public class UserController {
         return "/users/editProfile";
     }
 
+
+    //Used (required false) because every user will not have all gaming accounts so it is optional for user
     @PostMapping("/users/edit/{id}")
     public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags,
                                 @RequestParam String bio ,
-                                @RequestParam String psnInfo,@RequestParam String steamInfo,
-                                @RequestParam String twitchInfo,@RequestParam String xboxLiveInfo) {
+                                @RequestParam (required = false) String psnInfo ,@RequestParam (required = false) String steamInfo ,
+                                @RequestParam (required = false) String twitchInfo,@RequestParam(required = false) String xboxLiveInfo,
+                                @RequestParam (required = false) String nintenDoInfo) {
         List<Tag> tagList = new ArrayList<>();
         for(int i= 0; i< tags.size(); i++){
             Tag thisTag = tagDao.getOne(tags.get(i));
             tagList.add(thisTag);
         }
         User user = userDao.getOne(id);
+        user.setBio(bio);
         user.setTags(tagList);
         user.setPsnInfo(psnInfo);
         user.setSteamInfo(steamInfo);
         user.setTwitchInfo(twitchInfo);
-//        user.setXboxLiveInfo(xboxLiveInfo);
+        user.setXboxLiveInfo(xboxLiveInfo);
+        user.setNintenDoInfo(nintenDoInfo);
         userDao.save(user);
+        return "redirect:/profile";
+    }
+
+//    user rating stars
+    @PostMapping("/users/rating/{id}")
+    public String userRating(@RequestParam long userId, @ModelAttribute User user) {
+        User userRating = userDao.getOne(userId);
+        userDao.save(userRating);
         return "redirect:/profile";
     }
 
