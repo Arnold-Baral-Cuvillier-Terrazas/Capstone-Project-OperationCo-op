@@ -23,13 +23,17 @@ public class Tag {
 //    @JoinColumn (name = "group_id")
 //    private Group group;
 
+// ------------ Creating Relation for the tags and games
+    @ManyToMany(mappedBy = "tags")
+    private List<Game> games;
 
 // ---------------- Constructor
 
-    public Tag(long id, String name, List<User> users, Group group) {
+    public Tag(long id, String name, List<User> users, Group group, List<Game> games) {
         this.id = id;
         this.name = name;
         this.users = users;
+        this.games = games;
 //        this.group = group;
     }
 
@@ -69,4 +73,13 @@ public class Tag {
 //    public void setGroup(Group group) {
 //        this.group = group;
 //    }
+
+//    ---------- Adding in Games List
+    public List<Game> getGames(){
+        return games;
+    }
+    public void setGames(List<Game> games) {
+        this.games = games;
+    }
+
 }
