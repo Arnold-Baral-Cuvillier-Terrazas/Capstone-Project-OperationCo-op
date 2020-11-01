@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Page for Games</title>
+<!--    Script Tag for others that did not use npm install puzzy-search through IDE terminal
+<script  src="https://unpkg.com/puzzy-search/dist/index.js"></script> -->
+
+</head>
+<body>
+<h1>This is the Search Results of Games Page</h1>
+<form action="/games/search" method="post">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" name="title" class="form-control" type="text" th:text="${game.title}">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input id="description" name="description" class="form-control" type="text" th:text="${game.description}">Description</input>
+    </div>
+    <input name="ad_id" type="hidden" th:text="${game.id}">
+    <input type="submit" class="btn btn-block btn-primary">
+</form>
+
+
+
+<!--<input id="search" type="text" placeholder="Search">-->
+<!--<button id="btnSearch">Search</button>-->
+<!--<br/>-->
+<!--<span id="didyoumean"></span>-->
+<!--<ul id="result">-->
+<!--    <li>1</li>-->
+<!--    <li>2</li>-->
+<!--    <li>3</li>-->
+<!--    <li>4</li>-->
+<!--    <li>5</li>-->
+<!--</ul>-->
+
+
+</body>
+</html>

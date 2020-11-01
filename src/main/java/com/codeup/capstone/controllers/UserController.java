@@ -1,7 +1,9 @@
 package com.codeup.capstone.controllers;
 
+import com.codeup.capstone.models.Game;
 import com.codeup.capstone.models.Tag;
 import com.codeup.capstone.models.User;
+import com.codeup.capstone.repositories.GameRepository;
 import com.codeup.capstone.repositories.GroupRepository;
 import com.codeup.capstone.repositories.TagRepository;
 import com.codeup.capstone.repositories.UserRepository;
@@ -20,14 +22,16 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final TagRepository tagDao;
     private final GroupRepository groupDao;
+    private final GameRepository gameRepo;
 
 
     //---------constructor
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, TagRepository tagDao, GroupRepository groupDao) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, TagRepository tagDao, GroupRepository groupDao, GameRepository gameRepo) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.tagDao = tagDao;
         this.groupDao = groupDao;
+        this.gameRepo = gameRepo;
     }
 
 // ---------methods for work flow------------

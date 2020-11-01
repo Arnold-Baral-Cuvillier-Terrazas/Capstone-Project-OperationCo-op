@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Create Group</title>
+    <link th:replace="partials/links :: links"/>
 </head>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <body>
+<div class="container-fluid">
 <!--<header th:replace="partials/head :: head"></header>-->
-<h1>Create a Group!</h1>
+<h1 class="text-center">Edit Group!</h1>
 <form th:action="'/groups/edit/' + ${editGroup.id}" method="post" th:object="${editGroup}">
 
-    <label for="name">Enter a Group Name:</label>
+    <label for="name">Edit Group Name:</label>
     <input id="name" type="text" th:field="*{name}"/>
     <br><br>
-    <label for="description">Enter a Description:</label>
+    <label for="description">Edit Group Description:</label>
     <input id="description" type="text" th:field="*{description}"/>
     <br><br>
     <input value="Update Group" type="submit"/>
 </form>
+</div>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{/js/keys.js}"></script>
+<script th:src="@{/js/filestack.js}"></script>
+<script th:src="@{/js/userProfile.js}"></script>
 </body>
 </html>
