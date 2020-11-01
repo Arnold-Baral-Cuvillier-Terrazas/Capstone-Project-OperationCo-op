@@ -14,9 +14,9 @@ public class GroupUser {
     @EmbeddedId
     private GroupUserKey id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ID;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
 
     @ManyToOne
     @MapsId("groupId")
