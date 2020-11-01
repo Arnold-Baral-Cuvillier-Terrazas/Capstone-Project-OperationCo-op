@@ -83,6 +83,10 @@ public class User {
     @OneToMany(mappedBy = "group")
     List<GroupUser> groups;
 
+//    ** Amaro Terrazas ** Inputting Games Feature
+//    @OneToMany(mappedBy = "user")
+//    private List<Game> games;
+
 //    ------------constructors----------------------------
 
     public User() {
@@ -92,7 +96,7 @@ public class User {
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
                 Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
                 String psnInfo, String nintenDoInfo,
-                String discordInfo, List<Tag> tags,List<GroupUser> groups) {
+                String discordInfo, List<Tag> tags, List<GroupUser> groups) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -112,6 +116,7 @@ public class User {
         this.discordInfo = discordInfo;
         this.tags = tags;
         this.groups = groups;
+//        this.games = games;
     }
 
     // implement the Copy Constructor right here in the User model!
@@ -126,6 +131,7 @@ public class User {
         this.pronouns = copy.pronouns;
         this.birthDate = copy.birthDate;
         this.bio = copy.bio;
+//        this.games = copy.games;
     }
 
     public List<GroupUser> getGroups() {
@@ -288,4 +294,11 @@ public class User {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+//    public List<Game> getGames(){
+//        return games;
+//    }
+//    public void setGames(List<Game> games){
+//        this.games = games;
+//    }
 }
