@@ -1,6 +1,7 @@
 package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.*;
+import com.codeup.capstone.repositories.GameRepository;
 import com.codeup.capstone.repositories.GroupRepository;
 import com.codeup.capstone.repositories.GroupUserRepository;
 import com.codeup.capstone.repositories.TagRepository;
@@ -19,13 +20,16 @@ public class GroupController {
     private final GroupRepository groupDao;
     private final UserRepository userDao;
     private final GroupUserRepository groupUserDao;
+    private final GameRepository gameRepo;
     private final TagRepository tagDao;
 
 
-    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao, TagRepository tagDao) {
+    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao,
+                           GameRepository gameRepo, TagRepository tagDao) {
         this.groupDao = groupDao;
         this.userDao = userDao;
         this.groupUserDao = groupUserDao;
+        this.gameRepo = gameRepo;
         this.tagDao = tagDao;
     }
 
@@ -65,7 +69,7 @@ public class GroupController {
         GroupUserKey groupUserKey = new GroupUserKey(user.getId(), group.getId());
         GroupUser groupUser = new GroupUser(groupUserKey,group, user,true, true);
         groupUserDao.save(groupUser);
-        return "redirect:/groups/" + group.getId();
+        return "redirect:/groups/profile/" + group.getId();
     }
 
     //group's Profile pic area
@@ -78,7 +82,7 @@ public class GroupController {
     }
 
     //Double check on this mapping for displaying group profile.
-    @GetMapping("/groups/{id}")
+    @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
@@ -109,7 +113,7 @@ public class GroupController {
         group.setDescription(description);
         group.setTags(tagLists);
         groupDao.save(group);
-        return "redirect:/groups/" + group.getId();
+        return "redirect:/groups/profile/" + group.getId();
     }
 
 

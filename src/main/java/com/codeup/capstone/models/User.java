@@ -93,16 +93,19 @@ public class User {
     @JoinColumn (name = "group_id")
     private Group group;
 
+//    ** Amaro Terrazas ** Inputting Games Feature
+//    @OneToMany(mappedBy = "user")
+//    private List<Game> games;
 
 //    ------------constructors----------------------------
 
-    public User() {
-    }
+    public User() {}
 
-    public User(long id, String userName,String email, String password, String fullName, String pronouns, Date birthDate,
-                String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic, String twitchInfo,
-                String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo, String discordInfo,
-                List<Tag> tags, List<GroupUser> groups, List<Post> messages, Group group) {
+    public User(long id, String userName, String email, String password, String fullName,
+                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
+                Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
+                String psnInfo, String nintenDoInfo,
+                String discordInfo, List<Tag> tags, List<GroupUser> groups) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -124,6 +127,7 @@ public class User {
         this.groups = groups;
         this.messages = messages;
         this.group = group;
+//        this.games = games;
     }
 
 
@@ -137,6 +141,7 @@ public class User {
         this.pronouns = copy.pronouns;
         this.birthDate = copy.birthDate;
         this.bio = copy.bio;
+//        this.games = copy.games;
     }
 
     public List<GroupUser> getGroups() {
@@ -317,4 +322,10 @@ public class User {
     }
 
 
+//    public List<Game> getGames(){
+//        return games;
+//    }
+//    public void setGames(List<Game> games){
+//        this.games = games;
+//    }
 }

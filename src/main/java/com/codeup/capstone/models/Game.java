@@ -14,39 +14,84 @@ public class Game {
     @Column(nullable = false)
     private String title;
 
-    @Column
+    @Column(length = 1000)
     private String description;
 
-//    @Column
-//    private Date release_date;
+    @Column
+    private Date release_date;
 
     @Column
     private long critics_rating;
 
-//    @Column
-//    private String esrb_rating;
-
-    @Column String art_cover;
+    @Column
+    private String art_cover;
 
     @Column
     private long igdb_api_id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+//    Game Relationship with tags
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="game_tags",
+            joinColumns = {@JoinColumn(name="games_id")},
+            inverseJoinColumns = {@JoinColumn(name="tags_id")}
+    )
+    private List<GameTag> tags;
 
-//    @ManyToMany(cascade = CascadeType.All)
-//    @JoinTable(
-//            name="tags",
-//            joinColumns = {@JoinColumn(name="games_id")},
-//            inverseJoinColumns ={@JoinColumn(name="tags_id")}
-//    )
-//    private List<tags> tags;
+//    Game Relationship with groups
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="game_groups",
+            joinColumns={@JoinColumn(name="games_id")},
+            inverseJoinColumns = {@JoinColumn(name="groups_id")}
+            )
+    private List<GameGroup> groups;
+
+//    Game Relationship with User
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Game(){
     }
-//    public Game(String title, String Description, Date release_date, Long critics_rating, String esrb_rating, String art_cover, Long igdb_api_id){
-//    }
+
+
+    public Game(long id, String title, String description, Date release_date, Long critics_rating, String art_cover, Long igdb_api_id, List<GameTag> tags, List<GameGroup> groups, User user) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.release_date = release_date;
+        this.critics_rating = critics_rating;
+        this.art_cover = art_cover;
+        this.igdb_api_id = igdb_api_id;
+        this.tags = tags;
+        this.user = user;
+        this.groups = groups;
+    }
+
+    public List<GameTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<GameTag> tags) {
+        this.tags = tags;
+    }
+
+    public List<GameGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GameGroup> groups) {
+        this.groups = groups;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public long getId() {
         return id;
@@ -72,13 +117,13 @@ public class Game {
         this.description = description;
     }
 
-//    public Date getRelease_date() {
-//        return release_date;
-//    }
-//
-//    public void setRelease_date(Date release_date) {
-//        this.release_date = release_date;
-//    }
+    public Date getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
+    }
 
     public long getCritics_rating() {
         return critics_rating;
@@ -87,14 +132,6 @@ public class Game {
     public void setCritics_rating(long critics_rating) {
         this.critics_rating = critics_rating;
     }
-
-//    public String getEsrb_rating() {
-//        return esrb_rating;
-//    }
-//
-//    public void setEsrb_rating(String esrb_rating) {
-//        this.esrb_rating = esrb_rating;
-//    }
 
     public String getArt_cover() {
         return art_cover;
@@ -111,21 +148,11 @@ public class Game {
     public void setIgdb_api_id(long igdb_api_id) {
         this.igdb_api_id = igdb_api_id;
     }
-    public Game(long id, String title, String description, Date release_date, Long critics_rating, String esrb_rating, String art_cover, Long igdb_api_id, List<Game> tags) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-//        this.release_date = release_date;
-        this.critics_rating = critics_rating;
-//        this.esrb_rating = esrb_rating;
-        this.art_cover = art_cover;
-        this.igdb_api_id = igdb_api_id;
-//        this.tags = tags;
+
+    public List<GameTag> tags(){
+        return tags;
     }
-//    public List<Game> getTags(){
-//        return tags;
-//    }
-//    public void setTags(List<Game> tags){
-//        this.tags = tags;
-//    }
+    public void setGameTag(List<GameTag> tags){
+        this.tags = tags;
+    }
 }

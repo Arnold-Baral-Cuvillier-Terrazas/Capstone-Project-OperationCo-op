@@ -48,8 +48,8 @@ public class Group {
 
 //-----------Constructor
 
-    public Group(long id, String name, String description, String profilePic, String discordUserId,
-                 String gameId, List<Post> posts, List<GroupUser> users, List<Tag> tags) {
+    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
+
         this.id = id;
         this.name = name;
         this.description = description;
@@ -62,9 +62,7 @@ public class Group {
     }
 
 
-    public Group() {
-
-    }
+    public Group() {}
 
 //----------getters and setters
 
