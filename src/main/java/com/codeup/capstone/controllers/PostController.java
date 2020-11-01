@@ -9,13 +9,7 @@ import com.codeup.capstone.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,35 +32,36 @@ public class PostController {
     }
 
 //    showing all the posts
-@GetMapping("/messages.json")
+@GetMapping("/posts.json")
 public @ResponseBody List<Post> viewAllMessagesInJSONFormat() {
     User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     User thisUser = userRepo.getOne(thisAuthor.getId());
-    Group group = groupDao.findById(thisUser.getGroup()).orElse(null);
+    Group group = groupDao.findById(thisUser.getGroup().getId()).orElse(null);
     if (group == null){
         //Returns empty list
         return new ArrayList<Post>();
     }
-    return group.getMessages();
-//          return messageDao.findAll();
+    return group.getPosts();
 }
 
-    @GetMapping("/messages")
+    @GetMapping("/posts")
     public String redirectToId() {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User thisUser = userRepo.getOne(thisAuthor.getId());
-        return "redirect:/messages/" + thisUser.getGroup().getId();
+        return "redirect:/messages/" + thisUser.getGroup();
     }
 
 
-    @GetMapping("/messages/{id}")
+    @GetMapping("/posts/{id}")
     public String viewAllMessagesWithAjax(@PathVariable long id, Model model) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User thisUser = userRepo.getOne(thisAuthor.getId());
-        model.addAttribute("id", thisUser.getGroup().getId());
-        if (thisUser.getGroup().getId() == id) {
-            model.addAttribute("message", new Message());
-            return "messages/ajax";
+        model.addAttribute("id", thisUser.getGroup());
+        if (thisUser.getGroup().getId()== id) {
+            model.addAttribute("post", new Post() {
+
+            });
+            return "posts/ajax";
         }
         return "/home";
     }
@@ -74,17 +69,17 @@ public @ResponseBody List<Post> viewAllMessagesInJSONFormat() {
     // if group_id == current group display messages
     // grab group_id from messages --> if group_id in messages == group_id in users --> display messages
 
-    @PostMapping("/messages/submit")
-    public String createMessage(@ModelAttribute Message message) {
+    @PostMapping("/posts/submit")
+    public String createMessage(@ModelAttribute Post post) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        message.setOwner(thisAuthor);
+        post.setUser(thisAuthor);
         User thisUser = userRepo.getOne(thisAuthor.getId());
-        Group authorGroup = thisUser.getGroup();
-        long groupId = authorGroup.getId();
+        long authorGroup = thisUser.getGroup().getId();
+        long groupId = authorGroup;
         Group currentGroup = groupDao.getOne(groupId);
-        message.setGroup(currentGroup);
-        postDao.save(message);
-        return "redirect:/messages";
+        post.setGroup(currentGroup);
+        postDao.save(post);
+        return "redirect:/posts";
     }
 
 
