@@ -4,43 +4,43 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="tags")
+@Table(name="user")
+public class GameUser {
 
-public class GameTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(nullable = false)
-    private String name;
+    private String GameUserName;
 
-    @ManyToMany(mappedBy = "tags")
+    @OneToMany(mappedBy = "user")
     private List<Game> games;
 
-    public GameTag(){
-
-    }
-
-    public GameTag(Long id, String name, List<Game> games) {
+    public GameUser(long id, String GameUserName, List<Game> games) {
         this.id = id;
-        this.name = name;
+        this.GameUserName = GameUserName;
         this.games = games;
     }
 
-    public Long getId() {
+    public GameUser() {
+
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getGameUserName() {
+        return GameUserName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGameUserName(String user_name) {
+        this.GameUserName = GameUserName;
     }
 
     public List<Game> getGames() {
