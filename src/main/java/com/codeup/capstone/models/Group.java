@@ -34,10 +34,9 @@ public class Group {
     @OneToMany(mappedBy = "user")
     List<GroupUser> users;
 
-    @OneToMany(mappedBy = "group")
-    List<Game> games;
 
-    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users, List<Game> games) {
+
+    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -45,7 +44,7 @@ public class Group {
         this.gameId = gameId;
         this.posts = posts;
         this.users = users;
-        this.games = games;
+
     }
 
     public Group() {
@@ -106,13 +105,6 @@ public class Group {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
-    }
-
-    public List<Game> getGames() {
-        return games;
-    }
-    public void setGames(List<Game> games) {
-        this.games = games;
     }
 
 }

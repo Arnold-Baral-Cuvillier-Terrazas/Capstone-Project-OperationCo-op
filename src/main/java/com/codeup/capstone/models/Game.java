@@ -18,24 +18,30 @@ public class Game {
     private String description;
 
     @Column
-    private
-    Date release_date;
+    private Date release_date;
 
     @Column
-    private
-    long critics_rating;
+    private long critics_rating;
 
     @Column
-    String art_cover;
+    private String art_cover;
 
     @Column
     private long igdb_api_id;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="game_tags",
+            joinColumns = {@JoinColumn(name="games_id")},
+            inverseJoinColumns = {@JoinColumn(name="tags_id")}
+    )
+    private List<GameTag> tags;
 
 
     public Game(){
     }
 
-    public Game(long id, String title, String description, Date release_date, Long critics_rating, String art_cover, Long igdb_api_id, List<Tag> tags) {
+    public Game(long id, String title, String description, Date release_date, Long critics_rating, String art_cover, Long igdb_api_id, List<GameTag> tags) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -43,7 +49,7 @@ public class Game {
         this.critics_rating = critics_rating;
         this.art_cover = art_cover;
         this.igdb_api_id = igdb_api_id;
-//        this.tags = tags;
+        this.tags = tags;
     }
 
     public long getId() {
@@ -102,10 +108,10 @@ public class Game {
         this.igdb_api_id = igdb_api_id;
     }
 
-//    public List<Tag> tags(){
-//        return tags;
-//    }
-//    public void setGames(List<Tag> tags){
-//        this.tags = tags;
-//    }
+    public List<GameTag> tags(){
+        return tags;
+    }
+    public void setGameTag(List<GameTag> tags){
+        this.tags = tags;
+    }
 }

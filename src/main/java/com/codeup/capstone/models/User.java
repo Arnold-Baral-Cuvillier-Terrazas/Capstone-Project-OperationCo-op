@@ -96,7 +96,7 @@ public class User {
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
                 Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
                 String psnInfo, String nintenDoInfo,
-                String discordInfo, List<Tag> tags,List<GroupUser> groups, List<Game> games) {
+                String discordInfo, List<Tag> tags, List<GroupUser> groups) {
         this.id = id;
         this.userName = userName;
         this.email = email;
