@@ -1,6 +1,7 @@
 package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.*;
+import com.codeup.capstone.repositories.GameRepository;
 import com.codeup.capstone.repositories.GroupRepository;
 import com.codeup.capstone.repositories.GroupUserRepository;
 import com.codeup.capstone.repositories.UserRepository;
@@ -15,11 +16,13 @@ public class GroupController {
     private final GroupRepository groupDao;
     private final UserRepository userDao;
     private final GroupUserRepository groupUserDao;
+    private final GameRepository gameRepo;
 
-    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao) {
+    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao, GameRepository gameRepo) {
         this.groupDao = groupDao;
         this.userDao = userDao;
         this.groupUserDao = groupUserDao;
+        this.gameRepo = gameRepo;
     }
 
     //To show all groups

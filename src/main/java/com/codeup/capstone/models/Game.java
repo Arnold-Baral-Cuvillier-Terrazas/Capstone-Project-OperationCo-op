@@ -14,39 +14,37 @@ public class Game {
     @Column(nullable = false)
     private String title;
 
-    @Column
+    @Column(length = 1000)
     private String description;
 
     @Column
-    private Date release_date;
+    private
+    Date release_date;
 
     @Column
-    private long critics_rating;
+    private
+    long critics_rating;
 
-//    @Column
-//    private String esrb_rating;
-
-    @Column String art_cover;
+    @Column
+    String art_cover;
 
     @Column
     private long igdb_api_id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-
-//    @ManyToMany(cascade = CascadeType.All)
-//    @JoinTable(
-//            name="tags",
-//            joinColumns = {@JoinColumn(name="games_id")},
-//            inverseJoinColumns ={@JoinColumn(name="tags_id")}
-//    )
-//    private List<tags> tags;
 
     public Game(){
     }
-//    public Game(String title, String Description, Date release_date, Long critics_rating, String esrb_rating, String art_cover, Long igdb_api_id){
-//    }
+
+    public Game(long id, String title, String description, Date release_date, Long critics_rating, String art_cover, Long igdb_api_id, List<Tag> tags) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.release_date = release_date;
+        this.critics_rating = critics_rating;
+        this.art_cover = art_cover;
+        this.igdb_api_id = igdb_api_id;
+//        this.tags = tags;
+    }
 
     public long getId() {
         return id;
@@ -88,14 +86,6 @@ public class Game {
         this.critics_rating = critics_rating;
     }
 
-//    public String getEsrb_rating() {
-//        return esrb_rating;
-//    }
-//
-//    public void setEsrb_rating(String esrb_rating) {
-//        this.esrb_rating = esrb_rating;
-//    }
-
     public String getArt_cover() {
         return art_cover;
     }
@@ -111,21 +101,11 @@ public class Game {
     public void setIgdb_api_id(long igdb_api_id) {
         this.igdb_api_id = igdb_api_id;
     }
-    public Game(long id, String title, String description, Date release_date, Long critics_rating, String esrb_rating, String art_cover, Long igdb_api_id, List<Game> tags) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.release_date = release_date;
-        this.critics_rating = critics_rating;
-//        this.esrb_rating = esrb_rating;
-        this.art_cover = art_cover;
-        this.igdb_api_id = igdb_api_id;
-//        this.tags = tags;
-    }
-//    public List<Game> getTags(){
+
+//    public List<Tag> tags(){
 //        return tags;
 //    }
-//    public void setTags(List<Game> tags){
+//    public void setGames(List<Tag> tags){
 //        this.tags = tags;
 //    }
 }
