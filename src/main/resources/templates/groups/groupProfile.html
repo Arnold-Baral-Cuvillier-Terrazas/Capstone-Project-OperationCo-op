@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Show Groups</title>
-<!--    <link th:replace="partials/links :: links"/>-->
+    <link th:replace="partials/links :: links"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
 </head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <body>
 <!--<header th:replace="partials/header :: header"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
@@ -14,9 +18,16 @@
 
 <div class="groupProfile">
 
-    <div class="profileImg"></div>
+<!--    adding profile picture-->
+    <div class="card">
 
-    <button  class="pb" type="button">Edit profile Image</button>
+    <div class="profileImg">
+        <img id="imgP" th:src="${photoUrl1}" style="width: 100%; height:100%; object-fit:cover">
+    </div>
+        <h4>Name: <span th:text="${group.name}"></span></h4>
+    </div>
+
+    <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
 
     <div class="reviews">
         <p> review:
@@ -27,8 +38,8 @@
             <i class="star fa fa-star checked" data-value="5"></i>
         </p></div>
 
-    <h4>Name: <span th:text="${group.name}"></span></h4>
-    <h4>Username: <span th:text="${group.description}"></span></h4>
+    <h4>Description: <br>
+        <span th:text="${group.description}"></span></h4>
 </div>
 
 <!--<button  class="ib" type="button">Edit profile</button>-->
@@ -37,15 +48,15 @@
 <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}"><button>Delete</button></form>
 
 
-<br>
-<div class="bio"> Bio
-    <form>
-        <textarea> </textarea>
-    </form>
-
-</div>
-
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
+
+<script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
+<script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{/js/keys.js}"></script>
+<script th:src="@{/js/filestack.js}"></script>
+<script th:src="@{/js/userProfile.js}"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ function updateImage(result){
     const filedata = result.filesUploaded[0];
     console.log(filedata);
     // $("#profileUrl").val(filedata.url);
-    $("#img").attr("src",filedata.url);
+    $("#imgP").attr("src",filedata.url);
 
     let formData = new FormData();
     formData.append("userId", userId);
@@ -22,12 +22,19 @@ function updateImage(result){
         method:"POST",
         body:formData,
     }).catch(err => { console.log(err) });
+
+    let formData1 = new FormData();
+    formData1.append("groupId", groupId);
+    formData1.append("url", filedata.url);
+    fetch("/groups/pic", {
+        method:"POST",
+        body:formData,
+    }).catch(err => { console.log(err) });
 }
 
 
 //jquery
 $(document).ready(function() {
-
     //filestack
     console.log(url);
     $("#profile-btn").click(function(){

@@ -15,9 +15,14 @@ public class Tag {
     private String name;
 
 
-// ----------- Creating Relationship for tags and group
+// ----------- Creating Relationship for tags and users
     @ManyToMany(mappedBy = "tags")
     private List<User> users;
+
+    // ----------- Creating Relationship for tags and users
+    @ManyToMany(mappedBy = "tags")
+    private List<Group> groups;
+
 
 //    @ManyToOne
 //    @JoinColumn (name = "group_id")
@@ -26,11 +31,11 @@ public class Tag {
 
 // ---------------- Constructor
 
-    public Tag(long id, String name, List<User> users, Group group) {
+    public Tag(long id, String name, List<User> users, List<Group> groups) {
         this.id = id;
         this.name = name;
         this.users = users;
-//        this.group = group;
+        this.groups = groups;
     }
 
     public Tag() {
@@ -62,11 +67,12 @@ public class Tag {
         this.users = users;
     }
 
-//    public Group getGroup() {
-//        return group;
-//    }
-//
-//    public void setGroup(Group group) {
-//        this.group = group;
-//    }
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
+
 }

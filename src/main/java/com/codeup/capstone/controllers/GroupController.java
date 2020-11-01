@@ -3,6 +3,7 @@ package com.codeup.capstone.controllers;
 import com.codeup.capstone.models.*;
 import com.codeup.capstone.repositories.GroupRepository;
 import com.codeup.capstone.repositories.GroupUserRepository;
+import com.codeup.capstone.repositories.TagRepository;
 import com.codeup.capstone.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,16 +11,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class GroupController {
     private final GroupRepository groupDao;
     private final UserRepository userDao;
     private final GroupUserRepository groupUserDao;
+    private final TagRepository tagDao;
 
-    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao) {
+
+    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao, TagRepository tagDao) {
         this.groupDao = groupDao;
         this.userDao = userDao;
         this.groupUserDao = groupUserDao;
+        this.tagDao = tagDao;
     }
 
     //To show all groups
@@ -61,12 +68,21 @@ public class GroupController {
         return "redirect:/groups/" + group.getId();
     }
 
+    //group's Profile pic area
+    @PostMapping("/groups/pic")
+    public String saveProfile(@RequestParam long groupId, @RequestParam String url, @ModelAttribute Group group) {
+        Group saveProfile = groupDao.getOne(groupId);
+        saveProfile.setProfilePic(url);
+        groupDao.save(saveProfile);
+        return "redirect:/groups/{id}";
+    }
+
     //Double check on this mapping for displaying group profile.
     @GetMapping("/groups/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "/groups/profile";
+        return "/groups/groupProfile";
     }
 
     @GetMapping("/groups/edit/{id}")
@@ -89,6 +105,40 @@ public class GroupController {
         Group group = groupDao.getOne(id);
         groupDao.delete(group);
         return "redirect:/groups";
+    }
+
+//---------- for editing tags
+    @GetMapping("/groups/editTags/{id}")
+    public String EditProfile(@PathVariable long id, Model model) {
+        model.addAttribute("editGroup", groupDao.getOne(id));
+        List<Tag> tagsList = tagDao.findAll();
+        model.addAttribute("tagsList", tagsList);
+        return "/groups/edit";
+    }
+
+
+    //Used (required false) because every user will not have all gaming accounts so it is optional for user
+    @PostMapping("/users/edit/{id}")
+    public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags,
+                                @RequestParam String bio ,
+                                @RequestParam (required = false) String psnInfo ,@RequestParam (required = false) String steamInfo ,
+                                @RequestParam (required = false) String twitchInfo,@RequestParam(required = false) String xboxLiveInfo,
+                                @RequestParam (required = false) String nintenDoInfo) {
+        List<Tag> tagList = new ArrayList<>();
+        for(int i= 0; i< tags.size(); i++){
+            Tag thisTag = tagDao.getOne(tags.get(i));
+            tagList.add(thisTag);
+        }
+        User user = userDao.getOne(id);
+        user.setBio(bio);
+        user.setTags(tagList);
+        user.setPsnInfo(psnInfo);
+        user.setSteamInfo(steamInfo);
+        user.setTwitchInfo(twitchInfo);
+        user.setXboxLiveInfo(xboxLiveInfo);
+        user.setNintenDoInfo(nintenDoInfo);
+        userDao.save(user);
+        return "redirect:/profile";
     }
 
 }

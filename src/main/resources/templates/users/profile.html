@@ -5,14 +5,10 @@
     <title>Profile page</title>
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <link th:href="@{/css/tag.css}" rel="stylesheet"/>
-
-
 </head>
-
 <!--<header th:replace="partials/head :: head"></header>-->
 <nav th:replace="partials/navbar :: navbar"></nav>
-
+<body>
 <div class="box">
 
     <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
@@ -22,7 +18,7 @@
         <!--        card for user Information-->
         <div class="card">
             <div class="profileImg">
-                <img id="img" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
+                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
             </div>
 
             <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
@@ -31,12 +27,12 @@
             <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>
             <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>
             <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>
-            <h6>XboxLive:<span th:text="${user.xboxLiveInfo}"></span></h6>
+            <h6>XboxLive<span th:text="${user.xboxLiveInfo}"></span></h6>
             <h6>NintenDoInfo:<span th:text="${user.nintenDoInfo}"></span></h6>
         </div>
-               <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
 
-<!--              extra user information-->
+        <!--              extra user information-->
         <!--        <div class="reviews">-->
         <!--            <p> review:-->
         <!--                <i class="star fa fa-star checked" data-value="1"></i>-->
@@ -49,7 +45,7 @@
 
         <!--        User bio and tags area-->
         <div>
-            <h5> <a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
+            <h5><a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
         </div>
 
         <div class="bio">
@@ -62,7 +58,7 @@
             <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
         </div>
 
-</div>
+    </div>
 </div>
 
 <!--grabbing userid from controller and linked it into js-->

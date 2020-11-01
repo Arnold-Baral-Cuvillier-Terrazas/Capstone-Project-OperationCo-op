@@ -20,6 +20,9 @@ public class Group {
     @Column(nullable = false)
     private String description;
 
+    @Column(columnDefinition = "TEXT")
+    private String profilePic;
+
     // Made nullable true to make Create Group DB to work.
     @Column(unique = true)
     @ColumnDefault("true")
@@ -34,11 +37,23 @@ public class Group {
     @OneToMany(mappedBy = "user")
     List<GroupUser> users;
 
-    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts,
-                 List<GroupUser> users) {
+//    establishing relationship for group and tags
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "group_tags",
+            joinColumns = {@JoinColumn(name = "tag_id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id")}
+    )
+    private List<Tag> tags;
+
+//-----------Constructor
+
+    public Group(long id, String name, String description, String profilePic, String discordUserId,
+                 String gameId, List<Post> posts, List<GroupUser> users) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.profilePic = profilePic;
         this.discordUserId = discordUserId;
         this.gameId = gameId;
         this.posts = posts;
@@ -48,6 +63,8 @@ public class Group {
     public Group() {
 
     }
+
+//----------getters and setters
 
     public List<GroupUser> getUsers() {
         return users;
@@ -105,4 +122,11 @@ public class Group {
         this.posts = posts;
     }
 
+    public String getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(String profilePic) {
+        this.profilePic = profilePic;
+    }
 }

@@ -98,6 +98,7 @@ public class UserController {
             tagList.add(thisTag);
         }
         User user = userDao.getOne(id);
+        user.setBio(bio);
         user.setTags(tagList);
         user.setPsnInfo(psnInfo);
         user.setSteamInfo(steamInfo);
