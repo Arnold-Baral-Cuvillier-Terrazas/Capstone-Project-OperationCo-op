@@ -1,9 +1,8 @@
 package com.codeup.capstone.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.ColumnDefault;
-
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 
@@ -20,14 +19,14 @@ public class User {
     @Column(nullable = false, length = 100, unique = true)
     private String userName;
 
-    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
-            " valid email address")
+//    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
+//            " valid email address")
     @Column(nullable = false, unique = true)
     private String email;
 
     //one upper case, one lower case, one digit, one special character, minimum 8 characters in length
-    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$", message = "Password length must be at least 8 characters " +
-            "with one uppercase letter and one digit")
+//    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$", message = "Password length must be at least 8 characters " +
+//            "with one uppercase letter and one digit")
     @Column(nullable = false, length = 100)
     private String password;
 
@@ -83,16 +82,27 @@ public class User {
     @OneToMany(mappedBy = "group")
     List<GroupUser> groups;
 
+//  ----------  relationship with groups and Posts
+    //Owner to messages
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonBackReference
+    private List<Post> messages;
+
+    //Many users to one group
+    @ManyToOne
+    @JoinColumn (name = "group_id")
+    private Group group;
+
+
 //    ------------constructors----------------------------
 
     public User() {
     }
 
-    public User(long id, String userName, String email, String password, String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
-                Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
-                String psnInfo, String nintenDoInfo,
-                String discordInfo, List<Tag> tags,List<GroupUser> groups) {
+    public User(long id, String userName,String email, String password, String fullName, String pronouns, Date birthDate,
+                String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic, String twitchInfo,
+                String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo, String discordInfo,
+                List<Tag> tags, List<GroupUser> groups, List<Post> messages, Group group) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -112,11 +122,12 @@ public class User {
         this.discordInfo = discordInfo;
         this.tags = tags;
         this.groups = groups;
+        this.messages = messages;
+        this.group = group;
     }
 
+
     // implement the Copy Constructor right here in the User model!
-    // We can call on this constructor from elsewhere in our code, and don't have to specify all of
-    // the User object's properties (like email, username, etc)
     public User(User copy) {
         this.id = copy.id; // VERY IMPORTANT. Many things won't work if you don't include this assignment
         this.email = copy.email;
@@ -288,4 +299,21 @@ public class User {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+    public List<Post> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Post> messages) {
+        this.messages = messages;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
 }

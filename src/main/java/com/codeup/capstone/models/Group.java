@@ -34,7 +34,8 @@ public class Group {
     @OneToMany(mappedBy = "user")
     List<GroupUser> users;
 
-    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
+    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts,
+                 List<GroupUser> users) {
         this.id = id;
         this.name = name;
         this.description = description;
