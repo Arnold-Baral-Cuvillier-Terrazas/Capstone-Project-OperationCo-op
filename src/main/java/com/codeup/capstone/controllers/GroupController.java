@@ -85,17 +85,29 @@ public class GroupController {
         return "/groups/groupProfile";
     }
 
+//    for editing group profile informations
+
     @GetMapping("/groups/edit/{id}")
     public String EditGroup(@PathVariable long id, Model model) {
         model.addAttribute("editGroup", groupDao.getOne(id));
+        List<Tag> tagsList = tagDao.findAll();
+        model.addAttribute("tagsList", tagsList);
         return "/groups/edit";
     }
 
     @PostMapping("/groups/edit/{id}")
-    public String postEditGroup(@PathVariable long id, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description) {
+    public String postEditGroup(@PathVariable long id, @RequestParam(name = "name") String name,
+                                @RequestParam List<Long> tags,
+                                @RequestParam(name = "description") String description) {
+        List<Tag> tagLists = new ArrayList<>();
+        for(int i= 0; i< tags.size(); i++){
+            Tag thisTag = tagDao.getOne(tags.get(i));
+            tagLists.add(thisTag);
+        }
         Group group = groupDao.getOne(id);
         group.setName(name);
         group.setDescription(description);
+        group.setTags(tagLists);
         groupDao.save(group);
         return "redirect:/groups/" + group.getId();
     }
@@ -107,31 +119,5 @@ public class GroupController {
         return "redirect:/groups";
     }
 
-//---------- for editing tags
-    @GetMapping("/groups/edit/{id}")
-    public String EditProfile(@PathVariable long id, Model model) {
-        model.addAttribute("editGroup", groupDao.getOne(id));
-        List<Tag> tagsList = tagDao.findAll();
-        model.addAttribute("tagsList", tagsList);
-        return "/groups/edit";
-    }
-
-
-    //Used (required false) because every user will not have all gaming accounts so it is optional for user
-    @PostMapping("/groups/edit/{id}")
-    public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags,
-                                @RequestParam String description , @RequestParam String name)  {
-        List<Tag> tagLists = new ArrayList<>();
-        for(int i= 0; i< tags.size(); i++){
-            Tag thisTag = tagDao.getOne(tags.get(i));
-            tagLists.add(thisTag);
-        }
-        Group group = groupDao.getOne(id);
-        group.setDescription(description);
-        group.setTags(tagLists);
-        group.setName(name);
-        groupDao.save(group);
-        return "redirect:/profile";
-    }
 
 }
