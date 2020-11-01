@@ -1,6 +1,2 @@
 BUILD_COMMAND='./mvnw package'
-<<<<<<< HEAD
 JAR_FILE=target/demo-0.0.1-SNAPSHOT.jar
-=======
-JAR_FILE=target/demo-0.0.1-SNAPSHOT.jar
->>>>>>> fa4b55433a5e4f03a96c38dd47fcb122a4adab10
