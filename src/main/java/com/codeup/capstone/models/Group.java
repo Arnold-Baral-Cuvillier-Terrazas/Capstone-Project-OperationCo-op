@@ -1,5 +1,6 @@
 package com.codeup.capstone.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -23,6 +24,10 @@ public class Group {
     @Column(columnDefinition = "TEXT")
     private String profilePic;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
     // Made nullable true to make Create Group DB to work.
     @Column(unique = true)
     @ColumnDefault("true")
@@ -32,10 +37,13 @@ public class Group {
     private String gameId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    @JsonIgnore
     private List<Post> posts;
 
-    @OneToMany(mappedBy = "user")
-    List<GroupUser> users;
+    @ManyToMany(mappedBy = "groups")
+    @JsonIgnore
+    private List<User> users;
+
 
 //    establishing relationship for group and tags
     @ManyToMany(cascade = CascadeType.ALL)
@@ -49,7 +57,6 @@ public class Group {
 //-----------Constructor
 
     public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
-
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,7 +64,6 @@ public class Group {
         this.discordUserId = discordUserId;
         this.gameId = gameId;
         this.posts = posts;
-        this.users = users;
         this.tags = tags;
     }
 
@@ -65,14 +71,6 @@ public class Group {
     public Group() {}
 
 //----------getters and setters
-
-    public List<GroupUser> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<GroupUser> users) {
-        this.users = users;
-    }
 
     public long getId() {
         return id;

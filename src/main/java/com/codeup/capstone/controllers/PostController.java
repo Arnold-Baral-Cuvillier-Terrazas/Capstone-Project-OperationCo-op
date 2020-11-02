@@ -22,8 +22,6 @@ public class PostController {
     private final UserRepository userRepo;
     private final GroupRepository groupDao;
 
-
-
 //    constructor
     public PostController(PostRepository postDao,  UserRepository userRepo, GroupRepository groupDao) {
         this.postDao = postDao;
@@ -35,10 +33,9 @@ public class PostController {
 @GetMapping("/posts.json")
 public @ResponseBody List<Post> viewAllMessagesInJSONFormat() {
     User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    User thisUser = userRepo.getOne(thisAuthor.getId());
+    User thisUser = userRepo.findById(thisAuthor.getId());
     Group group = groupDao.findById(thisUser.getGroup().getId()).orElse(null);
     if (group == null){
-        //Returns empty list
         return new ArrayList<Post>();
     }
     return group.getPosts();
@@ -52,36 +49,36 @@ public @ResponseBody List<Post> viewAllMessagesInJSONFormat() {
     }
 
 
-    @GetMapping("/posts/{id}")
-    public String viewAllMessagesWithAjax(@PathVariable long id, Model model) {
-        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User thisUser = userRepo.getOne(thisAuthor.getId());
-        model.addAttribute("id", thisUser.getGroup());
-        if (thisUser.getGroup().getId()== id) {
-            model.addAttribute("post", new Post() {
-
-            });
-            return "posts/ajax";
-        }
-        return "/home";
-    }
-
-    // if group_id == current group display messages
-    // grab group_id from messages --> if group_id in messages == group_id in users --> display messages
-
-    @PostMapping("/posts/submit")
-    public String createMessage(@ModelAttribute Post post) {
-        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setUser(thisAuthor);
-        User thisUser = userRepo.getOne(thisAuthor.getId());
-        long authorGroup = thisUser.getGroup().getId();
-        long groupId = authorGroup;
-        Group currentGroup = groupDao.getOne(groupId);
-        post.setGroup(currentGroup);
-        postDao.save(post);
-        return "redirect:/posts";
-    }
-
+//    @GetMapping("/posts/{id}")
+//    public String viewAllMessagesWithAjax(@PathVariable long id, Model model) {
+//        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User thisUser = userRepo.getOne(thisAuthor.getId());
+//        model.addAttribute("id", thisUser.getGroup());
+//        if (thisUser.getGroup().getId()== id) {
+//            model.addAttribute("post", new Post() {
+//
+//            });
+//            return "posts/ajax";
+//        }
+//        return "/home";
+//    }
+//
+//    // if group_id == current group display messages
+//    // grab group_id from messages --> if group_id in messages == group_id in users --> display messages
+//
+//    @PostMapping("/posts/submit")
+//    public String createMessage(@ModelAttribute Post post) {
+//        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        post.setUser(thisAuthor);
+//        User thisUser = userRepo.getOne(thisAuthor.getId());
+//        long authorGroup = thisUser.getGroup().getId();
+//        long groupId = authorGroup;
+//        Group currentGroup = groupDao.getOne(groupId);
+//        post.setGroup(currentGroup);
+//        postDao.save(post);
+//        return "redirect:/posts";
+//    }
+//
 
     // Create Post Method
 //    @PostMapping("/create")

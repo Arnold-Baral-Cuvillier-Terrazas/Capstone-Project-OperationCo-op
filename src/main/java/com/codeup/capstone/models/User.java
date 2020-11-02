@@ -1,6 +1,7 @@
 package com.codeup.capstone.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -84,8 +85,14 @@ public class User {
     )
     private List<Tag> tags;
 
-    @OneToMany(mappedBy = "group")
-    List<GroupUser> groups;
+//    creating relationship with group table
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "groups_users",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id")}
+    )
+    private List<Group> groups;
 
 //  ----------  relationship with groups and Posts
     //Owner to messages
@@ -111,11 +118,10 @@ public class User {
         this.group = group;
     }
 
-    public User(long id, String userName, String email, String password, String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
-                Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
-                String psnInfo, String nintendoInfo,
-                String discordInfo, List<Tag> tags, List<GroupUser> groups) {
+    public User(long id, String userName, String email, String password, String fullName, String pronouns,
+                Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
+                String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintendoInfo,
+                String discordInfo, List<Tag> tags, List<Group> groups, List<Post> messages, Group group) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -135,8 +141,8 @@ public class User {
         this.discordInfo = discordInfo;
         this.tags = tags;
         this.groups = groups;
-
-        //  this.games = games;
+        this.messages = messages;
+        this.group = group;
     }
 
 
@@ -324,13 +330,6 @@ public class User {
         this.group = group;
     }
 
-    public List<GroupUser> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(List<GroupUser> groups) {
-        this.groups = groups;
-    }
 
 
 
