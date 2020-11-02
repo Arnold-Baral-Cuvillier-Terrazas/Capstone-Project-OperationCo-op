@@ -1,6 +1,7 @@
 package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.Game;
+import com.codeup.capstone.models.Group;
 import com.codeup.capstone.models.Tag;
 import com.codeup.capstone.models.User;
 import com.codeup.capstone.repositories.GameRepository;
@@ -113,7 +114,15 @@ public class UserController {
         return "redirect:/profile";
     }
 
-//    user rating stars
+//    user can delete their account
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable long id) {
+        User user = userDao.getOne(id);
+        userDao.delete(user);
+        return "redirect:/sign-up";
+    }
+
+    //    user rating stars
     @PostMapping("/users/rating/{id}")
     public String userRating(@RequestParam long userId, @ModelAttribute User user) {
         User userRating = userDao.getOne(userId);

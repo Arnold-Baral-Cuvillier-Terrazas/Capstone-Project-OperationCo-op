@@ -101,6 +101,11 @@ public class User {
 
     public User() {}
 
+    public User(List<Post> messages, Group group) {
+        this.messages = messages;
+        this.group = group;
+    }
+
     public User(long id, String userName, String email, String password, String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
                 Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
@@ -125,9 +130,8 @@ public class User {
         this.discordInfo = discordInfo;
         this.tags = tags;
         this.groups = groups;
-        this.messages = messages;
-        this.group = group;
-//        this.games = games;
+
+        //        this.games = games;
     }
 
 
@@ -144,13 +148,7 @@ public class User {
 //        this.games = copy.games;
     }
 
-    public List<GroupUser> getGroups() {
-        return groups;
-    }
 
-    public void setGroups(List<GroupUser> groups) {
-        this.groups = groups;
-    }
 
     //  ------------ getters and setters-------------------
     public long getId() {
@@ -320,6 +318,15 @@ public class User {
     public void setGroup(Group group) {
         this.group = group;
     }
+
+    public List<GroupUser> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<GroupUser> groups) {
+        this.groups = groups;
+    }
+
 
 
 //    public List<Game> getGames(){
