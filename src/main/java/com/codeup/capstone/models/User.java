@@ -102,7 +102,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Game> games;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="favorites",
             joinColumns = {@JoinColumn(name="user_id")},
