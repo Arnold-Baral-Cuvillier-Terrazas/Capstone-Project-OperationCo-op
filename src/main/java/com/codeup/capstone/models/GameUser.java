@@ -11,7 +11,7 @@ public class GameUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = true)
     private String GameUserName;
 
     @OneToMany(mappedBy = "user")
