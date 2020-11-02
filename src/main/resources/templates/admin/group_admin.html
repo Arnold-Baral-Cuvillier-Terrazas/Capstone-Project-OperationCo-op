@@ -1,71 +1,80 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Show Groups</title>-->
-<!--    <link th:replace="partials/links :: links"/>-->
-<!--    &lt;!&ndash;    <link th:replace="partials/links :: links"/>&ndash;&gt;-->
-<!--</head>-->
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-<!--<body>-->
-<!--<div class="container-fluid">-->
-<!--    &lt;!&ndash;<header th:replace="partials/header :: header"></header>&ndash;&gt;-->
-<!--    &lt;!&ndash;<nav th:replace="partials/navbar :: navbar"></nav>&ndash;&gt;-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
 
-<!--    <h1 class="text-center">Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>-->
+</body>
+</html><!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Groups</title>
+    <link th:replace="partials/links :: links"/>
+    <!--    <link th:replace="partials/links :: links"/>-->
+</head>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<body>
+<div class="container-fluid">
+    <!--<header th:replace="partials/header :: header"></header>-->
+    <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+    <h1 class="text-center">Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>
 
 
-<!--    <div class="card">-->
-<!--        <div class="profileImg">-->
-<!--            <img th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">-->
-<!--        </div>-->
+    <div class="card">
+        <div class="profileImg">
+            <img th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
+        </div>
 
-<!--        <h6>Group Name: <span th:text="${group.name}"></span>(<span th:text="${user.pronouns}"></span>)</h6>-->
-<!--        <h6>Description: <span th:text="${group.description}"></span></h6>-->
+        <h6>Group Name: <span th:text="${group.name}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
+        <h6>Description: <span th:text="${group.description}"></span></h6>
 
-<!--        <div class="icons">-->
-<!--            <a href="#"><i class="fa fa-dribbble"></i></a>-->
-<!--            <a href="#"><i class="fa fa-twitter"></i></a>-->
-<!--            <a href="#"><i class="fa fa-linkedin"></i></a>-->
-<!--            <a href="#"><i class="fa fa-facebook"></i></a>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;    Commented button below before this should belong for groupAdmins&ndash;&gt;-->
-<!--        &lt;!&ndash;    <button id="profile-btn" class="pb" type="button">Update Profile Image</button>&ndash;&gt;-->
-<!--    </div>-->
+        <div class="icons">
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+        </div>
+        <!--    Commented button below before this should belong for groupAdmins-->
+        <!--    <button id="profile-btn" class="pb" type="button">Update Profile Image</button>-->
+    </div>
 
-<!--    &lt;!&ndash;<div class="groupProfile">&ndash;&gt;-->
+    <!--<div class="groupProfile">-->
 
-<!--    &lt;!&ndash;    <div class="profileImg"></div>&ndash;&gt;-->
+    <!--    <div class="profileImg"></div>-->
 
-<!--    &lt;!&ndash;    <button class="pb" type="button">Edit profile Image</button>&ndash;&gt;-->
+    <!--    <button class="pb" type="button">Edit profile Image</button>-->
 
-<!--    &lt;!&ndash;    <div class="reviews">&ndash;&gt;-->
-<!--    &lt;!&ndash;        <p> review:&ndash;&gt;-->
-<!--    &lt;!&ndash;            <i class="star fa fa-star checked" data-value="1"></i>&ndash;&gt;-->
-<!--    &lt;!&ndash;            <i class="star fa fa-star checked" data-value="2"></i>&ndash;&gt;-->
-<!--    &lt;!&ndash;            <i class="star fa fa-star checked" data-value="3"></i>&ndash;&gt;-->
-<!--    &lt;!&ndash;            <i class="star fa fa-star checked" data-value="4"></i>&ndash;&gt;-->
-<!--    &lt;!&ndash;            <i class="star fa fa-star checked" data-value="5"></i>&ndash;&gt;-->
-<!--    &lt;!&ndash;        </p></div>&ndash;&gt;-->
+    <!--    <div class="reviews">-->
+    <!--        <p> review:-->
+    <!--            <i class="star fa fa-star checked" data-value="1"></i>-->
+    <!--            <i class="star fa fa-star checked" data-value="2"></i>-->
+    <!--            <i class="star fa fa-star checked" data-value="3"></i>-->
+    <!--            <i class="star fa fa-star checked" data-value="4"></i>-->
+    <!--            <i class="star fa fa-star checked" data-value="5"></i>-->
+    <!--        </p></div>-->
 
-<!--    &lt;!&ndash;    <h4>Name: <span th:text="${group.name}"></span></h4>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <h4>Username: <span th:text="${group.description}"></span></h4>&ndash;&gt;-->
-<!--    &lt;!&ndash;</div>&ndash;&gt;-->
+    <!--    <h4>Name: <span th:text="${group.name}"></span></h4>-->
+    <!--    <h4>Username: <span th:text="${group.description}"></span></h4>-->
+    <!--</div>-->
 
-<!--    <br>-->
+    <br>
 
-<!--    <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">-->
-<!--        <button>Edit</button>-->
-<!--    </form>-->
-<!--    <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">-->
-<!--        <button>Delete</button>-->
-<!--    </form>-->
-<!--    &lt;!&ndash;<script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>&ndash;&gt;-->
-<!--</div>-->
-<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
-<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
-<!--<script th:src="@{/js/keys.js}"></script>-->
-<!--<script th:src="@{/js/filestack.js}"></script>-->
-<!--<script th:src="@{/js/userProfile.js}"></script>-->
-<!--</body>-->
-<!--</html>-->
+    <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
+        <button>Edit</button>
+    </form>
+    <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">
+        <button>Delete</button>
+    </form>
+    <!--<script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>-->
+</div>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script th:src="@{/js/keys.js}"></script>
+<script th:src="@{/js/filestack.js}"></script>
+<script th:src="@{/js/userProfile.js}"></script>
+</body>
+</html>

@@ -86,12 +86,7 @@ public class GroupController {
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-<<<<<<< HEAD
-        model.addAttribute("groupUser", groupUserDao.getOne(id));
-        return "/groups/profile";
-=======
         return "/groups/groupProfile";
->>>>>>> 18ff1f4654dd8afd2a730b23bd8ed2da4f9b3d53
     }
 
 //-------------for editing group profile information
