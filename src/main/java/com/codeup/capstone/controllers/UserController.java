@@ -121,6 +121,18 @@ public class UserController {
         return "redirect:/profile";
     }
 
+//    ----------Inserting Favorites
+    @PostMapping("/users/favorite")
+    public String userFavorite(@RequestParam long userId, @RequestParam long gameId, @ModelAttribute User user ) {
+        User userFavorite = userDao.getOne(userId);
+        Game gameFavorite = gameRepo.getOne(gameId);
+        List<Game> favorites = userFavorite.getFavorites();
+        favorites.add(gameFavorite);
+        userFavorite.setFavorites(favorites);
+        userDao.save(userFavorite);
+        return "redirect:/profile";
+    }
+
 
 }
 
