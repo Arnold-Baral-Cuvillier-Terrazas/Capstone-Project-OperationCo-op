@@ -86,6 +86,7 @@ public class User {
     private List<Tag> tags;
 
 //    creating relationship with group table
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "groups_users",
@@ -98,30 +99,33 @@ public class User {
     //Owner to messages
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonBackReference
-    private List<Post> messages;
+    private List<Post> posts;
 
-    //Many users to one group
-    @ManyToOne
-    @JoinColumn (name = "group_id")
-    private Group group;
+//    //Many users to one group
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<Group> groupsOwned;
 
 //    ** Amaro Terrazas ** Inputting Games Feature
-//    @OneToMany(mappedBy = "user")
-//    private List<Game> games;
+    @OneToMany(mappedBy = "user")
+    private List<Game> games;
+
+    @ManyToMany
+    @JoinTable(
+            name="favorites",
+            joinColumns = {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="game_id")}
+    )
+    private List<Game> favorites;
 
 //    ------------constructors----------------------------
 
     public User() {}
 
-    public User(List<Post> messages, Group group) {
-        this.messages = messages;
-        this.group = group;
-    }
-
     public User(long id, String userName, String email, String password, String fullName, String pronouns,
-                Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
-                String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintendoInfo,
-                String discordInfo, List<Tag> tags, List<Group> groups, List<Post> messages, Group group) {
+                Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic, String twitchInfo,
+                String steamInfo, String xboxLiveInfo, String psnInfo, String nintendoInfo, String discordInfo,
+                List<Tag> tags, List<Group> groups, List<Post> posts, List<Group> groupsOwned, List<Game> games,
+                List<Game> favorites) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -141,8 +145,10 @@ public class User {
         this.discordInfo = discordInfo;
         this.tags = tags;
         this.groups = groups;
-        this.messages = messages;
-        this.group = group;
+        this.posts = posts;
+        this.groupsOwned = groupsOwned;
+        this.games = games;
+        this.favorites = favorites;
     }
 
 
@@ -156,10 +162,26 @@ public class User {
         this.pronouns = copy.pronouns;
         this.birthDate = copy.birthDate;
         this.bio = copy.bio;
-//        this.games = copy.games;
+        this.games = copy.games;
+        this.favorites = copy.favorites;
     }
 
 
+    public List<Game> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Game> favorites) {
+        this.favorites = favorites;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+    }
 
     //  ------------ getters and setters-------------------
     public long getId() {
@@ -314,29 +336,26 @@ public class User {
         this.tags = tags;
     }
 
-    public List<Post> getMessages() {
-        return messages;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setMessages(List<Post> messages) {
-        this.messages = messages;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
-    public Group getGroup() {
-        return group;
+    public List<Group> getGroupsOwned() {
+        return groupsOwned;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupsOwned(List<Group> groupsOwned) {
+        this.groupsOwned = groupsOwned;
     }
 
-
-
-
-//    public List<Game> getGames(){
-//        return games;
-//    }
-//    public void setGames(List<Game> games){
-//        this.games = games;
-//    }
+    public List<Game> getGames(){
+        return games;
+    }
+    public void setGames(List<Game> games){
+        this.games = games;
+    }
 }

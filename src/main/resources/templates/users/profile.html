@@ -6,9 +6,8 @@
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
-<!--<header th:replace="partials/head :: head"></header>-->
-<nav th:replace="partials/navbar :: navbar"></nav>
 <body>
+<<<<<<< HEAD
 <div class="box">
 
     <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
@@ -36,49 +35,84 @@
             <h6>NintenDoInfo:<span th:text="${user.nintendoInfo}"></span></h6>
         </div>
         <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+=======
+<div id="wrapper" class="d-flex">
+    <div th:replace="partials/sidebar :: sidebar"></div>
+    <div id="page-content-wrapper">
+        <nav th:replace="partials/navbar :: navbar"></nav>
+    <div class="container-fluid page-body">
+            <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
+            <div class="profile">
+                <!--        card for user Information-->
+                <div class="card">
+                    <div class="profileImg">
+                        <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
+                    </div>
+                    <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
+                    <h6>Username: <span th:text="${user.userName}"></span></h6>
+                    <h6>Email: <span th:text="${user.email}"></span></h6>
+                    <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>
+                    <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>
+                    <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>
+                    <h6>XboxLive<span th:text="${user.xboxLiveInfo}"></span></h6>
+                    <h6>NintenDoInfo:<span th:text="${user.nintenDoInfo}"></span></h6>
+                </div>
+                <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+>>>>>>> 6cb97e0bd2acccddb6ae99f13b41a7557c51c53e
 
-        <!--              extra user information-->
-        <!--        <div class="reviews">-->
-        <!--            <p> review:-->
-        <!--                <i class="star fa fa-star checked" data-value="1"></i>-->
-        <!--                <i class="star fa fa-star checked" data-value="2"></i>-->
-        <!--                <i class="star fa fa-star checked" data-value="3"></i>-->
-        <!--                <i class="star fa fa-star checked" data-value="4"></i>-->
-        <!--                <i class="star fa fa-star checked" data-value="5"></i>-->
-        <!--            </p>-->
-        <!--        </div>-->
+                <!--              extra user information-->
+                <!--        <div class="reviews">-->
+                <!--            <p> review:-->
+                <!--                <i class="star fa fa-star checked" data-value="1"></i>-->
+                <!--                <i class="star fa fa-star checked" data-value="2"></i>-->
+                <!--                <i class="star fa fa-star checked" data-value="3"></i>-->
+                <!--                <i class="star fa fa-star checked" data-value="4"></i>-->
+                <!--                <i class="star fa fa-star checked" data-value="5"></i>-->
+                <!--            </p>-->
+                <!--        </div>-->
 
-        <!--        User bio and tags area-->
-        <div>
-            <h5><a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
+                <!--        User bio and tags area-->
+                <div>
+                    <h5><a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
+                </div>
+
+                <div class="bio">
+                    <h4>About me:<br></h4>
+                    <p><span th:text="${user.bio}"></span></p>
+                </div>
+
+                <div>
+                    <h4> Tags defines me : </h4>
+                    <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
+                </div>
+                <!--     ************** Amaro Terrazas input ****** Adding in the section for games to be added for the favorites pane*** &ndash;&gt;-->
+                <!--        <div id="favGames">-->
+                <!--            <h4> My Favorite Games: </h4>-->
+                <!--            <show_games th:if="${user.games}">-->
+                <!--                <div th:each ="game: ${user.games}">-->
+                <!--                    <img th:src="${game.art_cover}"/>-->
+                <!--                    <h2 th:text="${game.title}"></h2>-->
+                <!--                    <p th:text="${game.description}"></p>-->
+                <!--                <br>-->
+                <!--                </div>-->
+                <!--            </show_games>-->
+                <!--        </div>-->
+            </div>
+      </div>
+        <!----------- Favorite games-->
+        <div id="favGames">
+            <h4> My Favorite Games: </h4>
+            <show_games th:if="${user.favorites}">
+                <div th:each ="game: ${user.favorites}">
+                    <img th:src="${game.art_cover}"/>
+                    <h2 th:text="${game.title}"></h2>
+                    <p th:text="${game.description}"></p>
+                <br>
+                </div>
+            </show_games>
         </div>
-
-        <div class="bio">
-            <h4>About me:<br></h4>
-            <p><span th:text="${user.bio}"></span></p>
-        </div>
-
-        <div>
-            <h4> Tags defines me : </h4>
-            <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
-        </div>
-<!--     ************** Amaro Terrazas input ****** Adding in the section for games to be added for the favorites pane*** &ndash;&gt;-->
-<!--        <div id="favGames">-->
-<!--            <h4> My Favorite Games: </h4>-->
-<!--            <show_games th:if="${user.games}">-->
-<!--                <div th:each ="game: ${user.games}">-->
-<!--                    <img th:src="${game.art_cover}"/>-->
-<!--                    <h2 th:text="${game.title}"></h2>-->
-<!--                    <p th:text="${game.description}"></p>-->
-<!--                <br>-->
-<!--                </div>-->
-<!--            </show_games>-->
-<!--        </div>-->
-
     </div>
 </div>
-
-<!--grabbing userid from controller and linked it into js-->
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
@@ -87,4 +121,69 @@
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/userProfile.js}"></script>
 </body>
+</html>
+<!--<header th:replace="partials/head :: head"></header>-->
+
+<!--<div class="box">-->
+<!--    <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>-->
+<!--    <div class="profile">-->
+<!--        &lt;!&ndash;        card for user Information&ndash;&gt;-->
+<!--        <div class="card">-->
+<!--            <div class="profileImg">-->
+<!--                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">-->
+<!--            </div>-->
+<!--            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)</h6>-->
+<!--            <h6>Username: <span th:text="${user.userName}"></span></h6>-->
+<!--            <h6>Email: <span th:text="${user.email}"></span></h6>-->
+<!--            <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>-->
+<!--            <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>-->
+<!--            <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>-->
+<!--            <h6>XboxLive<span th:text="${user.xboxLiveInfo}"></span></h6>-->
+<!--            <h6>NintenDoInfo:<span th:text="${user.nintenDoInfo}"></span></h6>-->
+<!--        </div>-->
+<!--        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>-->
+
+<!--        &lt;!&ndash;              extra user information&ndash;&gt;-->
+<!--        &lt;!&ndash;        <div class="reviews">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <p> review:&ndash;&gt;-->
+<!--        &lt;!&ndash;                <i class="star fa fa-star checked" data-value="1"></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <i class="star fa fa-star checked" data-value="2"></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <i class="star fa fa-star checked" data-value="3"></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <i class="star fa fa-star checked" data-value="4"></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <i class="star fa fa-star checked" data-value="5"></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </p>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--        &lt;!&ndash;        User bio and tags area&ndash;&gt;-->
+<!--        <div>-->
+<!--            <h5><a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>-->
+<!--        </div>-->
+
+<!--        <div class="bio">-->
+<!--            <h4>About me:<br></h4>-->
+<!--            <p><span th:text="${user.bio}"></span></p>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <h4> Tags defines me : </h4>-->
+<!--            <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>-->
+<!--        </div>-->
+<!--&lt;!&ndash;     ************** Amaro Terrazas input ****** Adding in the section for games to be added for the favorites pane*** &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;        <div id="favGames">&ndash;&gt;-->
+<!--&lt;!&ndash;            <h4> My Favorite Games: </h4>&ndash;&gt;-->
+<!--&lt;!&ndash;            <show_games th:if="${user.games}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div th:each ="game: ${user.games}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img th:src="${game.art_cover}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h2 th:text="${game.title}"></h2>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p th:text="${game.description}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <br>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </show_games>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--    </div>-->
+<!--</div>-->
+
+<!--grabbing userid from controller and linked it into js-->
+
 </html>

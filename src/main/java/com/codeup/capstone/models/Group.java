@@ -45,6 +45,10 @@ public class Group {
     private List<User> users;
 
 
+
+//    @OneToMany(mappedBy = "user")
+//    List<GroupUser> users;
+
 //    establishing relationship for group and tags
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -56,21 +60,48 @@ public class Group {
 
 //-----------Constructor
 
-    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
+    public Group(long id, String name, String description, String profilePic, User owner, String discordUserId,
+                 String gameId, List<Post> posts, List<User> users, List<Tag> tags) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.profilePic = profilePic;
+        this.owner = owner;
         this.discordUserId = discordUserId;
         this.gameId = gameId;
         this.posts = posts;
         this.tags = tags;
     }
 
-
     public Group() {}
 
 //----------getters and setters
+
+
+//    public List<GroupUser> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<GroupUser> users) {
+//        this.users = users;
+//    }
+
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
     public long getId() {
         return id;
