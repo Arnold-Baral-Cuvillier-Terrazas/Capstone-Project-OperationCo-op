@@ -1,9 +1,6 @@
 package com.codeup.capstone.controllers;
 
-import com.codeup.capstone.models.Game;
-import com.codeup.capstone.models.Group;
-import com.codeup.capstone.models.Tag;
-import com.codeup.capstone.models.User;
+import com.codeup.capstone.models.*;
 import com.codeup.capstone.repositories.GameRepository;
 import com.codeup.capstone.repositories.GroupRepository;
 import com.codeup.capstone.repositories.TagRepository;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -126,11 +124,17 @@ public class UserController {
 
     //    user rating stars
     @PostMapping("/users/rating/{id}")
-    public String userRating(@RequestParam long userId, @ModelAttribute User user) {
-        User userRating = userDao.getOne(userId);
-        userDao.save(userRating);
+    public String userRating(@RequestParam long userId,@RequestParam int rating, @ModelAttribute User user) {
+        User userRated = userDao.getOne(userId);
+        User userRating = userDao.getOne(((User) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal()).getId());
+       Set<UserRating> ratingUser = userRated.getRatings_received();
+       ratingUser.add(new UserRating(rating, userRating, userRated));
+       userRated.setRatings_received(ratingUser);
+        userDao.save(userRated);
         return "redirect:/profile";
     }
+
 
 //    ----------Inserting Favorites
     @PostMapping("/users/favorite")

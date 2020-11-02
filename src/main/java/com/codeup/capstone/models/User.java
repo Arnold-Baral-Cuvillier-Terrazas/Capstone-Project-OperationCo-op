@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -86,7 +87,6 @@ public class User {
     private List<Tag> tags;
 
 //    creating relationship with group table
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "groups_users",
@@ -117,9 +117,49 @@ public class User {
     )
     private List<Game> favorites;
 
+
+//    for rating creating relationship with user
+    @OneToMany(mappedBy = "rating_user")
+    Set<UserRating> ratings_given;
+
+    @OneToMany(mappedBy = "rated_user")
+    Set<UserRating> ratings_received;
+
 //    ------------constructors----------------------------
 
     public User() {}
+
+    public User(long id, String userName, String email, String password, String fullName, String pronouns,
+                Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
+                String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintendoInfo,
+                String discordInfo, List<Tag> tags, List<Group> groups, List<Post> posts, List<Group> groupsOwned,
+                List<Game> games, List<Game> favorites, Set<UserRating> ratings_given, Set<UserRating> ratings_received) {
+        this.id = id;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.pronouns = pronouns;
+        this.birthDate = birthDate;
+        this.bio = bio;
+        this.isSiteAdmin = isSiteAdmin;
+        this.isBanned = isBanned;
+        this.profilePic = profilePic;
+        this.twitchInfo = twitchInfo;
+        this.steamInfo = steamInfo;
+        this.xboxLiveInfo = xboxLiveInfo;
+        this.psnInfo = psnInfo;
+        this.nintendoInfo = nintendoInfo;
+        this.discordInfo = discordInfo;
+        this.tags = tags;
+        this.groups = groups;
+        this.posts = posts;
+        this.groupsOwned = groupsOwned;
+        this.games = games;
+        this.favorites = favorites;
+        this.ratings_given = ratings_given;
+        this.ratings_received = ratings_received;
+    }
 
     public User(long id, String userName, String email, String password, String fullName, String pronouns,
                 Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic, String twitchInfo,
@@ -357,5 +397,21 @@ public class User {
     }
     public void setGames(List<Game> games){
         this.games = games;
+    }
+
+    public Set<UserRating> getRatings_given() {
+        return ratings_given;
+    }
+
+    public void setRatings_given(Set<UserRating> ratings_given) {
+        this.ratings_given = ratings_given;
+    }
+
+    public Set<UserRating> getRatings_received() {
+        return ratings_received;
+    }
+
+    public void setRatings_received(Set<UserRating> ratings_received) {
+        this.ratings_received = ratings_received;
     }
 }

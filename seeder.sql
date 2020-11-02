@@ -25,6 +25,5 @@ VALUES
 
 
 USE operationCoop_db;
-Insert into user_rating( rated_user_id, rating, rating_user_id )
-  VALUES (23,3,23),
-         (23,23,12);
+Insert into user_rating( id,rated_user_id, rating, rating_user_id )
+  VALUES (1,1,3,2);

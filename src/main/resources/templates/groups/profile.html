@@ -13,22 +13,12 @@
 <!--<header th:replace="partials/header :: header"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
-<h1>Welcome to <span th:text="${group.name}"></span>'s Pro
-    file Page</h1>
+<h1>Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>
 
 <div class="groupProfile">
 
 <!--    adding profile picture-->
     <div class="card">
-<<<<<<< HEAD
-        <div class="profileImg">
-            <img th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
-        </div>
-
-        <h6>Group Name: <span th:text="${group.name}"></span></h6>
-        <h6>Description: <span th:text="${group.description}"></span></h6>
-=======
->>>>>>> 6cb97e0bd2acccddb6ae99f13b41a7557c51c53e
 
     <div class="profileImg">
         <img id="imgP" th:src="${photoUrl1}" style="width: 100%; height:100%; object-fit:cover">
@@ -64,21 +54,9 @@
 <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}"><button>Delete</button></form>
 </show_post>
 
-<!--<footer th:replace="partials/footer :: footer"></footer>-->
-<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
 
-<<<<<<< HEAD
-    <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
-        <button>Edit Profile </button>
-    </form>
-    <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">
-        <button>Delete the group</button>
-    </form>
-</div>
-=======
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
->>>>>>> 6cb97e0bd2acccddb6ae99f13b41a7557c51c53e
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:src="@{/js/keys.js}"></script>
