@@ -18,6 +18,15 @@
     <label for="description">Edit Group Description:</label>
     <input id="description" type="text" th:field="*{description}"/>
     <br><br>
+
+    <div class="tags">
+        <h4>Please select the interests : </h4>
+        <div th:each="tag : ${tagsList}">
+            <input type="checkbox" th:checked="${editGroup.tags.contains(tag)}" th:id="${tag.name}"
+                   name="tags" th:value="${tag.id}"/>
+            <label th:for="${tag.name}" th:text="${tag.name}"></label>
+        </div>
+    </div>
     <input value="Update Group" type="submit"/>
 </form>
 </div>

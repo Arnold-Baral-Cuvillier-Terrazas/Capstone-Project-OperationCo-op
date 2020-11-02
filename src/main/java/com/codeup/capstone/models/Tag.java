@@ -11,23 +11,35 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, length = 100,unique = true)
+    @Column(nullable = false, length = 100, unique = true)
     private String name;
 
 
-// ----------- Creating Relationship for tags and group
+    // ----------- Creating Relationship for tags and users
     @ManyToMany(mappedBy = "tags")
     private List<User> users;
+
+    // ----------- Creating Relationship for tags and users
+    @ManyToMany(mappedBy = "tags")
+    private List<Group> groups;
+
 
 //    @ManyToOne
 //    @JoinColumn (name = "group_id")
 //    private Group group;
 
-// ------------ Creating Relation for the tags and games
+    // ------------ Creating Relation for the tags and games
     @ManyToMany(mappedBy = "tags")
     private List<Game> games;
 
 // ---------------- Constructor
+
+    public Tag(long id, String name, List<User> users, List<Group> groups) {
+        this.id = id;
+        this.name = name;
+        this.users = users;
+        this.groups = groups;
+    }
 
     public Tag(long id, String name, List<User> users, Group group, List<Game> games) {
         this.id = id;
@@ -66,6 +78,14 @@ public class Tag {
         this.users = users;
     }
 
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
+
+    }
 //    public Group getGroup() {
 //        return group;
 //    }
@@ -74,12 +94,14 @@ public class Tag {
 //        this.group = group;
 //    }
 
+
 //    ---------- Adding in Games List
-    public List<Game> getGames(){
-        return games;
-    }
-    public void setGames(List<Game> games) {
-        this.games = games;
+        public List<Game> getGames () {
+            return games;
+        }
+        public void setGames (List < Game > games) {
+            this.games = games;
+        }
+
     }
 
-}

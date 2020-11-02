@@ -4,6 +4,7 @@ import com.codeup.capstone.models.*;
 import com.codeup.capstone.repositories.GameRepository;
 import com.codeup.capstone.repositories.GroupRepository;
 import com.codeup.capstone.repositories.GroupUserRepository;
+import com.codeup.capstone.repositories.TagRepository;
 import com.codeup.capstone.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,18 +12,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class GroupController {
     private final GroupRepository groupDao;
     private final UserRepository userDao;
     private final GroupUserRepository groupUserDao;
     private final GameRepository gameRepo;
+    private final TagRepository tagDao;
 
-    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao, GameRepository gameRepo) {
+
+    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao,
+                           GameRepository gameRepo, TagRepository tagDao) {
         this.groupDao = groupDao;
         this.userDao = userDao;
         this.groupUserDao = groupUserDao;
         this.gameRepo = gameRepo;
+        this.tagDao = tagDao;
     }
 
     //To show all groups
@@ -64,28 +72,50 @@ public class GroupController {
         return "redirect:/groups/profile/" + group.getId();
     }
 
+    //group's Profile pic area
+    @PostMapping("/groups/pic")
+    public String saveProfile(@RequestParam long groupId, @RequestParam String url, @ModelAttribute Group group) {
+        Group saveProfile = groupDao.getOne(groupId);
+        saveProfile.setProfilePic(url);
+        groupDao.save(saveProfile);
+        return "redirect:/groups/{id}";
+    }
+
     //Double check on this mapping for displaying group profile.
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "/groups/profile";
+        return "/groups/groupProfile";
     }
+
+//-------------for editing group profile information
 
     @GetMapping("/groups/edit/{id}")
     public String EditGroup(@PathVariable long id, Model model) {
         model.addAttribute("editGroup", groupDao.getOne(id));
+        List<Tag> tagsList = tagDao.findAll();
+        model.addAttribute("tagsList", tagsList);
         return "/groups/edit";
     }
 
     @PostMapping("/groups/edit/{id}")
-    public String postEditGroup(@PathVariable long id, @RequestParam(name = "name") String name, @RequestParam(name = "description") String description) {
+    public String postEditGroup(@PathVariable long id, @RequestParam(name = "name") String name,
+                                @RequestParam List<Long> tags,
+                                @RequestParam(name = "description") String description) {
+        List<Tag> tagLists = new ArrayList<>();
+        for(int i= 0; i< tags.size(); i++){
+            Tag thisTag = tagDao.getOne(tags.get(i));
+            tagLists.add(thisTag);
+        }
         Group group = groupDao.getOne(id);
         group.setName(name);
         group.setDescription(description);
+        group.setTags(tagLists);
         groupDao.save(group);
         return "redirect:/groups/profile/" + group.getId();
     }
+
 
     @GetMapping("/groups/delete/{id}")
     public String deleteGroup(@PathVariable long id) {
@@ -93,5 +123,6 @@ public class GroupController {
         groupDao.delete(group);
         return "redirect:/groups";
     }
+
 
 }
