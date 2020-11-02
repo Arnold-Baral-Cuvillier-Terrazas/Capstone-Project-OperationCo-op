@@ -57,7 +57,7 @@
             <h4> Tags defines me : </h4>
             <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
         </div>
-<!--     ************** Amaro Terrazas input ****** Adding in the section for games to be added for the favorites pane*** &ndash;&gt;-->
+<!----------- Favorite games-->
         <div id="favGames">
             <h4> My Favorite Games: </h4>
             <show_games th:if="${user.favorites}">
