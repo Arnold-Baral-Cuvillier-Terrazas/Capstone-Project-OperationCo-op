@@ -31,27 +31,6 @@ public class PostController {
         this.userRepo = userRepo;
     }
 
-//    showing all the posts
-//@GetMapping("/posts.json")
-//public @ResponseBody List<Post> viewAllMessagesInJSONFormat() {
-//    User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    User thisUser = userRepo.getOne(thisAuthor.getId());
-//    Group group = groupDao.findById(thisUser.getGroup().getId()).orElse(null);
-//    if (group == null){
-//        //Returns empty list
-//        return new ArrayList<Post>();
-//    }
-//    return group.getPosts();
-//}
-
-//    @GetMapping("/posts")
-//    public String redirectToId() {
-//        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        User thisUser = userRepo.getOne(thisAuthor.getId());
-//        return "redirect:/messages/" + thisUser.getGroup();
-//    }
-
-
     @GetMapping("/groups/posts/{id}")
     public String viewAllMessagesWithAjax(@PathVariable long id, Model model) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -40,8 +40,6 @@ public class Group {
 
     @ManyToMany(mappedBy = "groups")
     private List<User> users;
-//    @OneToMany(mappedBy = "user")
-//    List<GroupUser> users;
 
 //    establishing relationship for group and tags
     @ManyToMany(cascade = CascadeType.ALL)
@@ -69,17 +67,6 @@ public class Group {
     }
 
     public Group() {}
-
-//----------getters and setters
-
-//    public List<GroupUser> getUsers() {
-//        return users;
-//    }
-//
-//    public void setUsers(List<GroupUser> users) {
-//        this.users = users;
-//    }
-
 
     public User getOwner() {
         return owner;
