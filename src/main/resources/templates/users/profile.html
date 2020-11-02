@@ -55,21 +55,14 @@
                     <h4> Tags defines me : </h4>
                     <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
                 </div>
-                <!--     ************** Amaro Terrazas input ****** Adding in the section for games to be added for the favorites pane*** &ndash;&gt;-->
-                <!--        <div id="favGames">-->
-                <!--            <h4> My Favorite Games: </h4>-->
-                <!--            <show_games th:if="${user.games}">-->
-                <!--                <div th:each ="game: ${user.games}">-->
-                <!--                    <img th:src="${game.art_cover}"/>-->
-                <!--                    <h2 th:text="${game.title}"></h2>-->
-                <!--                    <p th:text="${game.description}"></p>-->
-                <!--                <br>-->
-                <!--                </div>-->
-                <!--            </show_games>-->
-                <!--        </div>-->
             </div>
-      </div>
-        <!----------- Favorite games-->
+        <form th:action="@{/games/search}" th:method="GET">
+            Filter: <input type="text" name="term" id="term" size="50" required />
+            &nbsp;
+            <input type="submit" value="Search"/>
+            &nbsp;
+            <input type="button" value="Clear" id="btnClear" onlick="clearSearch()"/>
+        </form>
         <div id="favGames">
             <h4> My Favorite Games: </h4>
             <show_games th:if="${user.favorites}">
@@ -77,10 +70,12 @@
                     <img th:src="${game.art_cover}"/>
                     <h2 th:text="${game.title}"></h2>
                     <p th:text="${game.description}"></p>
-                <br>
+                    <br>
                 </div>
             </show_games>
         </div>
+    </div>
+        <!----------- Favorite games-->
     </div>
 </div>
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
