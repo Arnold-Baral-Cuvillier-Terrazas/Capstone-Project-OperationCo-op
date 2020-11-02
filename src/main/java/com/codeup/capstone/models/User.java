@@ -79,19 +79,24 @@ public class User {
     )
     private List<Tag> tags;
 
-    @OneToMany(mappedBy = "group")
-    List<GroupUser> groups;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "groups_users",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id")}
+    )
+    private List<Group> groups;
 
 //  ----------  relationship with groups and Posts
     //Owner to messages
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonBackReference
-    private List<Post> messages;
+    private List<Post> posts;
 
-    //Many users to one group
-    @ManyToOne
-    @JoinColumn (name = "group_id")
-    private Group group;
+//    //Many users to one group
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<Group> groupsOwned;
 
 //    ** Amaro Terrazas ** Inputting Games Feature
 //    @OneToMany(mappedBy = "user")
@@ -101,11 +106,7 @@ public class User {
 
     public User() {}
 
-    public User(long id, String userName, String email, String password, String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
-                Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
-                String psnInfo, String nintenDoInfo,
-                String discordInfo, List<Tag> tags, List<GroupUser> groups) {
+    public User(long id, String userName, String email, String password, String fullName, String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintenDoInfo, String discordInfo, List<Tag> tags, List<Group> groups, List<Post> posts, List<Group> groupsOwned) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -125,11 +126,9 @@ public class User {
         this.discordInfo = discordInfo;
         this.tags = tags;
         this.groups = groups;
-        this.messages = messages;
-        this.group = group;
-//        this.games = games;
+        this.posts = posts;
+        this.groupsOwned = groupsOwned;
     }
-
 
     // implement the Copy Constructor right here in the User model!
     public User(User copy) {
@@ -144,11 +143,11 @@ public class User {
 //        this.games = copy.games;
     }
 
-    public List<GroupUser> getGroups() {
+    public List<Group> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<GroupUser> groups) {
+    public void setGroups(List<Group> groups) {
         this.groups = groups;
     }
 
@@ -305,24 +304,23 @@ public class User {
         this.tags = tags;
     }
 
-    public List<Post> getMessages() {
-        return messages;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setMessages(List<Post> messages) {
-        this.messages = messages;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 
-    public Group getGroup() {
-        return group;
+    public List<Group> getGroupsOwned() {
+        return groupsOwned;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setGroupsOwned(List<Group> groupsOwned) {
+        this.groupsOwned = groupsOwned;
     }
 
-
-//    public List<Game> getGames(){
+    //    public List<Game> getGames(){
 //        return games;
 //    }
 //    public void setGames(List<Game> games){
