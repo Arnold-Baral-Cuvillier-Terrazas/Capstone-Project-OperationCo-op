@@ -52,6 +52,10 @@ public class Game {
     @JoinColumn(name = "user_id")
     private User user;
 
+    //Game to User Favs
+    @ManyToMany(mappedBy = "favorites")
+    private List<User> users;
+
     public Game(){
     }
 
