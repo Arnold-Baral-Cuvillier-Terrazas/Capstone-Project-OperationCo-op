@@ -53,6 +53,7 @@
     <!--</div>-->
 
     <br>
+
     <show_post th:if="${groupUser.getGroupAdmin()}">
         <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
             <button>Edit</button>
