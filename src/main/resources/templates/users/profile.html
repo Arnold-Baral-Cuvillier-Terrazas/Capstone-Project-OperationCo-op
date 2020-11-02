@@ -69,6 +69,18 @@
                 <!--        </div>-->
             </div>
         </div>
+        <!----------- Favorite games-->
+        <div id="favGames">
+            <h4> My Favorite Games: </h4>
+            <show_games th:if="${user.favorites}">
+                <div th:each ="game: ${user.favorites}">
+                    <img th:src="${game.art_cover}"/>
+                    <h2 th:text="${game.title}"></h2>
+                    <p th:text="${game.description}"></p>
+                <br>
+                </div>
+            </show_games>
+        </div>
     </div>
 </div>
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
