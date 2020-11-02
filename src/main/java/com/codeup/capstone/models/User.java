@@ -3,6 +3,8 @@ package com.codeup.capstone.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
 
     @Column(nullable = false, length = 100, unique = true)
     private String userName;
@@ -30,6 +33,7 @@ public class User {
     @Column(nullable = false, length = 100)
     private String password;
 
+
     @Column(nullable = false, length = 100)
     private String fullName;
 
@@ -38,6 +42,7 @@ public class User {
 
     @Column(nullable = false, length = 100)
     private Date birthDate;
+
 
     @Column(length = 500)
     private String bio;
@@ -65,7 +70,7 @@ public class User {
     private String psnInfo;
 
     @Column(length = 500)
-    private String nintenDoInfo;
+    private String nintendoInfo;
 
     @Column(length = 500)
     private String discordInfo;
@@ -109,7 +114,7 @@ public class User {
     public User(long id, String userName, String email, String password, String fullName,
                 String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
                 Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
-                String psnInfo, String nintenDoInfo,
+                String psnInfo, String nintendoInfo,
                 String discordInfo, List<Tag> tags, List<GroupUser> groups) {
         this.id = id;
         this.userName = userName;
@@ -126,12 +131,12 @@ public class User {
         this.steamInfo = steamInfo;
         this.xboxLiveInfo = xboxLiveInfo;
         this.psnInfo = psnInfo;
-        this.nintenDoInfo = nintenDoInfo;
+        this.nintendoInfo = nintendoInfo;
         this.discordInfo = discordInfo;
         this.tags = tags;
         this.groups = groups;
 
-        //        this.games = games;
+        //  this.games = games;
     }
 
 
@@ -271,12 +276,12 @@ public class User {
         this.psnInfo = psnInfo;
     }
 
-    public String getNintenDoInfo() {
-        return nintenDoInfo;
+    public String getNintendoInfo() {
+        return nintendoInfo;
     }
 
-    public void setNintenDoInfo(String nintenDoInfo) {
-        this.nintenDoInfo = nintenDoInfo;
+    public void setNintendoInfo(String nintendoInfo) {
+        this.nintendoInfo = nintendoInfo;
     }
 
     public String getDiscordInfo() {

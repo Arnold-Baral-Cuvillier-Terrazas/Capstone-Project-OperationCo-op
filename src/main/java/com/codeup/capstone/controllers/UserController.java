@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -96,7 +98,7 @@ public class UserController {
                                 @RequestParam String bio ,
                                 @RequestParam (required = false) String psnInfo ,@RequestParam (required = false) String steamInfo ,
                                 @RequestParam (required = false) String twitchInfo,@RequestParam(required = false) String xboxLiveInfo,
-                                @RequestParam (required = false) String nintenDoInfo) {
+                                @RequestParam (required = false) String nintendoInfo) {
         List<Tag> tagList = new ArrayList<>();
         for(int i= 0; i< tags.size(); i++){
             Tag thisTag = tagDao.getOne(tags.get(i));
@@ -109,7 +111,7 @@ public class UserController {
         user.setSteamInfo(steamInfo);
         user.setTwitchInfo(twitchInfo);
         user.setXboxLiveInfo(xboxLiveInfo);
-        user.setNintenDoInfo(nintenDoInfo);
+        user.setNintendoInfo(nintendoInfo);
         userDao.save(user);
         return "redirect:/profile";
     }
