@@ -17,12 +17,12 @@
 
 <div class="groupProfile">
 
-<!--    adding profile picture-->
+    <!--    adding profile picture-->
     <div class="card">
 
-    <div class="profileImg">
-        <img id="imgP" th:src="${photoUrl1}" style="width: 100%; height:100%; object-fit:cover">
-    </div>
+        <div class="profileImg">
+            <img id="imgP" th:src="${photoUrl1}" style="width: 100%; height:100%; object-fit:cover">
+        </div>
         <h4>Name: <span th:text="${group.name}"></span></h4>
     </div>
 
@@ -39,7 +39,7 @@
 
     <h4>Description: </h4>
     <br>
-       <p><span th:text="${group.description}"></span></p>
+    <p><span th:text="${group.description}"></span></p>
 
     <div>
         <h4> Tags defines me : </h4>
@@ -48,11 +48,16 @@
 
 </div>
 
-<!--<button  class="ib" type="button">Edit profile</button>-->
-<!--<show_post th:if="${group.owner.id == user.id}">-->
-<!--<form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}"><button>Edit</button></form>-->
-<!--<form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}"><button>Delete</button></form>-->
-<!--</show_post>-->
+<button class="ib" type="button">Edit profile</button>
+
+<show_post th:if="${group.owner.id == user.id}">
+    <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
+        <button>Edit</button>
+    </form>
+    <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">
+        <button>Delete</button>
+    </form>
+</show_post>
 
 
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>

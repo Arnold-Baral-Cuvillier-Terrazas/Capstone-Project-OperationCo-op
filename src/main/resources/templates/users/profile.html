@@ -15,70 +15,74 @@
 
 
     <div class="profile">
-    <div id="wrapper" class="d-flex">
-    <div th:replace="partials/sidebar :: sidebar"></div>
-    <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-    <div class="container-fluid page-body">
-            <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
-            <div class="profile">
-                <!--        card for user Information-->
-                <div class="card">
-                    <div class="profileImg">
-                        <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
+        <div id="wrapper" class="d-flex">
+            <div th:replace="partials/sidebar :: sidebar"></div>
+            <div id="page-content-wrapper">
+                <nav th:replace="partials/navbar :: navbar"></nav>
+                <div class="container-fluid page-body">
+                    <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
+                    <div class="profile">
+                        <!--        card for user Information-->
+                        <div class="card">
+                            <div class="profileImg">
+                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
+                            </div>
+                            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)
+                            </h6>
+                            <h6>Username: <span th:text="${user.userName}"></span></h6>
+                            <h6>Email: <span th:text="${user.email}"></span></h6>
+                            <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>
+                            <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>
+                            <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>
+                            <h6>XboxLive<span th:text="${user.xboxLiveInfo}"></span></h6>
+                            <h6>NintendoInfo:<span th:text="${user.nintendoInfo}"></span></h6>
+                        </div>
+                        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+
+                        <!-- user rating information-->
+
+                        <div th:each="rating : ${user.ratings_received}">
+                            <p th:text="${rating.rating}"></p>
+                        </div>
+
+                        <!--        User bio and tags area-->
+                        <div>
+                            <h5><a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
+                        </div>
+
+                        <div class="bio">
+                            <h4>About me:<br></h4>
+                            <p><span th:text="${user.bio}"></span></p>
+                        </div>
+
+                        <div>
+                            <h4> Tags defines me : </h4>
+                            <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}"
+                                  th:text="${tag.name}"></span>
+                        </div>
                     </div>
-                    <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
-                    <h6>Username: <span th:text="${user.userName}"></span></h6>
-                    <h6>Email: <span th:text="${user.email}"></span></h6>
-                    <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>
-                    <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>
-                    <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>
-                    <h6>XboxLive<span th:text="${user.xboxLiveInfo}"></span></h6>
-                    <h6>NintendoInfo:<span th:text="${user.nintendoInfo}"></span></h6>
+                    <form th:action="@{/games/search}" th:method="GET">
+                        Filter: <input type="text" name="term" id="term" size="50" required/>
+                        &nbsp;
+                        <input type="submit" value="Search"/>
+                        &nbsp;
+                        <input type="button" value="Clear" id="btnClear" onlick="clearSearch()"/>
+                    </form>
+                    <div id="favGames">
+                        <h4> My Favorite Games: </h4>
+                        <show_games th:if="${user.favorites}">
+                            <div th:each="game: ${user.favorites}">
+                                <img th:src="${game.art_cover}"/>
+                                <h2 th:text="${game.title}"></h2>
+                                <p th:text="${game.description}"></p>
+                                <br>
+                            </div>
+                        </show_games>
+                    </div>
                 </div>
-                <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
-
-                <!-- user rating information-->
-
-                <div th:each="rating : ${user.ratings_received}">
-                    <p th:text="${rating.rating}"></p>
-                </div>
-
-                <!--        User bio and tags area-->
-                <div>
-                    <h5><a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
-                </div>
-
-                <div class="bio">
-                    <h4>About me:<br></h4>
-                    <p><span th:text="${user.bio}"></span></p>
-                </div>
-
-                <div>
-                    <h4> Tags defines me : </h4>
-                    <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
-                </div>
+                <!----------- Favorite games-->
             </div>
-        <form th:action="@{/games/search}" th:method="GET">
-            Filter: <input type="text" name="term" id="term" size="50" required />
-            &nbsp;
-            <input type="submit" value="Search"/>
-            &nbsp;
-            <input type="button" value="Clear" id="btnClear" onlick="clearSearch()"/>
-        </form>
-        <div id="favGames">
-            <h4> My Favorite Games: </h4>
-            <show_games th:if="${user.favorites}">
-                <div th:each ="game: ${user.favorites}">
-                    <img th:src="${game.art_cover}"/>
-                    <h2 th:text="${game.title}"></h2>
-                    <p th:text="${game.description}"></p>
-                    <br>
-                </div>
-            </show_games>
         </div>
-    </div>
-        <!----------- Favorite games-->
     </div>
 </div>
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
@@ -153,5 +157,3 @@
 <!--</div>-->
 
 <!--grabbing userid from controller and linked it into js-->
-
-</html>

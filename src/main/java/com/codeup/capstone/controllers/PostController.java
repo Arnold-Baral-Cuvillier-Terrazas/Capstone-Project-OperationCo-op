@@ -23,9 +23,6 @@ public class PostController {
     private final UserRepository userRepo;
     private final GroupRepository groupDao;
 
-//    constructor
-
-
     //    constructor
     public PostController(PostRepository postDao, UserRepository userRepo, GroupRepository groupDao) {
         this.postDao = postDao;
@@ -34,6 +31,11 @@ public class PostController {
     }
 
 //    showing all the posts
+@GetMapping("/groups/posts")
+public String index(Model model) {
+    model.addAttribute("posts", postDao.findAll());
+    return "posts/index";
+}
 
     @GetMapping("/groups/posts/{id}")
     public String viewAllMessagesWithAjax(@PathVariable long id, Model model) {
@@ -43,16 +45,14 @@ public class PostController {
         for (Group group : thisUser.getGroups()) {
             if (group.getId() == id) {
                 model.addAttribute("posts", group.getPosts());
-                return "chatting/postMessages";
+                return "posts/index";
             }
         }
         return "redirect:/profile";
     }
 
-    // if group_id == current group display messages
-    // grab group_id from messages --> if group_id in messages == group_id in users --> display messages
 
-    @PostMapping("/posts/submit")
+    @PostMapping("/group/posts/submit")
     public String createMessage(@ModelAttribute Post post, @ModelAttribute Group group) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(thisAuthor);
@@ -61,6 +61,14 @@ public class PostController {
         return "redirect:/groups/posts/" + group.getId();
     }
 
+
+//    for deleting the posts
+    @GetMapping("/posts/delete/{id}")
+    public String deletePost(@PathVariable long id) {
+        postDao.deleteById(id);
+        return "redirect:/groups/posts";
+
+    }
 
     // Create Post Method
 //    @PostMapping("/create")

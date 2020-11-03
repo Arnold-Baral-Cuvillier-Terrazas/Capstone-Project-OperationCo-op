@@ -1,0 +1,19 @@
+!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating post</title>
+</head>
+<body>
+<form th:action="@{/groups/posts/create}" th:method="post" th:object="${post}">
+   Parent post:
+    <input th:field="*{parent_post_id}" />
+    <br>
+   Message  Body:
+    <input th:field="*{Message_body}" />
+    <br>
+
+    <input type="submit" />
+</form>
+</body>
+</html>
