@@ -9,28 +9,27 @@
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <body>
 <main class="container">
+    <h1> Welcome to message dashboard </h1>
+    <div class="texts">
     <show_post th:if="${posts}">
         <div th:each="item : ${posts}">
 
-<!--            <h2 th:text=" 'parentPost_id : ' + ${item.parent_post_id}"> </h2>-->
             <a th:href="'/groups/posts/delete/'+ ${item.id}"> Delete</a>
             <a th:href="'/groups/posts/edit/'+ ${item.id}"> Edit</a>
-            <h4 th:text=" 'MessageBody : '+${item.message_body}"> </h4>
-            <p th:text=" 'username : '+ ${item.getUser().getUserName()}"></p>
-            <p th:text=" 'date : ' + ${item.getDate()}"></p>
-            <br>
+            <h4 th:text="${item.message_body}"></h4>
+            <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
+            <p th:text=" 'time : ' + ${item.getDate()}"></p>
         </div>
     </show_post>
 
     <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post" th:object="${post}">
-        Message Body:
-        <input th:field="*{message_body}" />
+        <input th:field="*{message_body}"  placeholder="start typing! "/>
         <br>
-<!--        <input type="hidden" th:value="${group_id}" />-->
-        <input type="submit" />
+        <br>
+        <input type="submit"/>
     </form>
+    </div>
 </main>
-
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>

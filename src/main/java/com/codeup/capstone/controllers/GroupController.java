@@ -118,7 +118,6 @@ public class GroupController {
         return "redirect:/groups/profile/" + group.getId();
     }
 
-
     @GetMapping("/groups/delete/{id}")
     public String deleteGroup(@PathVariable long id) {
         Group group = groupDao.getOne(id);

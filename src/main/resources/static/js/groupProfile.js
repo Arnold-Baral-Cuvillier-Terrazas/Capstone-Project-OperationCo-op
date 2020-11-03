@@ -35,18 +35,3 @@ $(document).ready(function() {
 
 })
 
-
-//------------ Descriptive tags
-// let selected = [];
-//
-// $('.pill').on('click', function (ev) {
-//   $(this).toggleClass('active');
-//
-//   if($(this).hasClass('active')) {
-//     selected.push($(this).text());
-//   } else {
-//     selected.splice(selected.indexOf($(this).text()), 1);
-//   }
-//
-//   $('#selected').text(selected.sort().join(', '));
-// });

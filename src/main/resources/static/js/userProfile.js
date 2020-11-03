@@ -23,17 +23,10 @@ function updateImage(result){
         body:formData,
     }).catch(err => { console.log(err) });
 
-    // let formData1 = new FormData();
-    // formData1.append("groupId", groupId);
-    // formData1.append("url", filedata.url);
-    // fetch("/groups/pic", {
-    //     method:"POST",
-    //     body:formData,
-    // }).catch(err => { console.log(err) });
 }
 
 
-//jquery
+//jquery functionality
 $(document).ready(function() {
     //filestack
     console.log(url);
@@ -44,17 +37,3 @@ $(document).ready(function() {
 })
 
 
-//------------ Descriptive tags
-// let selected = [];
-//
-// $('.pill').on('click', function (ev) {
-//   $(this).toggleClass('active');
-//
-//   if($(this).hasClass('active')) {
-//     selected.push($(this).text());
-//   } else {
-//     selected.splice(selected.indexOf($(this).text()), 1);
-//   }
-//
-//   $('#selected').text(selected.sort().join(', '));
-// });

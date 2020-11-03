@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class PostController {
@@ -50,10 +48,10 @@ public class PostController {
     }
 
 
-//    creating the posts
-
+//    creating the posts and submitting it
     @PostMapping("/groups/posts/{group_id}/submit")
-    public String createMessage(@ModelAttribute Post post, @PathVariable long group_id) throws ParseException, ParseException {
+    public String createMessage(@ModelAttribute Post post, @PathVariable long group_id)
+            throws ParseException, ParseException {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(thisAuthor);
         Group thisGroup = groupDao.getOne(group_id);
@@ -83,14 +81,14 @@ public class PostController {
 //        post.setParent_post_id(parentPostId);
         post.setMessage_body(MessageBody);
         postDao.save(post);
-        return "redirect:/groups/posts";
+        return "redirect:/groups/posts/{id}" ;
     }
 
     //    for deleting the posts
     @GetMapping("/groups/posts/delete/{id}")
     public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
-        return "redirect:/groups/posts";
+        return "posts/showPosts";
     }
 
 
