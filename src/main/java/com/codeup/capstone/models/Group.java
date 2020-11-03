@@ -1,6 +1,8 @@
 package com.codeup.capstone.models;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,6 +25,10 @@ public class Group {
     @Column(columnDefinition = "TEXT")
     private String profilePic;
 
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
     // Made nullable true to make Create Group DB to work.
     @Column(unique = true)
     @ColumnDefault("true")
@@ -34,8 +40,10 @@ public class Group {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
     private List<Post> posts;
 
-    @OneToMany(mappedBy = "user")
-    List<GroupUser> users;
+    @ManyToMany(mappedBy = "groups")
+    private List<User> users;
+//    @OneToMany(mappedBy = "user")
+//    List<GroupUser> users;
 
 //    establishing relationship for group and tags
     @ManyToMany(cascade = CascadeType.ALL)
@@ -46,31 +54,64 @@ public class Group {
     )
     private List<Tag> tags;
 
+//    Group Favorites
+//@LazyCollection(LazyCollectionOption.FALSE)
+//@ManyToMany
+//@JoinTable(
+//        name="Favorites",
+//        joinColumns = {@JoinColumn(name="group_id")},
+//        inverseJoinColumns = {@JoinColumn(name="game_id")}
+//)
+//private List<Game> favorites;
+
 //-----------Constructor
+
+
+
 
     public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
 
+
+    public Group(long id, String name, String description, String profilePic, User owner, String discordUserId, String gameId, List<Post> posts, List<User> users, List<Tag> tags) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.profilePic = profilePic;
+        this.owner = owner;
         this.discordUserId = discordUserId;
         this.gameId = gameId;
         this.posts = posts;
         this.users = users;
         this.tags = tags;
+//        this.favorites = favorites;
     }
-
 
     public Group() {}
 
 //----------getters and setters
 
-    public List<GroupUser> getUsers() {
+//    public List<GroupUser> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<GroupUser> users) {
+//        this.users = users;
+//    }
+
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<GroupUser> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
@@ -137,4 +178,11 @@ public class Group {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+//    public List<Game> getFavorites() {
+//        return favorites;
+//    }
+//
+//    public void setFavorites(List<Game> favorites) {
+//        this.favorites = favorites;
+//    }
 }
