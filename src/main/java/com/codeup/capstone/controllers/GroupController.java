@@ -1,11 +1,7 @@
 package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.*;
-import com.codeup.capstone.repositories.GameRepository;
-import com.codeup.capstone.repositories.GroupRepository;
-import com.codeup.capstone.repositories.GroupUserRepository;
-import com.codeup.capstone.repositories.TagRepository;
-import com.codeup.capstone.repositories.UserRepository;
+import com.codeup.capstone.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -19,16 +15,15 @@ import java.util.List;
 public class GroupController {
     private final GroupRepository groupDao;
     private final UserRepository userDao;
-    private final GroupUserRepository groupUserDao;
     private final GameRepository gameRepo;
     private final TagRepository tagDao;
 
 
-    public GroupController(GroupRepository groupDao, UserRepository userDao, GroupUserRepository groupUserDao,
+
+    public GroupController(GroupRepository groupDao, UserRepository userDao,
                            GameRepository gameRepo, TagRepository tagDao) {
         this.groupDao = groupDao;
         this.userDao = userDao;
-        this.groupUserDao = groupUserDao;
         this.gameRepo = gameRepo;
         this.tagDao = tagDao;
     }
@@ -61,14 +56,22 @@ public class GroupController {
         if (!(obj instanceof UserDetails)) {
             return "redirect:/login";
         }
+//        User user = userDao.getOne(((User)obj ).getId());
         User user = (User) obj;
+        user = userDao.getOne(user.getId());
         Group group = new Group();
+        List<User> users = new ArrayList<>();
+        List<Group> groups = user.getGroups();
+        users.add(user);
         group.setName(name);
         group.setDescription(description);
+        group.setOwner(user);
+        group.setUsers(users);
+//        user.setGroup(group);
         groupDao.save(group);
-        GroupUserKey groupUserKey = new GroupUserKey(user.getId(), group.getId());
-        GroupUser groupUser = new GroupUser(groupUserKey,group, user,true, true);
-        groupUserDao.save(groupUser);
+        groups.add(group);
+        user.setGroups(groups);
+        userDao.save(user);
         return "redirect:/groups/profile/" + group.getId();
     }
 
@@ -86,6 +89,7 @@ public class GroupController {
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
         return "/groups/profile";
     }
 
