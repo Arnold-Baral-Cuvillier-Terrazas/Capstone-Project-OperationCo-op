@@ -74,15 +74,14 @@ public class UserController {
         User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", userDao.getOne(getUser.getId()));
         model.addAttribute("photoUrl", userDao.getOne(getUser.getId()).getProfilePic());
+        return "users/profile";
+    }
 
-//        This Groupin code block is to show the groups that the user is in, will back to it later - Amaro Terrazas
-
-//        Group groupIn = groupDao.getOne(getUser.getId());
-//        List<Group> groups = groupIn.getOwner().getGroups();
-//        groups.add(groupIn);
-//        getUser.setGroups(groups);
-//        groupDao.save(groupIn);
-//        model.addAttribute("groupIn",userDao.getOne(getUser.getId()));
+    @GetMapping("/profile/{id}")
+    public String profilePage(Model model, @PathVariable long id) {
+        User getUser = userDao.getOne(id);
+        model.addAttribute("user", userDao.getOne(getUser.getId()));
+        model.addAttribute("photoUrl", userDao.getOne(getUser.getId()).getProfilePic());
         return "users/profile";
     }
 
