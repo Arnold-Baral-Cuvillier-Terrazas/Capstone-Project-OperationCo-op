@@ -13,17 +13,19 @@
     <div class="texts">
     <show_post th:if="${posts}">
         <div th:each="item : ${posts}">
-
             <a th:href="'/groups/posts/delete/'+ ${item.id}"> Delete</a>
             <a th:href="'/groups/posts/edit/'+ ${item.id}"> Edit</a>
+<!--            <div style="display: inline-flex; align-items: center">-->
             <h4 th:text="${item.message_body}"></h4>
+            <img th:src="${item.getUser().getProfilePic()}"style="width:5em;height:5em; object-fit:cover">
+<!--            </div>-->
             <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
-            <p th:text=" 'time : ' + ${item.getDate()}"></p>
+            <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
         </div>
     </show_post>
 
     <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post" th:object="${post}">
-        <input th:field="*{message_body}"  placeholder="start typing! "/>
+        <input th:field="*{message_body}"  placeholder="start typing!">
         <br>
         <br>
         <input type="submit"/>

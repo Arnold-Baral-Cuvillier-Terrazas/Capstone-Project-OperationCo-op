@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -31,7 +30,6 @@ public class PostController {
     }
 
 //    showing all the posts
-
     @GetMapping("/groups/posts/{id}")
     public String viewAllPosts(@PathVariable long id, Model model) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -47,7 +45,6 @@ public class PostController {
         return "redirect:/profile";
     }
 
-
 //    creating the posts and submitting it
     @PostMapping("/groups/posts/{group_id}/submit")
     public String createMessage(@ModelAttribute Post post, @PathVariable long group_id)
@@ -57,11 +54,7 @@ public class PostController {
         Group thisGroup = groupDao.getOne(group_id);
         post.setGroup(thisGroup);
 //        printing out the date in format
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        String createDate = format.format(new Date());
-        Date date = format.parse(createDate);
-        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-        post.setDate(sqlDate);
+        post.setDate(new Date());
 //        saving the information
         postDao.save(post);
         return "redirect:/groups/posts/" + thisGroup.getId();
@@ -71,24 +64,26 @@ public class PostController {
     @GetMapping("/groups/posts/edit/{id}")
     public String EditPost(@PathVariable long id, Model model) {
         model.addAttribute("editPost", postDao.getOne(id));
+        model.addAttribute("date", new Date());
         return "posts/editPost";
     }
 
     @PostMapping("/groups/posts/edit/{id}")
-    public String newEditPost(@PathVariable long id,
-                              @RequestParam(name = "Message_body") String MessageBody) {
+    public String newEditPost(@PathVariable long id, @ModelAttribute Post editPost) {
+        long group_id = postDao.getOne(id).getGroup().getId();
         Post post = postDao.getOne(id);
-//        post.setParent_post_id(parentPostId);
-        post.setMessage_body(MessageBody);
+        post.setMessage_body(editPost.getMessage_body());
+//        editPost.setDate(new Date());
         postDao.save(post);
-        return "redirect:/groups/posts/{id}" ;
+        return "redirect:/groups/posts/" + group_id;
     }
 
     //    for deleting the posts
     @GetMapping("/groups/posts/delete/{id}")
     public String deletePost(@PathVariable long id) {
+        long group_id = postDao.getOne(id).getGroup().getId();
         postDao.deleteById(id);
-        return "posts/showPosts";
+        return "redirect:/groups/posts/" + group_id;
     }
 
 
