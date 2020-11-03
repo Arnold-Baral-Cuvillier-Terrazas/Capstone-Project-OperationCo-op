@@ -90,7 +90,7 @@ public class Group {
         this.owner = owner;
     }
 
-    public List<User> getUsers() {
+    public List<User>getUsers() {
         return users;
     }
 
