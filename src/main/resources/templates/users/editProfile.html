@@ -19,25 +19,24 @@
                         Steam info: <input id="steam" type="text" name="steamInfo" th:value="*{steamInfo}"/>
                         twitch info: <input id="twitch" type="text" name="twitchInfo" th:value="*{twitchInfo}"/>
                         Xbox-live info: <input id="xbox" type="text" name="xboxLiveInfo" th:value="*{xboxLiveInfo}"/>
-                        NintenDo info: <input id="ninetenDo" type="text" name="nintenDoInfo"
-                                              th:value="*{nintenDoInfo}"/>
+                        Nintendo info: <input id="ninetendo" type="text" name="nintendoInfo"
+                                              th:value="*{nintendoInfo}"/>
 
-                    </div>
+                        <label for="bio">Updated your bio</label>
+                        <input id="bio" type="text" name="bio" th:value="*{bio}"/>
+                        <br>
 
-                    <label for="bio">Updated your bio</label>
-                    <input id="bio" type="text" name="bio" th:value="*{bio}"/>
-                    <br>
-
-                    <div class="tags">
-                        <h4>Please select the interests : </h4>
-                        <div th:each="tag : ${tagsList}">
-                            <input type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}"
-                                   name="tags" th:value="${tag.id}"/>
-                            <label th:for="${tag.name}" th:text="${tag.name}"></label>
+                        <div class="tags">
+                            <h4>Please select the interests : </h4>
+                            <div th:each="tag : ${tagsList}">
+                                <input type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}"
+                                       name="tags" th:value="${tag.id}"/>
+                                <label th:for="${tag.name}" th:text="${tag.name}"></label>
+                            </div>
                         </div>
-                    </div>
-                    <input value="Save" type="submit"/>
+                        <input value="Save" type="submit"/>
 
+                    </div>
                 </form>
             </div>
         </div>

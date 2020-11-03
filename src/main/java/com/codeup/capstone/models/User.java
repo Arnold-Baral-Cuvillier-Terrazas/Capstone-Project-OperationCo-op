@@ -1,10 +1,14 @@
 package com.codeup.capstone.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -15,6 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
 
     @Column(nullable = false, length = 100, unique = true)
     private String userName;
@@ -30,6 +35,7 @@ public class User {
     @Column(nullable = false, length = 100)
     private String password;
 
+
     @Column(nullable = false, length = 100)
     private String fullName;
 
@@ -38,6 +44,7 @@ public class User {
 
     @Column(nullable = false, length = 100)
     private Date birthDate;
+
 
     @Column(length = 500)
     private String bio;
@@ -65,7 +72,7 @@ public class User {
     private String psnInfo;
 
     @Column(length = 500)
-    private String nintenDoInfo;
+    private String nintendoInfo;
 
     @Column(length = 500)
     private String discordInfo;
@@ -79,7 +86,7 @@ public class User {
     )
     private List<Tag> tags;
 
-
+//    creating relationship with group table
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "groups_users",
@@ -110,16 +117,23 @@ public class User {
     )
     private List<Game> favorites;
 
+
+//    for rating creating relationship with user
+    @OneToMany(mappedBy = "rating_user")
+    Set<UserRating> ratings_given;
+
+    @OneToMany(mappedBy = "rated_user")
+    Set<UserRating> ratings_received;
+
 //    ------------constructors----------------------------
 
     public User() {}
 
-    public User(long id, String userName, String email, String password, String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin,
-                Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
-                String psnInfo, String nintenDoInfo,
-                String discordInfo, List<Tag> tags, List<Game> games, List<Game> favorites, List<Group> groups) {
-
+    public User(long id, String userName, String email, String password, String fullName, String pronouns,
+                Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
+                String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintendoInfo,
+                String discordInfo, List<Tag> tags, List<Group> groups, List<Post> posts, List<Group> groupsOwned,
+                List<Game> games, List<Game> favorites, Set<UserRating> ratings_given, Set<UserRating> ratings_received) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -135,7 +149,7 @@ public class User {
         this.steamInfo = steamInfo;
         this.xboxLiveInfo = xboxLiveInfo;
         this.psnInfo = psnInfo;
-        this.nintenDoInfo = nintenDoInfo;
+        this.nintendoInfo = nintendoInfo;
         this.discordInfo = discordInfo;
         this.tags = tags;
         this.groups = groups;
@@ -143,6 +157,8 @@ public class User {
         this.groupsOwned = groupsOwned;
         this.games = games;
         this.favorites = favorites;
+        this.ratings_given = ratings_given;
+        this.ratings_received = ratings_received;
     }
 
     // implement the Copy Constructor right here in the User model!
@@ -159,6 +175,7 @@ public class User {
         this.favorites = copy.favorites;
         this.groups = copy.groups;
     }
+
 
     public List<Game> getFavorites() {
         return favorites;
@@ -297,12 +314,12 @@ public class User {
         this.psnInfo = psnInfo;
     }
 
-    public String getNintenDoInfo() {
-        return nintenDoInfo;
+    public String getNintendoInfo() {
+        return nintendoInfo;
     }
 
-    public void setNintenDoInfo(String nintenDoInfo) {
-        this.nintenDoInfo = nintenDoInfo;
+    public void setNintendoInfo(String nintendoInfo) {
+        this.nintendoInfo = nintendoInfo;
     }
 
     public String getDiscordInfo() {
@@ -350,5 +367,21 @@ public class User {
     }
     public void setGames(List<Game> games){
         this.games = games;
+    }
+
+    public Set<UserRating> getRatings_given() {
+        return ratings_given;
+    }
+
+    public void setRatings_given(Set<UserRating> ratings_given) {
+        this.ratings_given = ratings_given;
+    }
+
+    public Set<UserRating> getRatings_received() {
+        return ratings_received;
+    }
+
+    public void setRatings_received(Set<UserRating> ratings_received) {
+        this.ratings_received = ratings_received;
     }
 }
