@@ -1,6 +1,8 @@
 package com.codeup.capstone.models;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -50,7 +52,22 @@ public class Group {
     )
     private List<Tag> tags;
 
+//    Group Favorites
+//@LazyCollection(LazyCollectionOption.FALSE)
+//@ManyToMany
+//@JoinTable(
+//        name="Favorites",
+//        joinColumns = {@JoinColumn(name="group_id")},
+//        inverseJoinColumns = {@JoinColumn(name="game_id")}
+//)
+//private List<Game> favorites;
+
 //-----------Constructor
+
+
+
+
+    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
 
 
     public Group(long id, String name, String description, String profilePic, User owner, String discordUserId, String gameId, List<Post> posts, List<User> users, List<Tag> tags) {
@@ -64,6 +81,7 @@ public class Group {
         this.posts = posts;
         this.users = users;
         this.tags = tags;
+//        this.favorites = favorites;
     }
 
     public Group() {}
@@ -147,4 +165,11 @@ public class Group {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+//    public List<Game> getFavorites() {
+//        return favorites;
+//    }
+//
+//    public void setFavorites(List<Game> favorites) {
+//        this.favorites = favorites;
+//    }
 }
