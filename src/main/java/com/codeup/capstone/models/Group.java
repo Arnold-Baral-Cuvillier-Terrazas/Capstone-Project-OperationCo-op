@@ -1,5 +1,6 @@
 package com.codeup.capstone.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -38,10 +39,17 @@ public class Group {
     private String gameId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+    @JsonIgnore
     private List<Post> posts;
 
     @ManyToMany(mappedBy = "groups")
+    @JsonIgnore
     private List<User> users;
+
+
+
+//    @OneToMany(mappedBy = "user")
+//    List<GroupUser> users;
 
     //    establishing relationship for group and tags
     @ManyToMany(cascade = CascadeType.ALL)
@@ -64,8 +72,8 @@ public class Group {
 
 //-----------Constructor
 
-
-    public Group(long id, String name, String description, String profilePic, User owner, String discordUserId, String gameId, List<Post> posts, List<User> users, List<Tag> tags) {
+    public Group(long id, String name, String description, String profilePic, User owner, String discordUserId,
+                 String gameId, List<Post> posts, List<User> users, List<Tag> tags) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -74,14 +82,25 @@ public class Group {
         this.discordUserId = discordUserId;
         this.gameId = gameId;
         this.posts = posts;
-        this.users = users;
         this.tags = tags;
 //        this.favorites = favorites;
     }
 
+
+
+//----------getters and setters
+
+
+//    public List<GroupUser> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(List<GroupUser> users) {
+//        this.users = users;
+//    }
+
     public Group() {
     }
-
     public User getOwner() {
         return owner;
     }
@@ -161,6 +180,7 @@ public class Group {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
 //    public List<Game> getFavorites() {
 //        return favorites;
 //    }

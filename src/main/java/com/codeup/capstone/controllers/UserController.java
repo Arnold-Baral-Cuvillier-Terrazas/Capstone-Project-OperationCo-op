@@ -1,5 +1,8 @@
 package com.codeup.capstone.controllers;
 
+
+import com.codeup.capstone.models.*;
+
 import com.codeup.capstone.models.Game;
 import com.codeup.capstone.models.Group;
 import com.codeup.capstone.models.Tag;
@@ -12,10 +15,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -105,7 +111,7 @@ public class UserController {
                                 @RequestParam String bio ,
                                 @RequestParam (required = false) String psnInfo ,@RequestParam (required = false) String steamInfo ,
                                 @RequestParam (required = false) String twitchInfo,@RequestParam(required = false) String xboxLiveInfo,
-                                @RequestParam (required = false) String nintenDoInfo) {
+                                @RequestParam (required = false) String nintendoInfo) {
         List<Tag> tagList = new ArrayList<>();
         for(int i= 0; i< tags.size(); i++){
             Tag thisTag = tagDao.getOne(tags.get(i));
@@ -118,18 +124,32 @@ public class UserController {
         user.setSteamInfo(steamInfo);
         user.setTwitchInfo(twitchInfo);
         user.setXboxLiveInfo(xboxLiveInfo);
-        user.setNintenDoInfo(nintenDoInfo);
+        user.setNintendoInfo(nintendoInfo);
         userDao.save(user);
         return "redirect:/profile";
     }
 
-//    user rating stars
+//    user can delete their account
+    @GetMapping("/users/delete/{id}")
+    public String deleteUser(@PathVariable long id) {
+        User user = userDao.getOne(id);
+        userDao.delete(user);
+        return "redirect:/sign-up";
+    }
+
+    //    user rating stars
     @PostMapping("/users/rating/{id}")
-    public String userRating(@RequestParam long userId, @ModelAttribute User user) {
-        User userRating = userDao.getOne(userId);
-        userDao.save(userRating);
+    public String userRating(@RequestParam long userId,@RequestParam int rating, @ModelAttribute User user) {
+        User userRated = userDao.getOne(userId);
+        User userRating = userDao.getOne(((User) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal()).getId());
+       Set<UserRating> ratingUser = userRated.getRatings_received();
+       ratingUser.add(new UserRating(rating, userRating, userRated));
+       userRated.setRatings_received(ratingUser);
+        userDao.save(userRated);
         return "redirect:/profile";
     }
+
 
 //    ----------Inserting Favorites
     @PostMapping("/users/favorite")

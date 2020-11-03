@@ -15,25 +15,23 @@ function updateImage(result){
     // $("#profileUrl").val(filedata.url);
     $("#imgP").attr("src",filedata.url);
 
-    let formData = new FormData();
-    formData.append("userId", userId);
-    formData.append("url", filedata.url);
-    fetch("/profile/pic", {
+    let formData1 = new FormData();
+    formData1.append("groupId", groupId);
+    formData1.append("url", filedata.url);
+    fetch("/groups/pic", {
         method:"POST",
-        body:formData,
+        body:formData1,
     }).catch(err => { console.log(err) });
-
 }
 
 
-//jquery functionality
+//jquery
 $(document).ready(function() {
     //filestack
     console.log(url);
-    $("#profile-btn").click(function(){
+    $("#profile-btn2").click(function(){
         stackClient.picker(options).open();
     });
 
 })
-
 

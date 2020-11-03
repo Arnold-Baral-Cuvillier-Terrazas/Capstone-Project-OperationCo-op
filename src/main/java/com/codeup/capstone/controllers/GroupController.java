@@ -18,8 +18,6 @@ public class GroupController {
     private final GameRepository gameRepo;
     private final TagRepository tagDao;
 
-
-
     public GroupController(GroupRepository groupDao, UserRepository userDao,
                            GameRepository gameRepo, TagRepository tagDao) {
         this.groupDao = groupDao;
@@ -87,7 +85,8 @@ public class GroupController {
     //Double check on this mapping for displaying group profile.
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
-        model.addAttribute("group", groupDao.getOne(id));
+        Group group = groupDao.getOne(id);
+        model.addAttribute("group", group);
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "/groups/profile";
     }
@@ -118,7 +117,6 @@ public class GroupController {
         groupDao.save(group);
         return "redirect:/groups/profile/" + group.getId();
     }
-
 
     @GetMapping("/groups/delete/{id}")
     public String deleteGroup(@PathVariable long id) {
