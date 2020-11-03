@@ -10,7 +10,7 @@ public class GameGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
     @ManyToMany(mappedBy = "groups")

@@ -86,7 +86,7 @@ public class GroupController {
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "/groups/groupProfile";
+        return "/groups/profile";
     }
 
 //-------------for editing group profile information
@@ -124,5 +124,33 @@ public class GroupController {
         return "redirect:/groups";
     }
 
+//    ---------- Games that the unique Group plays
+//    ----------Inserting Favorites
+//@PostMapping("/groups/favorite")
+//public String groupFavorite(@RequestParam long gameId, @ModelAttribute Group group ) {
+//    User tempGroup = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    Group groupFav = (groupDao.getOne(tempGroup.getId()));
+//    Game gameFavorite = gameRepo.getOne(gameId);
+//    List<Game> favorites = groupFav.getFavorites();
+//    favorites.add(gameFavorite);
+//    groupFav.setFavorites(favorites);
+//    groupDao.save(groupFav);
+//    return "redirect:/groups/profile";
+//}
 
+// ---------- Shows the users within the groups page
+   @GetMapping("/groups/users")
+    public String showUsers(Model model) {
+        List<User> users = userDao.findAll();
+        model.addAttribute("users", users);
+        return "/groups/profile";
+    }
+
+////    ---------- Groups Search
+//    @GetMapping("/groups/search")
+//    public String showGroup(@RequestParam String term, Model model) {
+//        List<Group> groups = groupDao.searchByNameLike(term);
+//        model.addAttribute("groups", groups);
+//        return "/groups/search";
+//    }
 }
