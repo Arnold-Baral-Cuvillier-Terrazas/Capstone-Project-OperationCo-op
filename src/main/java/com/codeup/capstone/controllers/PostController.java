@@ -29,6 +29,7 @@ public class PostController {
         this.userRepo = userRepo;
     }
 
+
 //    showing all the posts
     @GetMapping("/groups/posts/{id}")
     public String viewAllPosts(@PathVariable long id, Model model) {

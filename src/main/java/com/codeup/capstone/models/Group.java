@@ -2,6 +2,8 @@ package com.codeup.capstone.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.List;
@@ -49,7 +51,7 @@ public class Group {
 //    @OneToMany(mappedBy = "user")
 //    List<GroupUser> users;
 
-//    establishing relationship for group and tags
+    //    establishing relationship for group and tags
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "group_tags",
@@ -57,6 +59,16 @@ public class Group {
             inverseJoinColumns = {@JoinColumn(name = "group_id")}
     )
     private List<Tag> tags;
+
+//    Group Favorites
+//@LazyCollection(LazyCollectionOption.FALSE)
+//@ManyToMany
+//@JoinTable(
+//        name="Favorites",
+//        joinColumns = {@JoinColumn(name="group_id")},
+//        inverseJoinColumns = {@JoinColumn(name="game_id")}
+//)
+//private List<Game> favorites;
 
 //-----------Constructor
 
@@ -71,9 +83,10 @@ public class Group {
         this.gameId = gameId;
         this.posts = posts;
         this.tags = tags;
+//        this.favorites = favorites;
     }
 
-    public Group() {}
+
 
 //----------getters and setters
 
@@ -86,7 +99,8 @@ public class Group {
 //        this.users = users;
 //    }
 
-
+    public Group() {
+    }
     public User getOwner() {
         return owner;
     }
@@ -95,7 +109,7 @@ public class Group {
         this.owner = owner;
     }
 
-    public List<User> getUsers() {
+    public List<User>getUsers() {
         return users;
     }
 
@@ -166,4 +180,12 @@ public class Group {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+//    public List<Game> getFavorites() {
+//        return favorites;
+//    }
+//
+//    public void setFavorites(List<Game> favorites) {
+//        this.favorites = favorites;
+//    }
 }

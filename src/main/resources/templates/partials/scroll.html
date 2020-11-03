@@ -1,0 +1,23 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<standard_links th:fragment="scroll">
+    <div class="row">
+        <div th:each="game : ${games}">
+        <div class="row__inner">
+            <div class="tile">
+                <div class="tile__media">
+                    <img class="tile__img" th:src="${game.art_cover}"/>
+                </div>
+                <div class="tile__details">
+                    <div class="tile__title">
+                        <p th:text="${game.title}"></p>
+                    </div>
+                    <div class="tile__description">
+                        <p th:text="${game.description}"></p>
+                    </div>
+                    <div class="tile__rating">
+                        <p th:text="${game.critic.rating}"></p>
+                    </div>
+                </div>
+            </div>
+</standard_links>

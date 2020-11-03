@@ -161,37 +161,6 @@ public class User {
         this.ratings_received = ratings_received;
     }
 
-    public User(long id, String userName, String email, String password, String fullName, String pronouns,
-                Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic, String twitchInfo,
-                String steamInfo, String xboxLiveInfo, String psnInfo, String nintendoInfo, String discordInfo,
-                List<Tag> tags, List<Group> groups, List<Post> posts, List<Group> groupsOwned, List<Game> games,
-                List<Game> favorites) {
-        this.id = id;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.fullName = fullName;
-        this.pronouns = pronouns;
-        this.birthDate = birthDate;
-        this.bio = bio;
-        this.isSiteAdmin = isSiteAdmin;
-        this.isBanned = isBanned;
-        this.profilePic = profilePic;
-        this.twitchInfo = twitchInfo;
-        this.steamInfo = steamInfo;
-        this.xboxLiveInfo = xboxLiveInfo;
-        this.psnInfo = psnInfo;
-        this.nintendoInfo = nintendoInfo;
-        this.discordInfo = discordInfo;
-        this.tags = tags;
-        this.groups = groups;
-        this.posts = posts;
-        this.groupsOwned = groupsOwned;
-        this.games = games;
-        this.favorites = favorites;
-    }
-
-
     // implement the Copy Constructor right here in the User model!
     public User(User copy) {
         this.id = copy.id; // VERY IMPORTANT. Many things won't work if you don't include this assignment
@@ -204,6 +173,7 @@ public class User {
         this.bio = copy.bio;
         this.games = copy.games;
         this.favorites = copy.favorites;
+        this.groups = copy.groups;
     }
 
 

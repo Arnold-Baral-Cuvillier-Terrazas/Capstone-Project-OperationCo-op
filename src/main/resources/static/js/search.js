@@ -1,3 +1,5 @@
 function clearSearch() {
-    $("#term").text("");
+    document.getElementById("btnClear").onclick = function (){
+        this.value = '';
+    }
 }
