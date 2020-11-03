@@ -60,7 +60,7 @@
             <h4>Groups in: </h4>
             <show_groupIn th:if="${user.groups}">
                 <div th:each="group: ${user.groups}">
-                <h2 th:text="${group.name}"></h2>
+                <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
                     <p th:text="${group.description}"></p>
                 </div>
 

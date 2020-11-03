@@ -57,10 +57,17 @@
     <div class="group-users">
         <h4>Members in our Group:</h4>
         <show_users th:if="${group.users}">
-            <div th:each="user: ${group.users}">
-                <p th:text="${user.getFullName()}"></p>
+            <div th:each="gUser: ${group.users}">
+<!--                <p th:text="${gUser.getFullName()}"></p>-->
+                <a th:href="@{'/profile/' + ${gUser.id}}"th:text="${gUser.getFullName()}"></a>
+
+                <div th:if="${group.owner.id == user.id}">
+                    <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete Member</a>
+                </div>
             </div>
         </show_users>
+
+    </div>
     </div>
 </div>
 <!--<button  class="ib" type="button">Edit profile</button>-->
