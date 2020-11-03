@@ -21,12 +21,12 @@
     <div class="card">
 
         <div class="profileImg">
-            <img id="imgP" th:src="${photoUrl1}" style="width: 100%; height:100%; object-fit:cover">
+            <img id="imgP" th:src="${group.getProfilePic()}" style="width: 100%; height:100%; object-fit:cover">
         </div>
         <h4>Name: <span th:text="${group.name}"></span></h4>
     </div>
 
-    <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+    <button id="profile-btn2" class="pb" type="button">Update Profile Image</button>
 
     <div class="reviews">
         <p> review:
@@ -60,12 +60,12 @@
 </show_post>
 
 
-<script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
+<script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/filestack.js}"></script>
-<script th:src="@{/js/userProfile.js}"></script>
+<script th:src="@{/js/groupProfile.js}"></script>
 </body>
 </html>
