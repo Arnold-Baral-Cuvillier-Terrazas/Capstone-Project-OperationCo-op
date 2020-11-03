@@ -58,6 +58,27 @@
 
     <h4>Description: </h4>
     <br>
+
+       <p><span th:text="${group.description}"></span></p>
+    <div>
+        <h4> Tags defines me : </h4>
+        <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}" th:text="${tag.name}"></span>
+    </div>
+    <div class="group-users">
+        <h4>Members in our Group:</h4>
+        <show_users th:if="${group.users}">
+            <div th:each="gUser: ${group.users}">
+<!--                <p th:text="${gUser.getFullName()}"></p>-->
+                <a th:href="@{'/profile/' + ${gUser.id}}"th:text="${gUser.getFullName()}"></a>
+
+                <div th:if="${group.owner.id == user.id}">
+                    <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete Member</a>
+                </div>
+            </div>
+        </show_users>
+
+    </div>
+
     <p><span th:text="${group.description}"></span></p>
 
 

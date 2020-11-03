@@ -2,6 +2,7 @@ package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.*;
 import com.codeup.capstone.repositories.*;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -152,13 +153,21 @@ public class GroupController {
         Group group = groupDao.getOne(id);
         User user = userDao.getOne(UserId);
         List<Group> groups = user.getGroups();
-        groups.add(group);
+        if(!groups.contains(group)){
+            groups.add(group);
+            user.setGroups(groups);
+            userDao.save(user);
+        }
+        return "redirect:/groups/profile/" + id;
+    }
+    @GetMapping("/groups/userDelete/{id}")
+    public String deleteGroupUser(@PathVariable long id, @RequestParam long UserId) {
+        Group group = groupDao.getOne(id);
+        User user = userDao.getOne(UserId);
+        List<Group> groups = user.getGroups();
+        groups.remove(group);
         user.setGroups(groups);
         userDao.save(user);
-//        List<User> users = group.getUsers();
-//        users.add(userDao.getOne(UserId));
-//        group.setUsers(users);
-//        groupDao.save(group);
         return "redirect:/groups/profile/" + id;
     }
 
