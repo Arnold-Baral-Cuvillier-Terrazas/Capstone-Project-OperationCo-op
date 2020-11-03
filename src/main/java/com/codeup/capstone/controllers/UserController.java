@@ -1,6 +1,7 @@
 package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.Game;
+import com.codeup.capstone.models.Group;
 import com.codeup.capstone.models.Tag;
 import com.codeup.capstone.models.User;
 import com.codeup.capstone.repositories.GameRepository;
@@ -67,6 +68,15 @@ public class UserController {
         User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", userDao.getOne(getUser.getId()));
         model.addAttribute("photoUrl", userDao.getOne(getUser.getId()).getProfilePic());
+
+//        This Groupin code block is to show the groups that the user is in, will back to it later - Amaro Terrazas
+
+//        Group groupIn = groupDao.getOne(getUser.getId());
+//        List<Group> groups = groupIn.getOwner().getGroups();
+//        groups.add(groupIn);
+//        getUser.setGroups(groups);
+//        groupDao.save(groupIn);
+//        model.addAttribute("groupIn",userDao.getOne(getUser.getId()));
         return "users/profile";
     }
 
@@ -133,7 +143,5 @@ public class UserController {
         userDao.save(userFav);
         return "redirect:/profile";
     }
-
-
 }
 
