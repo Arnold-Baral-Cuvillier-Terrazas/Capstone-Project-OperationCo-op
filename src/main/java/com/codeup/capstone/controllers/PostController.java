@@ -33,32 +33,31 @@ public class PostController {
     }
 
 //    showing all the posts
-@GetMapping("/groups/posts")
-public String index(Model model) {
-    model.addAttribute("posts", postDao.findAll());
-    return "posts/showPosts";
-}
 
     @GetMapping("/groups/posts/{id}")
     public String viewAllPosts(@PathVariable long id, Model model) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User thisUser = userRepo.getOne(thisAuthor.getId());
-        model.addAttribute("group", groupDao.getOne(id));
+        model.addAttribute("group_id", id);
         for (Group group : thisUser.getGroups()) {
             if (group.getId() == id) {
                 model.addAttribute("posts", group.getPosts());
+                model.addAttribute("post", new Post());
                 return "posts/showPosts";
             }
         }
         return "redirect:/profile";
     }
 
+
 //    creating the posts
-    @PostMapping("/groups/posts/submit")
-    public String createMessage(@ModelAttribute Post post, @ModelAttribute Group group) throws ParseException, ParseException {
+
+    @PostMapping("/groups/posts/{group_id}/submit")
+    public String createMessage(@ModelAttribute Post post, @PathVariable long group_id) throws ParseException, ParseException {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(thisAuthor);
-        post.setGroup(group);
+        Group thisGroup = groupDao.getOne(group_id);
+        post.setGroup(thisGroup);
 //        printing out the date in format
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String createDate = format.format(new Date());
@@ -67,9 +66,8 @@ public String index(Model model) {
         post.setDate(sqlDate);
 //        saving the information
         postDao.save(post);
-        return "redirect:/groups/posts/" + group.getId();
+        return "redirect:/groups/posts/" + thisGroup.getId();
     }
-
 
     //    editing posts
     @GetMapping("/groups/posts/edit/{id}")
@@ -79,10 +77,10 @@ public String index(Model model) {
     }
 
     @PostMapping("/groups/posts/edit/{id}")
-    public String newEditPost(@PathVariable long id, @RequestParam(name = "parent_post_id") String parentPostId,
+    public String newEditPost(@PathVariable long id,
                               @RequestParam(name = "Message_body") String MessageBody) {
         Post post = postDao.getOne(id);
-        post.setParent_post_id(parentPostId);
+//        post.setParent_post_id(parentPostId);
         post.setMessage_body(MessageBody);
         postDao.save(post);
         return "redirect:/groups/posts";

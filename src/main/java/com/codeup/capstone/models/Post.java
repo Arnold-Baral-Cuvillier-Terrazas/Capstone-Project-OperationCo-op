@@ -17,8 +17,8 @@ public class Post {
     @Column(nullable = false)
     private Date date;
 
-    @Column(nullable = false, columnDefinition = "LONGTEXT")
-    private String parent_post_id;
+//    @Column(nullable = false, columnDefinition = "LONGTEXT")
+//    private String parent_post_id;
 
     @Column(nullable = false, columnDefinition = "LONGTEXT")
     private String message_body;
@@ -38,10 +38,9 @@ public class Post {
     public Post() {
     }
 
-    public Post(long id, Date date, String parent_post_id, String message_body, Group group, User user) {
+    public Post(long id, Date date, String message_body, Group group, User user) {
         this.id = id;
         this.date = date;
-        this.parent_post_id = parent_post_id;
         this.message_body = message_body;
         this.group = group;
         this.user = user;
@@ -78,14 +77,6 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public String getParent_post_id() {
-        return parent_post_id;
-    }
-
-    public void setParent_post_id(String parent_post_id) {
-        this.parent_post_id = parent_post_id;
     }
 
     public String getMessage_body() {

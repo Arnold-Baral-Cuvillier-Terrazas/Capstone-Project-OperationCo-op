@@ -5,26 +5,33 @@
     <title>Show All Posts</title>
     <link th:replace="partials/links :: links"/>
 </head>
+<!--<header th:replace="partials/head :: head"></header>-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <body>
-<header th:replace="partials/head :: head"></header>
-<nav th:replace="partials/navbar :: navbar"></nav>
-
 <main class="container">
     <show_post th:if="${posts}">
         <div th:each="item : ${posts}">
 
-            <h2 th:text=" 'parentPost_id : ' + ${item.parent_post_id}"> </h2>
+<!--            <h2 th:text=" 'parentPost_id : ' + ${item.parent_post_id}"> </h2>-->
             <a th:href="'/groups/posts/delete/'+ ${item.id}"> Delete</a>
             <a th:href="'/groups/posts/edit/'+ ${item.id}"> Edit</a>
             <h4 th:text=" 'MessageBody : '+${item.message_body}"> </h4>
-            <p th:text=" 'group : '+ ${item.getUser().getUserName()}"></p>
-            <p>th:text=" 'date : ' + ${item.getDate()}"</p>
+            <p th:text=" 'username : '+ ${item.getUser().getUserName()}"></p>
+            <p th:text=" 'date : ' + ${item.getDate()}"></p>
             <br>
         </div>
     </show_post>
+
+    <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post" th:object="${post}">
+        Message Body:
+        <input th:field="*{message_body}" />
+        <br>
+<!--        <input type="hidden" th:value="${group_id}" />-->
+        <input type="submit" />
+    </form>
 </main>
 
-<footer th:replace="partials/footer :: footer"></footer>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>

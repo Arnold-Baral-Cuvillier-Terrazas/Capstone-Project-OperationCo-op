@@ -49,6 +49,7 @@
 </div>
 
 
+<!--if user is owner then they have option for delete and edit-->
 <show_post th:if="${group.owner.id == user.id}">
     <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
         <button>Edit</button>
