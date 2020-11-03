@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -34,35 +36,60 @@ public class PostController {
 @GetMapping("/groups/posts")
 public String index(Model model) {
     model.addAttribute("posts", postDao.findAll());
-    return "posts/index";
+    return "posts/showPosts";
 }
 
     @GetMapping("/groups/posts/{id}")
-    public String viewAllMessagesWithAjax(@PathVariable long id, Model model) {
+    public String viewAllPosts(@PathVariable long id, Model model) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User thisUser = userRepo.getOne(thisAuthor.getId());
         model.addAttribute("group", groupDao.getOne(id));
         for (Group group : thisUser.getGroups()) {
             if (group.getId() == id) {
                 model.addAttribute("posts", group.getPosts());
-                return "posts/index";
+                return "posts/showPosts";
             }
         }
         return "redirect:/profile";
     }
 
 
+//    creating the posts
     @PostMapping("/group/posts/submit")
-    public String createMessage(@ModelAttribute Post post, @ModelAttribute Group group) {
+    public String createMessage(@ModelAttribute Post post, @ModelAttribute Group group) throws ParseException, ParseException {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(thisAuthor);
         post.setGroup(group);
+//        printing out the date in format
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String createDate = format.format(new Date());
+        Date date = format.parse(createDate);
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        post.setDate(sqlDate);
+//        saving the information
         postDao.save(post);
         return "redirect:/groups/posts/" + group.getId();
     }
 
 
-//    for deleting the posts
+    //    editing posts
+    @GetMapping("/groups/posts/edit/{id}")
+    public String EditPost(@PathVariable long id, Model model) {
+        model.addAttribute("editPost", postDao.getOne(id));
+        return "posts/editPost";
+    }
+
+    @PostMapping("/posts/edit/{id}")
+    public String newEditPost(@PathVariable long id, @RequestParam(name = "parent_post_id") String parentPostId,
+                              @RequestParam(name = "Message_body") String MessageBody) {
+        Post post = postDao.getOne(id);
+        post.setParent_post_id(parentPostId);
+        post.setMessage_body(MessageBody);
+        postDao.save(post);
+        return "redirect:/groups/posts";
+    }
+
+    //    for deleting the posts
     @GetMapping("/posts/delete/{id}")
     public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
@@ -70,29 +97,5 @@ public String index(Model model) {
 
     }
 
-    // Create Post Method
-//    @PostMapping("/create")
-//    public String savePost(@ModelAttribute Post post) throws ParseException, ParseException {
-//
-//        if (post.getId() == 0) {
-//            // New Post
-//            User author = (User) SecurityContextHolder
-//                    .getContext()
-//                    .getAuthentication()
-//                    .getPrincipal();
-//
-//            // Set the currently logged in user to the newly created post
-//            post.setUser(author);
-//
-//            // Get the current date/time and set in to the post
-//            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//            String createDate = format.format(new Date());
-//            Date date = format.parse(createDate);
-//            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//            post.setDate(sqlDate);
-//        }
-//        postDao.save(post);
-//        return "redirect:/posts";
-//    }
 
 }

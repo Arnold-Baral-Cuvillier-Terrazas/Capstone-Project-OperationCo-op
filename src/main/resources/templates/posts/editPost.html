@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editing</title>
+</head>
+<body>
+<form th:action="'/groups/posts/edit/' + ${editPost.id}" th:method="post" th:object="${editPost}">
+
+    <label for="title">Rename post title:</label><br>
+    <input id="title" th:field="*{title}"><br>
+    <label for="body">Rename post body:</label><br>
+    <textarea id="body" th:field="*{body}" rows="4" cols="72"></textarea><br>
+    <label for="btn"></label><br>
+    <button type="submit" id="btn">Submit</button>
+</form>
+</body>
+</html>
