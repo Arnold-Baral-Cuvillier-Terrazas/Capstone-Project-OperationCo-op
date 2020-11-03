@@ -53,9 +53,8 @@ public String index(Model model) {
         return "redirect:/profile";
     }
 
-
 //    creating the posts
-    @PostMapping("/group/posts/submit")
+    @PostMapping("/groups/posts/submit")
     public String createMessage(@ModelAttribute Post post, @ModelAttribute Group group) throws ParseException, ParseException {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(thisAuthor);
@@ -79,7 +78,7 @@ public String index(Model model) {
         return "posts/editPost";
     }
 
-    @PostMapping("/posts/edit/{id}")
+    @PostMapping("/groups/posts/edit/{id}")
     public String newEditPost(@PathVariable long id, @RequestParam(name = "parent_post_id") String parentPostId,
                               @RequestParam(name = "Message_body") String MessageBody) {
         Post post = postDao.getOne(id);
@@ -90,11 +89,10 @@ public String index(Model model) {
     }
 
     //    for deleting the posts
-    @GetMapping("/posts/delete/{id}")
+    @GetMapping("/groups/posts/delete/{id}")
     public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
         return "redirect:/groups/posts";
-
     }
 
 

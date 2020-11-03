@@ -4,8 +4,8 @@ INSERT INTO user(email, full_name, user_name, password, pronouns, birth_date)
 VALUES ('bijit@gmail.com', 'Bijit' ,'bijit16', '12345', 'he/his', '2000/02/03 22:31:01'),
        ('binjita@gmail.com', 'binjita' ,'binjita', 'binjita','she/her', '1900/02/06 22:31:01');
 
-
-USE capstone_db;
+USE operationCoop_db;
+# USE capstone_db;
 INSERT INTO tags (name)
 VALUES
 ('foodie'),
