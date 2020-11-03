@@ -89,7 +89,6 @@ public class GroupController {
     public String profilePage(@PathVariable long id, Model model) {
         model.addAttribute("group", groupDao.getOne(id));
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-
         return "/groups/profile";
     }
 
@@ -148,6 +147,21 @@ public class GroupController {
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
         return "/groups/profile";
+    }
+
+    @PostMapping("/groups/join/{id}")
+    public String joinGroup(@PathVariable long id, @RequestParam long UserId) {
+        Group group = groupDao.getOne(id);
+        User user = userDao.getOne(UserId);
+        List<Group> groups = user.getGroups();
+        groups.add(group);
+        user.setGroups(groups);
+        userDao.save(user);
+//        List<User> users = group.getUsers();
+//        users.add(userDao.getOne(UserId));
+//        group.setUsers(users);
+//        groupDao.save(group);
+        return "redirect:/groups/profile/" + id;
     }
 
 ////    ---------- Groups Search
