@@ -43,7 +43,7 @@ public class Group {
     @ManyToMany(mappedBy = "groups")
     private List<User> users;
 
-//    establishing relationship for group and tags
+    //    establishing relationship for group and tags
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "group_tags",
@@ -65,11 +65,6 @@ public class Group {
 //-----------Constructor
 
 
-
-
-    public Group(long id, String name, String description, String discordUserId, String gameId, List<Post> posts, List<GroupUser> users) {
-
-
     public Group(long id, String name, String description, String profilePic, User owner, String discordUserId, String gameId, List<Post> posts, List<User> users, List<Tag> tags) {
         this.id = id;
         this.name = name;
@@ -84,7 +79,8 @@ public class Group {
 //        this.favorites = favorites;
     }
 
-    public Group() {}
+    public Group() {
+    }
 
     public User getOwner() {
         return owner;
