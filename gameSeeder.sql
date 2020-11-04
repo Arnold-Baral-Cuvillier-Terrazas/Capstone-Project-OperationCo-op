@@ -1,6 +1,7 @@
 USE capstone_db;
 
 
+<<<<<<< HEAD
 INSERT INTO games(title, art_cover, description) VALUES ('Möbius Front ''83','118389','Defend America from an alternate-universe America using state-of-the-art 1980s military hardware in this intricate and tactical turn-based strategy game.');
 INSERT INTO games(title, art_cover, description) VALUES ('The MoneyMakers Rallye','118384','A turn-based rally through Europe with the goal of becoming the richest!');
 INSERT INTO games(title, art_cover, description) VALUES ('My Time at Sandrock','118379','You''ll take the role of a fledgling Builder to Sandrock. It’s up to you and your trusty toolset to gather resources, construct machines, and fix up your workshop.');
@@ -100,3 +101,21 @@ INSERT INTO games(title, art_cover, description) VALUES ('Shrine''s Legacy','116
 INSERT INTO games(title, art_cover, description) VALUES ('Shin Megami Tensei V','111634','For the 25th anniversary of the Shin Megami Tensei series, Shin Megami Tensei V was revealed (after being previously announced as SMT HD Project) for release on Nintendo Switch, running on Unreal Engine 4.');
 INSERT INTO games(title, art_cover, description) VALUES ('LEGO Star Wars: The Skywalker Saga - Deluxe Edition','113600','The Deluxe Edition of LEGO Star Wars: The Skywalker Saga includes the base game and a Character Collection bundle featuring new playable characters from Rogue One: A Star Wars Story, Solo: ...');
 INSERT INTO games(title, art_cover, description) VALUES ('NIGHT OF THE CONSUMERS','109826','It''s your first day on the job and the store is closing in a matter on minutes. The consumers, with their unrelenting thirst for customer service are still prowling the aisles and there are shelves still to be stocked up. Welcome to hell.');
+=======
+-- LOAD DATA LOCAL INFILE '/Users/mr.cuvillier/games.csv'
+--     INTO TABLE games
+--     FIELDS TERMINATED BY '|' ENCLOSED BY '"'
+--     LINES TERMINATED BY '\n'
+--     IGNORE 1 LINES
+--     (title, release_date, description, critics_rating, art_cover, igdb_api_id);
+
+
+LOAD DATA LOCAL INFILE '/Users/amaroterrazas/Documents/csv/games.csv'
+    INTO TABLE games
+    FIELDS TERMINATED BY '|' ENCLOSED BY '"'
+    LINES TERMINATED BY '\n'
+    IGNORE 1 LINES
+    (title, release_date, description, critics_rating, art_cover, igdb_api_id);
+
+
+>>>>>>> 078a2a675a54bd853b9214da648172898feb1024

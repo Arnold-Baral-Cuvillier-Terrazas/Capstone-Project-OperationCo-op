@@ -37,9 +37,13 @@ function updateImage(result){
 
 }
 
+<<<<<<< HEAD
 // client.picker().open();
 
 
+=======
+//jquery functionality
+>>>>>>> 078a2a675a54bd853b9214da648172898feb1024
 $(document).ready(function() {
 
     //filestack

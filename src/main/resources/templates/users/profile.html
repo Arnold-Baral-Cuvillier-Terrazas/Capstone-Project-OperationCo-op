@@ -13,6 +13,7 @@
 
 <div class="box">
 
+<<<<<<< HEAD
     <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
 
     <div class="profile">
@@ -26,6 +27,33 @@
             <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)</h6>
             <h6>Username: <span th:text="${user.userName}"></span></h6>
             <h6>Email: <span th:text="${user.email}"></span></h6>
+=======
+    <div class="profile">
+        <div id="wrapper" class="d-flex">
+            <div th:replace="partials/sidebar :: sidebar"></div>
+            <div id="page-content-wrapper">
+                <nav th:replace="partials/navbar :: navbar"></nav>
+                <div class="container-fluid page-body">
+                    <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
+                    <div class="profile">
+                                card for user Information
+                        <div class="card">
+                            <div class="profileImg">
+                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
+                            </div>
+                            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)
+                            </h6>
+                            <h6>Username: <span th:text="${user.userName}"></span></h6>
+                            <h6>Email: <span th:text="${user.email}"></span></h6>
+                            <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>
+                            <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>
+                            <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>
+                            <h6>XboxLive<span th:text="${user.xboxLiveInfo}"></span></h6>
+                            <h6>NintendoInfo:<span th:text="${user.nintendoInfo}"></span></h6>
+                        </div>
+                        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+
+>>>>>>> 078a2a675a54bd853b9214da648172898feb1024
 
             <div class="icons">
                 <a href="#"><i class="fa fa-dribbble"></i></a>
@@ -66,6 +94,7 @@
             </label>
         </form>
     </div>
+<<<<<<< HEAD
 
     <div class="Group"> Group <span th:text="${user.fullName}"></span> is in
         <form>
@@ -75,6 +104,23 @@
         </form>
     </div>
 
+=======
+    <!-- user rating information-->
+
+    <!--                        <div th:each="rating : ${user.ratings_received}">-->
+    <!--                            <p th:text="${rating.rating}"></p>-->
+    <!--                        </div>-->
+    <!--                        <form th:action="'/users/rating/' + ${user.id}" th:method="post">-->
+    <!--                            <input type="number" name="rating">-->
+    <!--                            <button type="submit">Submit</button>-->
+    <!--                        </form>-->
+
+    <!--                        <i class="fa fa-star" data-value="1"></i>-->
+    <!--                        <i class="fa fa-star" data-value="2"></i>-->
+    <!--                        <i class="fa fa-star" data-value="3"></i>-->
+    <!--                        <i class="fa fa-star" data-value="4"></i>-->
+    <!--                        <i class="fa fa-star" data-value="5"></i>-->
+>>>>>>> 078a2a675a54bd853b9214da648172898feb1024
 </div>
 
 <!--grabbing userid from controller and linked it into js-->
@@ -84,5 +130,11 @@
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/userProfile.js}"></script>
+<<<<<<< HEAD
+=======
+<script th:src="@{/js/rating.js}"></script>
+<script src="../../static/js/search.js"></script>
+<script th:src="@{/js/search.js}"></script>
+>>>>>>> 078a2a675a54bd853b9214da648172898feb1024
 </body>
 </html>
