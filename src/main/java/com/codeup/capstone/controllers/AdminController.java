@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminController {
 
-    private final UserRepository userDao;
+    private UserRepository userDao;
     private final GroupRepository groupDao;
 
 
@@ -27,6 +27,7 @@ public class AdminController {
     @GetMapping("/admin")
     public String siteAdmin(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        Group group = (Group) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (userDao.getOne(user.getId()).getSiteAdmin()) {
             model.addAttribute("users", userDao.findAll());
             return "admin/admin";

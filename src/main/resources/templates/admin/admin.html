@@ -24,13 +24,20 @@
             th:text="${user.userName}"></span></a>
     </p>
 
-<!--    for print out all the -->
-<!--             model.addAttribute("users", usersDao.findAll());-->
-<!--            model.addAttribute("groups", groupsDao.findAll());-->
-<!--            model.addAttribute("games", gamesDao.count());-->
+<!--    <p class="bold-font" id="admin-status">User Role:-->
+<!--        <th:block th:if="${user.getSiteAdmin()}">Admin</th:block>-->
+<!--        <th:block th:if="${!user.getSiteAdmin()}">User</th:block>-->
+<!--    </p>-->
 
 </div>
 
+<!--<div class="groups">-->
+<!--    <h1 class="center-align">GROUPS</h1>-->
+<!--    <div class="group-list" th:each="group : ${groups}"></div>-->
+<!--        <div><p class="bold-font ">Group ID: <span th:text="${group.id}">ID</span></p></div>-->
+<!--        <p class="bold-font "> Group Username: <a th:href="@{/users/profile/${user.userName}}"><span-->
+<!--                th:text="${user.userName}"></span></a>-->
+<!--        </p>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
