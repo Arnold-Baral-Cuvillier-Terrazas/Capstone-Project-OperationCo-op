@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rating</title>
+</head>
+<body>
+<form th:action="'/users/rating/' + ${user.getId()}" th:method="post">
+<!--    <label for="MessageBody">Rename Message body:</label><br>-->
+<!--    <textarea id="MessageBody" th:field="*{message_body}" rows="4" cols="72"></textarea><br>-->
+<!--    <label for="btn"></label><br>-->
+<!--    <button type="submit" id="btn">Submit</button>-->
+
+    <input type="number" name="rating">
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
