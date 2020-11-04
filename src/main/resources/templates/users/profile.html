@@ -62,13 +62,7 @@
                         </div>
                     </div>
 <!--                    Search BAR-->
-                    <form th:action="@{/games/search}" th:method="GET">
-                        Filter: <input type="text" name="term" id="term" size="50" required/>
-                        &nbsp;
-                        <input type="submit" value="Search"/>
-                        &nbsp;
-                        <input type="button" value="Clear" id="btnClear" onlick="clearSearch()"/>
-                    </form>
+
                     <div id="favGames">
                         <h4> My Favorite Games: </h4>
                         <show_games th:if="${user.favorites}">
