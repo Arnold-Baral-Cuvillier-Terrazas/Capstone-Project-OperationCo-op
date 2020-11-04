@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Page for Games</title>
+    <link th:replace="partials/links :: links"/>
 </head>
 <body>
 <div id="wrapper" class="d-flex">
@@ -13,11 +14,12 @@
         <nav th:replace="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
             <div th:each="game: ${games}">
+                <img th:src="${game.art_cover}"/>
                 <h2 th:text="${game.title}"></h2>
                 <h2 th:text="${game.description}"></h2>
                 <form th:action="@{/users/favorite}" method="post">
                     <input name="gameId" th:value="${game.id}" type="hidden">
-                    <button type="submit">+</button>
+                    <button type="submit">Add to My Favorites</button>
                 </form>
             </div>
         </div>
@@ -51,6 +53,6 @@
 <!--    <li>5</li>-->
 <!--</ul>-->
 
-
+<scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>

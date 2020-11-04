@@ -32,30 +32,17 @@ public class GameController {
         this.groupRepo = groupRepo;
 
     }
-
     @GetMapping("/games")
     public String showGames(Model model) {
         List<Game> games = gameRepo.findAll();
         model.addAttribute("games", games);
+
         return "/games/games";
     }
-
-
-//    @RequestMapping(path = "/games/{id}", method = RequestMethod.GET)
-
     @GetMapping("/games/search")
     public String showGame(@RequestParam String term, Model model){
         List<Game> games = gameRepo.searchByTitleLike(term);
         model.addAttribute("games", games);
         return "/games/search";
     }
-
-//    public String searchGame(Model model, @Param("keyword") String keyword) {
-//        List<Game> listGames = service.listAll(keyword);
-//        model.addAttribute("listProducts",listGames);
-//        model.addAttribute("keyword", keyword);
-//        return "/games/search";
-//    }
-
-
 }
