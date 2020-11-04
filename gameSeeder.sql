@@ -1,7 +1,7 @@
-USE operationcoop_db;
+USE capstone_db;
 
 
-LOAD DATA LOCAL INFILE '/Users/mr.cuvillier/games.csv'
+LOAD DATA LOCAL INFILE '/Users/amaroterrazas/Documents/csv/games.csv'
     INTO TABLE games
     FIELDS TERMINATED BY '|' ENCLOSED BY '"'
     LINES TERMINATED BY '\n'
