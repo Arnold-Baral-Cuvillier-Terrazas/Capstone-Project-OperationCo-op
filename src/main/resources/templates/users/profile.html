@@ -13,7 +13,6 @@
         <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>
     </div>
 
-
     <div class="profile">
         <div id="wrapper" class="d-flex">
             <div th:replace="partials/sidebar :: sidebar"></div>
@@ -44,6 +43,17 @@
                         <div th:each="rating : ${user.ratings_received}">
                             <p th:text="${rating.rating}"></p>
                         </div>
+                        <form th:action="'/users/rating/' + ${user.id}" th:method="post">
+                            <input type="number" name="rating">
+                            <button type="submit">Submit</button>
+                        </form>
+
+                        <i class="fa fa-star" data-value="1"></i>
+                        <i class="fa fa-star" data-value="2"></i>
+                        <i class="fa fa-star" data-value="3"></i>
+                        <i class="fa fa-star" data-value="4"></i>
+                        <i class="fa fa-star" data-value="5"></i>
+
 
                         <!--        User bio and tags area-->
                         <div>
@@ -123,6 +133,7 @@
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/userProfile.js}"></script>
+<script th:src="@{/js/rating.js}"></script>
 <script src="../../static/js/search.js"></script>
 </body>
 </html>
