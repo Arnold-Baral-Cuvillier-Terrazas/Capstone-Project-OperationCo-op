@@ -35,10 +35,8 @@ public class UserRating {
         this.rated_user = rated_user;
     }
 
-
     public UserRating() {
     }
-
 
     public long getId() {
         return id;
