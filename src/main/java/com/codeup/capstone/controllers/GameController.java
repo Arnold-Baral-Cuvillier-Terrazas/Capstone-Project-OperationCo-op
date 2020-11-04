@@ -37,6 +37,7 @@ public class GameController {
     public String showGames(Model model) {
         List<Game> games = gameRepo.findAll();
         model.addAttribute("games", games);
+
         return "/games/games";
     }
 
