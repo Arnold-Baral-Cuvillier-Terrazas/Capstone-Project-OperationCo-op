@@ -3,45 +3,19 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Create Group</title>
-    <link th:replace="partials/links :: links"/>
 </head>
 <body>
-<div id="wrapper" class="d-flex">
-    <div th:replace="partials/sidebar :: sidebar"></div>
-    <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-        <div class="container-fluid page-body">
-            <div class="container-fluid">
-                <!--<header th:replace="partials/head :: head"></header>-->
-                <h1 class="text-center">Edit Group!</h1>
-                <form th:action="'/groups/edit/' + ${editGroup.id}" method="post" th:object="${editGroup}">
+<!--<header th:replace="partials/head :: head"></header>-->
+<h1>Create a Group!</h1>
+<form th:action="'/groups/edit/' + ${editGroup.id}" method="post" th:object="${editGroup}">
 
-                    <label for="name">Edit Group Name:</label>
-                    <input id="name" type="text" th:field="*{name}"/>
-                    <br><br>
-                    <label for="description">Edit Group Description:</label>
-                    <input id="description" type="text" th:field="*{description}"/>
-                    <br><br>
-
-                    <div class="tags">
-                        <h4>Please select the interests : </h4>
-                        <div th:each="tag : ${tagsList}">
-                            <input type="checkbox" th:checked="${editGroup.tags.contains(tag)}" th:id="${tag.name}"
-                                   name="tags" th:value="${tag.id}"/>
-                            <label th:for="${tag.name}" th:text="${tag.name}"></label>
-                        </div>
-                    </div>
-                    <input value="Update Group" type="submit"/>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<scripts th:replace="partials/scripts :: scripts"></scripts>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script th:src="@{/js/keys.js}"></script>
-<script th:src="@{/js/filestack.js}"></script>
-<script th:src="@{/js/userProfile.js}"></script>
+    <label for="name">Enter a Group Name:</label>
+    <input id="name" type="text" th:field="*{name}"/>
+    <br><br>
+    <label for="description">Enter a Description:</label>
+    <input id="description" type="text" th:field="*{description}"/>
+    <br><br>
+    <input value="Update Group" type="submit"/>
+</form>
 </body>
 </html>

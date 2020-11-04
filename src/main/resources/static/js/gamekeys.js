@@ -1,4 +1,6 @@
-const CLIENT_ID = '3k7keshje15ppkmvfknzvge864tujx';
-const SECRET_KEY = 'a7qogz2yatoa17t46q9yz5vfa5mr64';
-const BEARER = '89gj2uvu8f0x6vhlyo3fvx02z5cfta';
-const API_URL = 'http://127.0.0.1:8010/https://api.igdb.com/v4';
+const CLIENT_ID = "ajjv7o4r3pxdekfaldilnfwjl5e5we";
+const SECRET_KEY = "g0feg33v9vnvhqve30rxviotadgovc";
+const BEARER = "zgnc4e6yqzwrehts1oyivrfpfogtts";
+const API_URL = "http://localhost:8010/proxy/v4";
+
+// const API_URL = "https://api.igdb.com/v4/games";

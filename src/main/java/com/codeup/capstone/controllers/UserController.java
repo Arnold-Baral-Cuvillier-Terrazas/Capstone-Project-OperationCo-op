@@ -1,44 +1,22 @@
 package com.codeup.capstone.controllers;
 
-
-import com.codeup.capstone.models.*;
-
-import com.codeup.capstone.models.Game;
-import com.codeup.capstone.models.Group;
-import com.codeup.capstone.models.Tag;
 import com.codeup.capstone.models.User;
-import com.codeup.capstone.repositories.GameRepository;
-import com.codeup.capstone.repositories.GroupRepository;
-import com.codeup.capstone.repositories.TagRepository;
 import com.codeup.capstone.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class UserController {
     private final UserRepository userDao;
     private final PasswordEncoder passwordEncoder;
-    private final TagRepository tagDao;
-    private final GroupRepository groupDao;
-    private final GameRepository gameRepo;
-
 
     //---------constructor
-    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, TagRepository tagDao, GroupRepository groupDao, GameRepository gameRepo) {
+    public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-        this.tagDao = tagDao;
-        this.groupDao = groupDao;
-        this.gameRepo = gameRepo;
     }
 
 // ---------methods for work flow------------
@@ -58,7 +36,7 @@ public class UserController {
             return "users/signup";
         }
         String hash = passwordEncoder.encode(user.getPassword()); // ~plaintext password
-        user.setPassword(hash); // It's hashed
+        user.setPassword(hash); // immediately no longer have access to the plaintext password. It's hashed
         if (user.getId() == 0) {
             userDao.save(user);
             return "redirect:/login";
@@ -77,90 +55,15 @@ public class UserController {
         return "users/profile";
     }
 
-    @GetMapping("/profile/{id}")
-    public String profilePage(Model model, @PathVariable long id) {
-        User getUser = userDao.getOne(id);
-        model.addAttribute("user", userDao.getOne(getUser.getId()));
-        model.addAttribute("photoUrl", userDao.getOne(getUser.getId()).getProfilePic());
-        return "users/profile";
-    }
-
-    //user's Profile pic  area
-    @PostMapping("/profile/pic")
-    public String saveProfile(@RequestParam long userId, @RequestParam String url, @ModelAttribute User user) {
-        User saveProfile = userDao.getOne(userId);
-        saveProfile.setProfilePic(url);
-        userDao.save(saveProfile);
+    //user's biography area
+    @PostMapping("/profile/bio")
+    public String saveProfileBio(@RequestParam long userId, @RequestParam String url, @ModelAttribute User user) {
+        User saveProfileBio = userDao.getOne(userId);
+        saveProfileBio.setBio(user.getBio());
+        saveProfileBio.setProfilePic(url);
+        userDao.save(saveProfileBio);
         return "redirect:/profile";
     }
 
-//    editing user profile information like bio, tags and other usernames
-    @GetMapping("/users/edit/{id}")
-    public String EditProfile(@PathVariable long id, Model model) {
-        model.addAttribute("editUser", userDao.getOne(id));
-        List<Tag> tagsList = tagDao.findAll();
-        model.addAttribute("tagsList", tagsList);
-        return "/users/editProfile";
-    }
-
-
-    //Used (required false) because every user will not have all gaming accounts so it is optional for user
-    @PostMapping("/users/edit/{id}")
-    public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags,
-                                @RequestParam String bio ,
-                                @RequestParam (required = false) String psnInfo ,@RequestParam (required = false) String steamInfo ,
-                                @RequestParam (required = false) String twitchInfo,@RequestParam(required = false) String xboxLiveInfo,
-                                @RequestParam (required = false) String nintendoInfo) {
-        List<Tag> tagList = new ArrayList<>();
-        for(int i= 0; i< tags.size(); i++){
-            Tag thisTag = tagDao.getOne(tags.get(i));
-            tagList.add(thisTag);
-        }
-        User user = userDao.getOne(id);
-        user.setBio(bio);
-        user.setTags(tagList);
-        user.setPsnInfo(psnInfo);
-        user.setSteamInfo(steamInfo);
-        user.setTwitchInfo(twitchInfo);
-        user.setXboxLiveInfo(xboxLiveInfo);
-        user.setNintendoInfo(nintendoInfo);
-        userDao.save(user);
-        return "redirect:/profile";
-    }
-
-//    user can delete their account
-    @GetMapping("/users/delete/{id}")
-    public String deleteUser(@PathVariable long id) {
-        User user = userDao.getOne(id);
-        userDao.delete(user);
-        return "redirect:/sign-up";
-    }
-
-    //    user rating stars
-    @PostMapping("/users/rating/{id}")
-    public String userRating(@RequestParam long userId,@RequestParam int rating, @ModelAttribute User user) {
-        User userRated = userDao.getOne(userId);
-        User userRating = userDao.getOne(((User) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal()).getId());
-       Set<UserRating> ratingUser = userRated.getRatings_received();
-       ratingUser.add(new UserRating(rating, userRating, userRated));
-       userRated.setRatings_received(ratingUser);
-        userDao.save(userRated);
-        return "redirect:/profile";
-    }
-
-
-//    ----------Inserting Favorites
-    @PostMapping("/users/favorite")
-    public String userFavorite(@RequestParam long gameId, @ModelAttribute User user ) {
-        User tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User userFav = (userDao.getOne(tempUser.getId()));
-        Game gameFavorite = gameRepo.getOne(gameId);
-        List<Game> favorites = userFav.getFavorites();
-        favorites.add(gameFavorite);
-        userFav.setFavorites(favorites);
-        userDao.save(userFav);
-        return "redirect:/profile";
-    }
 }
 
