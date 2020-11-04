@@ -67,6 +67,18 @@ button:hover, a:hover {
 
 }
 
+.fa-star {
+    color: rgba(112, 111, 111, 0.856);
+}
+
+.fa-star:hover {
+    color: #e2334c;
+}
+
+.fa-star.selected {
+    color: #001628;
+}
+
 /*.pill.active {*/
 /*    background: cyan;*/
 /*}*/
