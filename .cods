@@ -1,2 +1,2 @@
 BUILD_COMMAND='mvn package'
-JAR_FILE=target/demo-0.0.1-SNAPSHOT.jargti
+JAR_FILE=target/demo-0.0.1-couSNAPSHOT.jar
