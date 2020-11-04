@@ -24,10 +24,9 @@ VALUES
 ('traveling');
 
 
-USE operationCoop_db;
-Insert into user_rating( id,rated_user_id, rating, rating_user_id )
-  VALUES (1,1,3,2),
-         (1,1,5,3),
-         (1,1,3,4),
-         (1,1,4.5,5);
+# USE operationCoop_db;
+# Insert into user_rating( id, rated_user_id, rating, rating_user_id)
+#   VALUES (1,1,3,2),
+#          (2,2,5,3);
+
 

@@ -20,7 +20,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     @Column(nullable = false, length = 100, unique = true)
     private String userName;
 
