@@ -1,7 +1,6 @@
 body {
     width: auto;
     margin: auto;
-    padding: 5em;
 }
 
 textarea {
@@ -66,6 +65,18 @@ button:hover, a:hover {
     padding: 8px 16px;
     background: none;
 
+}
+
+.fa-star {
+    color: rgba(112, 111, 111, 0.856);
+}
+
+.fa-star:hover {
+    color: #e2334c;
+}
+
+.fa-star.selected {
+    color: #001628;
 }
 
 /*.pill.active {*/

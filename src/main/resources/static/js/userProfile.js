@@ -13,7 +13,7 @@ function updateImage(result){
     const filedata = result.filesUploaded[0];
     console.log(filedata);
     // $("#profileUrl").val(filedata.url);
-    $("#img").attr("src",filedata.url);
+    $("#imgP").attr("src",filedata.url);
 
     let formData = new FormData();
     formData.append("userId", userId);
@@ -22,12 +22,12 @@ function updateImage(result){
         method:"POST",
         body:formData,
     }).catch(err => { console.log(err) });
+
 }
 
 
-//jquery
+//jquery functionality
 $(document).ready(function() {
-
     //filestack
     console.log(url);
     $("#profile-btn").click(function(){
@@ -37,17 +37,3 @@ $(document).ready(function() {
 })
 
 
-//------------ Descriptive tags
-// let selected = [];
-//
-// $('.pill').on('click', function (ev) {
-//   $(this).toggleClass('active');
-//
-//   if($(this).hasClass('active')) {
-//     selected.push($(this).text());
-//   } else {
-//     selected.splice(selected.indexOf($(this).text()), 1);
-//   }
-//
-//   $('#selected').text(selected.sort().join(', '));
-// });

@@ -2,36 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
+    <link rel="stylesheet" th:href="@{/css/game.css}">
     <meta charset="UTF-8">
     <title>View games</title>
-    <!--    <div th:replace="partials/links :: links"/>-->
+    <link th:replace="partials/links :: links"/>
+<!--    <div th:replace="partials/links :: links"/>-->
 </head>
 <body>
-<h1>This is the Games Page</h1>
-<!--<p>Under Construction</p>-->
-<!--<p>We Need a Break too!</p>-->
-<div class="container">
-    <h2>Title:  </h2>
+<!--    <div class="game-wrapper">-->
+<!--        <div th:each="game : ${games}"class="item">-->
+<!--            <img th:src="${game.art_cover}">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<div id="wrapper" class="d-flex">
+    <div th:replace="partials/sidebar :: sidebar"></div>
+    <div id="page-content-wrapper">
+        <nav th:replace="partials/navbar :: navbar"></nav>
+        <div class="container-fluid page-body">
+
+
+        </div>
+    </div>
+</div>
+<div th:each="game : ${games}">
+    <!--        <form th:action="@{'/games/' + ${games.id}">-->
+    <img th:src="${game.art_cover}"/>
+    <h2 th:text="${game.title}"></h2>
+    <p>Description:</p> <p th:text="${game.description}"></p>
+    <!--            <p th:text="${game.release_date}"></p>-->
+    <p>Critics Rating: </p><p th:text="${game.critics_rating}"></p>
 </div>
 
 
-<main class="container">
-    <div th:each="game : ${games}">
-<!--        <form th:action="@{'/games/' + ${games.id}">-->
-        <img th:src="${game.art_cover}"/>
-        <h2 th:text="${game.title}"></h2>
-        <p>Description:</p> <p th:text="${game.description}"></p>
-        <!--            <p th:text="${game.release_date}"></p>-->
-        <p>Critics Rating: </p><p th:text="${game.critics_rating}"></p>
-    </div>
-</main>
+
 <!--<header th:replace="partials/header :: header"/>-->
 <!--<nav th:replace="partials/navbar :: navbar"/>-->
 
 <!--<footer th:replace="partials/footer :: footer"/>-->
 <!--<div th:replace="partials/scripts :: scripts"/>-->
 <!--</body>-->
-<script src="js/gamekeys.js"></script>
-<script src="js/gamescript.js"></script>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+<script th:src="@{/js/game.js}"></script>
+<!--<script th:src="@{/js/gamekeys.js}"></script>-->
+<script src="/static/js/gamekeys.js"></script>
 </body>
 </html>

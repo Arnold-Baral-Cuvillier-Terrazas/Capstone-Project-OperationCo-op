@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit user Profile</title>
+    <link th:replace="partials/links :: links"/>
 </head>
 <body>
+<div id="wrapper" class="d-flex">
+    <div th:replace="partials/sidebar :: sidebar"></div>
+    <div id="page-content-wrapper">
+        <nav th:replace="partials/navbar :: navbar"></nav>
+        <div class="container-fluid page-body">
+            <div class="container">
+                <h1>Editing Information</h1>
+                <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
+                    <div class="usernames">
+                        Psn info: <input id="psn" type="text" name="psnInfo" th:value="*{psnInfo}"/>
+                        Steam info: <input id="steam" type="text" name="steamInfo" th:value="*{steamInfo}"/>
+                        twitch info: <input id="twitch" type="text" name="twitchInfo" th:value="*{twitchInfo}"/>
+                        Xbox-live info: <input id="xbox" type="text" name="xboxLiveInfo" th:value="*{xboxLiveInfo}"/>
+                        Nintendo info: <input id="ninetendo" type="text" name="nintendoInfo"
+                                              th:value="*{nintendoInfo}"/>
 
-<div class="container">
-    <h1>Editing Information</h1>
-    <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
-        <div class="usernames">
-            Psn info: <input id="psn" type="text" name="psnInfo" th:value="*{psnInfo}"/>
-            Steam info: <input id="steam" type="text" name="steamInfo" th:value="*{steamInfo}"/>
-            twitch info: <input id="twitch" type="text" name="twitchInfo" th:value="*{twitchInfo}"/>
-<!--            Xbox-live info: <input id="xbox" type="text" name="xboxInfo" th:value="*{xboxLiveInfo}"/>-->
-        </div>
+                        <label for="bio">Updated your bio</label>
+                        <input id="bio" type="text" name="bio" th:value="*{bio}"/>
+                        <br>
 
-        <label for="bio">Updated your bio</label>
-        <input id="bio" type="text" name="bio" th:value="*{bio}"/>
-        <br>
+                        <div class="tags">
+                            <h4>Please select the interests : </h4>
+                            <div th:each="tag : ${tagsList}">
+                                <input type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}"
+                                       name="tags" th:value="${tag.id}"/>
+                                <label th:for="${tag.name}" th:text="${tag.name}"></label>
+                            </div>
+                        </div>
+                        <input value="Save" type="submit"/>
 
-        <div class="tags">
-            <h4>Please select the interests : </h4>
-            <div th:each="tag : ${tagsList}">
-                <input type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}"
-                       name="tags" th:value="${tag.id}"/>
-                <label th:for="${tag.name}" th:text="${tag.name}"></label>
+                    </div>
+                </form>
             </div>
         </div>
-        <input value="Save" type="submit"/>
-
-    </form>
+    </div>
 </div>
 </body>
 </html>
