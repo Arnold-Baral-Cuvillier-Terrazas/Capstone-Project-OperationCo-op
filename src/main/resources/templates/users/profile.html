@@ -57,12 +57,18 @@
                         <br>
                         <div class="inGroups">
                             <h4>Groups in: </h4>
+                            <div class="card" style="width: 50rem;">
                             <show_groupIn th:if="${user.groups}">
                                 <div th:each="group: ${user.groups}">
-                                    <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
+                                    <div class="card-header">
+                                        <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
                                     <p th:text="${group.description}"></p>
+                                    </ul>
                                 </div>
                             </show_groupIn>
+                            </div>
                         </div>
                     </div>
 <!--                    Search BAR-->

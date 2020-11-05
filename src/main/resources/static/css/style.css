@@ -95,8 +95,8 @@ button:hover, a:hover {
 }
 
 .editP, .editG {
-    /*background-image: url("../img/game.jpeg");*/
-    background-color: darkgrey;
+    /*background-image: url("../img/bg.jpeg");*/
+    background-color: skyblue;
     /*opacity: .9;*/
     background-position: center;
     background-repeat: no-repeat;
