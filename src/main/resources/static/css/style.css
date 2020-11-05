@@ -89,3 +89,7 @@ button:hover, a:hover {
 /*    border: 2px solid gray;*/
 /*    margin: 2%;*/
 /*}*/
+
+.jumbotron {
+    margin-top: 2px;
+}
