@@ -93,3 +93,13 @@ button:hover, a:hover {
 .jumbotron {
     margin-top: 2px;
 }
+
+.editP {
+    /*background-image: url("../img/game.jpeg");*/
+    background-color: darkgrey;
+    /*opacity: .9;*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
