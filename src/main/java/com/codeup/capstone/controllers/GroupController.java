@@ -140,8 +140,8 @@ public class GroupController {
 //    return "redirect:/groups/profile";
 //}
 
-// ---------- Shows the users within the groups page
-   @GetMapping("/groups/users")
+    // ---------- Shows the users within the groups page
+    @GetMapping("/groups/users")
     public String showUsers(Model model) {
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);

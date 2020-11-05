@@ -22,15 +22,13 @@ public class PostController {
     private final UserRepository userRepo;
     private final GroupRepository groupDao;
 
-    //    constructor
+    //--------- constructor
     public PostController(PostRepository postDao, UserRepository userRepo, GroupRepository groupDao) {
         this.postDao = postDao;
         this.groupDao = groupDao;
         this.userRepo = userRepo;
     }
-
-
-//    showing all the posts
+// showing all posts
     @GetMapping("/groups/posts/{id}")
     public String viewAllPosts(@PathVariable long id, Model model) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -46,7 +44,7 @@ public class PostController {
         return "redirect:/profile";
     }
 
-//    creating the posts and submitting it
+    //    creating the posts and submitting it
     @PostMapping("/groups/posts/{group_id}/submit")
     public String createMessage(@ModelAttribute Post post, @PathVariable long group_id)
             throws ParseException, ParseException {

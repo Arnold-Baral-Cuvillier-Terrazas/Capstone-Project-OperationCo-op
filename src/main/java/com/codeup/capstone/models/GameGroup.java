@@ -1,3 +1,4 @@
+
 package com.codeup.capstone.models;
 
 import javax.persistence.*;
