@@ -100,7 +100,7 @@ public class UserController {
         model.addAttribute("editUser", userDao.getOne(id));
         List<Tag> tagsList = tagDao.findAll();
         model.addAttribute("tagsList", tagsList);
-        return "/users/editProfile";
+        return "users/editProfile";
     }
 
 
