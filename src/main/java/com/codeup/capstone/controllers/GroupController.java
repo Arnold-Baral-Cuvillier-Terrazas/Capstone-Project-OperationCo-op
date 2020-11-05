@@ -40,7 +40,7 @@ public class GroupController {
     public String showCreateGroupForm(Model model) {
         model.addAttribute("group", new Group());
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "/groups/create";
+        return "groups/create";
     }
 
 
@@ -89,7 +89,7 @@ public class GroupController {
         Group group = groupDao.getOne(id);
         model.addAttribute("group", group);
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "/groups/profile";
+        return "groups/profile";
     }
 
 //-------------for editing group profile information
@@ -99,7 +99,7 @@ public class GroupController {
         model.addAttribute("editGroup", groupDao.getOne(id));
         List<Tag> tagsList = tagDao.findAll();
         model.addAttribute("tagsList", tagsList);
-        return "/groups/edit";
+        return "groups/edit";
     }
 
     @PostMapping("/groups/edit/{id}")
@@ -145,7 +145,7 @@ public class GroupController {
     public String showUsers(Model model) {
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
-        return "/groups/profile";
+        return "groups/profile";
     }
 
     @PostMapping("/groups/join/{id}")
