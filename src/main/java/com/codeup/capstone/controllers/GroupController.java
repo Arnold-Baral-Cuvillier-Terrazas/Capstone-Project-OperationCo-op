@@ -30,7 +30,7 @@ public class GroupController {
     public String showCreateGroupForm(Model model) {
         model.addAttribute("group", new Group());
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "groups/create";
+        return "/groups/create";
     }
 
 

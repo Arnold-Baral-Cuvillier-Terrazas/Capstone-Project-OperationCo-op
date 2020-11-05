@@ -1,6 +1,8 @@
-USE capstone_db;
+USE operationcoop_db;
 
 
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 INSERT INTO games(title, art_cover, description) VALUES ('Möbius Front ''83','118389','Defend America from an alternate-universe America using state-of-the-art 1980s military hardware in this intricate and tactical turn-based strategy game.');
 INSERT INTO games(title, art_cover, description) VALUES ('The MoneyMakers Rallye','118384','A turn-based rally through Europe with the goal of becoming the richest!');
@@ -102,12 +104,15 @@ INSERT INTO games(title, art_cover, description) VALUES ('Shin Megami Tensei V',
 INSERT INTO games(title, art_cover, description) VALUES ('LEGO Star Wars: The Skywalker Saga - Deluxe Edition','113600','The Deluxe Edition of LEGO Star Wars: The Skywalker Saga includes the base game and a Character Collection bundle featuring new playable characters from Rogue One: A Star Wars Story, Solo: ...');
 INSERT INTO games(title, art_cover, description) VALUES ('NIGHT OF THE CONSUMERS','109826','It''s your first day on the job and the store is closing in a matter on minutes. The consumers, with their unrelenting thirst for customer service are still prowling the aisles and there are shelves still to be stocked up. Welcome to hell.');
 =======
+>>>>>>> 5fdeee5deb16e6362d6938b3128722188c6e6e84
 -- LOAD DATA LOCAL INFILE '/Users/mr.cuvillier/games.csv'
 --     INTO TABLE games
 --     FIELDS TERMINATED BY '|' ENCLOSED BY '"'
 --     LINES TERMINATED BY '\n'
 --     IGNORE 1 LINES
 --     (title, release_date, description, critics_rating, art_cover, igdb_api_id);
+<<<<<<< HEAD
+=======
 
 
 LOAD DATA LOCAL INFILE '/Users/amaroterrazas/Documents/csv/games.csv'
@@ -117,5 +122,6 @@ LOAD DATA LOCAL INFILE '/Users/amaroterrazas/Documents/csv/games.csv'
     IGNORE 1 LINES
     (title, release_date, description, critics_rating, art_cover, igdb_api_id);
 
+>>>>>>> 5fdeee5deb16e6362d6938b3128722188c6e6e84
 
 >>>>>>> 078a2a675a54bd853b9214da648172898feb1024
