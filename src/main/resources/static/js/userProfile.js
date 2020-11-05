@@ -25,6 +25,7 @@ function updateImage(result){
 
 }
 
+
 //jquery functionality
 $(document).ready(function() {
     //filestack
@@ -34,5 +35,3 @@ $(document).ready(function() {
     });
 
 })
-
-

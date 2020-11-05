@@ -20,10 +20,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
     @Column(nullable = false, length = 100, unique = true)
     private String userName;
 
-//    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
+    //    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
 //            " valid email address")
     @Column(nullable = false, unique = true)
     private String email;
@@ -85,7 +86,7 @@ public class User {
     )
     private List<Tag> tags;
 
-//    creating relationship with group table
+    //    creating relationship with group table
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "groups_users",
@@ -94,17 +95,17 @@ public class User {
     )
     private List<Group> groups;
 
-//  ----------  relationship with groups and Posts
+    //  ----------  relationship with groups and Posts
     //Owner to messages
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @JsonBackReference
     private List<Post> posts;
 
-//    //Many users to one group
+    //    //Many users to one group
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<Group> groupsOwned;
 
-//    ** Amaro Terrazas ** Inputting Games Feature
+    //    ** Amaro Terrazas ** Inputting Games Feature
     @OneToMany(mappedBy = "user")
     private List<Game> games;
 
@@ -117,7 +118,7 @@ public class User {
     private List<Game> favorites;
 
 
-//    for rating creating relationship with user
+    //    for rating creating relationship with user
     @OneToMany(mappedBy = "rating_user")
     Set<UserRating> ratings_given;
 

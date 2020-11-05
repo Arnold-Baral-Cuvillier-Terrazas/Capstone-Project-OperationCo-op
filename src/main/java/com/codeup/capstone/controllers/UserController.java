@@ -94,13 +94,13 @@ public class UserController {
         return "redirect:/profile";
     }
 
-//    editing user profile information like bio, tags and other usernames
+    //    editing user profile information like bio, tags and other usernames
     @GetMapping("/users/edit/{id}")
     public String EditProfile(@PathVariable long id, Model model) {
         model.addAttribute("editUser", userDao.getOne(id));
         List<Tag> tagsList = tagDao.findAll();
         model.addAttribute("tagsList", tagsList);
-        return "/users/editProfile";
+        return "users/editProfile";
     }
 
 
@@ -128,7 +128,7 @@ public class UserController {
         return "redirect:/profile";
     }
 
-//    user can delete their account
+    //    user can delete their account
     @GetMapping("/users/delete/{id}")
     public String deleteUser(@PathVariable long id) {
         User user = userDao.getOne(id);
@@ -142,15 +142,15 @@ public class UserController {
         User userRated = userDao.getOne(userId);
         User userRating = userDao.getOne(((User) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal()).getId());
-       Set<UserRating> ratingUser = userRated.getRatings_received();
-       ratingUser.add(new UserRating(rating, userRating, userRated));
-       userRated.setRatings_received(ratingUser);
+        Set<UserRating> ratingUser = userRated.getRatings_received();
+        ratingUser.add(new UserRating(rating, userRating, userRated));
+        userRated.setRatings_received(ratingUser);
         userDao.save(userRated);
         return "redirect:/profile";
     }
 
 
-//    ----------Inserting Favorites
+    //    ----------Inserting Favorites
     @PostMapping("/users/favorite")
     public String userFavorite(@RequestParam long gameId, @ModelAttribute User user ) {
         User tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -163,4 +163,3 @@ public class UserController {
         return "redirect:/profile";
     }
 }
-
