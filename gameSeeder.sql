@@ -1,6 +1,6 @@
-USE capstone_db;
+# USE capstone_db;
 
-#
+# USE game_db;
 # INSERT INTO games(title, art_cover, description) VALUES ('Möbius Front ''83','118389','Defend America from an alternate-universe America using state-of-the-art 1980s military hardware in this intricate and tactical turn-based strategy game.');
 # INSERT INTO games(title, art_cover, description) VALUES ('The MoneyMakers Rallye','118384','A turn-based rally through Europe with the goal of becoming the richest!');
 # INSERT INTO games(title, art_cover, description) VALUES ('My Time at Sandrock','118379','You''ll take the role of a fledgling Builder to Sandrock. It’s up to you and your trusty toolset to gather resources, construct machines, and fix up your workshop.');
@@ -108,11 +108,11 @@ USE capstone_db;
 --     IGNORE 1 LINES
 --     (title, release_date, description, critics_rating, art_cover, igdb_api_id);
 
-
-LOAD DATA LOCAL INFILE '/Users/amaroterrazas/Documents/csv/games.csv'
-    INTO TABLE games
-    FIELDS TERMINATED BY '|' ENCLOSED BY '"'
-    LINES TERMINATED BY '\n'
-    IGNORE 1 LINES
-    (title, release_date, description, critics_rating, art_cover, igdb_api_id);
+# USE game_db;
+# LOAD DATA LOCAL INFILE '/Users/amaroterrazas/Documents/csv/games.csv'
+#     INTO TABLE games
+#     FIELDS TERMINATED BY '|' ENCLOSED BY '"'
+#     LINES TERMINATED BY '\n'
+#     IGNORE 1 LINES
+#     (title, release_date, description, critics_rating, art_cover, igdb_api_id);
 

@@ -5,6 +5,8 @@
 #
 # USE operationCoop_db;
 # # USE capstone_db;
+
+# USE game_db;
 # INSERT INTO tags (name)
 # VALUES
 # ('foodie'),
@@ -20,7 +22,57 @@
 # ('Dance'),
 # ('Music'),
 # ('acting'),
-# ('traveling');
+# ('traveling'),
+# ('Gamer'),
+# ('gaming'),
+# ('ps'),
+# ('game'),
+# ('playstation'),
+# ('games'),
+# ('videogames'),
+# ('xbox'),
+# ('streamer'),
+# ('gta'),
+# ('pcgaming'),
+# ('nintendo'),
+# ('pubg'),
+# ('callofduty'),
+# ('follow'),
+# ('gamingcommunity'),
+# ('gamerlife'),
+# ('videogame'),
+# ('meme'),
+# ('pcgamer'),
+# ('like'),
+# ('bhfyp'),
+# ('instagamer'),
+# ('cod'),
+# ('instagaming'),
+# ('art'),
+# ('geek'),
+# ('pubgmobile'),
+# ('anime'),
+# ('youtuber'),
+# ('r'),
+# ('funny'),
+# ('gameplay'),
+# ('cosplay'),
+# ('nintendoswitch'),
+# ('esports'),
+# ('lol'),
+# ('destiny'),
+# ('freefire'),
+# ('gamersofinstagram'),
+# ('gamerguy'),
+# ('online'),
+# ('love'),
+# ('leagueoflegends'),
+# ('instagram'),
+# ('csgo'),
+# ('k'),
+# ('minecraft'),
+# ('instagood'),
+# ('pro');
 
 
 # USE operationCoop_db;
