@@ -95,13 +95,12 @@ public class Tag {
 //    }
 
 
-//    ---------- Adding in Games List
-        public List<Game> getGames () {
-            return games;
-        }
-        public void setGames (List < Game > games) {
-            this.games = games;
-        }
-
+    //    ---------- Adding in Games List
+    public List<Game> getGames () {
+        return games;
+    }
+    public void setGames (List < Game > games) {
+        this.games = games;
     }
 
+}

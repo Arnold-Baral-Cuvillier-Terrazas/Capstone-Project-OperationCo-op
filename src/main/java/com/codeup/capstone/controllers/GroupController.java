@@ -32,7 +32,7 @@ public class GroupController {
     public String showAllGroups(Model model) {
         model.addAttribute("groups", groupDao.findAll());
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "groups/index";
+        return "/groups/index";
     }
 
     //Mapping to get group/create.html
@@ -140,8 +140,8 @@ public class GroupController {
 //    return "redirect:/groups/profile";
 //}
 
-// ---------- Shows the users within the groups page
-   @GetMapping("/groups/users")
+    // ---------- Shows the users within the groups page
+    @GetMapping("/groups/users")
     public String showUsers(Model model) {
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
