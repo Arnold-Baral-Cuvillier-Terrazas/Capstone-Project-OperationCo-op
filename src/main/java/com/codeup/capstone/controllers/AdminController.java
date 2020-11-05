@@ -1,5 +1,4 @@
 package com.codeup.capstone.controllers;
-
 import com.codeup.capstone.models.Group;
 import com.codeup.capstone.models.User;
 import com.codeup.capstone.repositories.GroupRepository;
@@ -10,10 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 @Controller
 public class AdminController {
 
+    private final UserRepository userDao;
     private UserRepository userDao;
     private final GroupRepository groupDao;
 
@@ -22,12 +21,11 @@ public class AdminController {
         this.userDao = userDao;
         this.groupDao = groupDao;
     }
-
     //    print-out all the users
     @GetMapping("/admin")
     public String siteAdmin(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        Group group = (Group) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //        Group group = (Group) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (userDao.getOne(user.getId()).getSiteAdmin()) {
             model.addAttribute("users", userDao.findAll());
             return "admin/admin";
@@ -35,7 +33,6 @@ public class AdminController {
             return "users/login";
         }
     }
-
     //delete the user
     @PostMapping("/admin/delete")
     public String deleteProfile(@RequestParam long userId) {
