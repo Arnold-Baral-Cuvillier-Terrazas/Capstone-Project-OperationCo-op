@@ -17,13 +17,15 @@
                     <div class="usernames">
                         Psn info: <input id="psn" type="text" name="psnInfo" th:value="*{psnInfo}"/>
                         Steam info: <input id="steam" type="text" name="steamInfo" th:value="*{steamInfo}"/>
-                        twitch info: <input id="twitch" type="text" name="twitchInfo" th:value="*{twitchInfo}"/>
+                        twitch info: <input id="twitch" type="text" name="twitchInfo" th:value="*{twitchInfo}"/><br><br>
                         Xbox-live info: <input id="xbox" type="text" name="xboxLiveInfo" th:value="*{xboxLiveInfo}"/>
                         Nintendo info: <input id="ninetendo" type="text" name="nintendoInfo"
                                               th:value="*{nintendoInfo}"/>
 
+                        <div>
                         <label for="bio">Updated your bio</label>
-                        <input id="bio" type="text" name="bio" th:value="*{bio}"/>
+                        <input id="bio" type="text" name="bio" th:value="*{bio}" placeholder="type here!"/>
+                        </div>
                         <br>
 
                         <div class="tags">
@@ -34,6 +36,7 @@
                                 <label th:for="${tag.name}" th:text="${tag.name}"></label>
                             </div>
                         </div>
+
                         <input value="Save" type="submit"/>
 
                     </div>

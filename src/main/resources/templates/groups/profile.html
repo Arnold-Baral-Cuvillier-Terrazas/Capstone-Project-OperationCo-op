@@ -27,14 +27,6 @@
 
                 <button id="profile-btn2" class="pb" type="button">Update Profile Image</button>
 
-                <div class="reviews">
-                    <p> review:
-                        <i class="star fa fa-star checked" data-value="1"></i>
-                        <i class="star fa fa-star checked" data-value="2"></i>
-                        <i class="star fa fa-star checked" data-value="3"></i>
-                        <i class="star fa fa-star checked" data-value="4"></i>
-                        <i class="star fa fa-star checked" data-value="5"></i>
-                    </p></div>
 
                 <!--    Join Group Feature-->
                 <h2>Join our Group!</h2>
@@ -46,7 +38,7 @@
                 <h4>Description: </h4>
                 <p><span th:text="${group.description}"></span></p>
                 <div>
-                    <h4> Tags defines me : </h4>
+                    <h4> Tags defines our group : </h4>
                     <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"
                           th:text="${tag.name}"></span>
                 </div>
