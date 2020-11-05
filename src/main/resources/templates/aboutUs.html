@@ -11,14 +11,14 @@
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
     <style>
-        .jumbotron {
-            background-image: url("../img/game.png");
-            /*background-size: 100%;*/
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-        }
+        /*.container-fluid {*/
+        /*    background-image: url("../img/game2.jpeg");*/
+        /*    !*background-size: 100%;*!*/
+        /*    background-position: center;*/
+        /*    background-repeat: no-repeat;*/
+        /*    background-size: cover;*/
+        /*    background-attachment: fixed;*/
+        /*}*/
     </style>
 
 </head>
@@ -27,7 +27,6 @@
     <div th:replace="partials/sidebar :: sidebar"></div>
     <div id="page-content-wrapper">
         <nav th:replace="partials/navbar :: navbar"></nav>
-
 
         <div class="container-fluid page-body">
             <div class="jumbotron jumbotron-fluid my-4">
@@ -89,6 +88,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </div>
