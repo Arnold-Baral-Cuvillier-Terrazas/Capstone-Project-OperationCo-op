@@ -14,20 +14,20 @@
 <div class="user-list" th:each="user : ${users}">
     <div><p class="bold-font ">User ID: <span th:text="${user.id}">ID</span></p>
 
-       <form th:action="@{/admin/delete}" method="post">
-           <input type="hidden" name="userId" th:value="${user.id}">
-           <button value="button" type="submit">Delete</button>
-       </form>
+        <form th:action="@{/admin/delete}" method="post">
+            <input type="hidden" name="userId" th:value="${user.id}">
+            <button value="button" type="submit">Delete</button>
+        </form>
 
     </div>
     <p class="bold-font ">Username: <a th:href="@{/users/profile/${user.userName}}"><span
             th:text="${user.userName}"></span></a>
     </p>
 
-<!--    for print out all the -->
-<!--             model.addAttribute("users", usersDao.findAll());-->
-<!--            model.addAttribute("groups", groupsDao.findAll());-->
-<!--            model.addAttribute("games", gamesDao.count());-->
+    <!--    for print out all the -->
+    <!--             model.addAttribute("users", usersDao.findAll());-->
+    <!--            model.addAttribute("groups", groupsDao.findAll());-->
+    <!--            model.addAttribute("games", gamesDao.count());-->
 
 </div>
 

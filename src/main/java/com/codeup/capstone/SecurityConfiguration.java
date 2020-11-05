@@ -68,7 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/posts/*","/admin/delete", "/admin")
                 // pages that we DO want users to be logged in to view/access
                 .authenticated()
-        // for the previously mentioned Another Neat Tool Matched URL patterns, users should be authenticated (logged in) to access them
+                // for the previously mentioned Another Neat Tool Matched URL patterns, users should be authenticated (logged in) to access them
                 .and()
                 .cors()
                 .and()
