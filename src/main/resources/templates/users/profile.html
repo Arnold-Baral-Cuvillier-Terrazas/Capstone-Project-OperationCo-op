@@ -53,6 +53,17 @@
                             <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}"
                                   th:text="${tag.name}"></span>
                         </div>
+
+                        <br>
+                        <div class="inGroups">
+                            <h4>Groups in: </h4>
+                            <show_groupIn th:if="${user.groups}">
+                                <div th:each="group: ${user.groups}">
+                                    <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
+                                    <p th:text="${group.description}"></p>
+                                </div>
+                            </show_groupIn>
+                        </div>
                     </div>
 <!--                    Search BAR-->
 
@@ -69,15 +80,15 @@
                     </div>
                 </div>
             </div>
-            <div class="inGroups">
-            <h4>Groups in: </h4>
-            <show_groupIn th:if="${user.groups}">
-                <div th:each="group: ${user.groups}">
-                <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
-                    <p th:text="${group.description}"></p>
-                </div>
-            </show_groupIn>
-        </div>
+<!--            <div class="inGroups">-->
+<!--            <h4>Groups in: </h4>-->
+<!--            <show_groupIn th:if="${user.groups}">-->
+<!--                <div th:each="group: ${user.groups}">-->
+<!--                <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>-->
+<!--                    <p th:text="${group.description}"></p>-->
+<!--                </div>-->
+<!--            </show_groupIn>-->
+<!--        </div>-->
         </div>
     </div>
     <!-- user rating information-->

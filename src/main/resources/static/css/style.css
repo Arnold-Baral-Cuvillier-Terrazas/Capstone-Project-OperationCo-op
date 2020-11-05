@@ -94,7 +94,7 @@ button:hover, a:hover {
     margin-top: 2px;
 }
 
-.editP {
+.editP, .editG {
     /*background-image: url("../img/game.jpeg");*/
     background-color: darkgrey;
     /*opacity: .9;*/
