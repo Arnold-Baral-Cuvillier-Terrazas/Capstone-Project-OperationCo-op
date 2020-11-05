@@ -1,5 +1,9 @@
 
 USE operationCoop_db;
+<<<<<<< HEAD
+INSERT INTO user(email, full_name, user_name, password, birth_date)
+VALUES ('bijit@gmail.com', 'Bijit' ,'bijit16', '12345', '01/04/2005');
+=======
 INSERT INTO user(email, full_name, user_name, password, pronouns, birth_date)
 VALUES ('bijit@gmail.com', 'Bijit' ,'bijit16', '12345', 'he/his', '2000/02/03 22:31:01'),
        ('binjita@gmail.com', 'binjita' ,'binjita', 'binjita','she/her', '1900/02/06 22:31:01');
@@ -30,3 +34,4 @@ VALUES
 #          (2,2,5,3);
 
 
+>>>>>>> 078a2a675a54bd853b9214da648172898feb1024

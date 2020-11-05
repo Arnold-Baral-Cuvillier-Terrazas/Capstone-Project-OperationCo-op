@@ -1,7 +1,27 @@
 
-
-//File stack Api
-//------starting functionality for profile page
+//
+// //starting functionality for profile page
+//
+// // const options = {
+// //     onFileUploadFinished: file => {
+// //         // If you throw any error in this function it will reject the file selection.
+// //         // The error message will be displayed to the user as an alert.
+// //         if (file.size > 1000 * 1000) {
+// //             throw new Error('File too big, select something smaller than 1MB');
+// //         }
+// //         // console.log(file.url);
+// //
+// //         //fetch request
+// //         fetch(url , {
+// //             method: 'POST',
+// //             headers: {
+// //                 'Content-Type': 'application/x-www-form-urlencoded',
+// //             },
+// //             body: $.param({userId: userId, url: file.url})
+// //         });
+// //     }
+// // };
+//
 const options = {
     onUploadDone : updateImage ,
     accept: 'image/*',
@@ -12,28 +32,53 @@ const options = {
 function updateImage(result){
     const filedata = result.filesUploaded[0];
     console.log(filedata);
-    // $("#profileUrl").val(filedata.url);
-    $("#imgP").attr("src",filedata.url);
 
-    let formData = new FormData();
-    formData.append("userId", userId);
-    formData.append("url", filedata.url);
-    fetch("/profile/pic", {
-        method:"POST",
-        body:formData,
-    }).catch(err => { console.log(err) });
+    $("#profileUrl").val(filedata.url);
 
 }
 
+<<<<<<< HEAD
+// client.picker().open();
 
+
+=======
 //jquery functionality
+>>>>>>> 078a2a675a54bd853b9214da648172898feb1024
 $(document).ready(function() {
+
     //filestack
     console.log(url);
     $("#profile-btn").click(function(){
         stackClient.picker(options).open();
     });
 
+
+
 })
 
+//starting functionality for profile page
 
+
+const options = {
+    onUploadDone: updateImage,
+    accept: 'image/*',
+    maxSize: 10 * 1000 * 1000,
+    uploadInBackground: false
+}
+
+function updateImage(result) {
+    const filedata = result.filesUploaded[0];
+    console.log(filedata);
+    $("#profileUrl").val(filedata.url);
+}
+
+//jquery functcionality
+$(document).ready(function () {
+
+    //filestack
+    console.log(url);
+    $("#profile-btn").click(function () {
+        stackClient.picker(options).open();
+    });
+
+})

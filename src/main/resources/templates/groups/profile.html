@@ -3,24 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Show Groups</title>
-    <link th:replace="partials/links :: links"/>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
-
+<!--    <link th:replace="partials/links :: links"/>-->
 </head>
-
 <body>
+<<<<<<< HEAD
 <div id="wrapper" class="d-flex">
     <div th:replace="partials/sidebar :: sidebar"></div>
     <div id="page-content-wrapper">
         <nav th:replace="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
             <h1>Welcome to <span th:text="${group.name}"></span>'s Group Profile Page</h1>
+=======
+<!--<header th:replace="partials/header :: header"></header>-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
+<<<<<<< HEAD
+<h1>Welcome to <span th:text="${group.name}"></span>'s Pro
+    file Page</h1>
+
+<div class="groupProfile">
+
+    <div class="profileImg"></div>
+
+    <button  class="pb" type="button">Edit profile Image</button>
+
+    <div class="reviews">
+        <p> review:
+            <i class="star fa fa-star checked" data-value="1"></i>
+            <i class="star fa fa-star checked" data-value="2"></i>
+            <i class="star fa fa-star checked" data-value="3"></i>
+            <i class="star fa fa-star checked" data-value="4"></i>
+            <i class="star fa fa-star checked" data-value="5"></i>
+        </p></div>
+
+    <h4>Name: <span th:text="${group.name}"></span></h4>
+    <h4>Username: <span th:text="${group.description}"></span></h4>
+</div>
+
+<!--<button  class="ib" type="button">Edit profile</button>-->
+
+<form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}"><button>Edit</button></form>
+<form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}"><button>Delete</button></form>
+
+
+<br>
+<div class="bio"> Bio
+    <form>
+        <textarea> </textarea>
+    </form>
+
+</div>
+>>>>>>> 5fdeee5deb16e6362d6938b3128722188c6e6e84
+
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
+<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
+=======
             <h1>Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>
             <div class="groupProfile">
+<<<<<<< HEAD
 
 
                 <!--    adding profile picture-->
+=======
+>>>>>>> 5fdeee5deb16e6362d6938b3128722188c6e6e84
                 <div class="card">
 
                     <div class="profileImg">
@@ -29,6 +74,7 @@
                     </div>
                     <h4>Name: <span th:text="${group.name}"></span></h4>
                 </div>
+<<<<<<< HEAD
 
                 <button id="profile-btn2" class="pb" type="button">Update Profile Image</button>
                 <div class="profileImg">
@@ -76,9 +122,42 @@
                         </div>
                     </div>
                 </show_users>
+=======
 
-            </div>
+                <button id="profile-btn2" class="pb" type="button">Update Profile Image</button>
 
+                <div class="reviews">
+                    <p> review:
+                        <i class="star fa fa-star checked" data-value="1"></i>
+                        <i class="star fa fa-star checked" data-value="2"></i>
+                        <i class="star fa fa-star checked" data-value="3"></i>
+                        <i class="star fa fa-star checked" data-value="4"></i>
+                        <i class="star fa fa-star checked" data-value="5"></i>
+                    </p></div>
+>>>>>>> 5fdeee5deb16e6362d6938b3128722188c6e6e84
+
+                <!--    Join Group Feature-->
+                <h2>Join our Group!</h2>
+                <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">
+                    <input name="UserId" th:value="${user.id}" type="hidden">
+                    <button type="submit">Join Group</button>
+                </form>
+
+                <h4>Description: </h4>
+                <p><span th:text="${group.description}"></span></p>
+                <div>
+                    <h4> Tags defines me : </h4>
+                    <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"
+                          th:text="${tag.name}"></span>
+                </div>
+
+                <div class="group-users">
+                    <h4>Members in our Group:</h4>
+                    <show_users th:if="${group.users}">
+                        <div th:each="gUser: ${group.users}">
+                            <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>
+
+<<<<<<< HEAD
             <p><span th:text="${group.description}"></span></p>
 
 
@@ -99,6 +178,25 @@
                     </div>
                 </show_users>
             </div>
+=======
+                            <div th:if="${group.owner.id == user.id}">
+                                <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete
+                                    Member</a>
+                            </div>
+                        </div>
+                    </show_users>
+                </div>
+            </div>
+            <!--<button  class="ib" type="button">Edit profile</button>-->
+            <show_post th:if="${group.owner.id == user.id}">
+                <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">
+                    <button>Edit</button>
+                </form>
+                <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">
+                    <button>Delete</button>
+                </form>
+            </show_post>
+>>>>>>> 5fdeee5deb16e6362d6938b3128722188c6e6e84
         </div>
         <!--<button  class="ib" type="button">Edit profile</button>-->
         <show_post th:if="${group.owner.id == user.id}">
@@ -111,11 +209,13 @@
         </show_post>
     </div>
 </div>
+<<<<<<< HEAD
 </div>
+=======
+
+>>>>>>> 5fdeee5deb16e6362d6938b3128722188c6e6e84
 <!--<header th:replace="partials/header :: header"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-
-
 <script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
@@ -123,5 +223,6 @@
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/groupProfile.js}"></script>
+>>>>>>> 078a2a675a54bd853b9214da648172898feb1024
 </body>
 </html>
