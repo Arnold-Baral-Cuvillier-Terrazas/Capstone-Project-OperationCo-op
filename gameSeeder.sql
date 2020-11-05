@@ -8,4 +8,3 @@ LOAD DATA LOCAL INFILE '/Users/amaroterrazas/Documents/csv/games.csv'
     IGNORE 1 LINES
     (title, release_date, description, critics_rating, art_cover, igdb_api_id);
 
-
