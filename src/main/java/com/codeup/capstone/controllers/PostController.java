@@ -22,13 +22,12 @@ public class PostController {
     private final UserRepository userRepo;
     private final GroupRepository groupDao;
 
-    //    constructor
+    //--------- constructor
     public PostController(PostRepository postDao, UserRepository userRepo, GroupRepository groupDao) {
         this.postDao = postDao;
         this.groupDao = groupDao;
         this.userRepo = userRepo;
     }
-
 
 //    showing all the posts
     @GetMapping("/groups/posts/{id}")
