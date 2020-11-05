@@ -1,14 +1,18 @@
 package com.codeup.capstone.models;
-import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
 
     //   ------------------Instance variables-------------
@@ -16,19 +20,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
     @Column(nullable = false, length = 100, unique = true)
     private String userName;
 
-    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
-            " valid email address")
+    //    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
+//            " valid email address")
     @Column(nullable = false, unique = true)
     private String email;
 
     //one upper case, one lower case, one digit, one special character, minimum 8 characters in length
-    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$", message = "Password length must be at least 8 characters " +
-            "with one uppercase letter and one digit")
+//    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$", message = "Password length must be at least 8 characters " +
+//            "with one uppercase letter and one digit")
     @Column(nullable = false, length = 100)
     private String password;
+
 
     @Column(nullable = false, length = 100)
     private String fullName;
@@ -39,16 +45,13 @@ public class User {
     @Column(nullable = false, length = 100)
     private Date birthDate;
 
+
     @Column(length = 500)
     private String bio;
 
     @Column(length = 100)
     @ColumnDefault("true")
     private Boolean isSiteAdmin;
-
-    @Column(length = 100)
-    @ColumnDefault("true")
-    private Boolean isGroupAdmin;
 
     @Column(length = 100)
     private Boolean isBanned;
@@ -69,31 +72,68 @@ public class User {
     private String psnInfo;
 
     @Column(length = 500)
-    private String nintenDoInfo;
+    private String nintendoInfo;
 
     @Column(length = 500)
     private String discordInfo;
 
-// -----------   relationship with user and tag class
+    // -----------   relationship with user and tag class
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name="user_tags",
-            joinColumns={@JoinColumn(name="tag_id")},
-            inverseJoinColumns={@JoinColumn(name="user_id")}
+            name = "user_tags",
+            joinColumns = {@JoinColumn(name = "tag_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
     private List<Tag> tags;
 
+    //    creating relationship with group table
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "groups_users",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id")}
+    )
+    private List<Group> groups;
+
+    //  ----------  relationship with groups and Posts
+    //Owner to messages
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @JsonBackReference
+    private List<Post> posts;
+
+    //    //Many users to one group
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<Group> groupsOwned;
+
+    //    ** Amaro Terrazas ** Inputting Games Feature
+    @OneToMany(mappedBy = "user")
+    private List<Game> games;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="favorites",
+            joinColumns = {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="game_id")}
+    )
+    private List<Game> favorites;
+
+
+    //    for rating creating relationship with user
+    @OneToMany(mappedBy = "rating_user")
+    Set<UserRating> ratings_given;
+
+    @OneToMany(mappedBy = "rated_user")
+    Set<UserRating> ratings_received;
 
 //    ------------constructors----------------------------
 
-    public User() {
-    }
+    public User() {}
 
-    public User(long id, String userName, String email, String password,  String fullName,
-                String pronouns, Date birthDate, String bio, Boolean isSiteAdmin, Boolean isGroupAdmin,
-                Boolean isBanned, String profilePic, String twitchInfo, String steamInfo, String xboxLiveInfo,
-                String psnInfo, String nintenDoInfo,
-                String discordInfo,List<Tag> tags ) {
+    public User(long id, String userName, String email, String password, String fullName, String pronouns,
+                Date birthDate, String bio, Boolean isSiteAdmin, Boolean isBanned, String profilePic,
+                String twitchInfo, String steamInfo, String xboxLiveInfo, String psnInfo, String nintendoInfo,
+                String discordInfo, List<Tag> tags, List<Group> groups, List<Post> posts, List<Group> groupsOwned,
+                List<Game> games, List<Game> favorites, Set<UserRating> ratings_given, Set<UserRating> ratings_received) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -103,21 +143,25 @@ public class User {
         this.birthDate = birthDate;
         this.bio = bio;
         this.isSiteAdmin = isSiteAdmin;
-        this.isGroupAdmin = isGroupAdmin;
         this.isBanned = isBanned;
         this.profilePic = profilePic;
         this.twitchInfo = twitchInfo;
         this.steamInfo = steamInfo;
         this.xboxLiveInfo = xboxLiveInfo;
         this.psnInfo = psnInfo;
-        this.nintenDoInfo = nintenDoInfo;
+        this.nintendoInfo = nintendoInfo;
         this.discordInfo = discordInfo;
         this.tags = tags;
+        this.groups = groups;
+        this.posts = posts;
+        this.groupsOwned = groupsOwned;
+        this.games = games;
+        this.favorites = favorites;
+        this.ratings_given = ratings_given;
+        this.ratings_received = ratings_received;
     }
 
     // implement the Copy Constructor right here in the User model!
-    // We can call on this constructor from elsewhere in our code, and don't have to specify all of
-    // the User object's properties (like email, username, etc)
     public User(User copy) {
         this.id = copy.id; // VERY IMPORTANT. Many things won't work if you don't include this assignment
         this.email = copy.email;
@@ -127,6 +171,26 @@ public class User {
         this.pronouns = copy.pronouns;
         this.birthDate = copy.birthDate;
         this.bio = copy.bio;
+        this.games = copy.games;
+        this.favorites = copy.favorites;
+        this.groups = copy.groups;
+    }
+
+
+    public List<Game> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(List<Game> favorites) {
+        this.favorites = favorites;
+    }
+
+    public List<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<Group> groups) {
+        this.groups = groups;
     }
 
     //  ------------ getters and setters-------------------
@@ -250,12 +314,12 @@ public class User {
         this.psnInfo = psnInfo;
     }
 
-    public String getNintenDoInfo() {
-        return nintenDoInfo;
+    public String getNintendoInfo() {
+        return nintendoInfo;
     }
 
-    public void setNintenDoInfo(String nintenDoInfo) {
-        this.nintenDoInfo = nintenDoInfo;
+    public void setNintendoInfo(String nintendoInfo) {
+        this.nintendoInfo = nintendoInfo;
     }
 
     public String getDiscordInfo() {
@@ -282,11 +346,42 @@ public class User {
         this.tags = tags;
     }
 
-    public Boolean getGroupAdmin() {
-        return isGroupAdmin;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setGroupAdmin(Boolean groupAdmin) {
-        isGroupAdmin = groupAdmin;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Group> getGroupsOwned() {
+        return groupsOwned;
+    }
+
+    public void setGroupsOwned(List<Group> groupsOwned) {
+        this.groupsOwned = groupsOwned;
+    }
+
+    public List<Game> getGames(){
+        return games;
+    }
+    public void setGames(List<Game> games){
+        this.games = games;
+    }
+
+    public Set<UserRating> getRatings_given() {
+        return ratings_given;
+    }
+
+    public void setRatings_given(Set<UserRating> ratings_given) {
+        this.ratings_given = ratings_given;
+    }
+
+    public Set<UserRating> getRatings_received() {
+        return ratings_received;
+    }
+
+    public void setRatings_received(Set<UserRating> ratings_received) {
+        this.ratings_received = ratings_received;
     }
 }

@@ -1,31 +1,85 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Log In</title>-->
+<!--    <link th:replace="partials/links :: links"/>-->
+
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Log In</h1>-->
+<!--<div th:if="${param.error}">-->
+<!--    Invalid Username and Password.-->
+<!--</div>-->
+<!--<div th:if="${param.logout}">-->
+<!--    You have been logged out.-->
+<!--</div>-->
+<!--<form th:action="@{/login}" method="post">-->
+<!--    <label for="username"><strong>Username</strong></label>-->
+<!--    <input id="username" name="username" type="text"/>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <label for="password"><strong>Password</strong></label>-->
+<!--    <input id="password" name="password" type="password"/>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <input type="submit" value="Log In" />-->
+<!--</form>-->
+
+<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="UTF-8" />
-    <title>Log In</title>
-    <link th:replace="partials/links :: links"/>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>gamelogin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
-<body>
-<h1>Log In</h1>
-<div th:if="${param.error}">
-    Invalid Username and Password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <label for="username"><strong>Username</strong></label>
-    <input id="username" name="username" type="text"/>
-    <br>
-    <br>
-    <label for="password"><strong>Password</strong></label>
-    <input id="password" name="password" type="password"/>
-    <br>
-    <br>
-    <input type="submit" value="Log In" />
-</form>
 
-<scripts th:replace="partials/scripts :: scripts"></scripts>
+<body style="background: #200422;">
+<div class="container login">
+    <div class="row">
+        <div class="col">
+            <h1>Welcome Back</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3>Let's Sign You In</h3>
+        </div>
+    </div>
+    <div class="row" style="margin: 0;">
+        <div class="col-md-9 col-lg-8 col-xl-6 offset-md-2 offset-xl-3">
+            <form th:action="@{/login}" method="post">
+                <div>
+                    <i class="material-icons" style="width: 100%;text-align: center;">lock_open</i>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="username" name="username" type="text" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" id="password" name="password" type="password" placeholder="Password">
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit">Sign In</button>
+                    <a class="d-xl-flex justify-content-xl-center align-items-xl-end" th:href="@{/sign-up}">Not A User? Sign Up!</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

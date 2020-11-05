@@ -11,12 +11,8 @@ public class UserRating {
     private long id;
 
     @Column(nullable = false, length = 500)
-    private String rating;
+    private Integer rating;
 
-<<<<<<< HEAD
-    @Column(nullable = false, length = 500)
-    private String rating_user_id;
-=======
     @ManyToOne
     @JoinColumn(name = "rating_user_id")
     private User rating_user;
@@ -39,8 +35,10 @@ public class UserRating {
         this.rated_user = rated_user;
     }
 
+
     public UserRating() {
     }
+
 
     public long getId() {
         return id;
@@ -65,9 +63,12 @@ public class UserRating {
     public void setRating_user(User rating_user) {
         this.rating_user = rating_user;
     }
->>>>>>> 078a2a675a54bd853b9214da648172898feb1024
 
-    @Column(nullable = false, length = 500)
-    private String rated_user_id;
+    public User getRated_user() {
+        return rated_user;
+    }
 
+    public void setRated_user(User rated_user) {
+        this.rated_user = rated_user;
+    }
 }

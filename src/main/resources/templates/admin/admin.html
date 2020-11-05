@@ -14,30 +14,23 @@
 <div class="user-list" th:each="user : ${users}">
     <div><p class="bold-font ">User ID: <span th:text="${user.id}">ID</span></p>
 
-       <form th:action="@{/admin/delete}" method="post">
-           <input type="hidden" name="userId" th:value="${user.id}">
-           <button value="button" type="submit">Delete</button>
-       </form>
+        <form th:action="@{/admin/delete}" method="post">
+            <input type="hidden" name="userId" th:value="${user.id}">
+            <button value="button" type="submit">Delete</button>
+        </form>
 
     </div>
     <p class="bold-font ">Username: <a th:href="@{/users/profile/${user.userName}}"><span
             th:text="${user.userName}"></span></a>
     </p>
 
-<!--    <p class="bold-font" id="admin-status">User Role:-->
-<!--        <th:block th:if="${user.getSiteAdmin()}">Admin</th:block>-->
-<!--        <th:block th:if="${!user.getSiteAdmin()}">User</th:block>-->
-<!--    </p>-->
+    <!--    for print out all the -->
+    <!--             model.addAttribute("users", usersDao.findAll());-->
+    <!--            model.addAttribute("groups", groupsDao.findAll());-->
+    <!--            model.addAttribute("games", gamesDao.count());-->
 
 </div>
 
-<!--<div class="groups">-->
-<!--    <h1 class="center-align">GROUPS</h1>-->
-<!--    <div class="group-list" th:each="group : ${groups}"></div>-->
-<!--        <div><p class="bold-font ">Group ID: <span th:text="${group.id}">ID</span></p></div>-->
-<!--        <p class="bold-font "> Group Username: <a th:href="@{/users/profile/${user.userName}}"><span-->
-<!--                th:text="${user.userName}"></span></a>-->
-<!--        </p>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
