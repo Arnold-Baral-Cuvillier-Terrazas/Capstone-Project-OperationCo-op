@@ -3,4 +3,4 @@ const SECRET_KEY = "g0feg33v9vnvhqve30rxviotadgovc";
 const BEARER = "zgnc4e6yqzwrehts1oyivrfpfogtts";
 // const API_URL = "http://localhost:8010/proxy/v4";
 
-const API_URL = "https://api.igdb.com/v4/games";
+const API_URL = "https://api.igdb.com/v4/";
