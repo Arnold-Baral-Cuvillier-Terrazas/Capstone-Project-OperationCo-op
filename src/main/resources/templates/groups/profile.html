@@ -48,33 +48,33 @@
                           th:text="${tag.name}"></span>
                 </div>
 
-            <button id="profile-btn2" class="pb" type="button">Update Profile Image</button>
 
-            <input type="hidden" id="rating" name="rating" value="-1">
-            <div class="rating">
-                <i class="ratings_stars fa fa-star" data-rating="1"></i>
-                <i class="ratings_stars fa fa-star" data-rating="2"></i>
-                <i class="ratings_stars fa fa-star" data-rating="3"></i>
-                <i class="ratings_stars fa fa-star" data-rating="4"></i>
-                <i class="ratings_stars fa fa-star" data-rating="5"></i>
-            </div>
+<!--            <input type="hidden" id="rating" name="rating" value="-1">-->
+<!--            <div class="rating">-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="1"></i>-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="2"></i>-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="3"></i>-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="4"></i>-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="5"></i>-->
+<!--            </div>-->
             <!--    Join Group Feature-->
-            <h2>Join our Group!</h2>
-            <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">
-                <input name="UserId" th:value="${user.id}" type="hidden">
-                <button type="submit">Join Group</button>
-            </form>
+<!--            <h2>Join our Group!</h2>-->
+<!--            <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
+<!--                <input name="UserId" th:value="${user.id}" type="hidden">-->
+<!--                <button type="submit">Join Group</button>-->
+<!--            </form>-->
 
-            <h4>Description: </h4>
-            <br>
+<!--            <h4>Description: </h4>-->
+<!--            <br>-->
 
 
-            <p><span th:text="${group.description}"></span></p>
-            <div>
-                <h4> Tags defines me : </h4>
-                <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"
-                      th:text="${tag.name}"></span>
-            </div>
+<!--            <p><span th:text="${group.description}"></span></p>-->
+<!--            <div>-->
+<!--                <h4> Tags defines me : </h4>-->
+<!--                <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"-->
+<!--                      th:text="${tag.name}"></span>-->
+<!--            </div>-->
+
             <div class="group-users">
                 <h4>Members in our Group:</h4>
                 <show_users th:if="${group.users}">

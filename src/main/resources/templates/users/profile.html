@@ -82,15 +82,15 @@
                         </div>
                     </div>
 
-                    <div class="inGroups">
-                        <h4>Groups in: </h4>
-                        <show_groupIn th:if="${user.groups}">
-                            <div th:each="group: ${user.groups}">
-                                <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
-                                <p th:text="${group.description}"></p>
-                            </div>
-                        </show_groupIn>
-                    </div>
+<!--                    <div class="inGroups">-->
+<!--                        <h4>Groups in: </h4>-->
+<!--                        <show_groupIn th:if="${user.groups}">-->
+<!--                            <div th:each="group: ${user.groups}">-->
+<!--                                <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>-->
+<!--                                <p th:text="${group.description}"></p>-->
+<!--                            </div>-->
+<!--                        </show_groupIn>-->
+<!--                    </div>-->
 
 
                     <!--                    Search BAR-->
