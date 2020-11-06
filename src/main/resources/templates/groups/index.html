@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 
-</head>
-<body>
-
-<h1>This is the groups index page!</h1>
-
-</body>
-</html>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
@@ -28,15 +16,16 @@
         <div class="container-fluid page-body">
             <div class="container-fluid">
 
-                <h1 class="text-center">Welcome to the Groups Page!</h1>
-                <div class="row">
-                    <div th:each="group : ${groups}" class="card col-sm-6 border-info mb-3" style="width: 20rem;">
-                        <div class="card-body">
-                            <h5 th:text="${group.name}" class="card-title"></h5>
-                            <p th:text="${group.description}" class="card-text"></p>
-                           <button><a th:href="'/groups/profile/' + ${group.id}" class="card-link">Checkout</a></button>
+                <h1 class="text-center mt-2">Welcome to the Groups Page!</h1>
+                <div class="row d-flex justify-content-center ">
+                    <div th:each="group : ${groups}" class="card col-4 border-info mb-3 mx-1 text-white bg-dark "
+                         style="width: 15rem; min-height:13rem">
+                            <div class="card-body  ">
+                                <h5 th:text="${group.name}" class="card-title"></h5>
+                                <p th:text="${group.description}" class="card-text"></p>
+                                <button><a th:href="'/groups/profile/' + ${group.id}" class="checkout ">Checkout</a></button>
+                            </div>
                         </div>
-                    </div>
                 </div>
                 <form style="display: inline" th:action="@{'/groups/create/'}">
                     <button>Create A Group</button>
