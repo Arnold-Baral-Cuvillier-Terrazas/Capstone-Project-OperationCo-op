@@ -33,8 +33,10 @@
                 <button id="profile-btn2" class="pb" type="button">Update Profile Image</button>
 
 
+            <a th:href="@{'/groups/posts/' + ${group.id}}">Chatting</a>
+
                 <!--    Join Group Feature-->
-                <h2>Join our Group!</h2>
+<!--                <h2>Join our Group!</h2>-->
                 <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">
                     <input name="UserId" th:value="${user.id}" type="hidden">
                     <button type="submit">Join Group</button>
