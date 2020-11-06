@@ -32,7 +32,7 @@ public class GroupController {
     public String showAllGroups(Model model) {
         model.addAttribute("groups", groupDao.findAll());
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "/groups/index";
+        return "groups/index";
     }
 
     //Mapping to get group/create.html
@@ -179,3 +179,7 @@ public class GroupController {
 //        return "/groups/search";
 //    }
 }
+
+// ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes
+// ----------- FOR (ORIGIN) Comment below and  UnComment on TOP for file mapping purpose
+

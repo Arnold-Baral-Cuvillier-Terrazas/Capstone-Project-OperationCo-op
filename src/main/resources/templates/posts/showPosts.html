@@ -19,9 +19,17 @@
     </style>
 </head>
 <!--<header th:replace="partials/head :: head"></header>-->
+
+<!--<header th:replace="partials/head :: head"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <div class="main">
+<body>
+<div id="wrapper" class="d-flex">
+    <div id="page-content-wrapper">
+        <nav th:replace="partials/navbar :: navbar"></nav>
+        <div class="container-fluid page-body">
 <main class="container">
+
     <h1> Welcome to message dashboard </h1>
 
     <div class="texts">
@@ -57,7 +65,10 @@
     </div>
 </main>
 </div>
+    </div>
+</div>
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
+</div>
 </html>

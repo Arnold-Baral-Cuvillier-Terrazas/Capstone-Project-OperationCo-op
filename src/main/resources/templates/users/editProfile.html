@@ -26,7 +26,13 @@
 <!--        <nav th:replace="partials/navbar :: navbar"></nav>-->
 <!--        <div class="container-fluid page-body">-->
 
-            <div class="editP" >
+<!--<nav th:insert="partials/navbar :: navbar"></nav>-->
+<!--<div id="wrapper m-2" class="d-flex">-->
+<!--&lt;!&ndash;    <div th:replace="partials/sidebar :: sidebar"></div>&ndash;&gt;-->
+<!--    <div id="page-content-wrapper">-->
+<!--        <div class="container-fluid page-body">-->
+
+            <div class="editP">
                 <h4>Please Edit your profile information</h4>
                 <br>
                 <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">

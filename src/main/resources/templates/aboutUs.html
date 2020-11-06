@@ -13,10 +13,9 @@
 </head>
 <body>
 <div id="wrapper" class="d-flex">
-    <div th:replace="partials/sidebar :: sidebar"></div>
+<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
     <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-
+        <nav th:insert="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
             <div class="jumbotron jumbotron-fluid my-4">
                 <div class="container p-0 w-100">
