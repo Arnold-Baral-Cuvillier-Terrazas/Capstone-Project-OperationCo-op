@@ -45,13 +45,13 @@
 
                         <!-- user rating information-->
 
-                        <div th:each="rating : ${user.ratings_received}">
-                            <p th:text="${rating.rating}"></p>
-                        </div>
+<!--                        <div th:each="rating : ${user.ratings_received}">-->
+<!--                            <p th:text="${rating.rating}"></p>-->
+<!--                        </div>-->
 
                         <!--        User bio and tags area-->
                         <div>
-                            <h5><a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
+                            <h5><a th:href="@{'/users/edit/' + ${user.id}}"><i class="fas fa-user-edit"></i></a></h5>
                         </div>
 
                         <div class="bio">
@@ -64,7 +64,25 @@
                             <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}"
                                   th:text="${tag.name}"></span>
                         </div>
+
+                        <br>
+                        <div class="inGroups">
+                            <h4>Groups in: </h4>
+                            <div class="card" style="width: 50rem;">
+                            <show_groupIn th:if="${user.groups}">
+                                <div th:each="group: ${user.groups}">
+                                    <div class="card-header">
+                                        <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                    <p th:text="${group.description}"></p>
+                                    </ul>
+                                </div>
+                            </show_groupIn>
+                            </div>
+                        </div>
                     </div>
+
                     <!--                    Search BAR-->
 
                     <div id="favGames">
@@ -80,15 +98,7 @@
                     </div>
                 </div>
             </div>
-            <div class="inGroups">
-                <h4>Groups in: </h4>
-                <show_groupIn th:if="${user.groups}">
-                    <div th:each="group: ${user.groups}">
-                        <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
-                        <p th:text="${group.description}"></p>
-                    </div>
-                </show_groupIn>
-            </div>
+
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@ i {
 }
 
 button {
-    background-color: skyblue;
+    background-color: whitesmoke;
 }
 
 .pb,.ib {
@@ -92,4 +92,14 @@ button:hover, a:hover {
 
 .jumbotron {
     margin-top: 2px;
+}
+
+.editP, .editG {
+    /*background-image: url("../img/bg.jpeg");*/
+    background-color: skyblue;
+    /*opacity: .9;*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }

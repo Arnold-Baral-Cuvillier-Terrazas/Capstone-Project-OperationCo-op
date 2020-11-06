@@ -87,7 +87,9 @@ public class GameController {
     public String showGames(Model model) {
         List<Game> games = gameRepo.findAll();
         model.addAttribute("games", games);
-        return "games/games";
+
+      return "games/games";
+      
     }
     @GetMapping("/games/search")
     public String showGame(@RequestParam String term, Model model){

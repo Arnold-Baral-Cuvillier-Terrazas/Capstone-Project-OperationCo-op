@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <title>Edit user Profile</title>
     <link th:replace="partials/links :: links"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <style>
+       /*.editP {*/
+       /*     background-image: url("../img/game3.jpg");*/
+       /*    background-color: cornflowerblue;*/
+       /*     !*opacity: .9;*!*/
+       /*     background-position: center;*/
+       /*     background-repeat: no-repeat;*/
+       /*     background-size: cover;*/
+       /*     background-attachment: fixed;*/
+       /* }*/
+    </style>
 </head>
 <body>
 <nav th:insert="partials/navbar :: navbar"></nav>
@@ -11,8 +23,9 @@
 <!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
     <div id="page-content-wrapper">
         <div class="container-fluid page-body">
-            <div class="container">
-                <h1>Editing Information</h1>
+            <div class="editP" >
+                <h4>Please Edit your profile information</h4>
+                <br>
                 <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
                     <div class="usernames">
                         Psn info: <input id="psn" type="text" name="psnInfo" th:value="*{psnInfo}"/>
@@ -23,6 +36,8 @@
                                               th:value="*{nintendoInfo}"/>
 
                         <div>
+                            <br>
+                            <br>
                         <label for="bio">Updated your bio</label>
                         <input id="bio" type="text" name="bio" th:value="*{bio}" placeholder="type here!"/>
                         </div>
