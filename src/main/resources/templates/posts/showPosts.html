@@ -4,34 +4,59 @@
     <meta charset="UTF-8">
     <title>Show All Posts</title>
     <link th:replace="partials/links :: links"/>
+    <style>
+        .postcard{
+            width:100%;
+            height:auto;
+        }
+        .time,.icons,.icons1{
+            padding-left:2em;
+        }
+        /*.main{*/
+        /*    background-image: url("../img/background.jpeg");*/
+        /*    background-color: cornflowerblue;*/
+        /*}*/
+    </style>
 </head>
 <!--<header th:replace="partials/head :: head"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-<body>
+<div class="main">
 <main class="container">
     <h1> Welcome to message dashboard </h1>
+
     <div class="texts">
         <show_post th:if="${posts}">
+
+            <div class="postcard" >
             <div th:each="item : ${posts}">
-                <a th:href="'/groups/posts/delete/'+ ${item.id}"> Delete</a>
-                <a th:href="'/groups/posts/edit/'+ ${item.id}"> Edit</a>
-                <!--            <div style="display: inline-flex; align-items: center">-->
-                <h4 th:text="${item.message_body}"></h4>
                 <img th:src="${item.getUser().getProfilePic()}"style="width:5em;height:5em; object-fit:cover">
-                <!--            </div>-->
+                <!--            <div style="display: inline-flex; align-items: center">-->
+                <div class="part1 d-flex justify-content-start">
+                <h5 th:text="${item.message_body}"></h5> <a class="icons" th:href="'/groups/posts/delete/'+ ${item.id}"><i class="fas fa-trash-alt"></i></a>
+                <a class="icons1" th:href="'/groups/posts/edit/'+ ${item.id}"><i class="fas fa-edit"></i></a>
+                </div>
+                <!--
+                      </div>-->
+
+                <div class="part2 d-flex justify-content-start">
                 <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
-                <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
+                <p class="time" th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
+                </div>
+
+                <hr>
+            </div>
             </div>
         </show_post>
 
         <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post" th:object="${post}">
-            <input th:field="*{message_body}"  placeholder="start typing!">
+            <input  style="width:100%" th:field="*{message_body}"  placeholder="start typing!">
             <br>
             <br>
-            <input type="submit"/>
+            <input  type="submit"/>
         </form>
     </div>
 </main>
+</div>
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
