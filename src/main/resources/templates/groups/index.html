@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:replace="partials/links :: links"/>
+    <style>
+       #head {
+           margin: 60px 0 10px;
+           justify-self: center;
+           display: flex;
+           justify-content: center;
+       }
+    </style>
 </head>
 
 <body>
@@ -15,7 +23,7 @@
         <div class="container-fluid page-body">
             <div class="container-fluid">
 
-                <h1 class="text-center mt-2">Welcome to the Groups Page!</h1>
+                <h1 id="head" class="text-center mt-2">Welcome to the Groups Page!</h1>
                 <div class="row d-flex justify-content-center ">
                     <div th:each="group : ${groups}" class="card col-4 border-info mb-3 mx-1 text-white bg-dark "
                          style="width: 15rem; min-height:13rem">
