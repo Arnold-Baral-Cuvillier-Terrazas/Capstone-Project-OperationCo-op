@@ -58,7 +58,7 @@
             <!--                <h4>Members in our Group:</h4>-->
             <!--                <show_users th:if="${group.users}">-->
             <!--                    <div th:each="gUser:-->
-            <!--                    ${group.users}">-->
+            <!--                                ${group.users}">-->
             <!--                        &lt;!&ndash;                <p th:text="${gUser.getFullName()}"></p>&ndash;&gt;-->
             <!--                        <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>-->
 
@@ -99,6 +99,30 @@
                     </div>
                 </div>
             </div>
+            <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        Group Members
+                    </div>
+                    <div th:each="gUser:
+                                ${group.users}">
+                        <ul class="list-group list-group-flush">
+                            <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>
+                            <!--                            <li class="list-group-item">Dapibus ac facilisis in</li>-->
+                            <!--                            <li class="list-group-item">Vestibulum at eros</li>-->
+                        </ul>
+                    </div>
+                </show_users>
+            </div>
+
+            <!--                <p th:text="${gUser.getFullName()}"></p>-->
+            <!--                    <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>-->
+
+            <!--                    <div th:if="${group.owner.id == user.id}">-->
+            <!--                        <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete-->
+            <!--                            Member</a>-->
+            <!--                    </div>-->
+
+
         </div>
     </div>
 </div>
