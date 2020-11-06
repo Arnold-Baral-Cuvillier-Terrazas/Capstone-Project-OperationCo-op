@@ -4,14 +4,18 @@
     <meta charset="UTF-8"/>
     <title>Create Group</title>
     <link th:replace="partials/links :: links"/>
+    <style>
+
+    </style>
 </head>
 <body>
-<div id="wrapper" class="d-flex">
-    <div th:replace="partials/sidebar :: sidebar"></div>
-    <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-        <div class="container-fluid page-body">
-            <div class="container-fluid">
+<!--<div id="wrapper" class="d-flex">-->
+<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
+<!--    <div id="page-content-wrapper">-->
+<!--        <nav th:replace="partials/navbar :: navbar"></nav>-->
+<!--        <div class="container-fluid page-body">-->
+<!--            <div class="container-fluid">-->
+
                 <!--<header th:replace="partials/head :: head"></header>-->
                 <h1 class="text-center">Edit Group!</h1>
                 <form th:action="'/groups/edit/' + ${editGroup.id}" method="post" th:object="${editGroup}">

@@ -6,23 +6,26 @@
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <style>
-       /*.editP {*/
-       /*     background-image: url("../img/game3.jpg");*/
-       /*    background-color: cornflowerblue;*/
-       /*     !*opacity: .9;*!*/
-       /*     background-position: center;*/
-       /*     background-repeat: no-repeat;*/
-       /*     background-size: cover;*/
-       /*     background-attachment: fixed;*/
-       /* }*/
+        .editP {
+            margin: auto;
+            width: 80%;
+            border: 3px solid orange;
+            padding-left: 20px;
+
+        }
+        .name{
+            padding-right:1em;
+        }
+
     </style>
 </head>
 <body>
-<div id="wrapper" class="d-flex">
-    <div th:replace="partials/sidebar :: sidebar"></div>
-    <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-        <div class="container-fluid page-body">
+<!--<div id="wrapper" class="d-flex">-->
+<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
+<!--    <div id="page-content-wrapper">-->
+<!--        <nav th:replace="partials/navbar :: navbar"></nav>-->
+<!--        <div class="container-fluid page-body">-->
+
             <div class="editP" >
                 <h4>Please Edit your profile information</h4>
                 <br>
@@ -39,26 +42,27 @@
                             <br>
                             <br>
                         <label for="bio">Updated your bio</label>
-                        <input id="bio" type="text" name="bio" th:value="*{bio}" placeholder="type here!"/>
+                        <input id="bio" type="text" name="bio" th:value="*{bio}" placeholder="type here!" />
                         </div>
                         <br>
 
                         <div class="tags">
-                            <h4>Please select the interests : </h4>
+                            <h4>Please select your interests : </h4>
+                            <div class="row">
                             <div th:each="tag : ${tagsList}">
-                                <input type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}"
+                                <input class="box" type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}"
                                        name="tags" th:value="${tag.id}"/>
-                                <label th:for="${tag.name}" th:text="${tag.name}"></label>
+                                <label class="name" th:for="${tag.name}" th:text="${tag.name}"></label>
+                            </div>
                             </div>
                         </div>
 
                         <input value="Save" type="submit"/>
-
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-</div>
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 </body>
 </html>
