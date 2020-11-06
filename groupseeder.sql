@@ -2,17 +2,24 @@ USE operationcoop_db;
 
 INSERT INTO tags (name)
 VALUES
-('foodie'),
-('Cooking'),
-('Animals'),
-('Plants'),
-('Vegan'),
-('non-veg'),
-('Art'),
-('DIY'),
-('Action'),
-('Coder'),
-('Dance'),
-('Music'),
-('acting'),
-('traveling');
+('Groupies'),
+('Gamer Groupies'),
+('Squad'),
+('RPG Groupies'),
+('Competitive Groupies'),
+('Social Groupies'),
+('EA Sports Groupies'),
+('Racing Groupies'),
+('Trivia Groupies'),
+('LateNight Groupies'),
+('LIT Groupies'),
+('LGBTQ Groupies'),
+('FUN Groupies'),
+('PC Groupies'),
+('Mobile Groupies'),
+('PS4 Groupies'),
+('XBOX Groupies'),
+('Nintendo Groupies'),
+('PC Groupies');
+
+
