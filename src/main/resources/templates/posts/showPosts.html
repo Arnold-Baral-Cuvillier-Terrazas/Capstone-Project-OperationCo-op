@@ -8,6 +8,12 @@
 <!--<header th:replace="partials/head :: head"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <body>
+<header th:replace="partials/head :: head"></header>
+<div id="wrapper" class="d-flex">
+<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
+    <div id="page-content-wrapper">
+        <nav th:replace="partials/navbar :: navbar"></nav>
+        <div class="container-fluid page-body">
 <main class="container">
     <h1> Welcome to message dashboard </h1>
     <div class="texts">

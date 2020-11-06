@@ -10,10 +10,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/Features-Boxed.css">
     <link th:replace="partials/links :: links"/>
+
+
+
+    <!--    <link th:replace="partials/links :: links"/>-->
+
     <link rel="stylesheet" th:href="@{/css/home.css}">
+
 </head>
 
 <body>
+
+<!--<header th:replace="partials/header :: header"></header>-->
+<nav th:insert="partials/navbar :: navbar"></nav>
+
+<h1>Home Page</h1>
+
 <div class="container-fluid">
     <div class="row split-screen">
         <div class="col-12 col-lg-6 col-xl-6">
@@ -61,8 +73,14 @@
                                             <a class="btn btn-primary" type="button" th:href="@{/aboutUs}">About Us</a></p>
                                     </div>
 
-<div class="container">
+
+<!--<div class="container">-->
 <!--    <img src="game.png" alt="welcome board" width="auto" >-->
+
+<!--    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">-->
+<!--        Single toggle-->
+<!--    </button>-->
+<!--</div>-->
     <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
         Dud
     </button>
