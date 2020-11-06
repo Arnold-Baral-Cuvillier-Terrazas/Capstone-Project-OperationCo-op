@@ -8,28 +8,34 @@
 <!--<header th:replace="partials/head :: head"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <body>
+<header th:replace="partials/head :: head"></header>
+<div id="wrapper" class="d-flex">
+<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
+    <div id="page-content-wrapper">
+        <nav th:replace="partials/navbar :: navbar"></nav>
+        <div class="container-fluid page-body">
 <main class="container">
     <h1> Welcome to message dashboard </h1>
     <div class="texts">
-    <show_post th:if="${posts}">
-        <div th:each="item : ${posts}">
-            <a th:href="'/groups/posts/delete/'+ ${item.id}"> Delete</a>
-            <a th:href="'/groups/posts/edit/'+ ${item.id}"> Edit</a>
-<!--            <div style="display: inline-flex; align-items: center">-->
-            <h4 th:text="${item.message_body}"></h4>
-            <img th:src="${item.getUser().getProfilePic()}"style="width:5em;height:5em; object-fit:cover">
-<!--            </div>-->
-            <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
-            <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
-        </div>
-    </show_post>
+        <show_post th:if="${posts}">
+            <div th:each="item : ${posts}">
+                <a th:href="'/groups/posts/delete/'+ ${item.id}"> Delete</a>
+                <a th:href="'/groups/posts/edit/'+ ${item.id}"> Edit</a>
+                <!--            <div style="display: inline-flex; align-items: center">-->
+                <h4 th:text="${item.message_body}"></h4>
+                <img th:src="${item.getUser().getProfilePic()}"style="width:5em;height:5em; object-fit:cover">
+                <!--            </div>-->
+                <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
+                <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
+            </div>
+        </show_post>
 
-    <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post" th:object="${post}">
-        <input th:field="*{message_body}"  placeholder="start typing!">
-        <br>
-        <br>
-        <input type="submit"/>
-    </form>
+        <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post" th:object="${post}">
+            <input th:field="*{message_body}"  placeholder="start typing!">
+            <br>
+            <br>
+            <input type="submit"/>
+        </form>
     </div>
 </main>
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
