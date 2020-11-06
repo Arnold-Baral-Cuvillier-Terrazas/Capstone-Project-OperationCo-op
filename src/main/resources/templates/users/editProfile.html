@@ -6,10 +6,10 @@
     <link th:replace="partials/links :: links"/>
 </head>
 <body>
-<div id="wrapper" class="d-flex">
+<nav th:insert="partials/navbar :: navbar"></nav>
+<div id="wrapper m-2" class="d-flex">
 <!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
     <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
             <div class="container">
                 <h1>Editing Information</h1>

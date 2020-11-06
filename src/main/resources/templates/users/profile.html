@@ -7,6 +7,7 @@
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <!--<div class="box">-->
 
 <!--    <div>-->
@@ -15,10 +16,10 @@
 
 
     <div class="profile">
-        <div id="wrapper" class="d-flex">
+        <div id="wrapper m-2" class="d-flex">
 <!--            <div th:replace="partials/sidebar :: sidebar"></div>-->
             <div id="page-content-wrapper">
-                <nav th:replace="partials/navbar :: navbar"></nav>
+
                 <div class="container-fluid page-body">
                     <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
                     <div class="profile">
@@ -98,6 +99,6 @@
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/userProfile.js}"></script>
-<script th:src="@{/js/search.js}"></script>
+
 </body>
 </html>
