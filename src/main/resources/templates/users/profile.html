@@ -4,111 +4,227 @@
     <meta charset="UTF-8">
     <title>Profile page</title>
     <link th:replace="partials/links :: links"/>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <link th:href="@{/css/profile.css}" rel="stylesheet"/>
 </head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
-<!--<div class="box">-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+<div class="container">
+    <h1 class="h3 mb-3">Profile</h1>
+    <div class="row">
+        <!--Left Card Panel Containing User Info-->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Profile Details</h5>
+                </div>
 
-    <div>
-        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>
-    </div>
-<div class="profile">
-        <div id="wrapper" class="d-flex">
-            <div th:replace="partials/sidebar :: sidebar"></div>
-
-<!--    <div>-->
-<!--        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
-<!--    </div>-->
-
-
-    <div class="profile">
-        <div id="wrapper m-2" class="d-flex">
-<!--            <div th:replace="partials/sidebar :: sidebar"></div>-->
-            <div id="page-content-wrapper">
-
-                <div class="container-fluid page-body">
-                    <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
-                    <div class="profile">
-
-
-                        <!--        card for user Information-->
-
-                        <div class="card">
-                            <div class="profileImg">
-                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
-                            </div>
-                            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)
-                            </h6>
-                            <h6>Username: <span th:text="${user.userName}"></span></h6>
-                            <h6>Email: <span th:text="${user.email}"></span></h6>
-                            <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>
-                            <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>
-                            <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>
-                            <h6>XboxLive<span th:text="${user.xboxLiveInfo}"></span></h6>
-                            <h6>NintendoInfo:<span th:text="${user.nintendoInfo}"></span></h6>
-                        </div>
-                        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
-
-                        <!-- user rating information-->
-
-<!--                        <div th:each="rating : ${user.ratings_received}">-->
-<!--                            <p th:text="${rating.rating}"></p>-->
-<!--                        </div>-->
-
-                        <!--        User bio and tags area-->
-                        <div>
-                            <h5><a th:href="@{'/users/edit/' + ${user.id}}"><i class="fas fa-user-edit"></i></a></h5>
-                        </div>
-
-                        <div class="bio">
-                            <h4>About me:<br></h4>
-                            <p><span th:text="${user.bio}"></span></p>
-                        </div>
-
-                        <div>
-                            <h4> Tags defines me : </h4>
-                            <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}"
-                                  th:text="${tag.name}"></span>
-                        </div>
-
-                        <br>
-                        <div class="inGroups">
-                            <h4>Groups in: </h4>
-                            <div class="card" style="width: 50rem;">
-                            <show_groupIn th:if="${user.groups}">
-                                <div th:each="group: ${user.groups}">
-                                    <div class="card-header">
-                                        <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                    <p th:text="${group.description}"></p>
-                                    </ul>
-                                </div>
-                            </show_groupIn>
-                            </div>
-                        </div>
+                <!--Basic User Information Card-->
+                <div class="card-body text-center">
+                    <div class="profileImg">
+                        <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
                     </div>
+                    <h4 class="card-title mb-0"><span th:text="${user.fullName}"></span></h4>
+                    <div class="text-muted mb-2"> @<span th:text="${user.userName}"></span></div>
 
-                    <!--                    Search BAR-->
+                    <div>
+                        <a class="btn btn-primary btn-sm" th:href="@{'/users/edit/' + ${user.id}}">Edit Profile</a>
+                        <a class="pb" type="button" href="#">Change Profile Pic</a>
+                    </div>
+                </div>
+                <hr class="my-0">
 
-                    <div id="favGames">
-                        <h4> My Favorite Games: </h4>
-                        <show_games th:if="${user.favorites}">
-                            <div th:each="game: ${user.favorites}">
-                                <img th:src="${game.art_cover}"/>
-                                <h2 th:text="${game.title}"></h2>
-                                <p th:text="${game.description}"></p>
-                                <br>
+                <!--Bio Card-->
+                <div class="card-body">
+                    <h5 class="h6 card-title">About</h5>
+                    <p><span th:text="${user.bio}"></span></p>
+                </div>
+                <hr class="my-0">
+
+                <!--Social Media Card-->
+                <div class="card-body">
+                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <a class="btn" type="button">
+                        <i class="fab-fa-discord"></i>
+                        <span th:text="${user.twitchInfo}"></span>
+                    </a>
+                    <a class="btn" type="button">
+                        <i class="fab-fa-discord"></i>
+                        <span th:text="${user.discordInfo}"></span>
+                    </a>
+                    <a class="btn" type="button">
+                        <i class="fab-fa-discord"></i>
+                        <span th:text="${user.steamInfo}"></span>
+                    </a>
+                    <a class="btn" type="button">
+                        <i class="fab-fa-discord"></i>
+                        <span th:text="${user.xboxLiveInfo}"></span>
+                    </a>
+                    <a class="btn" type="button">
+                        <i class="fab-fa-discord"></i>
+                        <span th:text="${user.psnInfo}"></span>
+                    </a>
+                    <a class="btn" type="button">
+                        <i class="fab-fa-discord"></i>
+                        <span th:text="${user.nintendoInfo}"></span>
+                    </a>
+                </div>
+                <hr class="my-0">
+
+                <!--Tag Card-->
+                <div class="card-body">
+                    <h5 class="h6 card-title">Tags</h5>
+                    <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}"
+                          th:text="${tag.name}"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-xl-9">
+            <!-- Favorite Games Panel -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-row flex-nowrap overflow-auto">
+                        <div class="card card-block mx-2" style="min-width: 300px;">
+                            <div id="favGames">
+                                <show_games th:if="${user.favorites}">
+                                    <div th:each="game: ${user.favorites}">
+                                        <div class="card-body">
+                                            <img th:src="${game.art_cover}"/>
+                                            <h6 th:text="${game.title}"></h6>
+                                        </div>
+                                    </div>
+                                </show_games>
                             </div>
-                        </show_games>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Groups User Is In Card -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-row flex-nowrap overflow-auto">
+                        <div class="card card-block mx-2" style="min-width: 300px;">
+                            slay queen biden 2020 oh wait he already won lolol
+                        </div>
+
+                        <div class="card card-block mx-2" style="min-width: 300px;">
+                            slay queen biden 2020 oh wait he already won lolol
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
+</div>
+
+
+<!--&lt;!&ndash;<div class="box">&ndash;&gt;-->
+
+<!--    <div>-->
+<!--        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
+<!--    </div>-->
+<!--<div class="profile">-->
+<!--        <div id="wrapper" class="d-flex">-->
+<!--            <div th:replace="partials/sidebar :: sidebar"></div>-->
+
+<!--&lt;!&ndash;    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+
+<!--    <div class="profile">-->
+<!--        <div id="wrapper m-2" class="d-flex">-->
+<!--&lt;!&ndash;            <div th:replace="partials/sidebar :: sidebar"></div>&ndash;&gt;-->
+<!--            <div id="page-content-wrapper">-->
+
+<!--                <div class="container-fluid page-body">-->
+<!--                    <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>-->
+<!--                    <div class="profile">-->
+
+
+<!--                        &lt;!&ndash;        card for user Information&ndash;&gt;-->
+
+<!--                        <div class="card">-->
+<!--                            <div class="profileImg">-->
+<!--                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">-->
+<!--                            </div>-->
+<!--                            <h6>Name: <span th:text="${user.fullName}"></span>(<span th:text="${user.pronouns}"></span>)-->
+<!--                            </h6>-->
+<!--                            <h6>Username: <span th:text="${user.userName}"></span></h6>-->
+<!--                            <h6>Email: <span th:text="${user.email}"></span></h6>-->
+<!--                            <h6>Psn :<span th:text="${user.psnInfo}"></span></h6>-->
+<!--                            <h6>Discord :<span th:text="${user.discordInfo}"></span></h6>-->
+
+<!--                            <h6>Steam :<span th:text="${user.steamInfo}"></span></h6>-->
+<!--                            <h6>Twitch:<span th:text="${user.twitchInfo}"></span></h6>-->
+<!--                            <h6>XboxLive<span th:text="${user.xboxLiveInfo}"></span></h6>-->
+<!--                            <h6>NintendoInfo:<span th:text="${user.nintendoInfo}"></span></h6>-->
+<!--                        </div>-->
+<!--                        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>-->
+
+<!--                        &lt;!&ndash; user rating information&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        <div th:each="rating : ${user.ratings_received}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p th:text="${rating.rating}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+
+<!--                        &lt;!&ndash;        User bio and tags area&ndash;&gt;-->
+<!--                        <div>-->
+<!--                            <h5><a th:href="@{'/users/edit/' + ${user.id}}"><i class="fas fa-user-edit"></i></a></h5>-->
+<!--                        </div>-->
+
+<!--                        <div class="bio">-->
+<!--                            <h4>About me:<br></h4>-->
+<!--                            <p><span th:text="${user.bio}"></span></p>-->
+<!--                        </div>-->
+
+<!--                        <div>-->
+<!--                            <h4> Tags defines me : </h4>-->
+<!--                            <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}"-->
+<!--                                  th:text="${tag.name}"></span>-->
+<!--                        </div>-->
+
+<!--                        <br>-->
+<!--                        <div class="inGroups">-->
+<!--                            <h4>Groups in: </h4>-->
+<!--                            <div class="card" style="width: 50rem;">-->
+<!--                            <show_groupIn th:if="${user.groups}">-->
+<!--                                <div th:each="group: ${user.groups}">-->
+<!--                                    <div class="card-header">-->
+<!--                                        <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>-->
+<!--                                    </div>-->
+<!--                                    <ul class="list-group list-group-flush">-->
+<!--                                    <p th:text="${group.description}"></p>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </show_groupIn>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash;                    Search BAR&ndash;&gt;-->
+
+<!--                    <div id="favGames">-->
+<!--                        <h4> My Favorite Games: </h4>-->
+<!--                        <show_games th:if="${user.favorites}">-->
+<!--                            <div th:each="game: ${user.favorites}">-->
+<!--                                <img th:src="${game.art_cover}"/>-->
+<!--                                <h2 th:text="${game.title}"></h2>-->
+<!--                                <p th:text="${game.description}"></p>-->
+<!--                                <br>-->
+<!--                            </div>-->
+<!--                        </show_games>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
