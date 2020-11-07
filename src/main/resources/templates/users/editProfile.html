@@ -11,7 +11,6 @@
                 width: 80%;
                 /*border: 3px solid orange;*/
                 padding-left: 20px;
-
             }
 
             .container {
@@ -35,7 +34,7 @@
     <div class="container">
         <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
             <div class="editP">
-                <h4>Please Edit your profile information</h4>
+                <h2 class="text-center">Please edit your profile information</h2>
                 <div class="form-group">
                     <label for="psn">Psn info</label>
                     <input type="text" class="form-control" id="psn" name="psnInfo" th:value="*{psnInfo}"
@@ -75,10 +74,10 @@
                 </div>
 
                 <div class="tags">
-                    <h4>Please select your interests : </h4>
+                    <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Please select your interests that defines you : </h4>
 
                     <th:block th:each="tag : ${tagsList}">
-                        <div class="form-check form-check-inline ">
+                        <div class="form-check form-check-inline m-2">
                             <input class="form-check-input" type="checkbox" th:checked="${editUser.tags.contains(tag)}"
                                    th:id="${tag.name}"
                                    name="tags" th:value="${tag.id}"/>
@@ -92,7 +91,7 @@
             </div>
         </form>
     </div>
-    <footer th:replace="partials/footer :: footer"></footer>
+<!--    <footer th:replace="partials/footer :: footer"></footer>-->
     <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
