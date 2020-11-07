@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Untitled</title>
     <link th:replace="partials/links :: links"/>
+
+    <link th:replace="partials/links :: links"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
     <!--    <link th:replace="partials/links :: links"/>-->
 <!--    <link rel="stylesheet" th:href="@{/css/home.css}">-->
+
 </head>
-
-<body>
-
-<!--<header th:replace="partials/header :: header"></header>-->
 <nav th:insert="partials/navbar :: navbar"></nav>
 
-
+<body>
+<h1>Home Page</h1>
 <div class="container-fluid">
     <div class="row">
     <div class="col">
@@ -26,7 +25,9 @@
                     <div class="col-md-12 col-xl-12">
                         <div class="row">
                             <div class="col">
+                                
                                 <h1>Operation Co-Opt</h1>
+ 
                             </div>
                         </div>
                         <div class="row">
@@ -37,11 +38,30 @@
                         <div class="row d-none d-print-inline d-sm-inline d-md-inline d-lg-inline d-xl-inline">
                             <div class="col-sm-10 col-md-10 offset-sm-1 offset-md-1">
                                 <div class="row">
+
+                                    <div class="col-sm-2 col-md-2"><i
+                                            class="fa fa-heart d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"></i>
+                                    </div>
+                                    <div
+                                            class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-md-0 offset-xl-0">
+                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-start align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">
+                                            Create Your Profile</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
+                                        <i class="fa fa-heart d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"></i>
+                                    </div>
+                                    <div class="col offset-xl-0">
+                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">
+                                            Find New Players</p>
+
                                     <div class="col-sm-2 col-md-2">
                                         <i class="fa fa-heart d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"></i>
                                     </div>
                                     <div class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-md-0 offset-xl-0">
                                         <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-start align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">Create Your Profile</p>
+
                                     </div>
 
 <!doctype html>
@@ -110,6 +130,23 @@
                                         <input type="text" placeholder="Email or Userame" class="single-field">
                                     </div>
 
+                                    <div
+                                            class="col offset-xl-0">
+                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">
+                                            Create Your Dream Team</p>
+                                    </div>
+                                    <div
+                                            class="col offset-xl-0">
+                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">
+                                            <a class="btn btn-primary" type="button" th:href="@{/aboutUs}">About Us</a>
+                                        </p>
+                                    </div>
+
+                                    <button type="button" class="btn btn-primary" data-toggle="button"
+                                            aria-pressed="false" autocomplete="off">
+                                    </button>
+
+
                                     <div class="col offset-xl-0">
                                         <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">Create Your Dream Team</p>
                                     </div>
@@ -120,7 +157,9 @@
                                         <button class="login-btn">Login</button>
                                     </div>
 
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -129,9 +168,11 @@
 
         </div>
     </div>
+
     </div>
     <div class="row">
         <div class="col">
+
     <div class="col-md-12 col-lg-6 col-xl-6 offset-xl-0">
         <form th:action="@{/login}" method="post">
             <div class="form-row row-cols-sm-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
@@ -143,6 +184,7 @@
                 </div>
                 <div class="col-sm-10 col-md-8 col-lg-2 col-xl-2 offset-sm-1 offset-md-2 offset-lg-0 offset-xl-0">
                     <button class="btn btn-primary" type="submit">Login</button>
+
             <div class="timeline-page-wrapper">
                 <div class="container-fluid p-0">
                     <div class="row no-gutters">
@@ -203,7 +245,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </form>
@@ -222,6 +263,10 @@
             </div>
         </div>
     </div>
+
+</div>
+</div>
+
         </div>
     </div>
 </main>
@@ -357,7 +402,6 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
