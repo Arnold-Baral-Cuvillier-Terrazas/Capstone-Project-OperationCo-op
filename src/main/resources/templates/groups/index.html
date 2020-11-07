@@ -5,17 +5,33 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:replace="partials/links :: links"/>
+    <style>
+        .create {
+            display: flex;
+            margin-top: 60px;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
 </head>
 
 <body>
-<div id="wrapper" class="d-flex">
+<div id="wrapper" class="d-flex justify-content-center">
 <!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
     <div id="page-content-wrapper">
         <nav th:replace="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
             <div class="container-fluid">
 
-                <h1 class="text-center mt-2">Welcome to the Groups Page!</h1>
+                <div class="create">
+                <h1 id="head" class="text-center ">Welcome to the Groups Page!</h1>
+                <form style="display: inline" th:action="@{'/groups/create/'}">
+                    <button>Create A Group</button>
+                </form>
+                </div>
+
+
                 <div class="row d-flex justify-content-center ">
                     <div th:each="group : ${groups}" class="card col-4 border-info mb-3 mx-1 text-white bg-dark "
                          style="width: 15rem; min-height:13rem">
@@ -26,37 +42,12 @@
                             </div>
                         </div>
                 </div>
-                <form style="display: inline" th:action="@{'/groups/create/'}">
-                    <button>Create A Group</button>
-                </form>
             </div>
         </div>
     </div>
 </div>
 
-
-<!--            The code below seems to be a duplicate and possibly redundant-->
-
-
-<!--<div class="container-fluid">-->
-<!--    <h1 class="text-center">This is the groups index page!</h1>-->
-<!--    <div class="row">-->
-<!--        <div th:each="group : ${groups}" class="card col-3 border-info mb-3" style="width: 18rem;">-->
-<!--            <div class="card-body">-->
-<!--                <h5 th:text="${group.name}" class="card-title"></h5>-->
-<!--                <p th:text="${group.description}" class="card-text"></p>-->
-<!--                <a th:href="'/groups/profile/' + ${group.id}" class="card-link">Enter</a>-->
-
-<!--                <form style="display: inline" th:action="@{'/groups/create/'}">-->
-<!--                    <button>Create A Group</button>-->
-<!--                </form>-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
+<footer th:replace="partials/footer :: footer"></footer>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:src="@{/js/keys.js}"></script>

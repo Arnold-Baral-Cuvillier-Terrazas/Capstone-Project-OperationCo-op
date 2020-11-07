@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Editing</title>
 </head>
-<body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<body>
 <form th:action="'/groups/posts/edit/' + ${editPost.id}" th:method="post" th:object="${editPost}">
     <label for="MessageBody">Rename Message body:</label><br>
     <textarea id="MessageBody" th:field="*{message_body}" rows="4" cols="72"></textarea><br>
