@@ -15,7 +15,6 @@
 
 <body>
 <div id="wrapper" class="d-flex">
-<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
     <div id="page-content-wrapper">
         <nav th:replace="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
@@ -63,23 +62,7 @@
 <!--                <i class="ratings_stars fa fa-star" data-rating="4"></i>-->
 <!--                <i class="ratings_stars fa fa-star" data-rating="5"></i>-->
 <!--            </div>-->
-            <!--    Join Group Feature-->
-<!--            <h2>Join our Group!</h2>-->
-<!--            <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
-<!--                <input name="UserId" th:value="${user.id}" type="hidden">-->
-<!--                <button type="submit">Join Group</button>-->
-<!--            </form>-->
 
-<!--            <h4>Description: </h4>-->
-<!--            <br>-->
-
-
-<!--            <p><span th:text="${group.description}"></span></p>-->
-<!--            <div>-->
-<!--                <h4> Tags defines me : </h4>-->
-<!--                <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"-->
-<!--                      th:text="${tag.name}"></span>-->
-<!--            </div>-->
 
             <div class="group-users">
                 <h4>Members in our Group:</h4>
@@ -130,10 +113,7 @@
         </div>
     </div>
 </div>
-<!--<header th:replace="partials/header :: header"></header>-->
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-
-
+<footer th:replace="partials/footer :: footer"></footer>
 <script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
