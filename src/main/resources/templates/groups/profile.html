@@ -81,6 +81,18 @@
 <!--                      th:text="${tag.name}"></span>-->
 <!--            </div>-->
 
+<!--            Search Form for groups, may get integrated into the existing search bar-->
+            <form class="form-inline" th:action="@{/groups/search}" th:method="GET">
+                <input type="text" name="term" id="term" class="form-control mr-sm-2"
+                       placeholder="Look for a different Group!"/>
+                <input class="btn btn-success" type="submit" value="Search" placeholder="Search"
+                       aria-label="Search Groups"/>
+                &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"
+                              type="button">Clear
+            </button>
+            </form>
+
+
             <div class="group-users">
                 <h4>Members in our Group:</h4>
                 <show_users th:if="${group.users}">

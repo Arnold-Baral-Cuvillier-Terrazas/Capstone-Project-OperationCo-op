@@ -9,6 +9,21 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+
+
+<!--            Search Form for Users, may get integrated into the existing search bar-->
+<form class="form-inline" th:action="@{/users/search}" th:method="GET">
+    <input type="text" name="term" id="term" class="form-control mr-sm-2"
+           placeholder="Look for a Friend!"/>
+    <input class="btn btn-success" type="submit" value="Search" placeholder="Search"
+           aria-label="Search Users"/>
+    &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"
+                  type="button">Clear
+</button>
+</form>
+
+
+
 <!--<div class="box">-->
 
     <div>
@@ -16,7 +31,7 @@
     </div>
 <div class="profile">
         <div id="wrapper" class="d-flex">
-            <div th:replace="partials/sidebar :: sidebar"></div>
+<!--            <div th:replace="partials/sidebar :: sidebar"></div>-->
 
 <!--    <div>-->
 <!--        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
@@ -114,12 +129,15 @@
                                                 <p>Critics Rating: <a href="#" th:text="${game.critics_rating}"
                                                                       class="btn btn-default pull-right" disabled=""
                                                                       data-original-title="" title=""></a>
-                                                <form th:action="@{'/users/favorite'}" th:method="post">
-                                                    <input type="hidden" th:value="${game.id}" name="gameId">
-                                                    <button class="btn btn-primary pull-right fav-button" type="submit">
-                                                        Add To Favorites
-                                                    </button>
-                                                </form>
+                                                <div th:if="${user.id == user.id}">
+                                                    <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${game.id}}">Remove</a>
+                                                </div>
+<!--                                                <form th:action="@{'/users/favorite'}" th:method="post">-->
+<!--                                                    <input type="hidden" th:value="${game.id}" name="gameId">-->
+<!--                                                    <button class="btn btn-primary pull-right fav-button" type="submit">-->
+<!--                                                        Add To Favorites-->
+<!--                                                    </button>-->
+<!--                                                </form>-->
                                                 </p>
                                             </div>
                                         </div>
