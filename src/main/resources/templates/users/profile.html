@@ -7,22 +7,33 @@
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
-<div class="box">
+<nav th:replace="partials/navbar :: navbar"></nav>
+<!--<div class="box">-->
 
     <div>
         <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>
     </div>
+<div class="profile">
+        <div id="wrapper" class="d-flex">
+            <div th:replace="partials/sidebar :: sidebar"></div>
+
+<!--    <div>-->
+<!--        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
+<!--    </div>-->
 
 
     <div class="profile">
-        <div id="wrapper" class="d-flex">
-            <div th:replace="partials/sidebar :: sidebar"></div>
+        <div id="wrapper m-2" class="d-flex">
+<!--            <div th:replace="partials/sidebar :: sidebar"></div>-->
             <div id="page-content-wrapper">
-                <nav th:replace="partials/navbar :: navbar"></nav>
+
                 <div class="container-fluid page-body">
                     <h1>Welcome to <span th:text="${user.userName}"></span>'s Profile Page</h1>
                     <div class="profile">
+
+
                         <!--        card for user Information-->
+
                         <div class="card">
                             <div class="profileImg">
                                 <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
@@ -41,13 +52,13 @@
 
                         <!-- user rating information-->
 
-                        <div th:each="rating : ${user.ratings_received}">
-                            <p th:text="${rating.rating}"></p>
-                        </div>
+<!--                        <div th:each="rating : ${user.ratings_received}">-->
+<!--                            <p th:text="${rating.rating}"></p>-->
+<!--                        </div>-->
 
                         <!--        User bio and tags area-->
                         <div>
-                            <h5><a th:href="@{'/users/edit/' + ${user.id}}">Edit Profile Info</a></h5>
+                            <h5><a th:href="@{'/users/edit/' + ${user.id}}"><i class="fas fa-user-edit"></i></a></h5>
                         </div>
 
                         <div class="bio">
@@ -60,14 +71,27 @@
                             <span class="pill" th:each="tag : ${user.getTags()}" th:id="${tag.name}"
                                   th:text="${tag.name}"></span>
                         </div>
+
+                        <br>
+                        <div class="inGroups">
+                            <h4>Groups in: </h4>
+                            <div class="card" style="width: 50rem;">
+                            <show_groupIn th:if="${user.groups}">
+                                <div th:each="group: ${user.groups}">
+                                    <div class="card-header">
+                                        <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                    <p th:text="${group.description}"></p>
+                                    </ul>
+                                </div>
+                            </show_groupIn>
+                            </div>
+                        </div>
                     </div>
-                    <form th:action="@{/games/search}" th:method="GET">
-                        Filter: <input type="text" name="term" id="term" size="50" required/>
-                        &nbsp;
-                        <input type="submit" value="Search"/>
-                        &nbsp;
-                        <input type="button" value="Clear" id="btnClear" onlick="clearSearch()"/>
-                    </form>
+
+                    <!--                    Search BAR-->
+
                     <div id="favGames">
                         <h4> My Favorite Games: </h4>
                         <show_games th:if="${user.favorites}">
@@ -80,40 +104,9 @@
                         </show_games>
                     </div>
                 </div>
-                <!----------- Favorite games-->
             </div>
 
-        <div class="inGroups">
-            <h4>Groups in: </h4>
-            <show_groupIn th:if="${user.groups}">
-                <div th:each="group: ${user.groups}">
-                <a th:href="@{'/groups/profile/' + ${group.id}}"th:text="${group.name}"></a>
-                    <p th:text="${group.description}"></p>
-                </div>
-
-            </show_groupIn>
-<!--            <p><span th:text="${group}"></span></p>-->
         </div>
-<!--        Search Bar for Games-->
-        <form th:action="@{/games/search}" th:method="GET">
-            Search : <input type="text" name="term" id="term" size="50" />
-            &nbsp;
-            <input type="submit" value="Search" />
-            &nbsp;
-            <input type="reset" value="clear" id="btnClear" />
-        </form>
-        <div id="favGames">
-            <h4> My Favorite Games: </h4>
-            <show_games th:if="${user.favorites}">
-                <div th:each ="game: ${user.favorites}">
-                    <img th:src="${game.art_cover}"/>
-                    <h2 th:text="${game.title}"></h2>
-                    <p th:text="${game.description}"></p>
-                    <br>
-                </div>
-            </show_games>
-        </div>
-    </div>
     </div>
 </div>
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
@@ -123,6 +116,6 @@
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/userProfile.js}"></script>
-<script src="../../static/js/search.js"></script>
+
 </body>
 </html>

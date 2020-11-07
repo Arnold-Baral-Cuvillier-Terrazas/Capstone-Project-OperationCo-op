@@ -29,7 +29,7 @@ public class Game {
     @Column
     private long igdb_api_id;
 
-//    Game Relationship with tags
+    //    Game Relationship with tags
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="game_tags",
@@ -38,16 +38,16 @@ public class Game {
     )
     private List<GameTag> tags;
 
-//    Game Relationship with groups
+    //    Game Relationship with groups
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="game_groups",
             joinColumns={@JoinColumn(name="games_id")},
             inverseJoinColumns = {@JoinColumn(name="groups_id")}
-            )
+    )
     private List<GameGroup> groups;
 
-//    Game Relationship with User
+    //    Game Relationship with User
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

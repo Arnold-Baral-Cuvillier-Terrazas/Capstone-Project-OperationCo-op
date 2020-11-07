@@ -5,52 +5,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Page for Games</title>
+    <link th:replace="partials/links :: links"/>
 </head>
 <body>
-<div id="wrapper" class="d-flex">
-    <div th:replace="partials/sidebar :: sidebar"></div>
-    <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-        <div class="container-fluid page-body">
-            <div th:each="game: ${games}">
-                <h2 th:text="${game.title}"></h2>
-                <h2 th:text="${game.description}"></h2>
-                <form th:action="@{/users/favorite}" method="post">
-                    <input name="gameId" th:value="${game.id}" type="hidden">
-                    <button type="submit">+</button>
-                </form>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="row row-cols-4 row-cols-md-4">
+    <div class="col mb-4  " th:each="game: ${games}">
+        <div class="card text-center">
+            <img th:src="${game.art_cover}" class="card-img-top" alt="...">
+            <div class="card-body max-height: 100%">
+                <h5 class="card-title" th:text="${game.title}"></h5>
+                <!--                <p class="card-text" th:text="${game.description}"></p>-->
+            </div>
+            <div class="card-footer">
+                <small class="text-muted" th:text="${game.critics_rating}"></small>
             </div>
         </div>
     </div>
 </div>
-
-
-<!--<form action="/games/search" method="post">-->
-<!--    <div class="form-group">-->
-<!--        <label for="title">Title</label>-->
-<!--        <input id="title" name="title" class="form-control" type="text" th:text="${game.title}">-->
-<!--    </div>-->
-<!--    <div class="form-group">-->
-<!--        <label for="description">Description</label>-->
-<!--        <input id="description" name="description" class="form-control" type="text" th:text="${game.description}">Description</input>-->
-<!--    </div>-->
-<!--    <input name="ad_id" type="hidden" th:text="${game.id}">-->
-<!--    <input type="submit" class="btn btn-block btn-primary">-->
-<!--</form>-->
-
-
-<!--<input id="search" type="text" placeholder="Search">-->
-<!--<button id="btnSearch">Search</button>-->
-<!--<br/>-->
-<!--<span id="didyoumean"></span>-->
-<!--<ul id="result">-->
-<!--    <li>1</li>-->
-<!--    <li>2</li>-->
-<!--    <li>3</li>-->
-<!--    <li>4</li>-->
-<!--    <li>5</li>-->
-<!--</ul>-->
-
-
+<scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>

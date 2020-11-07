@@ -32,7 +32,7 @@ public class GroupController {
     public String showAllGroups(Model model) {
         model.addAttribute("groups", groupDao.findAll());
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "/groups/index";
+        return "groups/index";
     }
 
     //Mapping to get group/create.html
@@ -87,9 +87,12 @@ public class GroupController {
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         Group group = groupDao.getOne(id);
+        User user = userDao.getOne(id);
         model.addAttribute("group", group);
 //        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("user", user);
         return "/groups/profile";
+
     }
 
 //-------------for editing group profile information
@@ -99,7 +102,7 @@ public class GroupController {
         model.addAttribute("editGroup", groupDao.getOne(id));
         List<Tag> tagsList = tagDao.findAll();
         model.addAttribute("tagsList", tagsList);
-        return "/groups/edit";
+        return "groups/edit";
     }
 
     @PostMapping("/groups/edit/{id}")
@@ -140,12 +143,12 @@ public class GroupController {
 //    return "redirect:/groups/profile";
 //}
 
-// ---------- Shows the users within the groups page
-   @GetMapping("/groups/users")
+    // ---------- Shows the users within the groups page
+    @GetMapping("/groups/users")
     public String showUsers(Model model) {
         List<User> users = userDao.findAll();
         model.addAttribute("users", users);
-        return "/groups/profile";
+        return "groups/profile";
     }
 
     @PostMapping("/groups/join/{id}")
@@ -179,3 +182,7 @@ public class GroupController {
 //        return "/groups/search";
 //    }
 }
+
+// ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes
+// ----------- FOR (ORIGIN) Comment below and  UnComment on TOP for file mapping purpose
+
