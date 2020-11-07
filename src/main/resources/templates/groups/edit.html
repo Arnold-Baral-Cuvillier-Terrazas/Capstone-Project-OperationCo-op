@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8"/>
     <title>Create Group</title>
@@ -31,7 +31,7 @@
                     <input id="name" type="text" th:field="*{name}"/>
                     <br><br>
                     <label for="description">Edit Group Description:</label>
-                    <input id="description" type="text" th:field="*{description}"/>
+                    <textarea id="description" type="text" cols="72" rows="4" th:field="*{description}"></textarea>
                     <br><br>
 
                     <div class="tags">

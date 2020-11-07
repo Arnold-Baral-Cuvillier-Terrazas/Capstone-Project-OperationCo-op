@@ -5,6 +5,16 @@ body{margin-top:20px;
     font-size: 35px !important;
 }
 
+.pill {
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 32px;
+    margin: 1px;
+    padding: 8px 16px;
+    background: none;
+
+}
+
 .mw50 {
     max-width: 50px !important;
 }
