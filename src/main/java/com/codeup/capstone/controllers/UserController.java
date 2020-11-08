@@ -107,12 +107,12 @@ public class UserController {
     //Used (required false) because every user will not have all gaming accounts so it is optional for user
     @PostMapping("/users/edit/{id}")
     public String postEditGroup(@PathVariable long id, @RequestParam List<Long> tags,
-                                @RequestParam String bio ,
-                                @RequestParam (required = false) String psnInfo ,@RequestParam (required = false) String steamInfo ,
-                                @RequestParam (required = false) String twitchInfo,@RequestParam(required = false) String xboxLiveInfo,
-                                @RequestParam (required = false) String nintendoInfo) {
+                                @RequestParam String bio,
+                                @RequestParam(required = false) String psnInfo, @RequestParam(required = false) String steamInfo,
+                                @RequestParam(required = false) String twitchInfo, @RequestParam(required = false) String xboxLiveInfo,
+                                @RequestParam(required = false) String nintendoInfo) {
         List<Tag> tagList = new ArrayList<>();
-        for(int i= 0; i< tags.size(); i++){
+        for (int i = 0; i < tags.size(); i++) {
             Tag thisTag = tagDao.getOne(tags.get(i));
             tagList.add(thisTag);
         }
@@ -138,7 +138,7 @@ public class UserController {
 
     //    user rating stars
     @PostMapping("/users/rating/{id}")
-    public String userRating(@RequestParam long userId,@RequestParam int rating, @ModelAttribute User user) {
+    public String userRating(@RequestParam long userId, @RequestParam int rating, @ModelAttribute User user) {
         User userRated = userDao.getOne(userId);
         User userRating = userDao.getOne(((User) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal()).getId());
@@ -150,9 +150,9 @@ public class UserController {
     }
 
 
-    //    ----------Inserting Favorites
+    //    ----------Favorite a Game
     @PostMapping("/users/favorite")
-    public String userFavorite(@RequestParam long gameId, @ModelAttribute User user ) {
+    public String userFavorite(@RequestParam long gameId, @ModelAttribute User user) {
         User tempUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userFav = (userDao.getOne(tempUser.getId()));
         Game gameFavorite = gameRepo.getOne(gameId);
@@ -162,6 +162,8 @@ public class UserController {
         userDao.save(userFav);
         return "redirect:/profile";
     }
+
+    //    ---------------- UnFavor a Game
     @GetMapping("/users/userDelete/{id}")
     public String deleteFavGame(@PathVariable long id, @RequestParam long UserId) {
         User userUnFav = userDao.getOne(id);
@@ -173,12 +175,25 @@ public class UserController {
         return "redirect:/profile/" + id;
     }
 
+    //-------------------------Search for Users
     @GetMapping("/users/search")
-    public String showUser(@RequestParam String term, Model model){
+    public String showUser(@RequestParam String term, Model model) {
         List<User> users = userDao.findByUserNameLike(term);
         model.addAttribute("users", users);
         return "users/search";
     }
+
+    //    ----------------------Leave Group
+//    @GetMapping("/users/userLeave/{id}")
+//    public String leaveGroup(@PathVariable long id, @RequestParam long UserId) {
+//        User userLeave = userDao.getOne(id);
+//        Group groupLeave = groupDao.getOne(UserId);
+//        List<Group> groups = groupLeave.getOwner().getGroups();
+//        groups.remove(groupLeave);
+//        userLeave.setGroups(groups);
+//        userDao.save(userLeave);
+//        return "redirect:/profile/" + id;
+//    }
 }
 
 

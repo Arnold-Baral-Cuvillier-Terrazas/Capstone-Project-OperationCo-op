@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
@@ -29,7 +29,7 @@
 
 
 <!--<div class="box">-->
-=======
+
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <div class="container">
     <h1 class="h3 mb-3">Profile</h1>
@@ -122,7 +122,7 @@
                     </div>
                 </div>
             </div>
->>>>>>> 6266a9c3996287334ad3dbfe7c1b903b8faf2a77
+
 
             <!-- Groups User Is In Card -->
             <div class="card">
@@ -137,8 +137,6 @@
 <div class="profile">
         <div id="wrapper" class="d-flex">
 <!--            <div th:replace="partials/sidebar :: sidebar"></div>-->
-<<<<<<< HEAD
-=======
 
 </div>
 </div>
@@ -146,7 +144,7 @@
 
 <!--&lt;!&ndash;<div class="box">&ndash;&gt;-->
 
->>>>>>> 6266a9c3996287334ad3dbfe7c1b903b8faf2a77
+
 
 <!--    <div>-->
 <!--        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
@@ -209,7 +207,7 @@
 <!--                            <h5><a th:href="@{'/users/edit/' + ${user.id}}"><i class="fas fa-user-edit"></i></a></h5>-->
 <!--                        </div>-->
 
-<<<<<<< HEAD
+
                 <!--                    Search BAR-->
 
                 <div id="favGames">
@@ -236,6 +234,7 @@
                                                 <div th:if="${user.id == user.id}">
                                                     <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${game.id}}">Remove</a>
                                                 </div>
+
 <!--                                                <form th:action="@{'/users/favorite'}" th:method="post">-->
 <!--                                                    <input type="hidden" th:value="${game.id}" name="gameId">-->
 <!--                                                    <button class="btn btn-primary pull-right fav-button" type="submit">-->
@@ -253,12 +252,11 @@
                 </div>
             </div>
         </div>
-=======
+
 <!--                        <div class="bio">-->
 <!--                            <h4>About me:<br></h4>-->
 <!--                            <p><span th:text="${user.bio}"></span></p>-->
 <!--                        </div>-->
->>>>>>> 6266a9c3996287334ad3dbfe7c1b903b8faf2a77
 
 <!--                        <div>-->
 <!--                            <h4> Tags defines me : </h4>-->
@@ -344,22 +342,25 @@
 <!--                    </div>-->
 
 <!--                    <br>-->
-<!--                    <div class="inGroups">-->
-<!--                        <h4>Groups in: </h4>-->
-<!--                        <div class="card" style="width: 50rem;">-->
-<!--                            <show_groupIn th:if="${user.groups}">-->
-<!--                                <div th:each="group: ${user.groups}">-->
-<!--                                    <div class="card-header">-->
-<!--                                        <a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>-->
-<!--                                    </div>-->
-<!--                                    <ul class="list-group list-group-flush">-->
-<!--                                        <p th:text="${group.description}"></p>-->
-<!--                                    </ul>-->
-<!--                                </div>-->
-<!--                            </show_groupIn>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                    <div class="inGroups">
+                        <h4>Groups in: </h4>
+                        <div class="card" style="width: 50rem;">
+                            <show_groupIn th:if="${user.groups}">
+                                <div th:each="group: ${user.groups}">
+                                    <div class="card-header">
+                                        <a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <p th:text="${group.description}"></p>
+                                    </ul>
+                                    <div th:if="${user.id == user.id}">
+                                        <a th:href="@{'/users/userLeave/' + ${user.id} + '?UserId=' + ${group.id}}">Leave</a>
+                                    </div>
+                                </div>
+                            </show_groupIn>
+                        </div>
+                    </div>
+                </div>
 
 <!--                &lt;!&ndash;                    Search BAR&ndash;&gt;-->
 
