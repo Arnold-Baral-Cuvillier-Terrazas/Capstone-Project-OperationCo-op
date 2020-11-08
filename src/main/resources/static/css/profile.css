@@ -80,24 +80,3 @@ img.profile-photo-lg{
     width: 80px;
     border-radius: 50%;
 }
-/*              Scroll For Favorite Games      */
-/* The heart of the matter */
-.testimonial-group > .row {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-}
-.testimonial-group > .row > .col-4 {
-    display: inline-block;
-}
-
-/* Decorations */
-.col-4 {  font-size: 1em; text-wrap: normal; padding-bottom: 20px; padding-top: 18px; }
-.col-4:nth-child(3n+1) {  }
-.col-4:nth-child(3n+2) { }
-.col-4:nth-child(3n+3) {  }
-
-.img-group{
-    height: 100px;
-    width: 100px;
-}
