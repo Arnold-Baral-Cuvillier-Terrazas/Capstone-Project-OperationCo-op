@@ -5,11 +5,23 @@
     <title>Profile page</title>
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/profile.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
 
     <!--    <link th:href="@{/css/style.css}" rel="stylesheet"/>-->
     <!--    <link th:href="@{/css/game.css}" rel="stylesheet"/>-->
 </head>
 <body>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+<div class="container">
+    <h1 class="h3 mb-3">Profile</h1>
+    <div class="row">
+        <!--Left Card Panel Containing User Info-->
+        <div class="col-md-4 col-xl-3">
+            <div class="card mb-3 user-glow">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Profile Details</h5>
+                </div>
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 
@@ -46,6 +58,16 @@
                     <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
                 </div>
             </div>
+      </div>
+
+        <!-- Right Side Panel -->
+        <div class="col-md-8 col-xl-9">
+
+            <!-- Favorite Games Card -->
+            <div class="card">
+                <div class="card-body game-glow">
+                    <h5 class="h6 card-title">Favorite Games</h5>
+                    <!-------------------------- AMARO ADD SEARCH FOR GAMES ---------------------->
             <hr class="my-0">
 
             <!--Bio Card-->
@@ -141,7 +163,7 @@
             </div>
             <!-- Groups User Is In Card -->
             <div class="card">
-                <div class="card-body">
+                <div class="card-body group-glow">
                     <!-------------------------- AMARO ADD SEARCH FOR GROUP ---------------------->
                     <form class="form-inline" th:action="@{/groups/search}" th:method="GET">
                         <input type="text" name="term" id="groupTerm" class="form-control mr-sm-2"
