@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -96,8 +98,8 @@ public class GroupController {
         User user = userDao.getOne(id);
         List<Post> mostRecent = postRepo.mostRecentPostsForGroup(id);
         model.addAttribute("group", group);
-//        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        model.addAttribute("user", user);
+        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+//        model.addAttribute("user", user);
         if(mostRecent.size() > 5) {
             List<Post> posts = new ArrayList<>();
             for(int i=0;i< 5; i++){
@@ -196,6 +198,21 @@ public class GroupController {
         model.addAttribute("groups", groups);
         return "/groups/search";
     }
+
+//    @PostMapping("/groups/posts/{group_id}/submit")
+//    public String createMessage(@ModelAttribute Post post, @PathVariable long group_id)
+//            throws ParseException, ParseException {
+//        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        post.setUser(thisAuthor);
+//        Group thisGroup = groupDao.getOne(group_id);
+//        post.setGroup(thisGroup);
+////        printing out the date in format
+//        post.setDate(new Date());
+////        saving the information
+//        postRepo.save(post);
+//        return "redirect:/groups/posts/" + thisGroup.getId();
+//    }
+
 }
 
 // ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes
