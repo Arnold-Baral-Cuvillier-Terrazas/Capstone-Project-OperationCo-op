@@ -39,6 +39,8 @@ public class GroupController {
     @GetMapping("/groups/create")
     public String showCreateGroupForm(Model model) {
         model.addAttribute("group", new Group());
+        List<Tag> tagsList = tagDao.findAll();
+        model.addAttribute("tagsList", tagsList);
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "groups/create";
     }
@@ -49,7 +51,8 @@ public class GroupController {
     @PostMapping("/groups/create")
     public String saveGroup(
             @RequestParam(name = "name") String name,
-            @RequestParam(name = "description") String description) {
+            @RequestParam(name = "description") String description,
+            @RequestParam List<Long> tags) {
 
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!(obj instanceof UserDetails)) {
@@ -58,6 +61,7 @@ public class GroupController {
         User user = (User) obj;
         user = userDao.getOne(user.getId());
         Group group = new Group();
+        List<Tag> tagLists = new ArrayList<>();
         List<User> users = new ArrayList<>();
         List<Group> groups = user.getGroups();
         users.add(user);
@@ -65,6 +69,7 @@ public class GroupController {
         group.setDescription(description);
         group.setOwner(user);
         group.setUsers(users);
+        group.setTags(tagLists);
         groupDao.save(group);
         groups.add(group);
         user.setGroups(groups);
@@ -85,10 +90,10 @@ public class GroupController {
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         Group group = groupDao.getOne(id);
-        User user = userDao.getOne(id);
+//        User user = userDao.getOne(id);
         model.addAttribute("group", group);
-//        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        model.addAttribute("user", user);
+        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+//        model.addAttribute("user", user);
         return "/groups/profile";
 
     }
