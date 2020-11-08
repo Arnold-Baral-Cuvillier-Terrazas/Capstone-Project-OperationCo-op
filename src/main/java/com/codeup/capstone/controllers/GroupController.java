@@ -55,7 +55,6 @@ public class GroupController {
         if (!(obj instanceof UserDetails)) {
             return "redirect:/login";
         }
-//        User user = userDao.getOne(((User)obj ).getId());
         User user = (User) obj;
         user = userDao.getOne(user.getId());
         Group group = new Group();
@@ -66,7 +65,6 @@ public class GroupController {
         group.setDescription(description);
         group.setOwner(user);
         group.setUsers(users);
-//        user.setGroup(group);
         groupDao.save(group);
         groups.add(group);
         user.setGroups(groups);
@@ -87,9 +85,12 @@ public class GroupController {
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         Group group = groupDao.getOne(id);
+        User user = userDao.getOne(id);
         model.addAttribute("group", group);
-        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "groups/profile";
+//        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("user", user);
+        return "/groups/profile";
+
     }
 
 //-------------for editing group profile information
@@ -172,12 +173,12 @@ public class GroupController {
     }
 
 ////    ---------- Groups Search
-//    @GetMapping("/groups/search")
-//    public String showGroup(@RequestParam String term, Model model) {
-//        List<Group> groups = groupDao.searchByNameLike(term);
-//        model.addAttribute("groups", groups);
-//        return "/groups/search";
-//    }
+    @GetMapping("/groups/search")
+    public String showGroup(@RequestParam String groupTerm, Model model) {
+        List<Group> groups = groupDao.searchByNameLike(groupTerm);
+        model.addAttribute("groups", groups);
+        return "/groups/search";
+    }
 }
 
 // ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes

@@ -59,6 +59,9 @@ package com.codeup.capstone.controllers;
         import com.codeup.capstone.repositories.GroupRepository;
         import com.codeup.capstone.repositories.TagRepository;
         import com.codeup.capstone.repositories.UserRepository;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.data.domain.Page;
+        import org.springframework.data.domain.PageRequest;
         import org.springframework.data.repository.query.Param;
         import org.springframework.security.core.context.SecurityContextHolder;
         import org.springframework.stereotype.Controller;
@@ -66,6 +69,9 @@ package com.codeup.capstone.controllers;
         import org.springframework.web.bind.annotation.*;
 
         import java.util.List;
+        import java.util.Optional;
+        import java.util.stream.Collectors;
+        import java.util.stream.IntStream;
 
 
 @Controller
@@ -92,9 +98,10 @@ public class GameController {
       
     }
     @GetMapping("/games/search")
-    public String showGame(@RequestParam String term, Model model){
-        List<Game> games = gameRepo.searchByTitleLike(term);
+    public String showGame(@RequestParam String gameTerm, Model model){
+        List<Game> games = gameRepo.searchByTitleLike(gameTerm);
         model.addAttribute("games", games);
         return "games/search";
     }
+
 }

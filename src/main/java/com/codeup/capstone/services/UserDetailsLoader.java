@@ -23,6 +23,7 @@ public class UserDetailsLoader implements UserDetailsService {
 
         User user = users.findByUserName(userName);
 
+
         // check to see if we actually found a user or not
         if (user == null) {
             // Now our console log output will be more detailed, in order for us to find the problem more quickly, because we know exactly that this had to do with not finding that username in the DB

@@ -209,3 +209,56 @@
         </nav>
     </standard_links>
     </html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<standard_links th:fragment="navbar">
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">OperationCo-Opt</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></li>
+                    <li sec:authorize="isAnonymous()" class="active">
+                        <a class="nav-link" href="/sign-up"><span class="glyphicon glyphicon-user"></span>Sign Up</a>
+                    </li>
+                    <li sec:authorize="isAnonymous()" class="nav-item">
+                        <a class="nav-link" href="/login"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+                    </li>
+                    <!--                Drop down toggle nav(Visible for Logged In Users Only) -->
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/profile}">Profile</a><span class="sr-only"></span></a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/groups}">Groups</a><span class="sr-only"></span></a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/games}">Games</a><span class="sr-only"></span></a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/aboutUs}">About Us</a><span class="sr-only"></span></a>
+                    </li>
+                </ul>
+<!--                <ul class="nav navbar-nav navbar-right">-->
+<!--                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+<!--                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
+<!--                </ul>-->
+            </div>
+        </div>
+    </nav>
+
+
+                    <!--                Non-logged in user display-->
+
+
+<!--                    <li sec:authorize="isAuthenticated()" class="nav-item">-->
+
+<!--                    </li>-->
+
+</standard_links>

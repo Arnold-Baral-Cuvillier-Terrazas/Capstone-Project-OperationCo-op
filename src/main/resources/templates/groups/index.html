@@ -1,3 +1,70 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <link th:replace="partials/links :: links"/>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--<div id="wrapper" class="d-flex">-->
+<!--&lt;!&ndash;    <div th:replace="partials/sidebar :: sidebar"></div>&ndash;&gt;-->
+<!--    <div id="page-content-wrapper">-->
+<!--        <nav th:replace="partials/navbar :: navbar"></nav>-->
+<!--        <div class="container-fluid page-body">-->
+<!--            <div class="container-fluid">-->
+
+<!--                <h1 class="text-center mt-2">Welcome to the Groups Page!</h1>-->
+
+<!--                <div class="row d-flex justify-content-center ">-->
+<!--                    <div th:each="group : ${groups}" class="card col-4 border-info mb-3 mx-1 text-white bg-dark "-->
+<!--                         style="width: 15rem; min-height:13rem">-->
+<!--                            <div class="card-body  ">-->
+<!--                                <h5 th:text="${group.name}" class="card-title"></h5>-->
+<!--                                <p th:text="${group.description}" class="card-text"></p>-->
+<!--                                <button><a th:href="'/groups/profile/' + ${group.id}" class="checkout ">Checkout</a></button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                </div>-->
+<!--                <form style="display: inline" th:action="@{'/groups/create/'}">-->
+<!--                    <button>Create A Group</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--&lt;!&ndash;            The code below seems to be a duplicate and possibly redundant&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;<div class="container-fluid">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1 class="text-center">This is the groups index page!</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div th:each="group : ${groups}" class="card col-3 border-info mb-3" style="width: 18rem;">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h5 th:text="${group.name}" class="card-title"></h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p th:text="${group.description}" class="card-text"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <a th:href="'/groups/profile/' + ${group.id}" class="card-link">Enter</a>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <form style="display: inline" th:action="@{'/groups/create/'}">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button>Create A Group</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
+<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
+<!--<script th:src="@{/js/keys.js}"></script>-->
+<!--<script th:src="@{/js/filestack.js}"></script>-->
+<!--<script th:src="@{/js/userProfile.js}"></script>-->
+<!--</body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
