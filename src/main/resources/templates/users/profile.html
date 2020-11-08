@@ -11,6 +11,25 @@
 
 </head>
 <body>
+<<<<<<< HEAD
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+
+<!--            Search Form for Users, may get integrated into the existing search bar-->
+<form class="form-inline" th:action="@{/users/search}" th:method="GET">
+    <input type="text" name="term" id="term" class="form-control mr-sm-2"
+           placeholder="Look for a Friend!"/>
+    <input class="btn btn-success" type="submit" value="Search" placeholder="Search"
+           aria-label="Search Users"/>
+    &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"
+                  type="button">Clear
+</button>
+</form>
+
+
+
+<!--<div class="box">-->
+=======
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <div class="container">
     <h1 class="h3 mb-3">Profile</h1>
@@ -32,7 +51,8 @@
 
                     <div>
                         <a class="btn btn-primary btn-sm" th:href="@{'/users/edit/' + ${user.id}}">Edit Profile</a>
-                        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>                    </div>
+                        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+                    </div>
                 </div>
                 <hr class="my-0">
 
@@ -89,6 +109,11 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="h6 card-title">Favorite Games</h5>
+                    <!-------------------------- AMARO ADD SEARCH FOR GAMES ---------------------->
+
+
+
+                    <!-------------------------    BETWEEN HERE LOL --------------------------->
                     <div id="favGames">
                         <div class="d-flex flex-row flex-nowrap overflow-auto">
                             <show_games th:if="${user.favorites}">
@@ -103,27 +128,51 @@
                     </div>
                 </div>
             </div>
+>>>>>>> 6266a9c3996287334ad3dbfe7c1b903b8faf2a77
 
             <!-- Groups User Is In Card -->
             <div class="card">
                 <div class="card-body">
+                    <!-------------------------- AMARO ADD SEARCH FOR GROUP ---------------------->
 
+
+
+                    <!-------------------------    BETWEEN HERE LOL --------------------------->
+                    <show_groupIn th:if="${user.groups}">
+                        <div th:each="group: ${user.groups}">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user"
+                                         class="profile-photo-lg">
+                                </div>
+                                <div class="col-md-7 col-sm-7">
+                                    <h5><a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
+                                    </h5>
+                                    <p th:text="${group.description}"></p>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <button class="btn btn-primary pull-right">Leave Group</button>
+                                </div>
+                            </div>
+                        </div>
+                    </show_groupIn>
                 </div>
             </div>
-
         </div>
     </div>
 
 <div class="profile">
         <div id="wrapper" class="d-flex">
 <!--            <div th:replace="partials/sidebar :: sidebar"></div>-->
+<<<<<<< HEAD
+=======
 
-</div>
 </div>
 
 
 <!--&lt;!&ndash;<div class="box">&ndash;&gt;-->
 
+>>>>>>> 6266a9c3996287334ad3dbfe7c1b903b8faf2a77
 
 <!--    <div>-->
 <!--        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
@@ -186,10 +235,56 @@
 <!--                            <h5><a th:href="@{'/users/edit/' + ${user.id}}"><i class="fas fa-user-edit"></i></a></h5>-->
 <!--                        </div>-->
 
+<<<<<<< HEAD
+                <!--                    Search BAR-->
+
+                <div id="favGames">
+                    <h4> My Favorite Games: </h4>
+                    <show_games th:if="${user.favorites}">
+                        <div th:each="game: ${user.favorites}">
+                            <div class="col-md-6 col-sm-6 col-xs-12 card-area m-1 shadow-lg p-2 mb-4 bg-white rounded">
+                                <div class="panel">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-5 img-box">
+                                                <img th:src="${game.art_cover}">
+                                                <!--                            <a href="#"></a>-->
+                                            </div>
+                                            <div class="col-sm-7 card-info">
+                                                <h4 class="title-store">
+                                                    <strong><a href="#" th:text="${game.title}"></a></strong>
+                                                </h4>
+                                                <hr>
+                                                <!--                            <p th:text="${game.description}"></p>-->
+                                                <p>Critics Rating: <a href="#" th:text="${game.critics_rating}"
+                                                                      class="btn btn-default pull-right" disabled=""
+                                                                      data-original-title="" title=""></a>
+                                                <div th:if="${user.id == user.id}">
+                                                    <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${game.id}}">Remove</a>
+                                                </div>
+<!--                                                <form th:action="@{'/users/favorite'}" th:method="post">-->
+<!--                                                    <input type="hidden" th:value="${game.id}" name="gameId">-->
+<!--                                                    <button class="btn btn-primary pull-right fav-button" type="submit">-->
+<!--                                                        Add To Favorites-->
+<!--                                                    </button>-->
+<!--                                                </form>-->
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </show_games>
+                </div>
+            </div>
+        </div>
+=======
 <!--                        <div class="bio">-->
 <!--                            <h4>About me:<br></h4>-->
 <!--                            <p><span th:text="${user.bio}"></span></p>-->
 <!--                        </div>-->
+>>>>>>> 6266a9c3996287334ad3dbfe7c1b903b8faf2a77
 
 <!--                        <div>-->
 <!--                            <h4> Tags defines me : </h4>-->

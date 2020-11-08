@@ -162,6 +162,23 @@ public class UserController {
         userDao.save(userFav);
         return "redirect:/profile";
     }
+    @GetMapping("/users/userDelete/{id}")
+    public String deleteFavGame(@PathVariable long id, @RequestParam long UserId) {
+        User userUnFav = userDao.getOne(id);
+        Game gameUnFavorite = gameRepo.getOne(UserId);
+        List<Game> favorites = userUnFav.getFavorites();
+        favorites.remove(gameUnFavorite);
+        userUnFav.setFavorites(favorites);
+        userDao.save(userUnFav);
+        return "redirect:/profile/" + id;
+    }
+
+    @GetMapping("/users/search")
+    public String showUser(@RequestParam String term, Model model){
+        List<User> users = userDao.findByUserNameLike(term);
+        model.addAttribute("users", users);
+        return "users/search";
+    }
 }
 
 
