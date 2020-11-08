@@ -2,7 +2,6 @@ package com.codeup.capstone.controllers;
 
 import com.codeup.capstone.models.*;
 import com.codeup.capstone.repositories.*;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,13 +17,16 @@ public class GroupController {
     private final UserRepository userDao;
     private final GameRepository gameRepo;
     private final TagRepository tagDao;
+    private final PostRepository postRepo;
+
 
     public GroupController(GroupRepository groupDao, UserRepository userDao,
-                           GameRepository gameRepo, TagRepository tagDao) {
+                           GameRepository gameRepo, TagRepository tagDao, PostRepository postRepo) {
         this.groupDao = groupDao;
         this.userDao = userDao;
         this.gameRepo = gameRepo;
         this.tagDao = tagDao;
+        this.postRepo = postRepo;
     }
 
     //To show all groups
@@ -87,15 +89,25 @@ public class GroupController {
     }
 
     //Double check on this mapping for displaying group profile.
+    //Double check on this mapping for displaying group profile.
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         Group group = groupDao.getOne(id);
-//        User user = userDao.getOne(id);
+        User user = userDao.getOne(id);
+        List<Post> mostRecent = postRepo.mostRecentPostsForGroup(id);
         model.addAttribute("group", group);
-        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-//        model.addAttribute("user", user);
+//        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("user", user);
+        if(mostRecent.size() > 5) {
+            List<Post> posts = new ArrayList<>();
+            for(int i=0;i< 5; i++){
+                posts.add(mostRecent.get(i));
+            }
+            model.addAttribute("posts",posts);
+        }else {
+            model.addAttribute("posts", mostRecent);
+        }
         return "/groups/profile";
-
     }
 
 //-------------for editing group profile information
