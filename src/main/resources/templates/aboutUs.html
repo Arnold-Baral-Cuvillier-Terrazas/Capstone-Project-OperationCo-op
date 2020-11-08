@@ -10,14 +10,28 @@
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
+    <style>
+        .jumbotron{
+            padding: 1rem 2rem;
+        }
+        .fab,.fas{
+           font-size:1.8rem;
+        }
+        .icons{
+            display: flex;
+            justify-content: space-around;
+            padding:0 1.8rem;
+        }
+    </style>
+
 </head>
 <body>
-<div id="wrapper" class="d-flex">
+<div id="wrapper" class="d-flex" style="margin-bottom:200px;margin-top:100px;justify-content:center">
 <!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
     <div id="page-content-wrapper">
         <nav th:insert="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
-            <div class="jumbotron jumbotron-fluid my-4">
+            <div class="jumbotron jumbotron-fluid" >
                 <div class="container p-0 w-100">
                     <h1 class="display-4 d-flex justify-content-center m-0">About our Developers</h1>
                 </div>
@@ -31,7 +45,7 @@
                                                                               th:src="@{../img/Amaro.jpg}" alt=""></a>
                         <div class="card-body">
                             <h5 class="card-title">Amaro Terrazas</h5>
-                            <div>
+                            <div class="icons">
                                 <a href="https://www.linkedin.com/in/amaro-terrazas/"><i class="fab fa-linkedin"></i></a>
                                 <a href="https://github.com/AmaroT"><i class="fab fa-github"></i></a>
                                 <a href="mailto:amaro.terrazas@gmail.com"><i class="fas fa-envelope"></i></a>
@@ -43,7 +57,7 @@
                                                                               th:src="@{../img/Binjita.jpg}" alt=""></a>
                         <div class="card-body">
                             <h5 class="card-title">Binjita Kandel Baral</h5>
-                            <div>
+                            <div class="icons">
                                 <a href="https://www.linkedin.com/in/binjitakbaral/"><i class="fab fa-linkedin"></i></a>
                                 <a href="https://github.com/bkandelbaral20"><i class="fab fa-github"></i></a>
                                 <a href="mailto:binjita.baral@gmail.com"><i class="fas fa-envelope"></i></a>
@@ -55,7 +69,7 @@
                                                                               th:src="@{../img/Ryan.jpg}" alt=""></a>
                         <div class="card-body">
                             <h5 class="card-title">Ryan Cuvillier</h5>
-                            <div>
+                            <div class="icons">
                                 <a href="https://www.linkedin.com/in/ryan-cuvillier/"><i class="fab fa-linkedin"></i></a>
                                 <a href="https://github.com/cuvillier-ryan"><i class="fab fa-github"></i></a>
                                 <a href="mailto:cuvillier.ryan@gmail.com"><i class="fas fa-envelope"></i></a>
@@ -67,7 +81,7 @@
                                                                               th:src="@{../img/trevor2.jpg}" alt=""></a>
                         <div class="card-body">
                             <h5 class="card-title">Trevor Arnold</h5>
-                            <div>
+                            <div class="icons">
                                 <a href="https://www.linkedin.com/in/trevorjarnold/"><i class="fab fa-linkedin"></i></a>
                                 <a href="https://github.com/arnoldjtrevor"><i class="fab fa-github"></i></a>
                                 <a href="mailto:arnold.j.trevor@gmail.com"><i class="fas fa-envelope"></i></a>
@@ -81,6 +95,7 @@
     </div>
 </div>
 
+<footer th:replace="partials/footer :: footer"></footer>
 <script src="https://kit.fontawesome.com/05a3a2603b.js" crossorigin="anonymous"></script>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 

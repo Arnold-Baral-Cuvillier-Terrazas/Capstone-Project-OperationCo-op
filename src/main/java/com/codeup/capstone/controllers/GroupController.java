@@ -87,9 +87,12 @@ public class GroupController {
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         Group group = groupDao.getOne(id);
+        User user = userDao.getOne(id);
         model.addAttribute("group", group);
-        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        return "groups/profile";
+//        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("user", user);
+        return "/groups/profile";
+
     }
 
 //-------------for editing group profile information
