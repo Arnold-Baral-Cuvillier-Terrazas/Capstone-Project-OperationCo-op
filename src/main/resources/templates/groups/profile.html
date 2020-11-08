@@ -311,17 +311,17 @@
 <!--            </div>-->
 <!--            <div class="group-users">-->
 <!--                <h4>Members in our Group:</h4>-->
-                <show_users th:if="${group.users}">
-                    <div th:each="gUser:${group.users}">
-                        <!--                <p th:text="${gUser.getFullName()}"></p>-->
-                        <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>
+<!--                <show_users th:if="${group.users}">-->
+<!--                    <div th:each="gUser:${group.users}">-->
+<!--                        &lt;!&ndash;                <p th:text="${gUser.getFullName()}"></p>&ndash;&gt;-->
+<!--                        <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>-->
 
-                        <div th:if="${group.owner.id == user.id}">
-                            <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete
-                                Member</a>
-                        </div>
-                    </div>
-                </show_users>
+<!--                        <div th:if="${group.owner.id == user.id}">-->
+<!--                            <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete-->
+<!--                                Member</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </show_users>-->
 
 
 <!--            </div>-->
@@ -435,25 +435,25 @@
 
 
                 <!--------------------- This is for the FAVORITE GAME SECTION on top of the page  -->
-                <show_games th:if="${user.favorites}">
-                    <div class="testimonial-group">
-                        <div class="row text-center">
-                            <div class="col-4" th:each="game: ${user.favorites}">
-                                <div class="row">
-                                    <div class="col-sm img-game">
-                                        <img th:src="${game.art_cover}">
-                                        <h6 th:text="${game.title}"></h6>
-                                        <div th:if="${user.id == user.id}">
+<!--                <show_games th:if="${user.favorites}">-->
+<!--                    <div class="testimonial-group">-->
+<!--                        <div class="row text-center">-->
+<!--                            <div class="col-4" th:each="game: ${user.favorites}">-->
+<!--                                <div class="row">-->
+<!--                                    <div class="col-sm img-game">-->
+<!--                                        <img th:src="${game.art_cover}">-->
+<!--                                        <h6 th:text="${game.title}"></h6>-->
+<!--                                        <div th:if="${user.id == user.id}">-->
 
-                                            <!--                                            Trash Bin or X Icon for the Remove Feature   maybe? -->
-                                            <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${game.id}}">Remove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </show_games>
+<!--                                            &lt;!&ndash;                                            Trash Bin or X Icon for the Remove Feature   maybe? &ndash;&gt;-->
+<!--                                            <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${game.id}}">Remove</a>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </show_games>-->
             </div>
 
         <!-- Right Side Panel -->
@@ -483,12 +483,12 @@
                                     <div class="row">
                                         <div class="col-sm img-group" >
                                             <!--                                            <img th:src="${group.profilePic}">-->
-                                            <a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
-                                            <div th:if="${user.id == user.id}">
-                                                <!--                                            Trash Bin or X Icon for the Remove Feature   maybe? -->
-                                                <button class="btn btn-primary pull-right" a
-                                                        th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">
-                                                    Leave Group
+<!--                                            <a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>-->
+<!--                                            <div th:if="${user.id == user.id}">-->
+<!--                                                &lt;!&ndash;                                            Trash Bin or X Icon for the Remove Feature   maybe? &ndash;&gt;-->
+<!--                                                <button class="btn btn-primary pull-right" a-->
+<!--                                                        th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">-->
+<!--                                                    Leave Group-->
                                                 </button>
                                             </div>
                                         </div>
