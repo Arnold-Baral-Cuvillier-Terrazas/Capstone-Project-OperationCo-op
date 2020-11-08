@@ -224,18 +224,17 @@
 <!--            </div>-->
 <!--            <div class="group-users">-->
 <!--                <h4>Members in our Group:</h4>-->
-<!--                <show_users th:if="${group.users}">-->
-<!--                    <div th:each="gUser:-->
-<!--                                                        ${group.users}">-->
-<!--                        &lt;!&ndash;                <p th:text="${gUser.getFullName()}"></p>&ndash;&gt;-->
-<!--                        <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>-->
+                <show_users th:if="${group.users}">
+                    <div th:each="gUser:${group.users}">
+                        <!--                <p th:text="${gUser.getFullName()}"></p>-->
+                        <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>
 
-<!--                        <div th:if="${group.owner.id == user.id}">-->
-<!--                            <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete-->
-<!--                                Member</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </show_users>-->
+                        <div th:if="${group.owner.id == user.id}">
+                            <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete
+                                Member</a>
+                        </div>
+                    </div>
+                </show_users>
 
 <!--            </div>-->
 
@@ -330,24 +329,6 @@
         <div class="col-md-8 col-xl-9">
 
             <!-- Favorite Games Card -->
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="h6 card-title">Favorite Games</h5>
-                    <div id="favGames">
-                        <div class="d-flex flex-row flex-nowrap overflow-auto">
-                            <show_games th:if="${user.favorites}">
-                                <div th:each="game: ${user.favorites}">
-                                    <div class="card card-block mx-2" style="min-width: 300px;">
-                                        <img th:src="${game.art_cover}"/>
-                                        <h6 th:text="${game.title}"></h6>
-                                    </div>
-                                </div>
-                            </show_games>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Groups User Is In Card -->
             <div class="card">
                 <div class="card-body">
