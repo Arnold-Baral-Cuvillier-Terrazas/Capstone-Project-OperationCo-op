@@ -4,12 +4,18 @@
         <meta charset="UTF-8">
         <title>Edit user Profile</title>
         <link th:replace="partials/links :: links"/>
-        <link th:href="@{/css/style.css}" rel="stylesheet"/>
+<!--        <link th:href="@{/css/style.css}" rel="stylesheet"/>-->
         <style>
+            body{
+                background-image: url("../img/colorfulkeypad.jpeg");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
             .editP {
                 margin: auto;
                 width: 80%;
-                /*border: 3px solid orange;*/
                 padding-left: 20px;
             }
 
@@ -26,55 +32,57 @@
                 border-radius:25px;
             }
 
-            /*.body{*/
-            /*    background-image:url("../img/background.jpeg");*/
-            /*}*/
+            .bgProfile {
+                background-color: powderblue;
+                opacity:.8;
+                width: 50%;
+            }
 
         </style>
     </head>
     <nav th:insert="partials/navbar :: navbar"></nav>
 
     <body class="body">
+    <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
 
-    <div class="container">
-        <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
+    <div class="container bgProfile">
             <div class="editP">
                 <h2 class="text-center">Please edit your profile information</h2>
                 <div class="form-group">
-                    <label for="psn">Psn info</label>
+                    <label for="psn"><b>Psn info</b></label>
                     <input type="text" class="form-control" id="psn" name="psnInfo" th:value="*{psnInfo}"
                            placeholder="enter psn usernames">
                 </div>
                 <div class="form-group">
-                    <label for="steam">Steam info</label>
+                    <label for="steam"><b>Steam info</b></label>
                     <input type="text" class="form-control" id="steam" name="steamInfo" th:value="*{steamInfo}"
                            placeholder="enter steam usernames">
                 </div>
                 <div class="form-group">
-                    <label for="twitch">Twitch info</label>
+                    <label for="twitch"><b>Twitch info</b></label>
                     <input type="text" class="form-control" id="twitch" name="twitchInfo" th:value="*{twitchInfo}"
                            placeholder="enter twitch usernames">
                 </div>
                 <div class="form-group">
-                    <label for="xboxLive">XboxLive info</label>
+                    <label for="xboxLive"><b>XboxLive info</b></label>
                     <input type="text" class="form-control" id="xboxLive" name="xboxLiveInfo" th:value="*{xboxLiveInfo}"
                            placeholder="enter xboxLive usernames">
                 </div>
                 <div class="form-group">
-                    <label for="ninetendo">Nintendo info</label>
+                    <label for="ninetendo"><b>Nintendo info</b></label>
                     <input type="text" class="form-control" id="ninetendo" name="nintendoInfo"
                            th:value="*{nintendoInfo}"
                            placeholder="enter nintendo usernames">
                 </div>
 
                 <div class="form-group">
-                    <label for="discord">Discord info</label>
+                    <label for="discord"><b>Discord info</b></label>
                     <input type="text" class="form-control" id="discord" name="discordInfo" th:value="*{discordInfo}"
                            placeholder="enter discord username">
                 </div>
 
                 <div class="form-group">
-                    <label for="bio">Updated your bio</label>
+                    <label for="bio"><b>Updated your bio</b></label>
                     <input id="bio" type="text" name="bio" th:value="*{bio}" placeholder="Please enter your bio here!"/>
                 </div>
 
@@ -94,6 +102,7 @@
                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 </div>
             </div>
+    </div>
         </form>
     </div>
 <!--    <footer th:replace="partials/footer :: footer"></footer>-->
