@@ -22,6 +22,6 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
             + "OR gr.discordUserId LIKE %?1%"
             + "OR gr.description LIKE %?1%"
     )
-    List<Group>searchByNameLike(@Param("term") String term);
+    List<Group>searchByNameLike(@Param("groupTerm") String term);
 
 }

@@ -176,8 +176,8 @@ public class GroupController {
 
 ////    ---------- Groups Search
     @GetMapping("/groups/search")
-    public String showGroup(@RequestParam String term, Model model) {
-        List<Group> groups = groupDao.searchByNameLike(term);
+    public String showGroup(@RequestParam String groupTerm, Model model) {
+        List<Group> groups = groupDao.searchByNameLike(groupTerm);
         model.addAttribute("groups", groups);
         return "/groups/search";
     }

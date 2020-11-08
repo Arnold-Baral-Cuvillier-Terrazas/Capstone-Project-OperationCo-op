@@ -178,14 +178,13 @@ public class UserController {
     }
 
 
-    @GetMapping("/users/search")
-    public String showUser(@RequestParam String term, Model model){
+
 
     //-------------------------Search for Users
     @GetMapping("/users/search")
-    public String showUser(@RequestParam String term, Model model) {
+    public String showUser(@RequestParam String userTerm, Model model) {
 
-        List<User> users = userDao.findByUserNameLike(term);
+        List<User> users = userDao.findByUserNameLike(userTerm);
         model.addAttribute("users", users);
         return "users/search";
     }
