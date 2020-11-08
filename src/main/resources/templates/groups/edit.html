@@ -19,15 +19,9 @@
     }
     </style>
 </head>
-<nav th:insert="partials/navbar :: navbar"></nav>
+<!--<nav th:insert="partials/navbar :: navbar"></nav>-->
 <body>
-<div id="wrapper" class="d-flex">
-    <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-        <div class="container-fluid page-body">
-            <div class="container-fluid">
-
-                <!--<header th:replace="partials/head :: head"></header>-->
+<nav th:replace="partials/navbar :: navbar"></nav>
 
                 <div class="container1">
                     <h1 class="text-center">Edit your Group information !</h1>
@@ -47,7 +41,6 @@
                                        placeholder="enter bio for group"/>
                             </div>
 
-                            <!--                    <input id="description" type="text" th:field="*{description}"/>-->
 
                             <div class="tags">
                                 <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Please select the interests that
