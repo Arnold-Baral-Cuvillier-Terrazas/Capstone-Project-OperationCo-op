@@ -1,68 +1,96 @@
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<standard_links th:fragment="navbar">
 
-<!--<standard_links th:fragment="navbar">-->
-<!--    <nav class="navbar navbar-light navbar-expand-md bg-light border-bottom">-->
-<!--        <div class="container-fluid"><button class="btn btn-primary" id="menu-toggle" type="button">SideBar</button><button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation"><span class="navbar-toggler-icon"></span></button>-->
-<!--            <div-->
-<!--                    id="navbarSupportedContent" class="collapse navbar-collapse">-->
-<!--                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
-<!--                    <li class="d-xl-flex align-items-xl-center nav-item active"> <form th:action="@{/games/search}" th:method="GET">-->
-<!--                        <input type="text" name="term" id="term" size="50" />-->
-<!--                        &nbsp;<input type="submit" value="Search" placeholder="Search Games"/>-->
-<!--                        &nbsp;<input type="button" value="Clear" id="btnClear" onlick="clearSearch()"/>-->
-<!--                    </form>-->
-<!--                    </li>-->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand">OperationCo-Opt</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a></li>
+                    <li sec:authorize="isAnonymous()" class="active">
+                        <a class="nav-link" href="/sign-up"><span class="glyphicon glyphicon-user"></span>Sign Up</a>
+                    </li>
+                    <li sec:authorize="isAnonymous()" class="nav-item">
+                        <a class="nav-link" href="/login"><span class="glyphicon glyphicon-log-in"></span>Login</a>
+                    </li>
+                    <!--                Drop down toggle nav(Visible for Logged In Users Only) -->
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/profile}">Profile</a><span class="sr-only"></span></a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/groups}">Groups</a><span class="sr-only"></span></a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/games}">Games</a><span class="sr-only"></span></a>
+                    </li>
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <a class="nav-link" th:href="@{/aboutUs}">About Us</a><span class="sr-only"></span></a>
+                    </li>
+                </ul>
+<!--                <ul class="nav navbar-nav navbar-right">-->
+<!--                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+<!--                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
 <!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-<!--</standard_links>-->
+            </div>
+        </div>
+    </nav>
 
-<!--    <nav class="navbar navbar-light navbar-expand-md">-->
+
+                    <!--                Non-logged in user display-->
+
+
+                    <li sec:authorize="isAuthenticated()" class="nav-item">
+                        <form class="form-inline" th:action="@{/games/search}" th:method="GET">
+                            <input type="text" name="term" id="term" class="form-control mr-sm-2"
+                                   placeholder="Look for a Game!"/>
+                            <input class="btn btn-success" type="submit" value="Search" placeholder="Search"
+                                   aria-label="Search Games"/>
+                            &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"
+                                          type="button">Clear
+                        </button>
+                        </form>
+                    </li>
+
+
+<!--    <nav class="navbar navbar-inverse">-->
 <!--        <div class="container-fluid">-->
-<!--            <a class="navbar-brand" href="#">Operation Co-Op</a>-->
-<!--            <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1">-->
-<!--                <span class="sr-only">Toggle navigation</span>-->
-<!--                <span class="navbar-toggler-icon"></span>-->
-<!--            </button>-->
-<!--            <div class="collapse navbar-collapse"-->
-<!--                 id="navcol-1">-->
+<!--            <div class="navbar-header">-->
+<!--                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">-->
+<!--                    <span class="icon-bar"></span>-->
+<!--                    <span class="icon-bar"></span>-->
+<!--                    <span class="icon-bar"></span>-->
+<!--                </button>-->
+<!--                <a class="navbar-brand" href="#">WebSiteName</a>-->
+<!--            </div>-->
+<!--            <div class="collapse navbar-collapse" id="myNavbar">-->
 <!--                <ul class="nav navbar-nav">-->
-<!--                    <li class="nav-item"><a class="nav-link active" th:href="@{/profile}">Profile</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link" th:href="@{/games}">Games</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link" th:href="@{/groups}">Groups</a></li>-->
+<!--                    <li class="active"><a href="#">Home</a></li>-->
+<!--                    <li class="dropdown">-->
+<!--                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li><a href="#">Page 1-1</a></li>-->
+<!--                            <li><a href="#">Page 1-2</a></li>-->
+<!--                            <li><a href="#">Page 1-3</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+<!--                    <li><a href="#">Page 2</a></li>-->
+<!--                    <li><a href="#">Page 3</a></li>-->
+<!--                </ul>-->
+<!--                <ul class="nav navbar-nav navbar-right">-->
+<!--                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
+<!--                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
 <!--                </ul>-->
 <!--            </div>-->
 <!--        </div>-->
 <!--    </nav>-->
 
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
-
-<!--<standard_links th:fragment="navbar">-->
-<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
-<!--        <div class="container-fluid">-->
-<!--            <a class="navbar-brand" href="/">Game Group</a>-->
-
-
-<!--            &lt;!&ndash; If the user is not logged in (anonymous to the site), display the login form and register button &ndash;&gt;-->
-<!--            <div sec:authorize="isAnonymous()" class="nav-item">-->
-<!--                <a class="nav-link" href="/register">Register</a>-->
-<!--            </div>-->
-
-<!--            <div sec:authorize="isAnonymous()" class="nav-item">-->
-<!--                <a class="nav-link" href="/login">Login</a>-->
-<!--            </div>-->
-
-<!--            &lt;!&ndash; If the user is already logged in / authenticated, display the logout button (form) &ndash;&gt;-->
-<!--            <div sec:authorize="isAuthenticated()" class="nav-item">-->
-<!--                <form th:action="@{/logout}" th:method="post">-->
-<!--                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
-<!--                </form>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </nav>-->
 
 <!--</standard_links>-->
 
@@ -158,19 +186,19 @@
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
                 <form class="form-inline" th:action="@{/games/search}" th:method="GET">
-                    <input type="text" name="term" id="term" class="form-control mr-sm-2" placeholder="Look for a Game!"/>
+                    <input type="text" name="term" id="term" class="form-control mr-sm-2"
+                           placeholder="Look for a Game!" style="margin-left:21.25rem "/>
                     <input class="btn btn-success" type="submit" value="Search" placeholder="Search"
                            aria-label="Search Games"/>
                     &nbsp;<button onlick="document.getElementById('term').value=''" class="btn btn-warning" type="button">Clear</button>
                 </form>
             </li>
             <li sec:authorize="isAuthenticated()" class="nav-item">
-                <form class="form-inline" th:action="@{/logout}" th:method="post">
-                    <button class="btn btn-danger" style="margin-top: 10px">Logout</button>
+                <form class="form-inline " th:action="@{/logout}" th:method="post">
+                    <button class="btn btn-danger" style="margin:0 5px">Logout</button>
                 </form>
             </li>
         </ul>
         <!--        </div>-->
     </nav>
-
 </standard_links>

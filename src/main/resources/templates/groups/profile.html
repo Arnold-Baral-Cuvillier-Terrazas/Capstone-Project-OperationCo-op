@@ -10,12 +10,19 @@
 </head>
 
 <body>
+
 <!--<div id="wrapper" class="d-flex">-->
 <!--&lt;!&ndash;    <div th:replace="partials/sidebar :: sidebar"></div>&ndash;&gt;-->
 <!--    <div id="page-content-wrapper">-->
 <!--&lt;!&ndash;        <nav th:replace="partials/navbar :: navbar"></nav>&ndash;&gt;-->
 <!--        <div class="container page-body">-->
 <section id="content" class="container">
+
+<div id="wrapper" class="d-flex">
+    <div id="page-content-wrapper">
+        <nav th:replace="partials/navbar :: navbar"></nav>
+        <div class="container-fluid page-body">
+
 
     <!--            <h1 class="text-center">Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>-->
     <!--            <div class="groupProfile d-flex align-items-center">-->
@@ -205,10 +212,34 @@
                 </div>
 
 
+
 <!--                    <h4>Members in our Group:</h4>-->
                 <div class="group-users">
 
                 </div>
+<!--            <input type="hidden" id="rating" name="rating" value="-1">-->
+<!--            <div class="rating">-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="1"></i>-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="2"></i>-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="3"></i>-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="4"></i>-->
+<!--                <i class="ratings_stars fa fa-star" data-rating="5"></i>-->
+<!--            </div>-->
+
+
+            <div class="group-users">
+                <h4>Members in our Group:</h4>
+                <show_users th:if="${group.users}">
+                    <div th:each="gUser: ${group.users}">
+                        <!--                <p th:text="${gUser.getFullName()}"></p>-->
+                        <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>
+
+                        <div th:if="${group.owner.id == user.id}">
+                            <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete Member</a>
+                        </div>
+                    </div>
+                </show_users>
+
 
             </div>
             <div class="panel">
@@ -363,6 +394,7 @@
             </div>
         </div>
     </div>
+
     </div>
 
 
@@ -374,6 +406,10 @@
 <!--<header th:replace="partials/header :: header"></header>-->
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
+
+
+</div>
+<footer th:replace="partials/footer :: footer"></footer>
 
 <script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
