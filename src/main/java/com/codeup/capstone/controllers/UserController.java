@@ -163,7 +163,9 @@ public class UserController {
         return "redirect:/profile";
     }
 
+
     //    ---------------- UnFavor a Game
+
     @GetMapping("/users/userDelete/{id}")
     public String deleteFavGame(@PathVariable long id, @RequestParam long UserId) {
         User userUnFav = userDao.getOne(id);
@@ -175,13 +177,20 @@ public class UserController {
         return "redirect:/profile/" + id;
     }
 
+
+    @GetMapping("/users/search")
+    public String showUser(@RequestParam String term, Model model){
+
     //-------------------------Search for Users
     @GetMapping("/users/search")
     public String showUser(@RequestParam String term, Model model) {
+
         List<User> users = userDao.findByUserNameLike(term);
         model.addAttribute("users", users);
         return "users/search";
     }
+
+
 
     //    ----------------------Leave Group
 //    @GetMapping("/users/userLeave/{id}")
@@ -194,6 +203,7 @@ public class UserController {
 //        userDao.save(userLeave);
 //        return "redirect:/profile/" + id;
 //    }
+
 }
 
 
