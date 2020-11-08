@@ -5,6 +5,8 @@
     <title>Profile page</title>
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/profile.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
 
     <!--    <link th:href="@{/css/style.css}" rel="stylesheet"/>-->
     <!--    <link th:href="@{/css/game.css}" rel="stylesheet"/>-->
@@ -17,7 +19,7 @@
     <div class="row">
         <!--Left Card Panel Containing User Info-->
         <div class="col-md-4 col-xl-3">
-            <div class="card mb-3">
+            <div class="card mb-3 user-glow">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Profile Details</h5>
                 </div>
@@ -88,7 +90,7 @@
 
             <!-- Favorite Games Card -->
             <div class="card">
-                <div class="card-body">
+                <div class="card-body game-glow">
                     <h5 class="h6 card-title">Favorite Games</h5>
                     <!-------------------------- AMARO ADD SEARCH FOR GAMES ---------------------->
 
@@ -112,7 +114,7 @@
 
             <!-- Groups User Is In Card -->
             <div class="card">
-                <div class="card-body">
+                <div class="card-body group-glow">
                     <!-------------------------- AMARO ADD SEARCH FOR GROUP ---------------------->
 
 
