@@ -1,164 +1,3 @@
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Show Groups</title>-->
-<!--    <link th:replace="partials/links :: links"/>-->
-<!--    <link th:href="@{/css/style.css}" rel="stylesheet"/>-->
-
-<!--    <style>-->
-<!--        .group-users {-->
-<!--            float:left;-->
-<!--        }-->
-<!--    </style>-->
-<!--</head>-->
-
-
-<!--<body>-->
-<!--<div id="wrapper" class="d-flex">-->
-<!--&lt;!&ndash;    <div th:replace="partials/sidebar :: sidebar"></div>&ndash;&gt;-->
-<!--    <div id="page-content-wrapper">-->
-<!--        <nav th:replace="partials/navbar :: navbar"></nav>-->
-<!--        <div class="container-fluid page-body">-->
-
-
-<!--            <h1>Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>-->
-<!--            <div class="groupProfile">-->
-<!--                &lt;!&ndash;    adding profile picture&ndash;&gt;-->
-<!--                <div class="card">-->
-<!--                    &lt;!&ndash;    adding profile picture&ndash;&gt;-->
-<!--                    <div class="profileImg">-->
-<!--                        <img id="imgP" th:src="${group.getProfilePic()}"-->
-<!--                             style="width: 100%; height:100%; object-fit:cover">-->
-<!--                    </div>-->
-<!--                    <h4>Name: <span th:text="${group.name}"></span></h4>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--                <button id="profile-btn2" class="pb" type="button">Update Profile Image</button>-->
-
-
-<!--            <a th:href="@{'/groups/posts/' + ${group.id}}">Chatting</a>-->
-
-<!--                &lt;!&ndash;    Join Group Feature&ndash;&gt;-->
-<!--&lt;!&ndash;                <h2>Join our Group!</h2>&ndash;&gt;-->
-<!--                <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
-<!--                    <input name="UserId" th:value="${user.id}" type="hidden">-->
-<!--                    <button type="submit">Join Group</button>-->
-<!--                </form>-->
-
-<!--                <h4>Description: </h4>-->
-<!--                <p><span th:text="${group.description}"></span></p>-->
-<!--                <div>-->
-<!--                    <h4> Tags defines our group : </h4>-->
-<!--                    <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"-->
-<!--                          th:text="${tag.name}"></span>-->
-<!--                </div>-->
-
-
-<!--&lt;!&ndash;            <input type="hidden" id="rating" name="rating" value="-1">&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="rating">&ndash;&gt;-->
-<!--&lt;!&ndash;                <i class="ratings_stars fa fa-star" data-rating="1"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                <i class="ratings_stars fa fa-star" data-rating="2"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                <i class="ratings_stars fa fa-star" data-rating="3"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                <i class="ratings_stars fa fa-star" data-rating="4"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                <i class="ratings_stars fa fa-star" data-rating="5"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;    Join Group Feature&ndash;&gt;-->
-<!--&lt;!&ndash;            <h2>Join our Group!</h2>&ndash;&gt;-->
-<!--&lt;!&ndash;            <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">&ndash;&gt;-->
-<!--&lt;!&ndash;                <input name="UserId" th:value="${user.id}" type="hidden">&ndash;&gt;-->
-<!--&lt;!&ndash;                <button type="submit">Join Group</button>&ndash;&gt;-->
-<!--&lt;!&ndash;            </form>&ndash;&gt;-->
-
-<!--&lt;!&ndash;            <h4>Description: </h4>&ndash;&gt;-->
-<!--&lt;!&ndash;            <br>&ndash;&gt;-->
-
-
-<!--&lt;!&ndash;            <p><span th:text="${group.description}"></span></p>&ndash;&gt;-->
-<!--&lt;!&ndash;            <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <h4> Tags defines me : </h4>&ndash;&gt;-->
-<!--&lt;!&ndash;                <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"&ndash;&gt;-->
-<!--&lt;!&ndash;                      th:text="${tag.name}"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-
-<!--&lt;!&ndash;            Search Form for groups, may get integrated into the existing search bar&ndash;&gt;-->
-<!--            <form class="form-inline" th:action="@{/groups/search}" th:method="GET">-->
-<!--                <input type="text" name="term" id="term" class="form-control mr-sm-2"-->
-<!--                       placeholder="Look for a different Group!"/>-->
-<!--                <input class="btn btn-success" type="submit" value="Search" placeholder="Search"-->
-<!--                       aria-label="Search Groups"/>-->
-<!--                &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"-->
-<!--                              type="button">Clear-->
-<!--            </button>-->
-<!--            </form>-->
-
-
-<!--            <div class="group-users">-->
-<!--                <h4>Members in our Group:</h4>-->
-<!--                <show_users th:if="${group.users}">-->
-<!--                    <div th:each="gUser: ${group.users}">-->
-<!--                        &lt;!&ndash;                <p th:text="${gUser.getFullName()}"></p>&ndash;&gt;-->
-<!--                        <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>-->
-
-<!--                        <div th:if="${group.owner.id == user.id}">-->
-<!--                            <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete Member</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </show_users>-->
-
-<!--            </div>-->
-
-<!--            &lt;!&ndash;                <p><span th:text="${group.description}"></span></p>&ndash;&gt;-->
-
-
-<!--            &lt;!&ndash;    link&ndash;&gt;-->
-
-<!--            &lt;!&ndash;                <h4>Description: </h4>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <br>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <p><span th:text="${group.description}"></span></p>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <div>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <h4> Tags defines me : </h4>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"&ndash;&gt;-->
-<!--            &lt;!&ndash;                          th:text="${tag.name}"></span>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;                <div class="group-users">&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <h4>Members in our Group:</h4>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    <show_users th:if="${group.users}">&ndash;&gt;-->
-<!--            &lt;!&ndash;                        <div th:each="user: ${group.users}">&ndash;&gt;-->
-<!--            &lt;!&ndash;                            <p th:text="${user.getFullName()}"></p>&ndash;&gt;-->
-<!--            &lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;                    </show_users>&ndash;&gt;-->
-<!--            &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--            &lt;!&ndash;<button  class="ib" type="button">Edit profile</button>&ndash;&gt;-->
-<!--            <show_post th:if="${group.owner.id == user.id}">-->
-<!--                <form style="display: inline" th:action="@{'/groups/edit/' + ${group.id}}">-->
-<!--                    <button>Edit</button>-->
-<!--                </form>-->
-<!--                <form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">-->
-<!--                    <button>Delete</button>-->
-<!--                </form>-->
-<!--            </show_post>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash;<header th:replace="partials/header :: header"></header>&ndash;&gt;-->
-<!--&lt;!&ndash;<nav th:replace="partials/navbar :: navbar"></nav>&ndash;&gt;-->
-
-
-<!--<script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>-->
-<!--<script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>-->
-<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
-<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
-<!--<script th:src="@{/js/keys.js}"></script>-->
-<!--<script th:src="@{/js/filestack.js}"></script>-->
-<!--<script th:src="@{/js/groupProfile.js}"></script>-->
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -170,173 +9,12 @@
 
 <!----------------------------------------------START------------------------------------------------------------------>
 <body>
-<!--<h1 class="text-center">Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>-->
-
-
 
 <!--------------------------------------------SAVING CODE TO USE IN EDIT FORM------------------------------------------>
 <!--<form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">-->
 <!--    <button>Delete</button>-->
 <!--</form>-->
 <!--------------------------------------------------------------------------------------------------------------------->
-
-<!--<div class="container">-->
-<!--    <h1 class="h3 mb-3">Squad Profile</h1>-->
-<!--    <div class="row">-->
-<!--        &lt;!&ndash;Left Card Panel Containing User Info&ndash;&gt;-->
-<!--        <div class="col-md-4 col-xl-3">-->
-<!--            <div class="card mb-3">-->
-<!--                <div class="card-header">-->
-<!--                    <h5 class="card-title mb-0">Profile Details</h5>-->
-<!--                </div>-->
-
-<!--                &lt;!&ndash;Basic User Information Card&ndash;&gt;-->
-<!--                <div class="card-body text-center">-->
-<!--                    <div class="profileImg">-->
-<!--                        <img th:src="${group.getProfilePic()}" id="imgP"-->
-<!--                             style="width: 100%; height:100%; object-fit:cover">-->
-<!--                    </div>-->
-<!--                    <h4 class="card-title mb-0"><span th:text="${group.name}"></span></h4>-->
-
-<!--                    <show_post th:if="${group.owner.id == user.id}">-->
-<!--                        <div>-->
-<!--                            <a class="btn btn-primary btn-sm" th:href="@{'/groups/edit/' + ${group.id}}">Edit-->
-<!--                                Profile</a>-->
-<!--                            <button id="profile-btn" class="pb" type="button">Update Profile Image</button>-->
-<!--                        </div>-->
-<!--                    </show_post>-->
-
-<!--                    <show_join th:if="${group.owner.id != user.id}">-->
-<!--                        <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
-<!--                            <input name="UserId" th:value="${user.id}" type="hidden">-->
-<!--                            <button type="submit">Join Group</button>-->
-<!--                        </form>-->
-<!--                    </show_join>-->
-
-
-<!--                    <hr class="my-0">-->
-
-<!--                    &lt;!&ndash;Bio Card&ndash;&gt;-->
-<!--                    <div class="card-body">-->
-<!--                        <h5 class="h6 card-title">About</h5>-->
-<!--                        <p><span th:text="${group.description}"></span></p>-->
-<!--                    </div>-->
-<!--                    <hr class="my-0">-->
-
-<!--                    &lt;!&ndash;Social Media Card&ndash;&gt;-->
-<!--                    <div class="card-body">-->
-<!--                        <h5 class="h6 card-title">Elsewhere</h5>-->
-<!--&lt;!&ndash;                        <a class="btn" type="button">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <i class="fab-fa-discord"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <span th:text="${user.twitchInfo}"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a class="btn" type="button">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <i class="fab-fa-discord"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <span th:text="${user.discordInfo}"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a class="btn" type="button">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <i class="fab-fa-discord"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <span th:text="${user.steamInfo}"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a class="btn" type="button">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <i class="fab-fa-discord"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <span th:text="${user.xboxLiveInfo}"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a class="btn" type="button">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <i class="fab-fa-discord"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <span th:text="${user.psnInfo}"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <a class="btn" type="button">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <i class="fab-fa-discord"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;                            <span th:text="${user.nintendoInfo}"></span>&ndash;&gt;-->
-<!--&lt;!&ndash;                        </a>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-<!--                    <hr class="my-0">-->
-
-<!--                    &lt;!&ndash;Tag Card&ndash;&gt;-->
-<!--                    <div class="card-body">-->
-<!--                        <h5 class="h6 card-title">Tags</h5>-->
-<!--                        <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"-->
-<!--                              th:text="${tag.name}"></span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-
-
-<!--            &lt;!&ndash; Right Side Panel &ndash;&gt;-->
-<!--            <div class="col-md-8 col-xl-9">-->
-
-<!--                &lt;!&ndash; Favorite Games Card &ndash;&gt;-->
-<!--                <div class="card">-->
-<!--                    <div class="card-body">-->
-<!--                        <h5 class="h6 card-title">Group Members</h5>-->
-<!--                        <div class="group-users">-->
-<!--                            <show_users th:if="${group.users}">-->
-<!--                                <div th:each="gUser:${group.users}">-->
-<!--                                    <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>-->
-<!--                                    <div th:if="${group.owner.id == user.id}">-->
-<!--                                        <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete-->
-<!--                                            Member</a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </show_users>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--            <input type="hidden" id="rating" name="rating" value="-1">-->
-<!--            <div class="rating text-center">-->
-<!--                <i class="ratings_stars fa fa-star" data-rating="1"></i>-->
-<!--                <i class="ratings_stars fa fa-star" data-rating="2"></i>-->
-<!--                <i class="ratings_stars fa fa-star" data-rating="3"></i>-->
-<!--                <i class="ratings_stars fa fa-star" data-rating="4"></i>-->
-<!--                <i class="ratings_stars fa fa-star" data-rating="5"></i>-->
-<!--            </div>-->
-<!--            &lt;!&ndash;    Join Group Feature&ndash;&gt;-->
-<!--            <h2>Join our Group!</h2>-->
-<!--            <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
-<!--                <input name="UserId" th:value="${user.id}" type="hidden">-->
-<!--                <button type="submit">Join Group</button>-->
-<!--            </form>-->
-
-<!--            <h4>Description: </h4>-->
-<!--            <br>-->
-
-<!--            <p><span th:text="${group.description}"></span></p>-->
-<!--            <div>-->
-<!--                <h4> Tags defines me : </h4>-->
-<!--                <span class="pill" th:each="tag : ${group.getTags()}" th:id="${tag.name}"-->
-<!--                      th:text="${tag.name}"></span>-->
-<!--            </div>-->
-<!--            <div class="group-users">-->
-<!--                <h4>Members in our Group:</h4>-->
-<!--                <show_users th:if="${group.users}">-->
-<!--                    <div th:each="gUser:${group.users}">-->
-<!--                        &lt;!&ndash;                <p th:text="${gUser.getFullName()}"></p>&ndash;&gt;-->
-<!--                        <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>-->
-
-<!--                        <div th:if="${group.owner.id == user.id}">-->
-<!--                            <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete-->
-<!--                                Member</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </show_users>-->
-
-
-<!--            </div>-->
-
-<!--            &lt;!&ndash; Groups User Is In Card &ndash;&gt;-->
-<!--            <div class="card">-->
-<!--                <div class="card-body">-->
-
-<!--                </div>-->
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
 
 <div class="container">
     <h1 class="h3 mb-3">Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1></div>
@@ -354,13 +32,16 @@
                 </div>
 
                 <h4 class="card-title mb-0"><span th:text="${group.name}"></span></h4>
-<!--                <div class="text-muted mb-2"> @<span th:text="${user.userName}"></span></div>-->
-
+<!----------------------------------IF USER IS OWNER OF GROUP THIS WILL DISPLAY---------------------------------------->
+<!--                <show_post th:if="${group.owner.id == user.id}">-->
                 <div>
                     <a class="btn btn-primary btn-sm" th:href="@{'/groups/edit/' + ${group.id}}">Edit Profile</a>
                     <button id="profile-btn2" class="pb" type="button">Update Profile Image</button>
                 </div>
+<!--                </show_post>-->
             </div>
+<!--------------------------------------------------------------------------------------------------------------------->
+
             <hr class="my-0">
 
             <!--Bio Card-->
@@ -372,7 +53,7 @@
 
             <!--Social Media Card-->
 
-            <!--            Trevor the infos are coming out as peach/grey colored button not sure if that was what you are going at -->
+
             <div class="card-body">
                 <h5 class="h6 card-title">Elsewhere</h5>
                 <a class="btn" type="button">
@@ -418,20 +99,35 @@
         <!-- Favorite Games Card -->
         <div class="card">
             <div class="card-body">
-                <h5 class="h6 card-title">Favorite Games</h5>
-                <!-------------------------- AMARO ADD SEARCH FOR GAMES ---------------------->
-                <form class="form-inline" th:action="@{/games/search}" th:method="GET">
-                    <input type="text" name="term" id="gameTerm" class="form-control mr-sm-2"
-                           placeholder="Look for a Game!"/>
-                    <input class="btn btn-success" type="submit" value="Search" placeholder="Search"
-                           aria-label="Search Games"/>
-                    &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"
-                                  type="button">Clear
-                </button>
+<!--                <h5 class="h6 card-title">Favorite Games</h5>-->
+                <h5 class="h6 card-title">Squad Members</h5>
 
-                </form>
 
-                <!-------------------------    BETWEEN HERE LOL --------------------------->
+<!--                <form class="form-inline" th:action="@{/games/search}" th:method="GET">-->
+<!--                    <input type="text" name="term" id="gameTerm" class="form-control mr-sm-2"-->
+<!--                           placeholder="Look for a Game!"/>-->
+<!--                    <input class="btn btn-success" type="submit" value="Search" placeholder="Search"-->
+<!--                           aria-label="Search Games"/>-->
+<!--                    &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"-->
+<!--                                  type="button">Clear-->
+<!--                </button>-->
+<!--                </form>-->
+
+
+                <div class="group-users">
+                    <show_users th:if="${group.users}">
+                        <div th:each="gUser:${group.users}">
+                            <!--                <p th:text="${gUser.getFullName()}"></p>-->
+                            <a th:href="@{'/profile/' + ${gUser.id}}" th:text="${gUser.getFullName()}"></a>
+
+                            <div th:if="${group.owner.id == user.id}">
+                                <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete
+                                    Member</a>
+                            </div>
+                        </div>
+                    </show_users>
+                </div>
+
 
 
                 <!--------------------- This is for the FAVORITE GAME SECTION on top of the page  -->
@@ -476,12 +172,12 @@
 
                     </form>
                     <!-------------------------    BETWEEN HERE LOL --------------------------->
-                    <show_groupin th:if="${user.groups}">
-                        <div class="testimonial-group">
-                            <div class="row text-center">
-                                <div class="col-4" th:each="group: ${user.groups}">
-                                    <div class="row">
-                                        <div class="col-sm img-group" >
+<!--                    <show_groupin th:if="${user.groups}">-->
+<!--                        <div class="testimonial-group">-->
+<!--                            <div class="row text-center">-->
+<!--                                <div class="col-4" th:each="group: ${user.groups}">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-sm img-group" >-->
                                             <!--                                            <img th:src="${group.profilePic}">-->
 <!--                                            <a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>-->
 <!--                                            <div th:if="${user.id == user.id}">-->
@@ -489,14 +185,14 @@
 <!--                                                <button class="btn btn-primary pull-right" a-->
 <!--                                                        th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">-->
 <!--                                                    Leave Group-->
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </show_groupin>
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </show_groupin>-->
                     <!--                    <show_groupIn th:if="${user.groups}">-->
                     <!--                        <div th:each="group: ${user.groups}">-->
                     <!--                            <div class="row">-->
