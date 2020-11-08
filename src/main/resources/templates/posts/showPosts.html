@@ -2,35 +2,74 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Show Posts</title>
+    <title>Show All Posts</title>
     <link th:replace="partials/links :: links"/>
+    <style>
+        .postcard{
+            width:100%;
+            height:auto;
+        }
+        .time,.icons,.icons1{
+            padding-left:2em;
+        }
+        /*.main{*/
+        /*    background-image: url("../img/background.jpeg");*/
+        /*    background-color: cornflowerblue;*/
+        /*}*/
+    </style>
 </head>
+<!--<header th:replace="partials/head :: head"></header>-->
+
+<!--<header th:replace="partials/head :: head"></header>-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+<div class="main">
 <body>
-<header th:replace="partials/head :: head"></header>
+<!--<header th:replace="partials/head :: head"></header>-->
 <div id="wrapper" class="d-flex">
-    <div th:replace="partials/sidebar :: sidebar"></div>
     <div id="page-content-wrapper">
         <nav th:replace="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
+<main class="container">
 
-        </div>
+    <h1> Welcome to message dashboard </h1>
+
+    <div class="texts">
+        <show_post th:if="${posts}">
+
+            <div class="postcard" >
+            <div th:each="item : ${posts}">
+                <img th:src="${item.getUser().getProfilePic()}"style="width:5em;height:5em; object-fit:cover">
+                <!--            <div style="display: inline-flex; align-items: center">-->
+                <div class="part1 d-flex justify-content-start">
+                <h5 th:text="${item.message_body}"></h5> <a class="icons" th:href="'/groups/posts/delete/'+ ${item.id}"><i class="fas fa-trash-alt"></i></a>
+                <a class="icons1" th:href="'/groups/posts/edit/'+ ${item.id}"><i class="fas fa-edit"></i></a>
+                </div>
+                <!--
+                      </div>-->
+
+                <div class="part2 d-flex justify-content-start">
+                <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
+                <p class="time" th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
+                </div>
+
+                <hr>
+            </div>
+            </div>
+        </show_post>
+
+        <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post" th:object="${post}">
+            <input  style="width:100%" th:field="*{message_body}"  placeholder="start typing!">
+            <br>
+            <br>
+            <input  type="submit"/>
+        </form>
+    </div>
+</main>
+</div>
     </div>
 </div>
-
-<!--<main class="container">-->
-<!--    <show_post th:if="${posts}">-->
-<!--        <div th:each="item : ${posts}">-->
-
-<!--            <h2 th:text=" 'Title : ' + ${item.title}"> </h2>-->
-<!--            <a th:href="'posts/delete/'+ ${item.id}"> Delete</a>-->
-<!--            <a th:href="'posts/edit/'+ ${item.id}"> Edit</a>-->
-<!--            <h4 th:text=" 'Body : '+${item.body}"> </h4>-->
-<!--            <p th:text=" 'UserEmail : '+ ${item.getUser().getEmail()}"></p>-->
-<!--            <br>-->
-<!--        </div>-->
-<!--    </show_post>-->
-<!--</main>-->
-<footer th:replace="partials/footer :: footer"></footer>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
+</div>
 </html>

@@ -22,13 +22,15 @@ public class PostController {
     private final UserRepository userRepo;
     private final GroupRepository groupDao;
 
-    //--------- constructor
+    //    constructor
     public PostController(PostRepository postDao, UserRepository userRepo, GroupRepository groupDao) {
         this.postDao = postDao;
         this.groupDao = groupDao;
         this.userRepo = userRepo;
     }
-// showing all posts
+
+
+    //    showing all the posts
     @GetMapping("/groups/posts/{id}")
     public String viewAllPosts(@PathVariable long id, Model model) {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -87,3 +89,7 @@ public class PostController {
 
 
 }
+
+// ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes
+// ----------- FOR (ORIGIN) Comment below and  UnComment on TOP for file mapping purpose
+

@@ -10,24 +10,12 @@
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
 
-    <style>
-        /*.container-fluid {*/
-        /*    background-image: url("../img/game2.jpeg");*/
-        /*    !*background-size: 100%;*!*/
-        /*    background-position: center;*/
-        /*    background-repeat: no-repeat;*/
-        /*    background-size: cover;*/
-        /*    background-attachment: fixed;*/
-        /*}*/
-    </style>
-
 </head>
 <body>
 <div id="wrapper" class="d-flex">
-    <div th:replace="partials/sidebar :: sidebar"></div>
+<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
     <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-
+        <nav th:insert="partials/navbar :: navbar"></nav>
         <div class="container-fluid page-body">
             <div class="jumbotron jumbotron-fluid my-4">
                 <div class="container p-0 w-100">

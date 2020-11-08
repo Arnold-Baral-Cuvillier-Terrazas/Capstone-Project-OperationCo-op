@@ -172,10 +172,14 @@ public class GroupController {
     }
 
 ////    ---------- Groups Search
-//    @GetMapping("/groups/search")
-//    public String showGroup(@RequestParam String term, Model model) {
-//        List<Group> groups = groupDao.searchByNameLike(term);
-//        model.addAttribute("groups", groups);
-//        return "/groups/search";
-//    }
+    @GetMapping("/groups/search")
+    public String showGroup(@RequestParam String term, Model model) {
+        List<Group> groups = groupDao.searchByNameLike(term);
+        model.addAttribute("groups", groups);
+        return "/groups/search";
+    }
 }
+
+// ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes
+// ----------- FOR (ORIGIN) Comment below and  UnComment on TOP for file mapping purpose
+

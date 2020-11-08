@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailsLoader implements UserDetailsService {
 
-    // Curriculum calls the UserRepository interface 'Users' - much like we did with McBurgers - you can use either, as long as you keep the pattern identical for ALL of your interfaces
-    // Use the same naming convention for all interfaces/repositories
-
     private final UserRepository users; // gives us access to the "Claw" of grabbing/manipulating User objects
 
     public UserDetailsLoader(UserRepository users) {
@@ -23,8 +20,9 @@ public class UserDetailsLoader implements UserDetailsService {
     // UserDetails interface allows us to get password / username / check if account is expired, locked, or credentials expired
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        // this just announces to our app that the exception CAN be thrown
+
         User user = users.findByUserName(userName);
+
 
         // check to see if we actually found a user or not
         if (user == null) {
@@ -32,8 +30,6 @@ public class UserDetailsLoader implements UserDetailsService {
             throw new UsernameNotFoundException("User was not found for username: " + userName);
             // this tells our Java app to throw the exception immediately
         }
-
-        // why are we not just returning the user? What does returning a 'UserWithRoles' object give us in addition to just the user itself
         return (UserDetails) new UserWithRoles(user); // this will return the result of sending the 'user' object INTO a 'UserWithRoles' constructor, and getting the output from using that constructor
     }
 }

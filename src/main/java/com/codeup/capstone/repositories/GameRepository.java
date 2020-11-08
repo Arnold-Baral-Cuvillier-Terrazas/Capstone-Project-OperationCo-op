@@ -16,6 +16,10 @@ public interface GameRepository extends JpaRepository<Game,Long> {
 
     //Following method shows you how to use named parameters in a HQL custom Query
     @Query("FROM Game g WHERE g.title LIKE %:term%")
+//    @Query("SELECT g FROM Game g WHERE  g.title LIKE %?1%"
+//            + "OR g.critics_rating LIKE %?1%"
+//            + "OR g.release_date LIKE %?1%"
+//    )
     List<Game> searchByTitleLike(@Param("term") String term);
 
 }
