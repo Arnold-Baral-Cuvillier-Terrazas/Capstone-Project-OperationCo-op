@@ -1,18 +1,15 @@
 package com.codeup.capstone.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     //   ------------------Instance variables-------------
