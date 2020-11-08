@@ -3,15 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Editing</title>
+    <link th:replace="partials/links :: links"/>
+    <style>
+        .card-footer, .card-header{
+            padding: 10%;
+            background-color: #1F2833;
+        }
+        #MessageBody, #btn, label{
+            font-size: 20px;
+            border-radius: 20px;
+        }
+
+        .pill {
+            display: inline-block;
+            border: 2px solid black;
+            border-radius: 32px;
+            margin: 1em;
+            padding: 8px 16px;
+            background-color: #66FCF1;
+        }
+
+    </style>
 </head>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <body>
-<form th:action="'/groups/posts/edit/' + ${editPost.id}" th:method="post" th:object="${editPost}">
-    <label for="MessageBody">Rename Message body:</label><br>
-    <textarea id="MessageBody" th:field="*{message_body}" rows="4" cols="72"></textarea><br>
-    <label for="btn"></label><br>
-    <button type="submit" id="btn">Submit</button>
-</form>
+
+<div class="card text-center">
+    <div class="card-header"></div>
+    <div class="card-body">
+        <form th:action="'/groups/posts/edit/' + ${editPost.id}" th:method="post" th:object="${editPost}">
+            <label for="MessageBody" class="pill">Rename Message body</label><br>
+            <textarea id="MessageBody" th:field="*{message_body}" rows="4" cols="50"></textarea><br>
+            <label for="btn"></label><br>
+            <button type="submit"  class="btn-primary" id="btn">Submit</button>
+        </form>
+    </div>
+    <div class="card-footer text-muted"></div>
+</div>
+
 
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>

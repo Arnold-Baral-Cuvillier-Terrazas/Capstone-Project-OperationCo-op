@@ -1,77 +1,96 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.w3.org/1999/xhtml">-->
 
-<!--<head>-->
-<!--    <meta charset="utf-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">-->
-<!--    <title>gamelogin</title>-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet"-->
-<!--          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css">-->
-<!--&lt;!&ndash;    <link rel="stylesheet" th:href="@{/css/login.css}">&ndash;&gt;-->
-<!--</head>-->
-
-<!--&lt;!&ndash;<body style="background: #200422;">&ndash;&gt;-->
-<!--&lt;!&ndash;<div class="container login">&ndash;&gt;-->
-<!--&lt;!&ndash;    <div class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="col">&ndash;&gt;-->
-<!--&lt;!&ndash;            <h1>Welcome Back</h1>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    <div class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="col">&ndash;&gt;-->
-<!--&lt;!&ndash;            <h3>Let's Sign You In</h3>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    <div class="row" style="margin: 0;">&ndash;&gt;-->
-<!--&lt;!&ndash;        <div class="col-md-9 col-lg-8 col-xl-6 offset-md-2 offset-xl-3">&ndash;&gt;-->
-<!--&lt;!&ndash;            <form th:action="@{/login}" method="post">&ndash;&gt;-->
-<!--&lt;!&ndash;                <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <i class="material-icons" style="width: 100%;text-align: center;">lock_open</i>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <input class="form-control" id="username" name="username" type="text" placeholder="Username">&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="form-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <input class="form-control" id="password" name="password" type="password" placeholder="Password">&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <button class="btn btn-primary" type="submit">Sign In</button>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <a class="d-xl-flex justify-content-xl-center align-items-xl-end" th:href="@{/sign-up}">Not A User? Sign Up!</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </form>&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>-->
-<!--</body>-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Log In</title>
+    <link th:replace="partials/links :: links"/>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        form {
+            border: 3px solid #f1f1f1;
+            margin-bottom: 30px;
+            padding: 100px;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.password {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.password {
+                display: block;
+                float: none;
+            }
+
+        }
+
+    </style>
+
 </head>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <body>
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
-<h1>Log In</h1>
-<!-- We can set parameters to inform us whether or not the user has logged out, entered incorrect credentials, etc -->
-<div th:if="${param.error}">
-    Invalid Username and/or Password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
 
-<form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
-    <a class="justify-content-lg-center" th:href="@{/sign-up}">Not A User? Sign Up!</a>-->
-</form>
+    <!-- We can set parameters to inform us whether or not the user has logged out, entered incorrect credentials, etc -->
+    <div th:if="${param.error}">
+        Invalid Username and/or Password.
+    </div>
+
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <h2 style="text-align:center"><strong>Welcome to OperationCo-Opt login page</strong></h2>
+        <div class="container">
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Enter Username" name="username" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Login</button>
+
+            <a class="justify-content-center" th:href="@{/sign-up}">Not A User? Sign Up!</a>
+        </div>
+    </form>
+
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
+
