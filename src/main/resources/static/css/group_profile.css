@@ -1,89 +1,18 @@
-body {
-    width: auto;
-    margin: 1rem;
-
+body{margin-top:20px;
+    background:black;
+}
+.fs35 {
+    font-size: 35px !important;
 }
 
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
-}
-
-i {
-    display: inline-block;
-}
-
-button {
-    background-color: whitesmoke;
-}
-
-.pb,.ib {
-    float: right;
-}
-
-.admin {
-    color: cornflowerblue;
-}
-
-
-/*/*profile pic*/
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
-}
-
-.h6 {
-    color: grey;
-    font-size: 18px;
-}
-
-
-a {
-    text-decoration: none;
-    font-size: 22px;
-    color: dodgerblue;
-}
-
-button:hover, a:hover {
-    opacity: 0.7;
-}
-
-/*--------pills for tags*/
 .pill {
     display: inline-block;
     border: 2px solid black;
     border-radius: 32px;
-    margin: 15px;
+    margin: 1px;
     padding: 8px 16px;
     background: none;
-}
 
-.fa-star {
-    color: rgba(112, 111, 111, 0.856);
-}
-
-.fa-star:hover {
-    color: #e2334c;
-}
-
-.fa-star.selected {
-    color: #001628;
-}
-
-body{margin-top:20px;
-    background:#eee;
-}
-.fs35 {
-    font-size: 35px !important;
 }
 
 .mw50 {
@@ -710,28 +639,3 @@ body{margin-top:20px;
     border-color: #DDD;
     border-top: 1px solid #FFF;
 }
-
-/*.pill.active {*/
-/*    background: cyan;*/
-/*}*/
-
-/*.tags{*/
-/*    width: auto;*/
-/*    padding: 10px;*/
-/*    border: 2px solid gray;*/
-/*    margin: 2%;*/
-/*}*/
-
-.jumbotron {
-    margin-top: 2px;
-}
-
-/*.editP, .editG {*/
-/*    !*background-image: url("../img/bg.jpeg");*!*/
-/*    !*background-color: skyblue;*!*/
-/*    !*opacity: .9;*!*/
-/*    background-position: center;*/
-/*    background-repeat: no-repeat;*/
-/*    background-size: cover;*/
-/*    background-attachment: fixed;*/
-/*}*/
