@@ -129,7 +129,11 @@
                                         <h6 th:text="${game.title}"></h6>
                                         <div th:if="${user.id == user.id}">
 
+
                                             <!--                                            Trash Bin or X Icon for the Remove Feature   maybe? -->
+
+<!--                                            Trash Bin or X Icon for the Remove Feature   maybe? -->
+
                                             <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${game.id}}">Remove</a>
                                         </div>
                                     </div>
@@ -160,10 +164,17 @@
                                 <div class="col-4" th:each="group: ${user.groups}">
                                     <div class="row">
                                         <div class="col-sm img-group" >
+
                                             <!--                                            <img th:src="${group.profilePic}">-->
                                             <a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
                                             <div th:if="${user.id == user.id}">
                                                 <!--                                            Trash Bin or X Icon for the Remove Feature   maybe? -->
+
+<!--                                            <img th:src="${group.profilePic}">-->
+                                            <a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
+                                            <div th:if="${user.id == user.id}">
+      <!--                                            Trash Bin or X Icon for the Remove Feature   maybe? -->
+
                                                 <button class="btn btn-primary pull-right" a
                                                         th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">
                                                     Leave Group
@@ -175,6 +186,7 @@
                             </div>
                         </div>
                     </show_groupin>
+
                     <!--                    <show_groupIn th:if="${user.groups}">-->
                     <!--                        <div th:each="group: ${user.groups}">-->
                     <!--                            <div class="row">-->
@@ -198,6 +210,31 @@
                     <!--                            </div>-->
                     <!--                        </div>-->
                     <!--                    </show_groupIn>-->
+
+<!--                    <show_groupIn th:if="${user.groups}">-->
+<!--                        <div th:each="group: ${user.groups}">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-2 col-sm-2">-->
+<!--                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user"-->
+<!--                                         class="profile-photo-lg">-->
+<!--                                </div>-->
+<!--                                <div class="col-md-7 col-sm-7">-->
+<!--                                    <h5><a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>-->
+<!--                                    </h5>-->
+<!--                                    <p th:text="${group.description}"></p>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-3 col-sm-3">-->
+<!--                                    <div th:if="${user.id == user.id}">-->
+<!--                                        <button class="btn btn-primary pull-right" a-->
+<!--                                                th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">-->
+<!--                                            Leave Group-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </show_groupIn>-->
+
                 </div>
             </div>
         </div>
