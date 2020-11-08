@@ -32,7 +32,8 @@
 
                     <div>
                         <a class="btn btn-primary btn-sm" th:href="@{'/users/edit/' + ${user.id}}">Edit Profile</a>
-                        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>                    </div>
+                        <button id="profile-btn" class="pb" type="button">Update Profile Image</button>
+                    </div>
                 </div>
                 <hr class="my-0">
 
@@ -89,6 +90,11 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="h6 card-title">Favorite Games</h5>
+                    <!-------------------------- AMARO ADD SEARCH FOR GAMES ---------------------->
+
+
+
+                    <!-------------------------    BETWEEN HERE LOL --------------------------->
                     <div id="favGames">
                         <div class="d-flex flex-row flex-nowrap overflow-auto">
                             <show_games th:if="${user.favorites}">
@@ -107,13 +113,33 @@
             <!-- Groups User Is In Card -->
             <div class="card">
                 <div class="card-body">
+                    <!-------------------------- AMARO ADD SEARCH FOR GROUP ---------------------->
 
+
+
+                    <!-------------------------    BETWEEN HERE LOL --------------------------->
+                    <show_groupIn th:if="${user.groups}">
+                        <div th:each="group: ${user.groups}">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-2">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user"
+                                         class="profile-photo-lg">
+                                </div>
+                                <div class="col-md-7 col-sm-7">
+                                    <h5><a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
+                                    </h5>
+                                    <p th:text="${group.description}"></p>
+                                </div>
+                                <div class="col-md-3 col-sm-3">
+                                    <button class="btn btn-primary pull-right">Leave Group</button>
+                                </div>
+                            </div>
+                        </div>
+                    </show_groupIn>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
 </div>
 
 

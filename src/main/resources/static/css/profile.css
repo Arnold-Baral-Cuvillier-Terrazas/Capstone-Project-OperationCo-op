@@ -49,7 +49,34 @@ svg:not(:root).svg-inline--fa {
     display: inline-block;
     border: 2px solid black;
     border-radius: 32px;
-    margin: 1em;
-    padding: 8px 16px;
+    margin: 5px;
+    padding: 4px 8px;
     background: none;
+}
+
+.people-nearby .google-maps{
+    background: #f8f8f8;
+    border-radius: 4px;
+    border: 1px solid #f1f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.people-nearby .google-maps .map{
+    height: 300px;
+    width: 100%;
+    border: none;
+}
+
+.people-nearby .nearby-user{
+    padding: 20px 0;
+    border-top: 1px solid #f1f2f2;
+    border-bottom: 1px solid #f1f2f2;
+    margin-bottom: 20px;
+}
+
+img.profile-photo-lg{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
 }

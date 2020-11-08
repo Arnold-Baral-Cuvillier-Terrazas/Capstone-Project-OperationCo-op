@@ -62,7 +62,7 @@ button:hover, a:hover {
     display: inline-block;
     border: 2px solid black;
     border-radius: 32px;
-    margin: 15px;
+    margin: 5px;
     padding: 8px 16px;
     background: none;
 }
