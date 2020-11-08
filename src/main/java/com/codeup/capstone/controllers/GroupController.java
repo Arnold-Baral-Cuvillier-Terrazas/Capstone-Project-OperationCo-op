@@ -55,7 +55,6 @@ public class GroupController {
         if (!(obj instanceof UserDetails)) {
             return "redirect:/login";
         }
-//        User user = userDao.getOne(((User)obj ).getId());
         User user = (User) obj;
         user = userDao.getOne(user.getId());
         Group group = new Group();
@@ -66,7 +65,6 @@ public class GroupController {
         group.setDescription(description);
         group.setOwner(user);
         group.setUsers(users);
-//        user.setGroup(group);
         groupDao.save(group);
         groups.add(group);
         user.setGroups(groups);
