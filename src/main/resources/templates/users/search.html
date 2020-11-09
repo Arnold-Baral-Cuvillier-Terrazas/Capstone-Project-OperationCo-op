@@ -6,6 +6,7 @@
     <title>Search for Users</title>
 </head>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <h1>This is the Search Results for Users Page</h1>
 
 <div th:each="user: ${users}">

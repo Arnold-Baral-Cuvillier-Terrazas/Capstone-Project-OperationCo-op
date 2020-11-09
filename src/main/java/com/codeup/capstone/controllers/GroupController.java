@@ -21,7 +21,6 @@ public class GroupController {
     private final TagRepository tagDao;
     private final PostRepository postRepo;
 
-
     public GroupController(GroupRepository groupDao, UserRepository userDao,
                            GameRepository gameRepo, TagRepository tagDao, PostRepository postRepo) {
         this.groupDao = groupDao;
@@ -49,9 +48,6 @@ public class GroupController {
         return "groups/create";
     }
 
-
-    //This should save the new Group should there be a user authentication for the user to access this page?
-    // Also the redirect mapping doesn't show the
     @PostMapping("/groups/create")
     public String saveGroup(
             @RequestParam(name = "name") String name,
@@ -89,9 +85,7 @@ public class GroupController {
         groupDao.save(saveProfile);
         return "redirect:/groups/{id}";
     }
-
-    //Double check on this mapping for displaying group profile.
-    //Double check on this mapping for displaying group profile.
+  
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         Group group = groupDao.getOne(id);
@@ -99,7 +93,6 @@ public class GroupController {
         List<Post> mostRecent = postRepo.mostRecentPostsForGroup(id);
         model.addAttribute("group", group);
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-//        model.addAttribute("user", user);
         if(mostRecent.size() > 5) {
             List<Post> posts = new ArrayList<>();
             for(int i=0;i< 5; i++){
@@ -146,20 +139,6 @@ public class GroupController {
         return "redirect:/groups";
     }
 
-//    ---------- Games that the unique Group plays
-//    ----------Inserting Favorites
-//@PostMapping("/groups/favorite")
-//public String groupFavorite(@RequestParam long gameId, @ModelAttribute Group group ) {
-//    User tempGroup = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    Group groupFav = (groupDao.getOne(tempGroup.getId()));
-//    Game gameFavorite = gameRepo.getOne(gameId);
-//    List<Game> favorites = groupFav.getFavorites();
-//    favorites.add(gameFavorite);
-//    groupFav.setFavorites(favorites);
-//    groupDao.save(groupFav);
-//    return "redirect:/groups/profile";
-//}
-
     // ---------- Shows the users within the groups page
     @GetMapping("/groups/users")
     public String showUsers(Model model) {
@@ -198,21 +177,6 @@ public class GroupController {
         model.addAttribute("groups", groups);
         return "/groups/search";
     }
-
-//    @PostMapping("/groups/posts/{group_id}/submit")
-//    public String createMessage(@ModelAttribute Post post, @PathVariable long group_id)
-//            throws ParseException, ParseException {
-//        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        post.setUser(thisAuthor);
-//        Group thisGroup = groupDao.getOne(group_id);
-//        post.setGroup(thisGroup);
-////        printing out the date in format
-//        post.setDate(new Date());
-////        saving the information
-//        postRepo.save(post);
-//        return "redirect:/groups/posts/" + thisGroup.getId();
-//    }
-
 }
 
 // ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes

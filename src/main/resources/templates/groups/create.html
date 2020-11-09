@@ -19,6 +19,7 @@
 </head>
 <nav th:insert="partials/navbar :: navbar"></nav>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <div id="wrapper" class="d-flex">
     <div id="page-content-wrapper">
         <nav th:replace="partials/navbar :: navbar"></nav>
@@ -69,7 +70,7 @@
         </div>
     </div>
 </div>
-<footer th:replace="partials/footer :: footer"></footer>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
 <script th:src="@{/js/keys.js}"></script>

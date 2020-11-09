@@ -4,14 +4,19 @@
         <meta charset="UTF-8">
         <title>Edit user Profile</title>
         <link th:replace="partials/links :: links"/>
-        <link th:href="@{/css/style.css}" rel="stylesheet"/>
+<!--        <link th:href="@{/css/style.css}" rel="stylesheet"/>-->
         <style>
+            body{
+                background-image: url("https://images.pexels.com/photos/3043424/pexels-photo-3043424.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
             .editP {
                 margin: auto;
                 width: 80%;
-                /*border: 3px solid orange;*/
                 padding-left: 20px;
-
             }
 
             .container {
@@ -20,65 +25,73 @@
 
             #bio {
                 width: 100%;
+                border-radius:25px;
             }
 
-            /*.body{*/
-            /*    background-image:url("../img/background.jpeg");*/
-            /*}*/
+            .form-control{
+                border-radius:25px;
+            }
+
+            .bgProfile {
+                background-color: whitesmoke;
+                opacity:.8;
+                width: 50%;
+            }
 
         </style>
     </head>
-    <nav th:insert="partials/navbar :: navbar"></nav>
 
     <body class="body">
+    <nav th:replace="partials/navbar :: navbar"></nav>
+    <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
 
-    <div class="container">
-        <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
+    <div class="container bgProfile">
             <div class="editP">
-                <h4>Please Edit your profile information</h4>
+                <h2 class="text-center">Edit your profile <i class="fas fa-user-edit"></i> </h2>
+                <hr>
                 <div class="form-group">
-                    <label for="psn">Psn info</label>
+                    <label for="psn"><b>Psn info</b></label>
                     <input type="text" class="form-control" id="psn" name="psnInfo" th:value="*{psnInfo}"
                            placeholder="enter psn usernames">
                 </div>
                 <div class="form-group">
-                    <label for="steam">Steam info</label>
+                    <label for="steam"><b>Steam info</b></label>
                     <input type="text" class="form-control" id="steam" name="steamInfo" th:value="*{steamInfo}"
                            placeholder="enter steam usernames">
                 </div>
                 <div class="form-group">
-                    <label for="twitch">Twitch info</label>
+                    <label for="twitch"><b>Twitch info</b></label>
                     <input type="text" class="form-control" id="twitch" name="twitchInfo" th:value="*{twitchInfo}"
                            placeholder="enter twitch usernames">
                 </div>
                 <div class="form-group">
-                    <label for="xboxLive">XboxLive info</label>
+                    <label for="xboxLive"><b>XboxLive info</b></label>
                     <input type="text" class="form-control" id="xboxLive" name="xboxLiveInfo" th:value="*{xboxLiveInfo}"
                            placeholder="enter xboxLive usernames">
                 </div>
                 <div class="form-group">
-                    <label for="ninetendo">Nintendo info</label>
+                    <label for="ninetendo"><b>Nintendo info</b></label>
                     <input type="text" class="form-control" id="ninetendo" name="nintendoInfo"
                            th:value="*{nintendoInfo}"
                            placeholder="enter nintendo usernames">
                 </div>
 
                 <div class="form-group">
-                    <label for="discord">Discord info</label>
+                    <label for="discord"><b>Discord info</b></label>
                     <input type="text" class="form-control" id="discord" name="discordInfo" th:value="*{discordInfo}"
                            placeholder="enter discord username">
                 </div>
 
                 <div class="form-group">
-                    <label for="bio">Updated your bio</label>
+                    <label for="bio"><b>Updated your bio</b></label>
                     <input id="bio" type="text" name="bio" th:value="*{bio}" placeholder="Please enter your bio here!"/>
                 </div>
 
                 <div class="tags">
-                    <h4>Please select your interests : </h4>
+                    <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that defines you :</h4>
 
                     <th:block th:each="tag : ${tagsList}">
-                        <div class="form-check form-check-inline ">
+                        <div class="form-check form-check-inline m-2">
                             <input class="form-check-input" type="checkbox" th:checked="${editUser.tags.contains(tag)}"
                                    th:id="${tag.name}"
                                    name="tags" th:value="${tag.id}"/>
@@ -90,6 +103,7 @@
                     <button type="submit" class="btn btn-primary mt-3">Submit</button>
                 </div>
             </div>
+    </div>
         </form>
     </div>
 <!--    <footer th:replace="partials/footer :: footer"></footer>-->
