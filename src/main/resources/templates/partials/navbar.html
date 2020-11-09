@@ -53,3 +53,54 @@
         </nav>
     </standard_links>
     </html>
+=======
+  <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<standard_links th:fragment="navbar">
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">OperationCo-Opt</a>
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <!--                Non-logged in user display-->
+            <li sec:authorize="isAnonymous()" class="nav-item">
+                <a class="nav-link" href="/sign-up">Sign Up</a>
+            </li>
+            <li sec:authorize="isAnonymous()" class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+            <!--                Drop down toggle nav(Visible for Logged In Users Only) -->
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/profile}">Profile</a><span class="sr-only"></span></a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/groups}">Groups</a><span class="sr-only"></span></a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/games}">Games</a><span class="sr-only"></span></a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{/aboutUs}">About Us</a><span class="sr-only"></span></a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <form class="form-inline" th:action="@{/games/search}" th:method="GET">
+                    <input type="text" name="term" id="term" class="form-control mr-2"
+                           placeholder="Look for a Game!" style="margin-left:2rem "/>
+                    <input class="btn btn-success" type="submit" value="Search" placeholder="Search"
+                           aria-label="Search Games"/>
+                    &nbsp;<button onlick="document.getElementById('term').value=''" class="btn btn-warning"
+                                  type="button">Clear
+                </button>
+                </form>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <form class="form-inline " th:action="@{/logout}" th:method="post">
+                    <button class="btn btn-danger" style="margin:0 5px">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</standard_links>
+</html>

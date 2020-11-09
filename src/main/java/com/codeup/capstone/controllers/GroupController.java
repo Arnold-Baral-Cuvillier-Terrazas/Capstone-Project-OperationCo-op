@@ -85,7 +85,7 @@ public class GroupController {
         groupDao.save(saveProfile);
         return "redirect:/groups/{id}";
     }
-  
+
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         Group group = groupDao.getOne(id);
@@ -93,13 +93,13 @@ public class GroupController {
         List<Post> mostRecent = postRepo.mostRecentPostsForGroup(id);
         model.addAttribute("group", group);
         model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        if(mostRecent.size() > 5) {
+        if (mostRecent.size() > 5) {
             List<Post> posts = new ArrayList<>();
-            for(int i=0;i< 5; i++){
+            for (int i = 0; i < 5; i++) {
                 posts.add(mostRecent.get(i));
             }
-            model.addAttribute("posts",posts);
-        }else {
+            model.addAttribute("posts", posts);
+        } else {
             model.addAttribute("posts", mostRecent);
         }
         return "/groups/profile";
@@ -120,7 +120,7 @@ public class GroupController {
                                 @RequestParam List<Long> tags,
                                 @RequestParam(name = "description") String description) {
         List<Tag> tagLists = new ArrayList<>();
-        for(int i= 0; i< tags.size(); i++){
+        for (int i = 0; i < tags.size(); i++) {
             Tag thisTag = tagDao.getOne(tags.get(i));
             tagLists.add(thisTag);
         }
@@ -152,13 +152,14 @@ public class GroupController {
         Group group = groupDao.getOne(id);
         User user = userDao.getOne(UserId);
         List<Group> groups = user.getGroups();
-        if(!groups.contains(group)){
+        if (!groups.contains(group)) {
             groups.add(group);
             user.setGroups(groups);
             userDao.save(user);
         }
         return "redirect:/groups/profile/" + id;
     }
+
     @GetMapping("/groups/userDelete/{id}")
     public String deleteGroupUser(@PathVariable long id, @RequestParam long UserId) {
         Group group = groupDao.getOne(id);
@@ -170,7 +171,7 @@ public class GroupController {
         return "redirect:/groups/profile/" + id;
     }
 
-////    ---------- Groups Search
+    ////    ---------- Groups Search
     @GetMapping("/groups/search")
     public String showGroup(@RequestParam String groupTerm, Model model) {
         List<Group> groups = groupDao.searchByNameLike(groupTerm);
