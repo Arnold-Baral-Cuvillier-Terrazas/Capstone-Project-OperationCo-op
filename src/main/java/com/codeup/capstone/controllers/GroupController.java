@@ -89,10 +89,17 @@ public class GroupController {
     @GetMapping("/groups/profile/{id}")
     public String profilePage(@PathVariable long id, Model model) {
         Group group = groupDao.getOne(id);
-        User user = userDao.getOne(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        boolean isMember = false;
+        for (User member : group.getUsers()) {
+            if (member.getId() == user.getId()) {
+                isMember = true;
+            }
+        }
         List<Post> mostRecent = postRepo.mostRecentPostsForGroup(id);
         model.addAttribute("group", group);
-        model.addAttribute("user", (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+        model.addAttribute("user", user);
+        model.addAttribute("isMember", isMember);
         if (mostRecent.size() > 5) {
             List<Post> posts = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
