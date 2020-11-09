@@ -45,7 +45,8 @@
                             <!--                                                <input type="hidden" th:value="${group.id}" name="groupId">-->
                             <!--                                                <button class="btn btn-primary pull-right fav-button" type="submit" a th:href="'/groups/profile/' + ${group.id}">View Group</button>-->
                             <!--                                            </form>-->
-                            <button class="btn btn-primary pull-right fav-button"><a th:href="'/groups/profile/' + ${group.id}">View Group</a></button>
+                            <button class="btn btn-primary pull-right fav-button"><a
+                                    th:href="'/groups/profile/' + ${group.id}">View Group</a></button>
                         </div>
                     </div>
                 </div>
@@ -54,6 +55,7 @@
     </div>
 </div>
 
-<script th:replace="partials/scripts :: scripts"></script>
+
+<scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
