@@ -24,12 +24,24 @@
 
         input[type=text], input[type=password] {
             width: 100%;
-            padding: 12px 20px;
+            padding: 6px 10px;
             margin: 8px 0;
             display: inline-block;
             border: 1px solid #ccc;
             box-sizing: border-box;
             border-radius: 20px;
+            float: top;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 6px 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 20px;
+            float: top;
         }
 
         .container {
@@ -43,7 +55,7 @@
     </style>
 </head>
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <div class="row">
     <div class="container-fluid">
         <div class="d-flex justify-content-center">
