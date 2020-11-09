@@ -13,7 +13,7 @@ function updateImage(result){
     const filedata = result.filesUploaded[0];
     console.log(filedata);
     // $("#profileUrl").val(filedata.url);
-    $("#imgP").attr("src",filedata.url);
+    $(".imgP").attr("src",filedata.url);
 
     let formData = new FormData();
     formData.append("userId", userId);
