@@ -18,7 +18,7 @@
 <!--------------------------------------------------------------------------------------------------------------------->
 
 <div class="container">
-    <h1 class="h3 mb-3">Welcome to <span th:text="${group.name}"></span>'s Profile Page</h1>
+    <h2 class="h3 mb-3"><span th:text="${group.name}"></span></h2>
     <div class="row">
         <!--Left Card Panel Containing User Info-->
         <div class="col-md-4 col-xl-3">
@@ -28,9 +28,13 @@
                 </div>
                 <!--Basic User Information Card-->
                 <div class="card-body text-center">
-                    <div class="gProfileImg">
-                        <img id="imgP" th:src="${group.getProfilePic()}"
-                             style="width: 100%; height:100%; object-fit:cover">
+                    <div class="row">
+                        <div class="col-10 offset-1">
+                            <div class="gProfileImg">
+                                <img id="imgP" th:src="${group.getProfilePic()}"
+                                     style="width: 100%; height:100%; object-fit:cover">
+                            </div>
+                        </div>
                     </div>
 
                     <h4 class="card-title mb-0"><span th:text="${group.name}"></span></h4>
@@ -46,12 +50,21 @@
 
                 </div>
                 <!--------------------------------------------------------------------------------------------------------------------->
+
+                <!--                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
+                <!--                                    <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
+                <!--                                        <input name="UserId" th:value="${user.id}" type="hidden">-->
+                <!--                                        <button type="submit">Join Group</button>-->
+                <!--                                    </form>-->
+                <!--                                    </show_join>-->
+
 <!--                                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
                                                     <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">
                                                         <input name="UserId" th:value="${user.id}" type="hidden">
                                                         <button type="submit">Join Group</button>
                                                     </form>
 <!--                                                    </show_join>-->
+
                 <hr class="my-0">
 
                 <!--Bio Card-->
@@ -164,6 +177,9 @@
 </div>
 
 <!---------------------------------------------------END--------------------------------------------------------------->
+
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
+
 
 
 <script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
