@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,18 +5,20 @@
     <title>Show All Posts</title>
     <link th:replace="partials/links :: links"/>
     <style>
-        body{
+        body {
             /*background-image: url("https://images.pexels.com/photos/3043424/pexels-photo-3043424.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");*/
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
-        .postcard{
-            width:100%;
-            height:auto;
+
+        .postcard {
+            width: 100%;
+            height: auto;
         }
-        .time,.icons,.icons1{
-            padding-left:2em;
+
+        .time, .icons, .icons1 {
+            padding-left: 2em;
         }
 
     </style>
@@ -26,18 +27,21 @@
 
 <div class="main">
     <main class="container">
-        <h1 style="margin-top: 50%"> Welcome to  message dashboard </h1>
+        <h1 style="margin-top: 50%"> Welcome to message dashboard </h1>
 
         <div class="texts">
             <show_post th:if="${posts}">
 
-                <div class="postcard" >
+                <div class="postcard">
                     <div th:each="item : ${posts}">
-                        <img th:src="${item.getUser().getProfilePic()}"style="width:5em;height:5em; object-fit:cover">
+                        <img th:src="${item.getUser().getProfilePic()}" style="width:5em;height:5em; object-fit:cover">
                         <!--            <div style="display: inline-flex; align-items: center">-->
                         <div class="part1 d-flex justify-content-start">
-                            <h5 th:text="${item.message_body}"></h5> <a class="icons" th:href="'/groups/posts/delete/'+ ${item.id}"><i class="fas fa-trash-alt"></i></a>
-                            <a class="icons1" th:href="'/groups/posts/edit/'+ ${item.id}"><i class="fas fa-edit"></i></a>
+                            <h5 th:text="${item.message_body}"></h5> <a class="icons"
+                                                                        th:href="'/groups/posts/delete/'+ ${item.id}"><i
+                                class="fas fa-trash-alt"></i></a>
+                            <a class="icons1" th:href="'/groups/posts/edit/'+ ${item.id}"><i
+                                    class="fas fa-edit"></i></a>
                         </div>
 
                         <div class="part2 d-flex justify-content-start">
@@ -50,12 +54,14 @@
                 </div>
             </show_post>
 
-            <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post" th:object="${post}">
-                <input  style="width:100%" th:field="*{message_body}"  placeholder="start typing!">
-                <br>
-                <br>
-                <input  type="submit"/>
+            <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post"
+                  th:object="${post}" class="form-group" style="display:flex;">
+                <input type="text" style="width:100%;margin-right:20px" th:field="*{message_body}"
+                       class="form-control"
+                       placeholder="start typing!"/>
+                <button type="submit" class="btn btn-primary">Post Message</button>
             </form>
+
         </div>
     </main>
 </div>

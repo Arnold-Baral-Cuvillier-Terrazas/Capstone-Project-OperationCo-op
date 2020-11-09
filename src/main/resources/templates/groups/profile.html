@@ -46,12 +46,12 @@
 
                 </div>
                 <!--------------------------------------------------------------------------------------------------------------------->
-                <!--                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
-                <!--                                    <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
-                <!--                                        <input name="UserId" th:value="${user.id}" type="hidden">-->
-                <!--                                        <button type="submit">Join Group</button>-->
-                <!--                                    </form>-->
-                <!--                                    </show_join>-->
+<!--                                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
+                                                    <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">
+                                                        <input name="UserId" th:value="${user.id}" type="hidden">
+                                                        <button type="submit">Join Group</button>
+                                                    </form>
+<!--                                                    </show_join>-->
                 <hr class="my-0">
 
                 <!--Bio Card-->
@@ -136,6 +136,7 @@
                 <!-- Groups User Is In Card -->
                 <div class="card border-glow">
                     <div class="card-body">
+                        <a th:href="@{'/groups/posts/' + ${group.id}}">Start Chatting with your Squad!</a>
                         <show_post th:if="${posts}">
 
                             <div class="postcard">
