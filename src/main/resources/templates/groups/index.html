@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link th:replace="partials/links :: links"/>
+        <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <style>
         .create {
             display: flex;
@@ -18,46 +19,94 @@
 </head>
 
 <body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 
 
-<div id="wrapper" class="d-flex justify-content-center">
-                <div class="create">
-                <h1 id="head" class="text-center ">Welcome to the Groups Page!</h1>
-                <form style="display: inline" th:action="@{'/groups/create/'}">
-                    <button class="btn btn-primary pull-right fav-button">Create A Group</button>
-                </form>
-                </div>
-                <div class="container">
-                    <div class="row" id="store-list">
-                        <div class="col-md-5 col-sm-12 col-xs-12 card-area m-1 shadow-lg p-2 mb-4 bg-white rounded" th:each="group : ${groups}">
-                            <div class="panel">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-sm-5 img-box">
-                                            <img th:src="${group.getProfilePic()}" style="width:5em;height:5em; object-fit:cover">
-                                            <!--                            <a href="#"></a>-->
-                                        </div>
-                                        <div class="col-sm-7 card-info">
-                                            <h4 class="title-store">
-                                                <strong><a href="#" th:text="${group.name}"></a></strong>
-                                            </h4>
-                                            <hr>
-                                            <!--                            <p th:text="${game.description}"></p>-->
-                                            <!--                            <p>Description: <a href="#" th:text="${group.description}" class="btn btn-default pull-right" disabled="" data-original-title="" title=""></a>-->
-<!--                                            <form th:action="@{'/groups/profile' }" th:method="get">-->
-<!--                                                <input type="hidden" th:value="${group.id}" name="groupId">-->
-<!--                                                <button class="btn btn-primary pull-right fav-button" type="submit" a th:href="'/groups/profile/' + ${group.id}">View Group</button>-->
-<!--                                            </form>-->
-                                            <button class="btn btn-primary pull-right fav-button" ><a th:href="'/groups/profile/' + ${group.id}">View Group</a></button>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+<!--<div id="wrapper" class="d-flex justify-content-center">-->
+<!--                <div class="create">-->
+<!--                <h1 id="head" class="text-center ">Welcome to the Groups Page!</h1>-->
+<!--                <form style="display: inline" th:action="@{'/groups/create/'}">-->
+<!--                    <button class="btn btn-primary pull-right fav-button">Create A Group</button>-->
+<!--                </form>-->
+<!--                </div>-->
+<!--                <div class="container">-->
+<!--                    <div class="row" id="store-list">-->
+<!--                        <div class="col-md-5 col-sm-12 col-xs-12 card-area m-1 shadow-lg p-2 mb-4 bg-white rounded" th:each="group : ${groups}">-->
+<!--                            <div class="panel">-->
+<!--                                <div class="panel-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-sm-5 img-box">-->
+<!--                                            <img th:src="${group.getProfilePic()}" style="width:5em;height:5em; object-fit:cover">-->
+<!--                                            &lt;!&ndash;                            <a href="#"></a>&ndash;&gt;-->
+<!--                                        </div>-->
+<!--                                        <div class="col-sm-7 card-info">-->
+<!--                                            <h4 class="title-store">-->
+<!--                                                <strong><a href="#" th:text="${group.name}"></a></strong>-->
+<!--                                            </h4>-->
+<!--                                            <hr>-->
+<!--                                            &lt;!&ndash;                            <p th:text="${game.description}"></p>&ndash;&gt;-->
+<!--                                            &lt;!&ndash;                            <p>Description: <a href="#" th:text="${group.description}" class="btn btn-default pull-right" disabled="" data-original-title="" title=""></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <form th:action="@{'/groups/profile' }" th:method="get">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <input type="hidden" th:value="${group.id}" name="groupId">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <button class="btn btn-primary pull-right fav-button" type="submit" a th:href="'/groups/profile/' + ${group.id}">View Group</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </form>&ndash;&gt;-->
+<!--                                            <button class="btn btn-primary pull-right fav-button" ><a th:href="'/groups/profile/' + ${group.id}">View Group</a></button>-->
+<!--                                            </p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--</div>-->
+
+<!--<div id="wrapper" class="d-flex justify-content-center">-->
+
+
+
+    <div class="container">
+        <div class="create">
+            <h2 id="head" class="text-center mb-5">Welcome to the Groups Page!</h2>
+            <form style="display: inline" th:action="@{'/groups/create/'}">
+                <button class="btn btn-primary pull-right fav-button">Create A Group</button>
+            </form>
+        </div>
+        <div class="row" id="store-list">
+            <div class="card col col-md-6 col-xs-12 card-area game-card border-glow" th:each="group : ${groups}">
+                <div class="panel">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6 img-box">
+                                <img th:src="${group.getProfilePic()}" style="width:250px;height:250px; object-fit:cover"/>
+                                <!--                            <a href="#"></a>-->
+                            </div>
+                            <div class="col-sm-6 card-info pull-right">
+                                <h4 class="title-group">
+                                    <strong><a href="#" th:text="${group.name}"></a></strong>
+                                </h4>
+                                <hr>
+                                <!--                            <p th:text="${game.description}"></p>-->
+                                <!--                            <p>Description: <a href="#" th:text="${group.description}" class="btn btn-default pull-right" disabled="" data-original-title="" title=""></a>-->
+                                <!--                                            <form th:action="@{'/groups/profile' }" th:method="get">-->
+                                <!--                                                <input type="hidden" th:value="${group.id}" name="groupId">-->
+                                <!--                                                <button class="btn btn-primary pull-right fav-button" type="submit" a th:href="'/groups/profile/' + ${group.id}">View Group</button>-->
+                                <!--                                            </form>-->
+                                <button class="btn btn-primary pull-right fav-button"><a th:href="'/groups/profile/' + ${group.id}">View Group</a></button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+<!--</div>-->
+
+
+
+
+
+
 
 
 <script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
@@ -69,3 +118,75 @@
 <script th:src="@{/js/groupProfile.js}"></script>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Groups Index</title>-->
+<!--    <link th:replace="partials/links :: links"/>-->
+<!--    <style>-->
+<!--        .create {-->
+<!--            display: flex;-->
+<!--            margin-top: 60px;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;<h1>hello world</h1>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;<div id="wrapper" class="d-flex justify-content-center">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <div class="create">&ndash;&gt;-->
+<!--&lt;!&ndash;        <h1 id="head" class="text-center ">Welcome to the Groups Page!</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;        <form style="display: inline" th:action="@{'/groups/create/'}">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button class="btn btn-primary pull-right fav-button">Create A Group</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </form>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="row" id="store-list">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-5 col-sm-12 col-xs-12 card-area m-1 shadow-lg p-2 mb-4 bg-white rounded"&ndash;&gt;-->
+<!--&lt;!&ndash;                 th:each="group : ${groups}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="panel">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="panel-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="col-sm-5 img-box">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <img th:src="${group.getProfilePic()}" style="width:5em;height:5em; object-fit:cover"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                            <a href="#"></a>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="col-sm-7 card-info">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <h4 class="title-store">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <strong><a href="#" th:text="${group.name}"></a></strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <hr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                            <p th:text="${game.description}"></p>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                            <p>Description: <a href="#" th:text="${group.description}" class="btn btn-default pull-right" disabled="" data-original-title="" title=""></a>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                            <form th:action="@{'/groups/profile' }" th:method="get">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                                <input type="hidden" th:value="${group.id}" name="groupId">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                                <button class="btn btn-primary pull-right fav-button" type="submit" a th:href="'/groups/profile/' + ${group.id}">View Group</button>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                &lt;!&ndash;                                            </form>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                                <button class="btn btn-primary pull-right fav-button"><a&ndash;&gt;-->
+<!--&lt;!&ndash;                                        th:href="'/groups/profile/' + ${group.id}">View Group</a></button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+<!--<script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>-->
+<!--<script th:inline="javascript">const url =/*[[@{/groups/pic}]]*/</script>-->
+<!--<scripts th:replace="partials/scripts :: scripts"></scripts>-->
+<!--<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>-->
+<!--<script th:src="@{/js/keys.js}"></script>-->
+<!--<script th:src="@{/js/filestack.js}"></script>-->
+<!--<script th:src="@{/js/groupProfile.js}"></script>-->
+<!--</body>-->
+<!--</html>-->
