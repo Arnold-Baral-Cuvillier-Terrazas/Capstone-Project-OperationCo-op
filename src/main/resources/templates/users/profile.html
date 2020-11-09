@@ -12,14 +12,8 @@
 
 <nav th:replace="partials/navbar :: navbar"></nav>
 
-    <div>
-        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>
-    </div>
-
-
-
-        <div class="container">
-    <h2 class="h3 mb-3">Profile</h2>
+<div class="container">
+    <h2 class="h3 mb-3"><span th:text="${user.userName}"></span>'s Profile </h2>
     <div class="row">
         <!--Left Card Panel Containing User Info-->
         <div class="col-md-4 col-xl-3">
@@ -56,14 +50,14 @@
 
                 <!--Bio Card-->
                 <div class="card-body">
-                    <h5 class="h6 card-title">About</h5>
+                    <h5 class="h6 card-title">About Me</h5>
                     <p><span th:text="${user.bio}"></span></p>
                 </div>
                 <hr class="my-0">
 
                 <!--Social Media Card-->
                 <div class="card-body">
-                    <h5 class="h6 card-title">Elsewhere</h5>
+                    <h5 class="h6 card-title">Socials</h5>
                     <a class="btn" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.twitchInfo}"></span>
@@ -107,21 +101,20 @@
             <div class="card border-glow">
                 <div class="card-body">
                     <h5 class="h6 card-title">Favorite Games</h5>
-                    <!-------------------------- AMARO ADD SEARCH FOR GAMES ---------------------->
 
-
-                    <!-------------------------    BETWEEN HERE LOL --------------------------->
                     <div id="favGames">
+                        <show_games th:if="${user.favorites}">
                         <div class="d-flex flex-row flex-nowrap overflow-auto">
-                            <show_games th:if="${user.favorites}">
+
                                 <div th:each="game: ${user.favorites}">
-                                    <div class="card card-block mx-2" style="min-width: 300px;">
-                                        <img th:src="${game.art_cover}"/>
+                                    <div class="card card-block mx-2">
+                                        <img th:src="${game.art_cover}"style="height: 200px; width: 200px; object-fit: cover"/>
                                         <h6 th:text="${game.title}"></h6>
                                     </div>
                                 </div>
-                            </show_games>
+
                         </div>
+                        </show_games>
                     </div>
                 </div>
             </div>
@@ -129,27 +122,23 @@
             <!-- Groups User Is In Card -->
             <div class="card border-glow">
                 <div class="card-body">
-                    <!-------------------------- AMARO ADD SEARCH FOR GROUP ---------------------->
-
-
-                    <!-------------------------    BETWEEN HERE LOL --------------------------->
+                       <h5 class="h6 card-title">My Squads</h5>
                     <show_groupIn th:if="${user.groups}">
                         <div th:each="group: ${user.groups}">
                             <div class="row">
-                                <div class="col-md-2 col-sm-2">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user"
-                                         class="profile-photo-lg">
+                                <div class="col-md-4 col-sm-4 img-box">
+                                    <img th:src="${group.profilePic}"style="height: 200px; width: 200px; object-fit: cover">
                                 </div>
-                                <div class="col-md-7 col-sm-7">
-                                    <h5><a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
+                                <div class="col-md-8 col-sm-8">
+                                    <h5><a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}" ></a>
                                     </h5>
                                     <p th:text="${group.description}"></p>
+                                    <div th:if="${user.id == group.id}">
+                                        <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}" type="submit">Leave Group</a>
+                                    </div>
                                 </div>
-                                <div class="col-md-3 col-sm-3">
-                                    <button class="btn btn-sm pull-right">Leave Group</button>
                                 </div>
                             </div>
-                        </div>
                     </show_groupIn>
                 </div>
             </div>
