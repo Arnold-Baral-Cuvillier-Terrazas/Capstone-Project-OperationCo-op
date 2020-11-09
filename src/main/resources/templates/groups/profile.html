@@ -127,7 +127,7 @@
                         <div th:each="gUser:${group.users}">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 img-box">
-                                    <img th:src="${gUser.getProfilePic()}" style="width:250px;height:250px; object-fit:cover">
+                                    <img th:src="${gUser.getProfilePic()}" style="width:100px;height:100px; object-fit:cover">
                                 </div>
                                 <div class="col-md-8 col-sm-8">
                                     <h5><a th:text="${gUser.userName}" a th:href="@{'/profile/' + ${gUser.id}}"
