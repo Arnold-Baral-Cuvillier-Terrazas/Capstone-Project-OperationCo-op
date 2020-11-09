@@ -47,6 +47,10 @@
                         </div>
                     </show_post>
 
+                    <form class="mt-1" th:if="${!isMember}" th:action="@{'/groups/join/' + ${group.id}}" method="POST">
+                        <input name="UserId" th:value="${user.id}" type="hidden">
+                        <button class="btn btn-sm" type="submit">Join Group</button>
+                    </form>
 
                 </div>
                 <!--------------------------------------------------------------------------------------------------------------------->
@@ -58,12 +62,8 @@
                 <!--                                    </form>-->
                 <!--                                    </show_join>-->
 
-<!--                                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
-                                                    <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">
-                                                        <input name="UserId" th:value="${user.id}" type="hidden">
-                                                        <button type="submit">Join Group</button>
-                                                    </form>
-<!--                                                    </show_join>-->
+                <!--                                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
+                <!--                                                    </show_join>-->
 
                 <hr class="my-0">
 
@@ -120,26 +120,34 @@
         <div class="col-md-8 col-xl-9">
 
             <!-- Favorite Games Card -->
-            <div class="card border-glow">
+            <div  th:if="${isMember}"  class="card border-glow">
                 <div class="card-body">
                     <h5 class="h6 card-title">Squad Members</h5>
-                    <show_users th:if="${group.users}">
-                        <div th:each="gUser:${group.users}">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-4 img-box">
-                                    <img th:src="${gUser.getProfilePic()}" style="width:250px;height:250px; object-fit:cover">
-                                </div>
-                                <div class="col-md-8 col-sm-8">
-                                    <h5><a th:text="${gUser.userName}" a th:href="@{'/profile/' + ${gUser.id}}"
-                                           style="text-align: center;"></a></h5>
-                                    <!--                    <div class="group-users">-->
-                                    <div th:if="${group.owner.id == user.id}">
-                                        <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Remove</a>
+                    <div class="row">
+                        <show_users class="d-flex flex-wrap">
+                            <!--                            <div th:each="gUser:${group.users}">-->
+                            <!--                            <div class="row">-->
+                            <div class="mx-2" th:each="gUser:${group.users}">
+                                <div class="mx-auto d-flex">
+                                    <img th:src="${gUser.getProfilePic()}"
+                                         style="width: 75px; height: 75px;margin: 0 1em">
+                                    <div style="flex-grow: 1"
+                                         class="d-flex flex-column justify-content-center align-items-center">
+                                        <a th:text="${gUser.userName}"
+                                           th:href="@{'/profile/' + ${gUser.id}}">
+                                            <h5 style="text-align: center;"></h5></a>
+                                        <div th:if="${group.owner.id == user.id}">
+                                            <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Remove</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </show_users>
+                            <div>
+                                <!--                    <div class="group-users">-->
+                            </div>
+                            <!--                            </div>-->
+                        </show_users>
+                    </div>
                 </div>
             </div>
 
@@ -174,12 +182,12 @@
         </div>
     </div>
 </div>
-</div>
+
+
 
 <!---------------------------------------------------END--------------------------------------------------------------->
 
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
-
 
 
 <script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
@@ -191,4 +199,3 @@
 <script th:src="@{/js/groupProfile.js}"></script>
 </body>
 </html>
-

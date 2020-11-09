@@ -44,6 +44,7 @@
                 <!--                    <button onclick="document.getElementById('term').value=''" class="btn btn-warning" type="button">Clear</button>-->
             </form>
 
+
             <form sec:authorize="isAuthenticated()" class="form-inline ml-sm-2" th:action="@{/logout}" th:method="post">
                 <button class="btn btn-danger" type="submit">Logout</button>
             </form>
