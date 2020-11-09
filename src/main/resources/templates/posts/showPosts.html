@@ -27,6 +27,11 @@
         }
     </style>
 </head>
+
+<body>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<div class="main">
+
 <!--<header th:replace="partials/head :: head"></header>-->
 
 <!--<header th:replace="partials/head :: head"></header>-->
@@ -35,6 +40,7 @@
 <div class="main">
     <body>
     <!--<header th:replace="partials/head :: head"></header>-->
+
     <div id="wrapper" class="d-flex">
         <div id="page-content-wrapper">
             <nav th:replace="partials/navbar :: navbar"></nav>
@@ -88,9 +94,31 @@
                                     </main>
                                 </div>
                             </div>
+
+                        </show_post>
+
+                        <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post"
+                              th:object="${post}" class="form-group" style="display:flex;">
+                            <input type="text" style="width:100%;margin-right:20px" th:field="*{message_body}"
+                                   class="form-control"
+                                   placeholder="start typing!"/>
+                            <input type="submit" class="btn btn-primary"/>
+                        </form>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="partials/footer :: footer"></footer>
+<scripts th:replace="partials/scripts :: scripts"></scripts>
+</body>
+</html>
+
                         </div>
                     </div>
                     <!--    <footer th:replace="partials/footer :: footer"></footer>-->
                     <scripts th:replace="partials/scripts :: scripts"></scripts>
                     </body>
 </html>
+

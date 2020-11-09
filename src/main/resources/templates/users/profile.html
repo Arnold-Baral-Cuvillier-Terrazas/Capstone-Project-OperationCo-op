@@ -9,6 +9,29 @@
 
 </head>
 <body>
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+    <div>
+        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>
+    </div>
+
+<div class="profile">
+    <div id="wrapper m-2" class="d-flex">
+        <div id="page-content-wrapper">
+
+
+<!--            Search Form for Users, may get integrated into the existing search bar-->
+<!--<form class="form-inline" th:action="@{/users/search}" th:method="GET">-->
+<!--    <input type="text" name="term" id="userTerm" class="form-control mr-sm-2"-->
+<!--           placeholder="Look for a Friend!"/>-->
+<!--    <input class="btn btn-success" type="submit" value="Search" placeholder="Search"-->
+<!--           aria-label="Search Users"/>-->
+<!--    &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"-->
+<!--                  type="button">Clear</button>-->
+<!--</form>-->
+
+
 <!--<nav th:replace="partials/navbar :: navbar"></nav>-->
 <div class="container">
     <h2 class="h3 mb-3">Profile</h2>
@@ -147,6 +170,31 @@
             </div>
         </div>
     </div>
+
+
+
+    <!---------------------------------------Delete USER FEATURE??---------------------->
+    <!--    <div>-->
+    <!--        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
+    <!--    </div>-->
+    <!---------------------------------------      Above this line                 ---------------------->
+
+
+    <!---------------------------------------User Ratings---------------------->
+    <!--        <div th:each="rating : ${user.ratings_received}">-->
+    <!--            <p th:text="${rating.rating}"></p>-->
+    <!--        </div>-->
+    <!---------------------------------------      Above this line                 ---------------------->
+
+    <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
+    <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
+    <scripts th:replace="partials/scripts :: scripts"></scripts>
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+    <script th:src="@{/js/keys.js}"></script>
+    <script th:src="@{/js/filestack.js}"></script>
+    <script th:src="@{/js/userProfile.js}"></script>
+    <!--<footer th:replace="partials/footer :: footer"></footer>-->
+
 </div>
 
 <scripts th:replace="partials/scripts :: scripts"></scripts>
@@ -158,5 +206,6 @@
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/userProfile.js}"></script>
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
+
 </body>
 </html>

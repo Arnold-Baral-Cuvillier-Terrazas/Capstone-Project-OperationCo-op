@@ -20,12 +20,6 @@
 <body>
 
 <div id="wrapper" class="d-flex justify-content-center">
-<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
-    <div id="page-content-wrapper">
-<!--        <nav th:replace="partials/navbar :: navbar"></nav>-->
-        <div class="container-fluid page-body">
-            <div class="container-fluid">
-
                 <div class="create">
                 <h1 id="head" class="text-center ">Welcome to the Groups Page!</h1>
                 <form style="display: inline" th:action="@{'/groups/create/'}">
@@ -62,7 +56,8 @@
                         </div>
                     </div>
                 </div>
-<scripts th:replace="partials/scripts :: scripts"></scripts>
+
+
 <script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/groups/pic}]]*/</script>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
