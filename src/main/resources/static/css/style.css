@@ -72,3 +72,10 @@ p {
 .signup-btn {
     margin-top: 15px;
 }
+
+
+/*for navbar*/
+.navbar{
+    background-color:#032f41;
+    color:#98d9f5;
+}
