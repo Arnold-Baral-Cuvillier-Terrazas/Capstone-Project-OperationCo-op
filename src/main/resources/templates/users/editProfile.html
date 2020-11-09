@@ -7,7 +7,7 @@
 <!--        <link th:href="@{/css/style.css}" rel="stylesheet"/>-->
         <style>
             body{
-                background-image: url("../img/colorfulkeypad.jpeg");
+                background-image: url("https://images.pexels.com/photos/3043424/pexels-photo-3043424.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
@@ -33,21 +33,21 @@
             }
 
             .bgProfile {
-                background-color: powderblue;
+                background-color: whitesmoke;
                 opacity:.8;
                 width: 50%;
             }
 
         </style>
     </head>
-    <nav th:insert="partials/navbar :: navbar"></nav>
 
     <body class="body">
+    <nav th:replace="partials/navbar :: navbar"></nav>
     <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
 
     <div class="container bgProfile">
             <div class="editP">
-                <h2 class="text-center">Please edit your profile information</h2>
+                <h2 class="text-center">Edit your profile <i class="fas fa-user-edit"></i> </h2>
                 <div class="form-group">
                     <label for="psn"><b>Psn info</b></label>
                     <input type="text" class="form-control" id="psn" name="psnInfo" th:value="*{psnInfo}"
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="tags">
-                    <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Please select your interests that defines you : </h4>
+                    <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that defines you :</h4>
 
                     <th:block th:each="tag : ${tagsList}">
                         <div class="form-check form-check-inline m-2">

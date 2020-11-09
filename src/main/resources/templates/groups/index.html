@@ -84,13 +84,9 @@
 </head>
 
 <body>
-<div id="wrapper" class="d-flex justify-content-center">
-<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
-    <div id="page-content-wrapper">
-        <nav th:replace="partials/navbar :: navbar"></nav>
-        <div class="container-fluid page-body">
-            <div class="container-fluid">
+<nav th:replace="partials/navbar :: navbar"></nav>
 
+<div id="wrapper" class="d-flex justify-content-center">
                 <div class="create">
                 <h1 id="head" class="text-center ">Welcome to the Groups Page!</h1>
                 <form style="display: inline" th:action="@{'/groups/create/'}">

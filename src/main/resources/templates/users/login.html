@@ -9,17 +9,16 @@
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-image: url("../img/login.jpeg");
+            background-image: url("https://images.pexels.com/photos/3945655/pexels-photo-3945655.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
 
         form {
-            /*border: 3px solid #f1f1f1;*/
             margin-bottom: 30px;
             padding: 100px;
-            margin-top: 10%;
+            margin-top: 5%;
         }
 
         input[type=text], input[type=password] {
@@ -54,8 +53,8 @@
     </style>
 
 </head>
-<nav th:replace="partials/navbar :: navbar"></nav>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <!-- We can set parameters to inform us whether or not the user has logged out, entered incorrect credentials, etc -->
 <div th:if="${param.error}">
     Invalid Username and/or Password.
