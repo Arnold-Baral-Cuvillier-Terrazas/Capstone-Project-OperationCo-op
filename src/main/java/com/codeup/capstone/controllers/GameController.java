@@ -98,8 +98,8 @@ public class GameController {
       
     }
     @GetMapping("/games/search")
-    public String showGame(@RequestParam String gameTerm, Model model){
-        List<Game> games = gameRepo.searchByTitleLike(gameTerm);
+    public String showGame(@RequestParam String term, Model model){
+        List<Game> games = gameRepo.searchByTitleLike(term);
         model.addAttribute("games", games);
         return "games/search";
     }

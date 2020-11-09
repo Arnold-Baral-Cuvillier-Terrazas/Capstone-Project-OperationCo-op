@@ -44,10 +44,25 @@
 
 </head>
 <body>
+
 <!-- We can set parameters to inform us whether or not the user has logged out, entered incorrect credentials, etc -->
+<nav th:replace="partials/navbar :: navbar"></nav>
+
 <div class="row">
     <div class="container-fluid">
         <div class="d-flex justify-content-center">
+
+            <!-- We can set parameters to inform us whether or not the user has logged out, entered incorrect credentials, etc -->
+
+        <div class="alert alert-danger " role="alert" th:if="${param.error}" >
+            Invalid Username and/or Password.
+        </div>
+
+        <div class="alert alert-info" role="alert" th:if="${param.logout}">
+          You have been logged out.
+        </div>
+        </div>
+
             <form th:action="@{/login}" method="post">
                 <div class="container">
                     <div class="card border-glow">

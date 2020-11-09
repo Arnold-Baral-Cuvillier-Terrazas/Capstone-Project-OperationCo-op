@@ -9,6 +9,7 @@
 </head>
 <!----------------------------------------------START------------------------------------------------------------------>
 <body>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
 <!--------------------------------------------SAVING CODE TO USE IN EDIT FORM------------------------------------------>
 <!--<form style="display: inline" th:action="@{'/groups/delete/' + ${group.id}}">-->
@@ -49,12 +50,21 @@
 
                 </div>
                 <!--------------------------------------------------------------------------------------------------------------------->
+
                 <!--                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
                 <!--                                    <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
                 <!--                                        <input name="UserId" th:value="${user.id}" type="hidden">-->
                 <!--                                        <button type="submit">Join Group</button>-->
                 <!--                                    </form>-->
                 <!--                                    </show_join>-->
+
+<!--                                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
+                                                    <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">
+                                                        <input name="UserId" th:value="${user.id}" type="hidden">
+                                                        <button type="submit">Join Group</button>
+                                                    </form>
+<!--                                                    </show_join>-->
+
                 <hr class="my-0">
 
                 <!--Bio Card-->
@@ -113,57 +123,63 @@
             <div class="card border-glow">
                 <div class="card-body">
                     <h5 class="h6 card-title">Squad Members</h5>
-                    <div class="group-users">
-                        <show_users th:if="${group.users}">
-                            <a th:each="gUser:${group.users}">
-                                <a th:href="@{'/profile/' + ${gUser.id}}">
-                                    <img th:src="${gUser.getProfilePic()}"
-                                         style="width:5em;height:5em; object-fit:cover">
-                                </a>
-
-                                <!--                                <div th:if="${group.owner.id == user.id}">-->
-                                <!--                                    <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Delete-->
-                                <!--                                        Member</a>-->
-                                <!--                                </div>-->
-
-                        </show_users>
-                    </div>
-                </div>
-
-                <!-- Right Side Panel -->
-                <div>
-
-                    <!-- Groups User Is In Card -->
-                    <div class="card border-glow">
-                        <div class="card-body">
-                            <show_post th:if="${posts}">
-
-                                <div class="postcard">
-                                    <div th:each="item : ${posts}">
-                                        <img th:src="${item.getUser().getProfilePic()}"
-                                             style="width:5em;height:5em; object-fit:cover">
-                                        <!--            <div style="display: inline-flex; align-items: center">-->
-                                        <div class="part1 d-flex justify-content-start">
-                                            <h5 th:text="${item.message_body}"></h5>
-                                        </div>
-                                        <p class="part2 d-flex justify-content-start">
-                                        <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
-                                        <p class="time"></p>
-                                        <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
-                                        <hr>
+                    <show_users th:if="${group.users}">
+                        <div th:each="gUser:${group.users}">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 img-box">
+                                    <img th:src="${gUser.getProfilePic()}" style="width:250px;height:250px; object-fit:cover">
+                                </div>
+                                <div class="col-md-8 col-sm-8">
+                                    <h5><a th:text="${gUser.userName}" a th:href="@{'/profile/' + ${gUser.id}}"
+                                           style="text-align: center;"></a></h5>
+                                    <!--                    <div class="group-users">-->
+                                    <div th:if="${group.owner.id == user.id}">
+                                        <a th:href="@{'/groups/userDelete/' + ${group.id} + '?UserId=' + ${gUser.id}}">Remove</a>
                                     </div>
                                 </div>
-                            </show_post>
+                            </div>
                         </div>
+                    </show_users>
+                </div>
+            </div>
+
+            <!-- Right Side Panel -->
+            <div>
+
+                <!-- Groups User Is In Card -->
+                <div class="card border-glow">
+                    <div class="card-body">
+                        <a th:href="@{'/groups/posts/' + ${group.id}}">Start Chatting with your Squad!</a>
+                        <show_post th:if="${posts}">
+
+                            <div class="postcard">
+                                <div th:each="item : ${posts}">
+                                    <img th:src="${item.getUser().getProfilePic()}"
+                                         style="width:5em;height:5em; object-fit:cover">
+                                    <!--            <div style="display: inline-flex; align-items: center">-->
+                                    <div class="part1 d-flex justify-content-start">
+                                        <h5 th:text="${item.message_body}"></h5>
+                                    </div>
+                                    <p class="part2 d-flex justify-content-start">
+                                    <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
+                                    <p class="time"></p>
+                                    <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </show_post>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 
 <!---------------------------------------------------END--------------------------------------------------------------->
+
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
+
 
 
 <script th:inline="javascript">const groupId =/*[[${group.id}]]*/</script>
