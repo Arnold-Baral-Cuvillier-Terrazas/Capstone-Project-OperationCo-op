@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8"/>
     <link th:replace="partials/links :: links"/>
-<style>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <style>
     .editG {
         margin: auto;
         width: 80%;
@@ -26,7 +27,7 @@
 
                 <!--<header th:replace="partials/head :: head"></header>-->
 
-                <div class="container1">
+                <div class="container1 border-glow">
                     <h1 class="text-center">Create your Squad!</h1>
                     <form th:action="@{/groups/create}" method="POST" th:object="${group}">
 
