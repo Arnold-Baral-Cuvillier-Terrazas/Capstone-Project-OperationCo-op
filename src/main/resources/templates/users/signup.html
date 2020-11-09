@@ -16,7 +16,7 @@
             background-size: cover;
         }
 
-        form {
+        .signUp {
             margin-bottom: 30px;
             padding: 100px;
             margin-top: 5%;
@@ -59,7 +59,7 @@
 <div class="row">
     <div class="container-fluid">
         <div class="d-flex justify-content-center">
-            <form th:action="@{/sign-up}" method="POST" th:object="${user}">
+            <form  class="signUp" th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <div class="container">
                     <div class="card border-glow">
                         <div class="card-body">
