@@ -18,9 +18,9 @@
     <div class="row">
         <!--Left Card Panel Containing User Info-->
         <div class="col-md-4 col-xl-3">
-            <div class="card border-glow mb-3">
+            <div class="card border-glow mb-3 p-2">
                 <div class="card-header">
-                    <h5 class="card-title mb-0">Profile Details</h5>
+                    <h5 class="card-title mb-0 text-center">Profile Details</h5>
                 </div>
 
                 <!--Basic User Information Card-->
@@ -28,18 +28,20 @@
                     <div class="row">
                         <div class="col-10 offset-1">
                             <div class="profileImg">
-                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
+                                <img th:if="${user.profilePic}" class="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover" />
+                                <img th:unless="${user.profilePic}" class="imgP" th:src="@{img/default-profile-icon.jpg}" style="width: 100%; height:100%; object-fit:cover" />
+<!--                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">-->
                             </div>
                         </div>
                     </div>
-                    <h4 class="card-title mb-0"><span th:text="${user.fullName}"></span></h4>
+                    <h4 class="card-title mb-1"><span th:text="${user.fullName}"></span></h4>
                     <div class="text-muted mb-2"> @<span th:text="${user.userName}"></span></div>
 
                     <div>
                         <div class="row">
                             <div class="col-6">
-                                <a class="btn btn-sm" th:href="@{'/users/edit/' + ${user.id}}">Edit
-                                    Profile</a>
+                                <div class="edit-pills text center">
+                                <a class="btn btn-sm" th:href="@{'/users/edit/' + ${user.id}}">Edit Profile</a>
                             </div>
                             <div class="col-6">
                                 <button id="profile-btn" class="pb btn btn-sm" type="button">Edit Image</button>
@@ -128,7 +130,14 @@
                         <div th:each="group: ${user.groups}">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 img-box">
-                                    <img th:src="${group.profilePic}"style="height: 200px; width: 200px; object-fit: cover">
+<!--                             Place Img conditional here       -->
+                                    <div class="gProfileImg">
+                                        <img th:if="${group.getProfilePic()}" class="imgP" th:src="${group.getProfilePic()}" style="width: 100%; height:100%; object-fit:cover" />
+                                        <img th:unless="${group.getProfilePic()}" class="imgP" th:src="@{/img/default-profile-icon.jpg}" style="width: 100%; height:100%; object-fit:cover" />
+                                        <!--                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">-->
+                                    </div>
+
+<!--                                    <img th:src="${group.profilePic}"style="height: 200px; width: 200px; object-fit: cover">-->
                                 </div>
                                 <div class="col-md-8 col-sm-8">
                                     <h5><a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}" ></a>
@@ -161,14 +170,6 @@
     <!--        </div>-->
     <!---------------------------------------      Above this line                 ---------------------->
 
-    <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
-    <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>
-    <scripts th:replace="partials/scripts :: scripts"></scripts>
-    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-    <script th:src="@{/js/keys.js}"></script>
-    <script th:src="@{/js/filestack.js}"></script>
-    <script th:src="@{/js/userProfile.js}"></script>
-    <!--<footer th:replace="partials/footer :: footer"></footer>-->
 
 </div>
 
@@ -180,6 +181,7 @@
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/userProfile.js}"></script>
+<script th:src="@{/js/groupProfile.js}"></script>
 <!--<footer th:replace="partials/footer :: footer"></footer>-->
 
 </body>
