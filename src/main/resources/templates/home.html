@@ -11,18 +11,17 @@
     <!--    <link rel="stylesheet" th:href="@{/css/home.css}">-->
 
 </head>
-<nav th:insert="partials/navbar :: navbar"></nav>-->
+<nav th:insert="partials/navbar :: navbar"></nav>
+-->
 
 <body>
 <!-- Masthead -->
 <header class="masthead text-white text-center">
     <div class="overlay"></div>
-    <div class="glitch-container">
-        <div class="row">
-            <div class="col-xl-9 mx-auto glitch-big">
-                <h1>OPERATION CO-OPT</h1>
-                <h1>OPERATION CO-OPT</h1>
-                <h1>OPERATION CO-OPT</h1>
+    <div class="glitch-container ">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <img src="/img/logo.gif" style="width: 615px; height: 215px;">
             </div>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
@@ -37,12 +36,13 @@
                                class="user-input form-control form-control-lg"/>
                     </div>
                     <div class="col-12 col-md-2">
-                        <input type="submit" class="btn form-control form-control-lg" value="Log In"/>
+                        <input type="submit" class="btn btn-lg form-control form-control-lg" value="Log In"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <a th:href="@{/sign-up}" class="btn form-control form-control-lg signup-btn">Not a member? Sign Up!</a>
+                        <a th:href="@{/sign-up}" class="btn btn-lg form-control signup-btn">Not a member? Sign
+                            Up!</a>
                     </div>
                 </div>
             </form>
@@ -54,7 +54,8 @@
     <section class="showcase">
         <div class="container-fluid p-0">
             <div class="row no-gutters">
-                <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/signup.gif');"></div>
+                <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                     style="background-image: url('img/signup.gif');"></div>
                 <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                     <h2>Create Your Profile</h2>
                     <p class="lead mb-0">Don't worry. We're here to play video games, not 20 questions. Just fill out
@@ -75,7 +76,8 @@
                      style="background-image: url('img/group.gif');"></div>
                 <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                     <h2>Build Your Squad</h2>
-                    <p class="lead mb-0">You found the game, you found the troops, you know what to do next. Build your dream team and get out there.</p>
+                    <p class="lead mb-0">You found the game, you found the troops, you know what to do next. Build your
+                        dream team and get out there.</p>
                 </div>
             </div>
         </div>
@@ -83,26 +85,26 @@
 </main>
 
 
-    <!-- Call to Action -->
+<!-- Call to Action -->
 
-    <!-- Footer -->
+<!-- Footer -->
 
-    <div style='display:none;'>
-        <div id='login_form' class='container'>
-            <form class='form-signin'>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
-                       autofocus="">
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>
-            </form>
-        </div>
+<div style='display:none;'>
+    <div id='login_form' class='container'>
+        <form class='form-signin'>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
+                   autofocus="">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+        </form>
     </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
