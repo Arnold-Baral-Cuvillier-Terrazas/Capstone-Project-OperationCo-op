@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             + "OR u.userName LIKE %?1%"
             + "OR u.email LIKE %?1%"
     )
-    List<User> findByUserNameLike(@Param("term") String term);
+    List<User> findByUserNameLike(@Param("userTerm") String term);
 
 
 }

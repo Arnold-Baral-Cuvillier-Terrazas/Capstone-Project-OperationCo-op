@@ -13,7 +13,7 @@ function updateImage(result){
     const filedata = result.filesUploaded[0];
     console.log(filedata);
     // $("#profileUrl").val(filedata.url);
-    $("#imgP").attr("src",filedata.url);
+    $(".imgP").attr("src",filedata.url);
 
     let formData1 = new FormData();
     formData1.append("groupId", groupId);
@@ -32,14 +32,4 @@ $(document).ready(function() {
     $("#profile-btn2").click(function(){
         stackClient.picker(options).open();
     });
-
-    $('.rating').on('click', '.ratings_stars', function () {
-        var star = $(this)
-        star.addClass('selected')
-        star.prevAll().addClass('selected')
-        star.nextAll().removeClass('selected')
-        $('#rating').val(star.data('rating'))
-    });
-
-
 })

@@ -5,70 +5,123 @@
     <title>Edit user Profile</title>
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
+
+    <!--        <link th:href="@{/css/style.css}" rel="stylesheet"/>-->
     <style>
+        body {
+            background-image: url("/img/login.gif");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
         .editP {
             margin: auto;
             width: 80%;
-            border: 3px solid orange;
             padding-left: 20px;
+        }
 
+        .card {
+            margin-top: 100px;
         }
-        .name{
-            padding-right:1em;
+
+        #bio {
+            width: 100%;
+            border-radius: 25px;
         }
+
 
     </style>
 </head>
-<body>
-<!--<div id="wrapper" class="d-flex">-->
-<!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
-<!--    <div id="page-content-wrapper">-->
-<!--        <nav th:replace="partials/navbar :: navbar"></nav>-->
-<!--        <div class="container-fluid page-body">-->
 
-<!--<nav th:insert="partials/navbar :: navbar"></nav>-->
-<!--<div id="wrapper m-2" class="d-flex">-->
-<!--&lt;!&ndash;    <div th:replace="partials/sidebar :: sidebar"></div>&ndash;&gt;-->
-<!--    <div id="page-content-wrapper">-->
-<!--        <div class="container-fluid page-body">-->
+<body class="body">
+<nav th:replace="partials/navbar :: navbar"></nav>
+<form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
 
-            <div class="editP">
-                <h4>Please Edit your profile information</h4>
-                <br>
-                <form th:action="@{'/users/edit/' + ${editUser.id}}" method="post" th:object="${editUser}">
-                    <div class="usernames">
-                        Psn info: <input id="psn" type="text" name="psnInfo" th:value="*{psnInfo}"/>
-                        Steam info: <input id="steam" type="text" name="steamInfo" th:value="*{steamInfo}"/>
-                        twitch info: <input id="twitch" type="text" name="twitchInfo" th:value="*{twitchInfo}"/><br><br>
-                        Xbox-live info: <input id="xbox" type="text" name="xboxLiveInfo" th:value="*{xboxLiveInfo}"/>
-                        Nintendo info: <input id="ninetendo" type="text" name="nintendoInfo"
-                                              th:value="*{nintendoInfo}"/>
-
-                        <div>
-                            <br>
-                            <br>
-                        <label for="bio">Updated your bio</label>
-                        <input id="bio" type="text" name="bio" th:value="*{bio}" placeholder="type here!" />
-                        </div>
-                        <br>
-
-                        <div class="tags">
-                            <h4>Please select your interests : </h4>
-                            <div class="row">
-                            <div th:each="tag : ${tagsList}">
-                                <input class="box" type="checkbox" th:checked="${editUser.tags.contains(tag)}" th:id="${tag.name}"
-                                       name="tags" th:value="${tag.id}"/>
-                                <label class="name" th:for="${tag.name}" th:text="${tag.name}"></label>
-                            </div>
-                            </div>
-                        </div>
-
-                        <input value="Save" type="submit"/>
+    <div class="container-fluid">
+        <div class="editP">
+            <div class="card border-glow">
+                <div class="card-body">
+                    <h2 class="text-center">Edit your profile <i class="fas fa-user-edit"></i></h2>
+                    <hr>
+                    <div class="form-group">
+                        <label for="psn"><b>Psn info</b></label>
+                        <input type="text" class="border-glow form-control" id="psn" name="psnInfo" th:value="*{psnInfo}"
+                               placeholder="enter psn usernames">
                     </div>
-                </form>
+                    <div class="form-group">
+                        <label for="steam"><b>Steam info</b></label>
+                        <input type="text" class="form-control" id="steam" name="steamInfo" th:value="*{steamInfo}"
+                               placeholder="enter steam usernames">
+                    </div>
+                    <div class="form-group">
+                        <label for="twitch"><b>Twitch info</b></label>
+                        <input type="text" class="form-control" id="twitch" name="twitchInfo" th:value="*{twitchInfo}"
+                               placeholder="enter twitch usernames">
+                    </div>
+                    <div class="form-group">
+                        <label for="xboxLive"><b>XboxLive info</b></label>
+                        <input type="text" class="form-control" id="xboxLive" name="xboxLiveInfo"
+                               th:value="*{xboxLiveInfo}"
+                               placeholder="enter xboxLive usernames">
+                    </div>
+                    <div class="form-group">
+                        <label for="ninetendo"><b>Nintendo info</b></label>
+                        <input type="text" class="form-control" id="ninetendo" name="nintendoInfo"
+                               th:value="*{nintendoInfo}"
+                               placeholder="enter nintendo usernames">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="discord"><b>Discord info</b></label>
+                        <input type="text" class="form-control" id="discord" name="discordInfo"
+                               th:value="*{discordInfo}"
+                               placeholder="enter discord username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio"><b>Updated your bio</b></label>
+                        <input id="bio" type="text" name="bio" th:value="*{bio}"
+                               placeholder="Please enter your bio here!"/>
+                    </div>
+                </div>
             </div>
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+
+            <div class="card border-glow">
+                <div class="card-body">
+                    <div class="tags">
+                        <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that defines you :</h4>
+                        <th:block th:each="tag : ${tagsList}">
+                            <div class="form-check form-check-inline m-2">
+                                <input class="form-check-input" type="checkbox"
+                                       th:checked="${editUser.tags.contains(tag)}"
+                                       th:id="${tag.name}"
+                                       name="tags" th:value="${tag.id}"/>
+                                <label class="form-check-label" th:for="${tag.name}" th:text="${tag.name}"></label>
+                            </div>
+                        </th:block>
+                    </div>
+                </div>
+
+                <br/>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+                <!--                    Moved over the Delete Account here from User Profile Page-->
+                <!--                    <div th:if="${user.id == user.id}">-->
+                <!--                        <button class="btn btn-sm pull-right" a th:href="@{'/users/delete/' + ${user.id}}" type="submit">Delete Account</button>-->
+                <!--                    </div>-->
+                <!--                    <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+        </form>
+<!--    <footer th:replace="partials/footer :: footer"></footer>-->
+<scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>

@@ -1,4 +1,3 @@
-
 package com.codeup.capstone.repositories;
 
 import com.codeup.capstone.models.Post;
@@ -17,10 +16,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("from Post a where a.id = ?1")
     Post getPostById(long id);
 
-
-    // The following method shows you how to use named parameters in a HQL custom query:
-
-//    @Query("from Post a where a.title like %:term%")
-//    List<Post> searchByTitleLike(@Param("term") String term);
-
+//    This is for posting message on group page
+    @Query("from Post a where a.group.id =?1 order by a.date DESC")
+ List<Post> mostRecentPostsForGroup (long group_id);
 }

@@ -1,363 +1,110 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Untitled</title>
     <link th:replace="partials/links :: links"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <!--    <link th:replace="partials/links :: links"/>-->
-<!--    <link rel="stylesheet" th:href="@{/css/home.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{/css/home.css}">-->
+
 </head>
+<nav th:insert="partials/navbar :: navbar"></nav>
+-->
 
 <body>
-
-<!--<header th:replace="partials/header :: header"></header>-->
-<nav th:insert="partials/navbar :: navbar"></nav>
-
-
-<div class="container-fluid">
-    <div class="row">
-    <div class="col">
-        <div class="col-12 col-lg-6 col-xl-6">
-            <div class="jumbotron">
+<!-- Masthead -->
+<header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="glitch-container ">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <img src="/img/logo.gif" style="width: 615px; height: 215px;">
+            </div>
+        </div>
+        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form th:action="@{/login}" method="post">
+                <div class="form-row">
+                    <div class="col-12 col-md-5 mb-2 mb-md-0">
+                        <input id="username" name="username" type="text"
+                               class="user-input form-control form-control-lg"/>
+                    </div>
+                    <div class="col-12 col-md-5 mb-2 mb-md-0">
+                        <input id="password" name="password" type="password"
+                               class="user-input form-control form-control-lg"/>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <input type="submit" class="btn btn-lg form-control form-control-lg" value="Log In"/>
+                    </div>
+                </div>
                 <div class="row">
-                    <div class="col-md-12 col-xl-12">
-                        <div class="row">
-                            <div class="col">
-                                <h1>Operation Co-Opt</h1>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <h3 class="text-center">Gamers Social Media</h3>
-                            </div>
-                        </div>
-                        <div class="row d-none d-print-inline d-sm-inline d-md-inline d-lg-inline d-xl-inline">
-                            <div class="col-sm-10 col-md-10 offset-sm-1 offset-md-1">
-                                <div class="row">
-                                    <div class="col-sm-2 col-md-2">
-                                        <i class="fa fa-heart d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"></i>
-                                    </div>
-                                    <div class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-md-0 offset-xl-0">
-                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-start align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">Create Your Profile</p>
-                                    </div>
-
-<!doctype html>
-<html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Adda - Social Network HTML Template</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
-
-    <!-- CSS
--->
-    <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
-    <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/bicon.min.css">
-    <!-- Flat Icon CSS -->
-    <link rel="stylesheet" href="assets/css/vendor/flaticon.css">
-    <!-- audio & video player CSS -->
-    <link rel="stylesheet" href="assets/css/plugins/plyr.css">
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="assets/css/plugins/slick.min.css">
-    <!-- nice-select CSS -->
-    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
-    <!-- perfect scrollbar css -->
-    <link rel="stylesheet" href="assets/css/plugins/perfect-scrollbar.css">
-    <!-- light gallery css -->
-    <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css">
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-
-<body class="bg-transparent">
-
+                    <div class="col-12">
+                        <a th:href="@{/sign-up}" class="btn btn-lg form-control signup-btn">Not a member? Sign
+                            Up!</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</header>
 <main>
-    <div class="main-wrapper pb-0 mb-0">
-        <div class="timeline-wrapper">
-            <div class="timeline-header">
-                <div class="container-fluid p-0">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col-lg-6">
-                            <div class="timeline-logo-area d-flex align-items-center">
-                                <div class="timeline-logo">
-                                    <a href="index.html">
-                                        <img src="assets/images/logo/logo.png" alt="timeline logo">
-                                    </a>
-
-                                </div>
-                                <div class="timeline-tagline">
-                                    <h6 class="tagline">It’s helps you to connect and share with the people in your life</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="login-area">
-                                <div class="row align-items-center">
-                                    <div class="col-12 col-sm">
-                                        <input type="text" placeholder="Email or Userame" class="single-field">
-                                    </div>
-
-                                    <div class="col offset-xl-0">
-                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">Create Your Dream Team</p>
-                                    </div>
-                                    <div class="col-12 col-sm">
-                                        <input type="password" placeholder="Password" class="single-field">
-                                    </div>
-                                    <div class="col-12 col-sm-auto">
-                                        <button class="login-btn">Login</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <section class="showcase">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                     style="background-image: url('img/signup.gif');"></div>
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Create Your Profile</h2>
+                    <p class="lead mb-0">Don't worry. We're here to play video games, not 20 questions. Just fill out
+                        the typical registration stuff, tell us about yourself, and a few of your favorite games and
+                        we'll handle the rest.</p>
                 </div>
             </div>
-
-        </div>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col">
-    <div class="col-md-12 col-lg-6 col-xl-6 offset-xl-0">
-        <form th:action="@{/login}" method="post">
-            <div class="form-row row-cols-sm-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
-                <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 offset-sm-1 offset-md-2 offset-lg-0 offset-xl-0">
-                    <input class="form-control" id="username" name="username" type="text" placeholder="Username">
-                </div>
-                <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 offset-sm-1 offset-md-2 offset-lg-0 offset-xl-0">
-                    <input class="form-control" id="password" name="password" type="password" placeholder="Password">
-                </div>
-                <div class="col-sm-10 col-md-8 col-lg-2 col-xl-2 offset-sm-1 offset-md-2 offset-lg-0 offset-xl-0">
-                    <button class="btn btn-primary" type="submit">Login</button>
-            <div class="timeline-page-wrapper">
-                <div class="container-fluid p-0">
-                    <div class="row no-gutters">
-                        <div class="col-lg-6 order-2 order-lg-1">
-                            <div class="timeline-bg-content bg-img" data-bg="assets/images/timeline/adda-timeline.jpg">
-                                <h3 class="timeline-bg-title">Let’s see what’s happening to you and your world. Welcome in Adda.</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 order-1 order-lg-2 d-flex align-items-center justify-content-center">
-                            <div class="signup-form-wrapper">
-                                <h1 class="create-acc text-center">Create An Account</h1>
-                                <div class="signup-inner text-center">
-                                    <h3 class="title">Wellcome to Adda</h3>
-                                    <form class="signup-inner--form">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="email" class="single-field" placeholder="Email">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="single-field" placeholder="First Name">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="single-field" placeholder="Last Name">
-                                            </div>
-                                            <div class="col-12">
-                                                <input type="password" class="single-field" placeholder="Password">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <select class="nice-select" name="sortby">
-                                                    <option value="trending">Gender</option>
-                                                    <option value="sales">Male</option>
-                                                    <option value="sales">Female</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <select class="nice-select" name="sortby">
-                                                    <option value="trending">Age</option>
-                                                    <option value="sales">18+</option>
-                                                    <option value="sales">18-</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-12">
-                                                <select class="nice-select" name="sortby">
-                                                    <option value="trending">Country</option>
-                                                    <option value="sales">Bangladesh</option>
-                                                    <option value="sales">Noakhali</option>
-                                                    <option value="sales">Australia</option>
-                                                    <option value="sales">China</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-12">
-                                                <button class="submit-btn">Create Account</button>
-                                            </div>
-                                        </div>
-                                        <h6 class="terms-condition">I have read & accepted the <a href="#">terms of use</a></h6>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+            <div class="row no-gutters">
+                <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/arcade.gif');"></div>
+                <div class="col-lg-6 my-auto showcase-text">
+                    <h2>Explore Through Games</h2>
+                    <p class="lead mb-0">Look for your favorite games and find other troops that enjoy those games too.
+                        Feel free to network, that's what we're all here for.</p>
                 </div>
             </div>
-        </form>
-        <div class="row">
-            <div class="col-12 col-lg-12">
-                <h1 style="color: #29252a;">Join Us Today</h1>
-            </div>
-            <div class="col-xl-12">
-                <h2>Heading</h2>
-            </div>
-            <div class="col-sm-10 col-md-8 col-lg-10 col-xl-10 offset-sm-1 offset-md-2 offset-lg-1 offset-xl-1">
-                <a class="btn btn-primary" type="button" th:href="@{/login}">Sign In</a>
-            </div>
-            <div class="col-sm-10 col-md-8 col-lg-10 col-xl-10 offset-sm-1 offset-md-2 offset-lg-1 offset-xl-1">
-                <a class="btn btn-primary" type="button" th:href="@{/sign-up}">Register</a>
+            <div class="row no-gutters">
+                <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                     style="background-image: url('img/group.gif');"></div>
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <h2>Build Your Squad</h2>
+                    <p class="lead mb-0">You found the game, you found the troops, you know what to do next. Build your
+                        dream team and get out there.</p>
+                </div>
             </div>
         </div>
-    </div>
-        </div>
-    </div>
+    </section>
 </main>
 
-<!-- JS
- -->
 
-<!-- Modernizer JS -->
-<script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
-<!-- jQuery JS -->
-<script src="assets/js/vendor/jquery-3.3.1.min.js"></script>
-<!-- Popper JS -->
-<script src="assets/js/vendor/popper.min.js"></script>
-<!-- Bootstrap JS -->
-<script src="assets/js/vendor/bootstrap.min.js"></script>
-<!-- Slick Slider JS -->
-<script src="assets/js/plugins/slick.min.js"></script>
-<!-- nice select JS -->
-<script src="assets/js/plugins/nice-select.min.js"></script>
-<!-- audio video player JS -->
-<script src="assets/js/plugins/plyr.min.js"></script>
-<!-- perfect scrollbar js -->
-<script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-<!-- light gallery js -->
-<script src="assets/js/plugins/lightgallery-all.min.js"></script>
-<!-- image loaded js -->
-<script src="assets/js/plugins/imagesloaded.pkgd.min.js"></script>
-<!-- isotope filter js -->
-<script src="assets/js/plugins/isotope.pkgd.min.js"></script>
-<!-- Main JS -->
-<script src="assets/js/main.js"></script>
+<!-- Call to Action -->
 
-</body>
+<!-- Footer -->
 
-</html>
-<!--<h1>Home Page</h1>-->
-
-<!--<div class="container-fluid">-->
-<!--    <div class="row split-screen">-->
-<!--        <div class="col-12 col-lg-6 col-xl-6">-->
-<!--            <div class="jumbotron">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-12 col-xl-12">-->
-<!--                        <div class="row">-->
-<!--                            <div class="col">-->
-<!--                                <h1>LOGO HERE SOON</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="row">-->
-<!--                            <div class="col">-->
-<!--                                <h1 class="text-center">Heading</h1>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="row d-none d-print-inline d-sm-inline d-md-inline d-lg-inline d-xl-inline">-->
-<!--                            <div class="col-sm-10 col-md-10 offset-sm-1 offset-md-1">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-sm-2 col-md-2"><i class="fa fa-heart d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"></i></div>-->
-<!--                                    <div-->
-<!--                                            class="col-9 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-md-0 offset-xl-0">-->
-<!--                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-start align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">Create Your Profile</p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">-->
-<!--                                        <i class="fa fa-heart d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"></i>-->
-<!--                                    </div>-->
-<!--                                    <div class="col offset-xl-0">-->
-<!--                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">Find New Players</p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">-->
-<!--                                        <i class="fa fa-heart d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center justify-content-xl-center align-items-xl-center"></i>-->
-<!--                                    </div>-->
-<!--                                    <div-->
-<!--                                            class="col offset-xl-0">-->
-<!--                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">Create Your Dream Team</p>-->
-<!--                                    </div>-->
-<!--                                    <div-->
-<!--                                            class="col offset-xl-0">-->
-<!--                                        <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">-->
-<!--                                            <a class="btn btn-primary" type="button" th:href="@{/aboutUs}">About Us</a></p>-->
-<!--                                    </div>-->
-
-
-<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
-<!--&lt;!&ndash;    <img src="game.png" alt="welcome board" width="auto" >&ndash;&gt;-->
-
-<!--&lt;!&ndash;    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">&ndash;&gt;-->
-<!--&lt;!&ndash;        Single toggle&ndash;&gt;-->
-<!--&lt;!&ndash;    </button>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">-->
-<!--        Dud-->
-<!--    </button>-->
-<!--</div>-->
-
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col-md-12 col-lg-6 col-xl-6 offset-xl-0">-->
-<!--            <form th:action="@{/login}" method="post">-->
-<!--                <div class="form-row row-cols-sm-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">-->
-<!--                    <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 offset-sm-1 offset-md-2 offset-lg-0 offset-xl-0">-->
-<!--                        <input class="form-control" id="username" name="username" type="text" placeholder="Username">-->
-<!--                    </div>-->
-<!--                    <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 offset-sm-1 offset-md-2 offset-lg-0 offset-xl-0">-->
-<!--                        <input class="form-control" id="password" name="password" type="password" placeholder="Password">-->
-<!--                    </div>-->
-<!--                    <div class="col-sm-10 col-md-8 col-lg-2 col-xl-2 offset-sm-1 offset-md-2 offset-lg-0 offset-xl-0">-->
-<!--                        <button class="btn btn-primary" type="submit">Login</button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </form>-->
-<!--            <div class="row">-->
-<!--                <div class="col-12 col-lg-12">-->
-<!--                    <h1 style="color: #29252a;">Join Us Today</h1>-->
-<!--                </div>-->
-<!--                <div class="col-xl-12">-->
-<!--                    <h2>Heading</h2>-->
-<!--                </div>-->
-<!--                <div class="col-sm-10 col-md-8 col-lg-10 col-xl-10 offset-sm-1 offset-md-2 offset-lg-1 offset-xl-1">-->
-<!--                    <a class="btn btn-primary" type="button" th:href="@{/login}">Sign In</a>-->
-<!--                </div>-->
-<!--                <div class="col-sm-10 col-md-8 col-lg-10 col-xl-10 offset-sm-1 offset-md-2 offset-lg-1 offset-xl-1">-->
-<!--                    <a class="btn btn-primary" type="button" th:href="@{/sign-up}">Register</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
+<div style='display:none;'>
+    <div id='login_form' class='container'>
+        <form class='form-signin'>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required=""
+                   autofocus="">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
