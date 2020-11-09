@@ -5,28 +5,32 @@
     <title>Editing</title>
     <link th:replace="partials/links :: links"/>
     <style>
-        .card-footer, .card-header{
-            padding: 10%;
-            background-color: #1F2833;
-        }
+
         #MessageBody, #btn, label{
             font-size: 20px;
             border-radius: 20px;
         }
 
-        .pill {
-            display: inline-block;
-            border: 2px solid black;
-            border-radius: 32px;
-            margin: 1em;
-            padding: 8px 16px;
-            background-color: #66FCF1;
+        .container{
+            margin-top: 80px;
+            width: 50%;
         }
+
+        /*.pill {*/
+        /*    display: inline-block;*/
+        /*    border: 2px solid black;*/
+        /*    border-radius: 32px;*/
+        /*    margin: 1em;*/
+        /*    padding: 8px 16px;*/
+        /*    background-color: #66FCF1;*/
+        /*}*/
 
     </style>
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+
+<div class="container" >
 <div class="card text-center">
     <div class="card-header"></div>
     <div class="card-body">
@@ -38,6 +42,7 @@
         </form>
     </div>
     <div class="card-footer text-muted"></div>
+</div>
 </div>
 
 
