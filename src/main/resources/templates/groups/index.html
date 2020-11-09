@@ -30,7 +30,9 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-6 img-box">
+
                             <!--                                Conditional Default Profile -->
+
                             <img th:src="${group.getProfilePic()}" style="width:250px;height:250px; object-fit:cover"/>
                             <!--                            <a href="#"></a>-->
                         </div>
@@ -45,8 +47,12 @@
                             <!--                                                <input type="hidden" th:value="${group.id}" name="groupId">-->
                             <!--                                                <button class="btn btn-primary pull-right fav-button" type="submit" a th:href="'/groups/profile/' + ${group.id}">View Group</button>-->
                             <!--                                            </form>-->
+
+                            <button class="btn btn-primary pull-right fav-button"><a th:href="'/groups/profile/' + ${group.id}">View Group</a></button>
+
                             <button class="btn btn-primary pull-right fav-button"><a
                                     th:href="'/groups/profile/' + ${group.id}">View Group</a></button>
+
                         </div>
                     </div>
                 </div>
