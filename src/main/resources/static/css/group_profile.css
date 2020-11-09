@@ -62,3 +62,7 @@ img.profile-photo-lg{
     width: 80px;
     border-radius: 50%;
 }
+.img-box {
+    height: 250px;
+    width: 250px;
+}

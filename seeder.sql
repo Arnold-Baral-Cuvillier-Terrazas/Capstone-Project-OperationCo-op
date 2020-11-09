@@ -1,14 +1,26 @@
 
 
 USE operationCoop_db;
-INSERT INTO tags(name)
-VALUES
-('Gamer'),('gaming'),('playstation'),('xbox'),('streamer'),('gta'),('pcgaming'),
-('nintendo'),('pubg'),('callofduty'),('follow'),('gamingcommunity'),('gamerlife'),
-('videogame'),('meme'),('bhfyp'),('instagamer'),('cod'),('instagaming'),('art'),
-('geek'),('pubgmobile'),('anime'),('youtuber'),('funny'),('gameplay'),('cosplay'),
-('nintendoswitch'),('esports'),('lol'),('destiny'),('freefire'),('gamersofinstagram'),
-('gamerguy'),('online'),('love'),('pro');
+INSERT INTO tags (name)
+VALUES  ('Gamer '),
+        ('Squad'),
+        ('RPG'),
+        ('Competitive'),
+        ('Social'),
+        ('Sports'),
+        ('Racing'),
+        ('Trivia'),
+        ('LateNight'),
+        ('LGBTQ'),
+        ('FUN'),
+        ('PC'),
+        ('Mobile'),
+        ('PS4 '),
+        ('XBOX'),
+        ('FPS'),
+        ('CosPlay'),
+        ('Military'),
+        ('Nintendo');
 
 
 USE game_db;
@@ -78,4 +90,5 @@ VALUES
 ('minecraft'),
 ('instagood'),
 ('pro');
+
 

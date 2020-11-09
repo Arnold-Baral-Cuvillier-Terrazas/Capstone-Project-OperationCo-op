@@ -38,53 +38,50 @@
         }
     </style>
 </head>
-<body>
-<nav th:replace="partials/navbar :: navbar"></nav>
+    <nav th:replace="partials/navbar :: navbar"></nav>
 
     <div class="container1 mt-5 bgg">
         <form th:action="'/groups/edit/' + ${editGroup.id}" method="post" th:object="${editGroup}">
-        <div class="editG">
-            <h1 class="text-center">Edit Group Information !</h1>
-            <div class="form-group">
-                <label for="name"><b>Group Name:</b></label>
-                <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
-                       placeholder="enter group name"/>
+            <div class="editG">
+                <h1 class="text-center">Edit Group Information !</h1>
+                <div class="form-group">
+                    <label for="name"><b>Group Name:</b></label>
+                    <input type="text" class="form-control" id="name" name="name" th:field="*{name}"
+                           placeholder="enter group name"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="description"><b>Group Description:</b></label>
+                    <input type="text" class="form-control" id="description" name="description"
+                           th:field="*{description}"
+                           placeholder="enter bio for group"/>
+                </div>
+
+
+                <div class="tags">
+                    <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that defines your group : </h4>
+                    <th:block th:each="tag : ${tagsList}">
+                        <div class="form-check form-check-inline m-2">
+                            <input class="form-check-input" type="checkbox"
+                                   th:checked="${editGroup.tags.contains(tag)}"
+                                   th:id="${tag.name}" name="tags" th:value="${tag.id}"/>
+                            <label class="form-check-label" th:for="${tag.name}"
+                                   th:text="${tag.name}"></label>
+                        </div>
+                    </th:block>
+
+                    <br/>
+                    <button type="submit" class="btn btn-primary mt-3">Save</button>
+                </div>
             </div>
-
-            <div class="form-group">
-                <label for="description"><b>Group Description:</b></label>
-                <input type="text" class="form-control" id="description" name="description"
-                       th:field="*{description}"
-                       placeholder="enter bio for group"/>
-            </div>
-
-
-            <div class="tags">
-                <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that defines your group : </h4>
-                <th:block th:each="tag : ${tagsList}">
-                    <div class="form-check form-check-inline m-2">
-                        <input class="form-check-input" type="checkbox"
-                               th:checked="${editGroup.tags.contains(tag)}"
-                               th:id="${tag.name}" name="tags" th:value="${tag.id}"/>
-                        <label class="form-check-label" th:for="${tag.name}"
-                               th:text="${tag.name}"></label>
-                    </div>
-                </th:block>
-
-                <br/>
-                <button type="submit" class="btn btn-primary mt-3">Save</button>
-            </div>
-        </div>
+        </form>
     </div>
-</form>
-
-<!--<footer th:replace="partials/footer :: footer"></footer>-->
-<scripts th:replace="partials/scripts :: scripts"></scripts>
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script th:src="@{/js/keys.js}"></script>
-<script th:src="@{/js/filestack.js}"></script>
-<script th:src="@{/js/userProfile.js}"></script>
-</body>
+    <scripts th:replace="partials/scripts :: scripts"></scripts>
+    <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+    <script th:src="@{/js/keys.js}"></script>
+    <script th:src="@{/js/filestack.js}"></script>
+    <script th:src="@{/js/userProfile.js}"></script>
+    </body>
 </html>
 
 
