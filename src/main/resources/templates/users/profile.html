@@ -145,11 +145,9 @@
                                     </h5>
                                     <p th:text="${group.description}"></p>
                                 </div>
-                                <div class="col-md-3 col-sm-3">
-                                    <button class="btn btn-sm pull-right">Leave Group</button>
+                                    <button class="btn btn-sm pull-right" a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">Leave Group</button>
                                 </div>
                             </div>
-                        </div>
                     </show_groupIn>
                 </div>
             </div>
