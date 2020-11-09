@@ -8,9 +8,14 @@
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <style>
+
+        html, body {
+            height: 100%;
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-image: url("./img/login.gif");
+            background-image: url("./img/login.gif")!important;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -19,7 +24,7 @@
         .signUp {
             margin-bottom: 30px;
             padding: 100px;
-            margin-top: 5%;
+            /*margin-top: 5%;*/
         }
 
         input[type=text], input[type=password] {
@@ -55,11 +60,12 @@
     </style>
 </head>
 <body>
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+<nav th:replace="partials/navbar :: navbar"></nav>
 <div class="row">
     <div class="container-fluid">
         <div class="d-flex justify-content-center">
-            <form  class="signUp" th:action="@{/sign-up}" method="POST" th:object="${user}">
+            <form class="signUp" th:action="@{/sign-up}" method="POST" th:object="${user}">
                 <div class="container">
                     <div class="card border-glow">
                         <div class="card-body">
@@ -134,6 +140,7 @@
     </div>
 </div>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
+</body>
 </html>
 
 
