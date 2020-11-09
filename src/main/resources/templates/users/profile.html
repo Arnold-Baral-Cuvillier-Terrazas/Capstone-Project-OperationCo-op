@@ -11,6 +11,7 @@
 <body>
 
 <nav th:replace="partials/navbar :: navbar"></nav>
+<!--                    <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
 
 <div class="container">
     <h2 class="h3 mb-3"><span th:text="${user.userName}"></span>'s Profile </h2>
@@ -134,7 +135,7 @@
                                     </h5>
                                     <p th:text="${group.description}"></p>
                                     <div th:if="${user.id == group.id}">
-                                        <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}" type="submit">Leave Group</a>
+                                        <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">Leave Group</a>
                                     </div>
                                 </div>
                                 </div>
