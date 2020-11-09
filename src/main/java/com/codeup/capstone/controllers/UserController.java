@@ -110,7 +110,7 @@ public class UserController {
                                 @RequestParam String bio,
                                 @RequestParam(required = false) String psnInfo, @RequestParam(required = false) String steamInfo,
                                 @RequestParam(required = false) String twitchInfo, @RequestParam(required = false) String xboxLiveInfo,
-                                @RequestParam(required = false) String nintendoInfo) {
+                                @RequestParam(required = false) String nintendoInfo, @RequestParam(required = false) String discordInfo) {
         List<Tag> tagList = new ArrayList<>();
         for (int i = 0; i < tags.size(); i++) {
             Tag thisTag = tagDao.getOne(tags.get(i));
@@ -124,6 +124,7 @@ public class UserController {
         user.setTwitchInfo(twitchInfo);
         user.setXboxLiveInfo(xboxLiveInfo);
         user.setNintendoInfo(nintendoInfo);
+        user.setDiscordInfo(discordInfo);
         userDao.save(user);
         return "redirect:/profile";
     }
@@ -212,27 +213,6 @@ public class UserController {
 //package com.codeup.capstone.controllers;
 //
 //
-//        import com.codeup.capstone.models.*;
-//
-//        import com.codeup.capstone.models.Game;
-//        import com.codeup.capstone.models.Group;
-//        import com.codeup.capstone.models.Tag;
-//        import com.codeup.capstone.models.User;
-//        import com.codeup.capstone.repositories.GameRepository;
-//        import com.codeup.capstone.repositories.GroupRepository;
-//        import com.codeup.capstone.repositories.TagRepository;
-//        import com.codeup.capstone.repositories.UserRepository;
-//        import org.springframework.security.core.context.SecurityContextHolder;
-//        import org.springframework.security.crypto.password.PasswordEncoder;
-//        import org.springframework.stereotype.Controller;
-//        import org.springframework.ui.Model;
-//        import org.springframework.validation.Errors;
-//        import org.springframework.validation.annotation.Validated;
-//        import org.springframework.web.bind.annotation.*;
-//
-//        import java.util.ArrayList;
-//        import java.util.List;
-//        import java.util.Set;
 //
 //@Controller
 //public class UserController {
