@@ -55,11 +55,12 @@
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<!-- We can set parameters to inform us whether or not the user has logged out, entered incorrect credentials, etc -->
 
 <div class="row">
     <div class="container-fluid">
         <div class="d-flex justify-content-center">
+
+            <!-- We can set parameters to inform us whether or not the user has logged out, entered incorrect credentials, etc -->
 
         <div class="alert alert-danger " role="alert" th:if="${param.error}" >
             Invalid Username and/or Password.
