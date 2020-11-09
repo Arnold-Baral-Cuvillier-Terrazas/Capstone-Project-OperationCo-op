@@ -8,11 +8,12 @@
     <title>View games</title>
 
 </head>
+<nav th:replace="partials/navbar :: navbar"></nav>
 <body>
 
 <!--    <div th:replace="partials/sidebar :: sidebar"></div>-->
 <!--    <div class="container-fluid">-->
-        <nav th:replace="partials/navbar :: navbar"></nav>
+
 
 <!--<div class="row row-cols-4 row-cols-md-4">-->
 <!--    <div class="col mb-4  " th:each="game: ${games}">-->
@@ -63,7 +64,7 @@
     </div>
 </div>
 
-<footer th:replace="partials/footer :: footer"></footer>
+<!--<footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 <!--<script th:src="@{/js/game.js}"></script>-->
 <script th:src="@{/js/gamekeys.js}"></script>
