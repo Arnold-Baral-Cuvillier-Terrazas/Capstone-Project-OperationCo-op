@@ -110,7 +110,7 @@ public class UserController {
                                 @RequestParam String bio,
                                 @RequestParam(required = false) String psnInfo, @RequestParam(required = false) String steamInfo,
                                 @RequestParam(required = false) String twitchInfo, @RequestParam(required = false) String xboxLiveInfo,
-                                @RequestParam(required = false) String nintendoInfo) {
+                                @RequestParam(required = false) String nintendoInfo, @RequestParam(required = false) String discordInfo) {
         List<Tag> tagList = new ArrayList<>();
         for (int i = 0; i < tags.size(); i++) {
             Tag thisTag = tagDao.getOne(tags.get(i));
@@ -124,6 +124,7 @@ public class UserController {
         user.setTwitchInfo(twitchInfo);
         user.setXboxLiveInfo(xboxLiveInfo);
         user.setNintendoInfo(nintendoInfo);
+        user.setDiscordInfo(discordInfo);
         userDao.save(user);
         return "redirect:/profile";
     }
