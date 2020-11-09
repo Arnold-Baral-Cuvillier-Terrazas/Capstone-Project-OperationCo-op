@@ -7,13 +7,17 @@
     <title>Untitled</title>
     <link th:replace="partials/links :: links"/>
     <link rel="stylesheet" th:href="@{/css/home.css}">
-    &lt;!&ndash;    <link th:replace="partials/links :: links"/>&ndash;&gt;
-    &lt;!&ndash;    <link rel="stylesheet" th:href="@{/css/home.css}">&ndash;&gt;
+
+ 
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    
+
 
 </head>
-<nav th:insert="partials/navbar :: navbar"></nav>
+<!--<nav th:insert="partials/navbar :: navbar"></nav>-->
 
 <body>
+
 <h1>Home Page</h1>
 <div class="container-fluid">
     <div class="row">
@@ -25,7 +29,7 @@
                             <div class="row">
                                 <div class="col">
 
-<<<<<<< HEAD
+
                                     <h1>Operation Co-Opt</h1>
 
                                 </div>
@@ -55,9 +59,48 @@
                                         <div class="col offset-xl-0">
                                             <p class="d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-sm-center align-items-md-center justify-content-lg-start align-items-lg-center justify-content-xl-start align-items-xl-center">
                                                 Find New Players</p>
-=======
-<body class="bg-transparent">
 
+<body class="bg-transparent">
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Operation Co-Opt</a>
+        <div id='signin_btn' class="btn btn-primary">Sign In</div>
+    </div>
+</nav>
+
+
+<!-- Masthead -->
+<header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="glitch-container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto glitch-big">
+                    <h1>OPERATION CO-OPT</h1>
+                    <h1>OPERATION CO-OPT</h1>
+                    <h1>OPERATION CO-OPT</h1>
+                </div>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <form>
+                    <div class="form-row">
+                        <div class="col-12 col-md-5 mb-2 mb-md-0">
+                            <input type="email" class="form-control form-control-lg" placeholder="Username">
+                        </div>
+                        <div class="col-12 col-md-5 mb-2 mb-md-0">
+                            <input type="email" class="form-control form-control-lg" placeholder="Password">
+                        </div>
+                        <div class="col-12 col-md-2">
+                            <button type="submit" class="btn btn-block btn-lg btn-primary">Sign in!</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
 <main>
 <!--    <div class="main-wrapper pb-0 mb-0">-->
 <!--        <div class="timeline-wrapper">-->
@@ -129,6 +172,7 @@
 
 <!--        </div>-->
 <!--    </div>-->
+
 
     </div>
     <div class="row">
@@ -403,6 +447,101 @@
 
                                             </div>
                                         </div>
+<!-- Image Showcases -->
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+
+            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-1.jpg');"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Create Your Profile</h2>
+                <p class="lead mb-0">Don't worry. We're here to play video games, not 20 questions. Just fill out the typical registration stuff, tell us about yourself, and a few of your favorite games and we'll handle the rest.</p>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg');"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h2>Explore Through Games</h2>
+                <p class="lead mb-0">Look for your favorite games and find other troops that enjoy those games too. Feel free to network, that's what we're all here for.</p>
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-3.jpg');"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Build Your Squad</h2>
+                <p class="lead mb-0">You found the game, you found the troops, you know what to do next. Build your dream team and get out there.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Call to Action -->
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item">
+                        <a href="#">About</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Contact</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Terms of Use</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Privacy Policy</a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2018. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="fa fa-facebook fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item mr-3">
+                        <a href="#">
+                            <i class="fa fa-twitter fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                            <i class="fa fa-instagram fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div style='display:none;'>
+    <div id='login_form' class='container'>
+        <form class='form-signin'>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
 
                                     </div>
                                 </div>

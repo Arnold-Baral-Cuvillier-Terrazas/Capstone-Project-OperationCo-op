@@ -17,6 +17,7 @@
         h1 {
             margin-bottom: 30px;
         }
+
         .main {
             /*background-image: url("../img/background.jpeg");*/
             /*background-color: cornflowerblue;*/
@@ -26,43 +27,74 @@
         }
     </style>
 </head>
+
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="main">
+
+<!--<header th:replace="partials/head :: head"></header>-->
+
+<!--<header th:replace="partials/head :: head"></header>-->
+<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
+
+<div class="main">
+    <body>
+    <!--<header th:replace="partials/head :: head"></header>-->
+
     <div id="wrapper" class="d-flex">
         <div id="page-content-wrapper">
             <nav th:replace="partials/navbar :: navbar"></nav>
             <div class="container-fluid page-body">
                 <main class="container">
+                    <body>
+                        <div class="main">
+                        <div id="wrapper" class="d-flex">
+                            <div id="page-content-wrapper">
+                                <nav th:replace="partials/navbar :: navbar"></nav>
+                                <div class="container-fluid page-body">
+                                    <main class="container">
 
-                    <h1> Welcome to message dashboard </h1>
+                                        <h1> Welcome to message dashboard </h1>
 
-                    <div class="texts">
-                        <show_post th:if="${posts}">
+                                        <div class="texts">
+                                            <show_post th:if="${posts}">
 
-                            <div class="postcard">
-                                <div th:each="item : ${posts}">
-                                    <img th:src="${item.getUser().getProfilePic()}"
-                                         style="width:5em;height:5em; object-fit:cover">
-                                    <!--            <div style="display: inline-flex; align-items: center">-->
-                                    <div class="part1 d-flex justify-content-start">
-                                        <h5 th:text="${item.message_body}"></h5> <a class="icons"
-                                                                                    th:href="'/groups/posts/delete/'+ ${item.id}"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                        <a class="icons1" th:href="'/groups/posts/edit/'+ ${item.id}"><i
-                                                class="fas fa-edit"></i></a>
-                                    </div>
-                                    <!--
-                                          </div>-->
+                                                <div class="postcard">
+                                                    <div th:each="item : ${posts}">
+                                                        <img th:src="${item.getUser().getProfilePic()}" style="width:5em;height:5em; object-fit:cover">
+                                                        <!--            <div style="display: inline-flex; align-items: center">-->
+                                                        <div class="part1 d-flex justify-content-start">
+                                                            <h5 th:text="${item.message_body}"></h5> <a class="icons"
+                                                                                                        th:href="'/groups/posts/delete/'+ ${item.id}"><i
+                                                                class="fas fa-trash-alt"></i></a>
+                                                            <a class="icons1"
+                                                               th:href="'/groups/posts/edit/'+ ${item.id}"><i
+                                                                    class="fas fa-edit"></i></a>
+                                                        </div>
+                                                        <div class="part2 d-flex justify-content-start">
+                                                            <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
+                                                            <p class="time"
+                                                               th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
+                                                        </div>
 
-                                    <div class="part2 d-flex justify-content-start">
-                                        <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
-                                        <p class="time" th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
-                                    </div>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                            </show_post>
 
-                                    <hr>
+                                            <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}"
+                                                  th:method="post"
+                                                  th:object="${post}" class="form-group" style="display:flex;">
+                                                <input type="text" style="width:100%;margin-right:20px"
+                                                       th:field="*{message_body}" class="form-control"
+                                                       placeholder="start typing!"/>
+                                                <input type="submit" class="btn btn-primary"/>
+                                            </form>
+                                        </div>
+                                    </main>
                                 </div>
                             </div>
+
                         </show_post>
 
                         <form th:action="@{/groups/posts/{group_id}/submit(group_id=${group_id})}" th:method="post"
@@ -82,3 +114,11 @@
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
+
+                        </div>
+                    </div>
+                    <!--    <footer th:replace="partials/footer :: footer"></footer>-->
+                    <scripts th:replace="partials/scripts :: scripts"></scripts>
+                    </body>
+</html>
+
