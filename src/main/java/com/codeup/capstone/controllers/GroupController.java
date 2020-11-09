@@ -48,9 +48,6 @@ public class GroupController {
         return "groups/create";
     }
 
-
-    //This should save the new Group should there be a user authentication for the user to access this page?
-    // Also the redirect mapping doesn't show the
     @PostMapping("/groups/create")
     public String saveGroup(
             @RequestParam(name = "name") String name,
