@@ -1,26 +1,24 @@
 USE operationcoop_db;
-
 INSERT INTO tags (name)
-VALUES ('Casual'),
-       ('Gamer Groupies'),
+VALUES  ('Gamer '),
        ('Squad'),
-       ('RPG Groupies'),
-       ('Competitive Groupies'),
-       ('Social Groupies'),
-       ('Sports Groupies'),
-       ('Racing Groupies'),
-       ('Trivia Groupies'),
-       ('LateNight Groupies'),
-       ('LGBTQ Groupies'),
-       ('FUN Groupies'),
-       ('PC Groupies'),
-       ('Mobile Groupies'),
-       ('PS4 Groupies'),
-       ('XBOX Groupies'),
-       ('FPS Groupies'),
-       ('CosPlay Groupies'),
-       ('Military Groupies'),
-       ('Nintendo Groupies');
+       ('RPG'),
+       ('Competitive'),
+       ('Social'),
+       ('Sports'),
+       ('Racing'),
+       ('Trivia'),
+       ('LateNight'),
+       ('LGBTQ'),
+       ('FUN'),
+       ('PC'),
+       ('Mobile'),
+       ('PS4 '),
+       ('XBOX'),
+       ('FPS'),
+       ('CosPlay'),
+       ('Military'),
+       ('Nintendo');
 
 # Use capstone_db;
 # INSERT INTO groups(name, description) VALUES ('AmoungUs','Love being the imposter!!');

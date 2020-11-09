@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Log In</title>
     <link th:replace="partials/links :: links"/>
-
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-image: url("https://images.pexels.com/photos/3945655/pexels-photo-3945655.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+            background-image: url("./img/login.gif") !important;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -31,29 +31,21 @@
             border-radius: 20px;
         }
 
-        button {
-            background-color: #007bff;;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 20px;
-        }
-
-        button:hover {
-            opacity: 0.8;
-
-        }
-
         .container {
             padding: 16px;
         }
+
+        .stretch {
+            width: 100%;
+            margin-top: 15px;
+        }
     </style>
+
 
 </head>
 <body>
+
+<!-- We can set parameters to inform us whether or not the user has logged out, entered incorrect credentials, etc -->
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="row">
@@ -73,19 +65,23 @@
 
             <form th:action="@{/login}" method="post">
                 <div class="container">
-                    <h2 style="text-align:center"><strong>Welcome to OperationCo-Opt login page</strong></h2>
-                    <hr>
-
-                    <label for="username"><b>Username</b></label>
-                    <input id="username" type="text" placeholder="Enter Username" name="username" required>
-
-                    <label for="password"><b>Password</b></label>
-                    <input id="password" type="password" placeholder="Enter Password" name="password" required>
-
-                    <button type="submit">Login</button>
-
-                    <div class="d-flex justify-content-center">
-                        <a th:href="@{/sign-up}">Not A User? Sign Up!</a>
+                    <div class="card border-glow">
+                        <div class="card-body">
+                            <h2 style="text-align:center"><strong>Welcome Back</strong></h2>
+                            <hr>
+                            <label for="username"><b>Username</b></label>
+                            <input id="username" type="text" placeholder="Enter Username" name="username" required>
+                            <label for="password"><b>Password</b></label>
+                            <input id="password" type="password" placeholder="Enter Password" name="password" required>
+                            <div th:if="${param.error}">
+                                Invalid Username and/or Password.
+                            </div>
+                            <div th:if="${param.logout}">
+                                You have been logged out.
+                            </div>
+                            <button class="btn stretch" type="submit">Login</button>
+                            <a class="btn pull-right stretch" th:href="@{/sign-up}">Not A User? Sign Up!</a>
+                        </div>
                     </div>
                 </div>
             </form>
