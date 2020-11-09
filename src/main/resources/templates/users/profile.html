@@ -16,24 +16,9 @@
         <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>
     </div>
 
-<div class="profile">
-    <div id="wrapper m-2" class="d-flex">
-        <div id="page-content-wrapper">
 
 
-<!--            Search Form for Users, may get integrated into the existing search bar-->
-<!--<form class="form-inline" th:action="@{/users/search}" th:method="GET">-->
-<!--    <input type="text" name="term" id="userTerm" class="form-control mr-sm-2"-->
-<!--           placeholder="Look for a Friend!"/>-->
-<!--    <input class="btn btn-success" type="submit" value="Search" placeholder="Search"-->
-<!--           aria-label="Search Users"/>-->
-<!--    &nbsp;<button onclick="document.getElementById('term').value=''" class="btn btn-warning"-->
-<!--                  type="button">Clear</button>-->
-<!--</form>-->
-
-
-<!--<nav th:replace="partials/navbar :: navbar"></nav>-->
-<div class="container">
+        <div class="container">
     <h2 class="h3 mb-3">Profile</h2>
     <div class="row">
         <!--Left Card Panel Containing User Info-->
