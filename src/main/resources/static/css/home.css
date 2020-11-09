@@ -1,3 +1,16 @@
+html {
+    background-color: #161321 !important;
+}
+
+body {
+    background: radial-gradient(#181629 0%, #161321 78%) !important;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -14,8 +27,7 @@ h6 {
 
 header.masthead {
     position: relative;
-    background-color: #343a40;
-    background: url("./img/bg-masthead.jpg") no-repeat center center;
+    background: url("/img/fly.gif") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -75,7 +87,7 @@ footer.footer {
 
 h1 {
     text-align: center;
-    color: #fff;
+    color: #98d9f5;
     font-size: 5em;
     letter-spacing: 8px;
     font-family: 'Press Start 2P';
@@ -90,12 +102,12 @@ h1 {
 }
 
 h1:nth-child(2) {
-    color: #67f3da;
+    color: rgb(197,198,200);
     animation: glitch2 2.5s infinite;
 }
 
 h1:nth-child(3) {
-    color: #f16f6f;
+    color: #032f41;
     animation: glitch3 2.5s infinite;
 }
 /*Keyframes*/
