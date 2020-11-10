@@ -53,7 +53,7 @@
                                         Profile</a>
                                 </div>
                                 <div class="col-6">
-                                    <button id="profile-btn" class="pb btn btn-sm" type="button">Edit Image</button>
+                                    <button id="profile-btn2" class="pb btn btn-sm" type="button">Edit Image</button>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,6 @@
                 </div>
                 <hr class="my-0">
                 <!--------------------------------------------------------------------------------------------------------------------->
-
                 <!--Bio Card-->
                 <div class="card-body">
                     <h5 class="h6 card-title">About</h5>
@@ -110,40 +109,43 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <!--                    <div class="group-users">-->
-                            </div>
-                            <!--                            </div>-->
                         </show_users>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Side Panel -->
-            <div>
 
-                <!-- Groups User Is In Card -->
+            <!--Group Chatting-->
+            <div>
                 <div class="card border-glow">
                     <div class="card-body">
                         <a th:href="@{'/groups/posts/' + ${group.id}}">Start Chatting with your Squad!</a>
-                        <show_post th:if="${posts}">
+                        <div class="row">
+                            <show_post th:if="${posts}">
 
-                            <div class="postcard">
-                                <div th:each="item : ${posts}">
-                                    <img th:src="${item.getUser().getProfilePic()}"
-                                         style="width:5em;height:5em; object-fit:cover">
-                                    <!--            <div style="display: inline-flex; align-items: center">-->
-                                    <div class="part1 d-flex justify-content-start">
-                                        <h5 th:text="${item.message_body}"></h5>
+                                <div class="postcard">
+                                    <div class="mx-2" th:each="item : ${posts}">
+                                        <div class="mx-auto d-flex">
+                                            <img th:src="${item.getUser().getProfilePic()}"
+                                                 style="width:5em;height:5em; object-fit:cover">
+                                            <div style="flex-grow: 1"
+                                                 class="d-flex flex-column justify-content-center align-items-center">
+                                                <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
+                                            </div>
+                                        </div>
+                                        <!--            <div style="display: inline-flex; align-items: center">-->
+                                        <div class="part1 d-flex justify-content-start">
+                                            <h5 th:text="${item.message_body}"></h5>
+                                        </div>
+                                        <p class="part2 d-flex justify-content-start">
+                                            <!--                                    <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>-->
+                                        <p class="time"></p>
+                                        <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
+                                        <hr>
                                     </div>
-                                    <p class="part2 d-flex justify-content-start">
-                                    <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
-                                    <p class="time"></p>
-                                    <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
-                                    <hr>
                                 </div>
-                            </div>
-                        </show_post>
+                            </show_post>
+                        </div>
                     </div>
                 </div>
             </div>
