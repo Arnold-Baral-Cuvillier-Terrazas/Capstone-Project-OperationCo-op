@@ -119,10 +119,12 @@
             <div>
                 <div class="card border-glow">
                     <div class="card-body">
-                        <a th:href="@{'/groups/posts/' + ${group.id}}">Start Chatting with your Squad!</a>
+                        <div th:if="${isMember}">
+                            <a class="float-right" th:href="@{'/groups/posts/' + ${group.id}}">Start Chatting with your
+                                Squad!</a>
+                        </div>
                         <div class="row">
                             <show_post th:if="${posts}">
-
                                 <div class="postcard">
                                     <div class="mx-2" th:each="item : ${posts}">
                                         <div class="mx-auto d-flex">
@@ -133,7 +135,6 @@
                                                 <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
                                             </div>
                                         </div>
-                                        <!--            <div style="display: inline-flex; align-items: center">-->
                                         <div class="part1 d-flex justify-content-start">
                                             <h5 th:text="${item.message_body}"></h5>
                                         </div>
