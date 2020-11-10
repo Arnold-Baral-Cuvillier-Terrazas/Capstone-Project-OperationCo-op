@@ -24,7 +24,12 @@
                     <div class="row">
                         <div class="col-10 offset-1">
                             <div class="profileImg">
-                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">
+                                <img th:if="${user.profilePic}" class="imgP" th:src="${photoUrl}"
+                                     style="width: 100%; height:100%; object-fit:cover"/>
+                                <img th:unless="${user.profilePic}" class="imgP"
+                                     th:src="@{img/default-profile-icon.jpg}"
+                                     style="width: 100%; height:100%; object-fit:cover"/>
+                                <!--                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">-->
                             </div>
                         </div>
                     </div>
@@ -52,27 +57,27 @@
                 <!--Social Media Card-->
                 <div class="card-body">
                     <h5 class="h6 card-title">Socials</h5>
-                    <a class="btn" type="button">
+                    <a class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.twitchInfo}"></span>
                     </a>
-                    <a class="btn" type="button">
+                    <a class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.discordInfo}"></span>
                     </a>
-                    <a class="btn" type="button">
+                    <a class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.steamInfo}"></span>
                     </a>
-                    <a class="btn" type="button">
+                    <a class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.xboxLiveInfo}"></span>
                     </a>
-                    <a class="btn" type="button">
+                    <a class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.psnInfo}"></span>
                     </a>
-                    <a class="btn" type="button">
+                    <a class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.nintendoInfo}"></span>
                     </a>
@@ -134,6 +139,7 @@
             </div>
         </div>
     </div>
+
     <!---------------------------------------Delete USER FEATURE??---------------------->
     <!--    <div>-->
     <!--        <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
@@ -144,6 +150,7 @@
     <!--            <p th:text="${rating.rating}"></p>-->
     <!--        </div>-->
     <!---------------------------------------      Above this line                 ---------------------->
+
 </div>
 <script th:inline="javascript">const userId =/*[[${user.id}]]*/</script>
 <script th:inline="javascript">const url =/*[[@{/profile/pic}]]*/</script>

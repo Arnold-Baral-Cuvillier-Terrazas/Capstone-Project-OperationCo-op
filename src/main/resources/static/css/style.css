@@ -1,8 +1,22 @@
 html {
     background: #01131a;
+
 }
 body {
     background: radial-gradient(#011822 0%, #01131a 78%);
+
+}
+h1{
+    font-family: 'Press Start 2P', cursive;
+
+}
+p, button{
+    font-family: 'Ubuntu Mono', monospace;
+
+}
+/*Login button for home page*/
+#hlogin{
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 .border-glow {
@@ -46,18 +60,17 @@ body {
     float: top;
 }
 
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: #98d9f5;
-    text-shadow: 0px 0px 5px #000000;
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Press Start 2P', cursive;
+}
+p, .btn, button,input,li,label,a {
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 
 a {
     color: #98d9f5;
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 a:hover {
@@ -70,6 +83,7 @@ hr {
 
 p {
     color: rgb(197,198,200);
+    font-family: 'Ubuntu Mono', monospace;
 }
 
 .signup-btn {

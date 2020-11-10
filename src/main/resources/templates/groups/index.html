@@ -19,7 +19,7 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 <div class="container">
     <div class="create">
-        <h2 id="head" class="text-center mb-5">Welcome to the Groups Page!</h2>
+        <h2 id="head" class="text-center mr-5">Welcome to the Groups Page!</h2>
         <form style="display: inline" th:action="@{'/groups/create/'}">
             <button class="btn btn-primary pull-right fav-button">Create A Group</button>
         </form>
@@ -50,8 +50,8 @@
 
                             <button class="btn btn-primary pull-right fav-button"><a th:href="'/groups/profile/' + ${group.id}">View Group</a></button>
 
-                            <button class="btn btn-primary pull-right fav-button"><a
-                                    th:href="'/groups/profile/' + ${group.id}">View Group</a></button>
+<!--                            <button class="btn btn-primary pull-right fav-button"><a-->
+<!--                                    th:href="'/groups/profile/' + ${group.id}">View Group</a></button>-->
 
                         </div>
                     </div>

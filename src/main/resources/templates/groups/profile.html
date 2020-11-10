@@ -31,19 +31,31 @@
                     <div class="row">
                         <div class="col-10 offset-1">
                             <div class="gProfileImg">
-                                <img id="imgP" th:src="${group.getProfilePic()}"
-                                     style="width: 100%; height:100%; object-fit:cover">
+                                <img th:if="${group.profilePic}" class="imgP" th:src="${group.getProfilePic()}"
+                                     style="width: 100%; height:100%; object-fit:cover"/>
+                                <img th:unless="${group.profilePic}" class="imgP"
+                                     th:src="@{img/default-profile-icon.jpg}"
+                                     style="width: 100%; height:100%; object-fit:cover"/>
+
+                                <!--                                <img id="imgP" th:src="${group.getProfilePic()}"-->
+                                <!--                                     style="width: 100%; height:100%; object-fit:cover">-->
                             </div>
                         </div>
                     </div>
 
-                    <h4 class="card-title mb-0"><span th:text="${group.name}"></span></h4>
+                    <h4 class="card-title mb-2"><span th:text="${group.name}"></span></h4>
                     <!----------------------------------IF USER IS OWNER OF GROUP THIS WILL DISPLAY---------------------------------------->
                     <show_post th:if="${group.owner.userName == user.userName}">
                         <div>
-                            <a class="btn btn-sm" th:href="@{'/groups/edit/' + ${group.id}}">Edit
-                                Profile</a>
-                            <button id="profile-btn2" class="pb btn btn-sm" type="button">Edit Image</button>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a class="btn btn-sm" th:href="@{'/groups/edit/' + ${group.id}}">Edit
+                                        Profile</a>
+                                </div>
+                                <div class="col-6">
+                                    <button id="profile-btn2" class="pb btn btn-sm" type="button">Edit Image</button>
+                                </div>
+                            </div>
                         </div>
                     </show_post>
 
@@ -51,58 +63,13 @@
                         <input name="UserId" th:value="${user.id}" type="hidden">
                         <button class="btn btn-sm" type="submit">Join Group</button>
                     </form>
-
                 </div>
-                <!--------------------------------------------------------------------------------------------------------------------->
-
-                <!--                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
-                <!--                                    <form th:action="@{'/groups/join/' + ${group.id}}" method="POST">-->
-                <!--                                        <input name="UserId" th:value="${user.id}" type="hidden">-->
-                <!--                                        <button type="submit">Join Group</button>-->
-                <!--                                    </form>-->
-                <!--                                    </show_join>-->
-
-                <!--                                                    <show_join th:if="${group.owner.userName != ${user.userName}}">-->
-                <!--                                                    </show_join>-->
-
                 <hr class="my-0">
-
+                <!--------------------------------------------------------------------------------------------------------------------->
                 <!--Bio Card-->
                 <div class="card-body">
                     <h5 class="h6 card-title">About</h5>
                     <p><span th:text="${group.description}"></span></p>
-                </div>
-                <hr class="my-0">
-
-                <!--Social Media Card-->
-
-
-                <div class="card-body">
-                    <h5 class="h6 card-title">Social</h5>
-                    <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
-                        <span th:text="${user.twitchInfo}"></span>
-                    </a>
-                    <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
-                        <span th:text="${user.discordInfo}"></span>
-                    </a>
-                    <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
-                        <span th:text="${user.steamInfo}"></span>
-                    </a>
-                    <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
-                        <span th:text="${user.xboxLiveInfo}"></span>
-                    </a>
-                    <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
-                        <span th:text="${user.psnInfo}"></span>
-                    </a>
-                    <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
-                        <span th:text="${user.nintendoInfo}"></span>
-                    </a>
                 </div>
                 <hr class="my-0">
 
@@ -120,7 +87,7 @@
         <div class="col-md-8 col-xl-9">
 
             <!-- Favorite Games Card -->
-            <div  th:if="${isMember}"  class="card border-glow">
+            <div th:if="${isMember}" class="card border-glow">
                 <div class="card-body">
                     <h5 class="h6 card-title">Squad Members</h5>
                     <div class="row">
@@ -142,47 +109,49 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <!--                    <div class="group-users">-->
-                            </div>
-                            <!--                            </div>-->
                         </show_users>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Side Panel -->
-            <div>
 
-                <!-- Groups User Is In Card -->
+            <!--Group Chatting-->
+            <div>
                 <div class="card border-glow">
                     <div class="card-body">
-                        <a th:href="@{'/groups/posts/' + ${group.id}}">Start Chatting with your Squad!</a>
-                        <show_post th:if="${posts}">
-
-                            <div class="postcard">
-                                <div th:each="item : ${posts}">
-                                    <img th:src="${item.getUser().getProfilePic()}"
-                                         style="width:5em;height:5em; object-fit:cover">
-                                    <!--            <div style="display: inline-flex; align-items: center">-->
-                                    <div class="part1 d-flex justify-content-start">
-                                        <h5 th:text="${item.message_body}"></h5>
+                        <div th:if="${isMember}">
+                            <a class="float-right" th:href="@{'/groups/posts/' + ${group.id}}">Start Chatting with your
+                                Squad!</a>
+                        </div>
+                        <div class="row">
+                            <show_post th:if="${posts}">
+                                <div class="postcard">
+                                    <div class="mx-2" th:each="item : ${posts}">
+                                        <div class="mx-auto d-flex">
+                                            <img th:src="${item.getUser().getProfilePic()}"
+                                                 style="width:5em;height:5em; object-fit:cover">
+                                            <div style="flex-grow: 1"
+                                                 class="d-flex flex-column justify-content-center align-items-center">
+                                                <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
+                                            </div>
+                                        </div>
+                                        <div class="part1 d-flex justify-content-start">
+                                            <h5 th:text="${item.message_body}"></h5>
+                                        </div>
+                                        <p class="part2 d-flex justify-content-start">
+                                        <p class="time"></p>
+                                        <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
+                                        <hr>
                                     </div>
-                                    <p class="part2 d-flex justify-content-start">
-                                    <p th:text=" 'By: '+ ${item.getUser().getUserName()}"></p>
-                                    <p class="time"></p>
-                                    <p th:text="${#dates.format(item.getDate(), 'dd-MMM-yyyy')}"></p>
-                                    <hr>
                                 </div>
-                            </div>
-                        </show_post>
+                            </show_post>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 <!---------------------------------------------------END--------------------------------------------------------------->
