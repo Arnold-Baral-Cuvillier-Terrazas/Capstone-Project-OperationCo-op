@@ -14,6 +14,10 @@ p, button{
     font-family: 'Ubuntu Mono', monospace;
 
 }
+/*Login button for home page*/
+#hlogin{
+    font-family: 'Ubuntu Mono', monospace;
+}
 
 .border-glow {
     border: 1px solid #98D9F5;
