@@ -59,7 +59,7 @@ public class UserController {
         }
         String hash = passwordEncoder.encode(user.getPassword()); // ~plaintext password
         user.setPassword(hash); // It's hashed
-        user.setProfilePic("img/default-profile-pic.jpg");
+        user.setProfilePic("/img/default-profile-pic.jpg");
         if (user.getId() == 0) {
             userDao.save(user);
             return "redirect:/login";
