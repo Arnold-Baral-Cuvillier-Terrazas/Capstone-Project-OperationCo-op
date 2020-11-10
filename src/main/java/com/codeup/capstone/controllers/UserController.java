@@ -190,9 +190,7 @@ public class UserController {
         return "users/search";
     }
 
-
-
-//        ----------------------Leave Group
+    //        ----------------------Leave Group
     @GetMapping("/users/userLeave/{id}")
     public String leaveGroup(@PathVariable long id, @RequestParam long UserId) {
         User userLeave = userDao.getOne(id);
@@ -203,6 +201,7 @@ public class UserController {
         userDao.save(userLeave);
         return "redirect:/profile/" ;
     }
+
 
 }
 

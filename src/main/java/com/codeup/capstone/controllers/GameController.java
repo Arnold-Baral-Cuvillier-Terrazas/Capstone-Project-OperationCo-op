@@ -101,6 +101,7 @@ public class GameController {
         List<Game> games = gameRepo.searchByTitleLike(term);
         model.addAttribute("games", games);
         return "games/search";
+
     }
 
 }

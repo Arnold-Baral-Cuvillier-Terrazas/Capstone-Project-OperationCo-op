@@ -46,96 +46,52 @@
                     <hr>
                     <div class="form-group">
 
-                        <label for="psn"><b>Psn info</b></label>
-                        <input type="text" class="form-control" id="psn" name="psnInfo" th:value="*{psnInfo}"
-                               placeholder="enter psn usernames">
-                    </div>
-                    <div class="form-group">
-                        <label for="steam"><b>Steam info</b></label>
-                        <input type="text" class="form-control" id="steam" name="steamInfo" th:value="*{steamInfo}"
-                               placeholder="enter steam usernames">
-                    </div>
-                    <div class="form-group">
-                        <label for="twitch"><b>Twitch info</b></label>
-                        <input type="text" class="form-control" id="twitch" name="twitchInfo" th:value="*{twitchInfo}"
-                               placeholder="enter twitch usernames">
-                    </div>
-                    <div class="form-group">
-                        <label for="xboxLive"><b>XboxLive info</b></label>
-                        <input type="text" class="form-control" id="xboxLive" name="xboxLiveInfo"
-                               th:value="*{xboxLiveInfo}"
-                               placeholder="enter xboxLive usernames">
-                    </div>
-                    <div class="form-group">
-                        <label for="ninetendo"><b>Nintendo info</b></label>
-                        <input type="text" class="form-control" id="ninetendo" name="nintendoInfo"
-                               th:value="*{nintendoInfo}"
-                               placeholder="enter nintendo usernames">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="discord"><b>Discord info</b></label>
-                        <input type="text" class="form-control" id="discord" name="discordInfo"
-                               th:value="*{discordInfo}"
-                               placeholder="enter discord username">
-                    </div>
-
-                    <div class="form-group">
-
                         <label for="bio"><b>Updated your bio</b></label>
                         <input id="bio" type="text" name="bio" th:value="*{bio}"
                                placeholder="Please enter your bio here!"/>
                     </div>
 
-<!--                    <div class="row">-->
-<!--                        <div class="col-md-6">-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="psn"><b>Psn info</b></label>-->
-<!--                                <input type="text" class="border-glow form-control" id="psn" name="psnInfo"-->
-<!--                                       th:value="*{psnInfo}"-->
-<!--                                       placeholder="enter psn usernames">-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="steam"><b>Steam info</b></label>-->
-<!--                                <input type="text" class="form-control" id="steam" name="steamInfo"-->
-<!--                                       th:value="*{steamInfo}"-->
-<!--                                       placeholder="enter steam usernames">-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="twitch"><b>Twitch info</b></label>-->
-<!--                                <input type="text" class="form-control" id="twitch" name="twitchInfo"-->
-<!--                                       th:value="*{twitchInfo}"-->
-<!--                                       placeholder="enter twitch usernames">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-md-6">-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="xboxLive"><b>XboxLive info</b></label>-->
-<!--                                <input type="text" class="form-control" id="xboxLive" name="xboxLiveInfo"-->
-<!--                                       th:value="*{xboxLiveInfo}"-->
-<!--                                       placeholder="enter xboxLive usernames">-->
-<!--                            </div>-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="ninetendo"><b>Nintendo info</b></label>-->
-<!--                                <input type="text" class="form-control" id="ninetendo" name="nintendoInfo"-->
-<!--                                       th:value="*{nintendoInfo}"-->
-<!--                                       placeholder="enter nintendo usernames">-->
-<!--                            </div>-->
-
-<!--                            <div class="form-group">-->
-<!--                                <label for="discord"><b>Discord info</b></label>-->
-<!--                                <input type="text" class="form-control" id="discord" name="discordInfo"-->
-<!--                                       th:value="*{discordInfo}"-->
-<!--                                       placeholder="enter discord username">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="psn"><b>Psn info</b></label>
+                                <input type="text" class="form-control" id="psn" name="psnInfo"
+                                       th:value="*{psnInfo}"
+                                       placeholder="enter psn usernames">
+                            </div>
+                            <div class="form-group">
+                                <label for="steam"><b>Steam info</b></label>
+                                <input type="text" class="form-control" id="steam" name="steamInfo"
+                                       th:value="*{steamInfo}"
+                                       placeholder="enter steam usernames">
+                            </div>
+                            <div class="form-group">
+                                <label for="twitch"><b>Twitch info</b></label>
+                                <input type="text" class="form-control" id="twitch" name="twitchInfo"
+                                       th:value="*{twitchInfo}"
+                                       placeholder="enter twitch usernames">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="xboxLive"><b>XboxLive info</b></label>
+                                <input type="text" class="form-control" id="xboxLive" name="xboxLiveInfo"
+                                       th:value="*{xboxLiveInfo}"
+                                       placeholder="enter xboxLive usernames">
+                            </div>
+                            <div class="form-group">
+                                <label for="discord"><b>Discord info</b></label>
+                                <input type="text" class="form-control" id="discord" name="discordInfo"
+                                       th:value="*{discordInfo}"
+                                       placeholder="enter discord username">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
                 <div class="card border-glow">
                     <div class="card-body">
                         <div class="tags">
-                            <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that defines you :</h4>
+                            <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that define you :</h4>
                             <th:block th:each="tag : ${tagsList}">
                                 <div class="form-check form-check-inline m-2">
                                     <input class="form-check-input" type="checkbox"
@@ -164,6 +120,8 @@
         </div>
     </div>
 </form>
+
+
 <!--    <footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
