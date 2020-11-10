@@ -2,9 +2,18 @@ html {
     background: #01131a;
 
 
+
+
 }
 body {
     background: radial-gradient(#011822 0%, #01131a 78%);
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+
+
+
 }
 h1{
     font-family: 'Goldman', cursive;
