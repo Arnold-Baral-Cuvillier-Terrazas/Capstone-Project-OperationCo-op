@@ -93,8 +93,7 @@ public class GameController {
     public String showGames(Model model) {
         List<Game> games = gameRepo.findAll();
         model.addAttribute("games", games);
-
-      return "games/games";
+        return "games/games";
       
     }
     @GetMapping("/games/search")
@@ -102,6 +101,7 @@ public class GameController {
         List<Game> games = gameRepo.searchByTitleLike(term);
         model.addAttribute("games", games);
         return "games/search";
+
     }
 
 }

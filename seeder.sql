@@ -1,6 +1,10 @@
 
 
+<<<<<<< HEAD
 USE operationCoop_db;
+=======
+USE capstone_db;
+>>>>>>> f6ead84b1aa9042b36b731d784c9188387afbdce
 INSERT INTO tags (name)
 VALUES  ('Gamer '),
         ('Squad'),

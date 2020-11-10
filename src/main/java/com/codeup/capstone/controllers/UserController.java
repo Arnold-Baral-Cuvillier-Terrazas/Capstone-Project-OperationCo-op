@@ -190,19 +190,18 @@ public class UserController {
         return "users/search";
     }
 
+    //        ----------------------Leave Group
+    @GetMapping("/users/userLeave/{id}")
+    public String leaveGroup(@PathVariable long id, @RequestParam long UserId) {
+        User userLeave = userDao.getOne(id);
+        Group groupLeave = groupDao.getOne(UserId);
+        List<Group> groups = userLeave.getGroups();
+        groups.remove(groupLeave);
+        userLeave.setGroups(groups);
+        userDao.save(userLeave);
+        return "redirect:/profile/" ;
+    }
 
-
-    //    ----------------------Leave Group
-//    @GetMapping("/users/userLeave/{id}")
-//    public String leaveGroup(@PathVariable long id, @RequestParam long UserId) {
-//        User userLeave = userDao.getOne(id);
-//        Group groupLeave = groupDao.getOne(UserId);
-//        List<Group> groups = groupLeave.getOwner().getGroups();
-//        groups.remove(groupLeave);
-//        userLeave.setGroups(groups);
-//        userDao.save(userLeave);
-//        return "redirect:/profile/" + id;
-//    }
 
 }
 

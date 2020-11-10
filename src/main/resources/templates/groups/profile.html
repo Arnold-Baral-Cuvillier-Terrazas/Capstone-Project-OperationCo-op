@@ -18,6 +18,7 @@
 <!--------------------------------------------------------------------------------------------------------------------->
 
 <div class="container">
+
     <h2 class="h3 mb-3"><span th:text="${group.name}"></span></h2>
     <div class="row">
         <!--Left Card Panel Containing User Info-->
@@ -86,7 +87,7 @@
         <!-- Right Side Panel -->
         <div class="col-md-8 col-xl-9">
 
-            <!-- Favorite Games Card -->
+            <!-- Squad Card -->
             <div th:if="${isMember}" class="card border-glow">
                 <div class="card-body">
                     <h5 class="card-title">Squad Members</h5>
@@ -113,7 +114,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!--Group Chatting-->
             <div class="card border-glow">
@@ -153,11 +153,10 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
-</div>
+
 
 
 <!---------------------------------------------------END--------------------------------------------------------------->

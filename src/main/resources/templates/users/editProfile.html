@@ -45,6 +45,7 @@
                     <h2 class="text-center">Edit your profile <i class="fas fa-user-edit"></i></h2>
                     <hr>
                     <div class="form-group">
+
                         <label for="bio"><b>Updated your bio</b></label>
                         <input id="bio" type="text" name="bio" th:value="*{bio}"
                                placeholder="Please enter your bio here!"/>
@@ -79,13 +80,6 @@
                                        placeholder="enter xboxLive usernames">
                             </div>
                             <div class="form-group">
-                                <label for="ninetendo"><b>Nintendo info</b></label>
-                                <input type="text" class="form-control" id="ninetendo" name="nintendoInfo"
-                                       th:value="*{nintendoInfo}"
-                                       placeholder="enter nintendo usernames">
-                            </div>
-
-                            <div class="form-group">
                                 <label for="discord"><b>Discord info</b></label>
                                 <input type="text" class="form-control" id="discord" name="discordInfo"
                                        th:value="*{discordInfo}"
@@ -94,11 +88,10 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card border-glow">
                     <div class="card-body">
                         <div class="tags">
-                            <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that defines you :</h4>
+                            <h4 style="margin-top:2.5rem; margin-bottom:0.8rem">Choose interests that define you :</h4>
                             <th:block th:each="tag : ${tagsList}">
                                 <div class="form-check form-check-inline m-2">
                                     <input class="form-check-input" type="checkbox"
@@ -127,7 +120,8 @@
         </div>
     </div>
 </form>
-</form>
+
+
 <!--    <footer th:replace="partials/footer :: footer"></footer>-->
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>

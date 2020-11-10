@@ -13,6 +13,10 @@
 <!--                    <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
 <div class="container">
     <h2 class="h3 mb-3"><span th:text="${user.userName}"></span>'s Profile </h2>
+
+    <!--    removing names from profile -->
+    <!--    <span th:text="${user.userName}"></span>'s Profile-->
+    <h2 class="h3 mb-3"></h2>
     <div class="row">
         <!--Left Card Panel Containing User Info-->
         <div class="col-md-4 col-xl-3">
@@ -29,6 +33,7 @@
                                      style="width: 100%; height:100%; object-fit:cover"/>
                                 <img th:unless="${user.profilePic}" class="imgP"
                                      th:src="@{img/default-profile-icon.jpg}"
+                                     th:src="@{https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg}"
                                      style="width: 100%; height:100%; object-fit:cover"/>
                                 <!--                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">-->
                             </div>
@@ -58,26 +63,27 @@
                 <!--Social Media Card-->
                 <div class="card-body">
                     <h5 class="h6 card-title">Socials</h5>
-                    <a class="btn pill" type="button">
+                    <a th:if="${!#strings.isEmpty(user.twitchInfo)}" class="btn m-1" type="button">
                         <i class="fab fa-twitch"></i>
                         <span th:text="${user.twitchInfo}"></span>
                     </a>
-                    <a class="btn pill" type="button">
+                    <a th:if="${!#strings.isEmpty(user.discordInfo)}" class="btn m-1" type="button">
                         <i class="fab fa-discord"></i>
                         <span th:text="${user.discordInfo}"></span>
                     </a>
-                    <a class="btn pill" type="button">
+                    <a th:if="${!#strings.isEmpty(user.steamInfo)}" class="btn m-1" type="button">
                         <i class="fab fa-steam"></i>
                         <span th:text="${user.steamInfo}"></span>
                     </a>
-                    <a class="btn pill" type="button">
+                    <a th:if="${!#strings.isEmpty(user.xboxLiveInfo)}" class="btn m-1" type="button">
                         <i class="fab fa-xbox"></i>
                         <span th:text="${user.xboxLiveInfo}"></span>
                     </a>
-                    <a class="btn pill" type="button">
+                    <a th:if="${!#strings.isEmpty(user.psnInfo)}" class="btn m-1" type="button">
                         <i class="fab fa-playstation"></i>
                         <span th:text="${user.psnInfo}"></span>
                     </a>
+
                 </div>
                 <hr class="my-0">
                 <!--Tag Card-->
@@ -102,6 +108,7 @@
                                         <img th:src="${game.art_cover}"
                                              style="height: 200px; width: 200px; object-fit: cover"/>
                                         <h6 th:text="${game.title}"></h6>
+                                        <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${game.id}}">Remove</a>
                                     </div>
                                 </div>
                             </div>
@@ -121,12 +128,13 @@
                                          style="height: 200px; width: 200px; object-fit: cover">
                                 </div>
                                 <div class="col-md-8 col-sm-8">
+
                                     <h5><a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
                                     </h5>
                                     <p th:text="${group.description}"></p>
                                     <div th:if="${user.id == group.id}">
-                                        <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">Leave
-                                            Group</a>
+
+                                        <a th:href="@{'/users/userLeave/' + ${user.id} + '?UserId=' + ${group.id}}">Leave Group</a>
                                     </div>
                                 </div>
                             </div>
