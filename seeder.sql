@@ -1,6 +1,6 @@
 
 
-USE operationCoop_db;
+USE capstone_db;
 INSERT INTO tags (name)
 VALUES  ('Gamer '),
         ('Squad'),

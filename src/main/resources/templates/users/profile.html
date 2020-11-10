@@ -12,9 +12,9 @@
 <!--                    <h5><a th:href="@{'/users/delete/' + ${user.id}}">closed(delete)</a></h5>-->
 <div class="container">
 
-<!--    removing names from profile -->
-<!--    <span th:text="${user.userName}"></span>'s Profile-->
-    <h2 class="h3 mb-3"> </h2>
+    <!--    removing names from profile -->
+    <!--    <span th:text="${user.userName}"></span>'s Profile-->
+    <h2 class="h3 mb-3"></h2>
     <div class="row">
         <!--Left Card Panel Containing User Info-->
         <div class="col-md-4 col-xl-3">
@@ -122,11 +122,13 @@
                     <show_groupIn th:if="${user.groups}">
                         <div th:each="group: ${user.groups}">
                             <div class="row">
-                                <div class="col-md-4 col-sm-4 img-box">
-                                    <img th:src="${group.profilePic}"
-                                         style="height: 200px; width: 200px; object-fit: cover">
+                                <div class="col-2 img-box">
+                                    <div class="row d-flex justify-content-center">
+                                        <img th:src="${group.profilePic}"
+                                             style="width:5em;height:5em; border-radius:50px; margin-bottom: 15px; object-fit:cover">
+                                    </div>
                                 </div>
-                                <div class="col-md-8 col-sm-8">
+                                <div class="col-10">
                                     <h5><a th:href="@{'/groups/profile/' + ${group.id}}" th:text="${group.name}"></a>
                                     </h5>
                                     <p th:text="${group.description}"></p>
