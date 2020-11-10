@@ -109,7 +109,7 @@ public class GroupController {
         } else {
             model.addAttribute("posts", mostRecent);
         }
-        return "/groups/profile";
+        return "groups/profile";
     }
 
 //-------------for editing group profile information
@@ -183,7 +183,7 @@ public class GroupController {
     public String showGroup(@RequestParam String groupTerm, Model model) {
         List<Group> groups = groupDao.searchByNameLike(groupTerm);
         model.addAttribute("groups", groups);
-        return "/groups/search";
+        return "groups/search";
     }
 }
 
