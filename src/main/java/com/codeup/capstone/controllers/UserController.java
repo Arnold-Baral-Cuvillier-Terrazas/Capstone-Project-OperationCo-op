@@ -110,7 +110,7 @@ public class UserController {
                                 @RequestParam String bio,
                                 @RequestParam(required = false) String psnInfo, @RequestParam(required = false) String steamInfo,
                                 @RequestParam(required = false) String twitchInfo, @RequestParam(required = false) String xboxLiveInfo,
-                                @RequestParam(required = false) String nintendoInfo) {
+                                @RequestParam(required = false) String nintendoInfo, @RequestParam(required = false) String discordInfo) {
         List<Tag> tagList = new ArrayList<>();
         for (int i = 0; i < tags.size(); i++) {
             Tag thisTag = tagDao.getOne(tags.get(i));
@@ -124,6 +124,7 @@ public class UserController {
         user.setTwitchInfo(twitchInfo);
         user.setXboxLiveInfo(xboxLiveInfo);
         user.setNintendoInfo(nintendoInfo);
+        user.setDiscordInfo(discordInfo);
         userDao.save(user);
         return "redirect:/profile";
     }
@@ -208,31 +209,30 @@ public class UserController {
 
 // ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes
 // ----------- FOR (ORIGIN) Comment below and  UnComment on TOP for file mapping purpose
-
+//
 //package com.codeup.capstone.controllers;
 //
+//import com.codeup.capstone.models.*;
 //
-//        import com.codeup.capstone.models.*;
+//import com.codeup.capstone.models.Game;
+//import com.codeup.capstone.models.Group;
+//import com.codeup.capstone.models.Tag;
+//import com.codeup.capstone.models.User;
+//import com.codeup.capstone.repositories.GameRepository;
+//import com.codeup.capstone.repositories.GroupRepository;
+//import com.codeup.capstone.repositories.TagRepository;
+//import com.codeup.capstone.repositories.UserRepository;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+//import org.springframework.validation.Errors;
+//import org.springframework.validation.annotation.Validated;
+//import org.springframework.web.bind.annotation.*;
 //
-//        import com.codeup.capstone.models.Game;
-//        import com.codeup.capstone.models.Group;
-//        import com.codeup.capstone.models.Tag;
-//        import com.codeup.capstone.models.User;
-//        import com.codeup.capstone.repositories.GameRepository;
-//        import com.codeup.capstone.repositories.GroupRepository;
-//        import com.codeup.capstone.repositories.TagRepository;
-//        import com.codeup.capstone.repositories.UserRepository;
-//        import org.springframework.security.core.context.SecurityContextHolder;
-//        import org.springframework.security.crypto.password.PasswordEncoder;
-//        import org.springframework.stereotype.Controller;
-//        import org.springframework.ui.Model;
-//        import org.springframework.validation.Errors;
-//        import org.springframework.validation.annotation.Validated;
-//        import org.springframework.web.bind.annotation.*;
-//
-//        import java.util.ArrayList;
-//        import java.util.List;
-//        import java.util.Set;
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Set;
 //
 //@Controller
 //public class UserController {
@@ -302,7 +302,7 @@ public class UserController {
 //        User saveProfile = userDao.getOne(userId);
 //        saveProfile.setProfilePic(url);
 //        userDao.save(saveProfile);
-//        return "redirect:/profile";
+//        return "redirect:profile";
 //    }
 //
 //    //    editing user profile information like bio, tags and other usernames
@@ -336,7 +336,7 @@ public class UserController {
 //        user.setXboxLiveInfo(xboxLiveInfo);
 //        user.setNintendoInfo(nintendoInfo);
 //        userDao.save(user);
-//        return "redirect:/profile";
+//        return "redirect:profile";
 //    }
 //
 //    //    user can delete their account
@@ -344,7 +344,7 @@ public class UserController {
 //    public String deleteUser(@PathVariable long id) {
 //        User user = userDao.getOne(id);
 //        userDao.delete(user);
-//        return "redirect:/sign-up";
+//        return "redirect:sign-up";
 //    }
 //
 //    //    user rating stars
@@ -357,7 +357,7 @@ public class UserController {
 //        ratingUser.add(new UserRating(rating, userRating, userRated));
 //        userRated.setRatings_received(ratingUser);
 //        userDao.save(userRated);
-//        return "redirect:/profile";
+//        return "redirect:profile";
 //    }
 //
 //
@@ -371,6 +371,6 @@ public class UserController {
 //        favorites.add(gameFavorite);
 //        userFav.setFavorites(favorites);
 //        userDao.save(userFav);
-//        return "redirect:/profile";
+//        return "redirect:profile";
 //    }
 //}
