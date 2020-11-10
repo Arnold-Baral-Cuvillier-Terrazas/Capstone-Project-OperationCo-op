@@ -73,6 +73,7 @@ public class GroupController {
         group.setOwner(user);
         group.setUsers(users);
         group.setTags(tagLists);
+        group.setProfilePic("img/default-group-profile.png");
         groupDao.save(group);
         groups.add(group);
         user.setGroups(groups);
