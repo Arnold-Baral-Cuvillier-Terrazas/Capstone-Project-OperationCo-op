@@ -6,6 +6,7 @@
     <link th:replace="partials/links :: links"/>
     <link th:href="@{/css/style.css}" rel="stylesheet"/>
     <link th:href="@{/css/profile.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
 </head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -53,28 +54,24 @@
                 <div class="card-body">
                     <h5 class="h6 card-title">Socials</h5>
                     <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
+                        <i class="fab fa-twitch"></i>
                         <span th:text="${user.twitchInfo}"></span>
                     </a>
                     <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
+                        <i class="fab fa-discord"></i>
                         <span th:text="${user.discordInfo}"></span>
                     </a>
                     <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
+                        <i class="fab fa-steam"></i>
                         <span th:text="${user.steamInfo}"></span>
                     </a>
                     <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
+                        <i class="fab fa-xbox"></i>
                         <span th:text="${user.xboxLiveInfo}"></span>
                     </a>
                     <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
+                        <i class="fab fa-playstation"></i>
                         <span th:text="${user.psnInfo}"></span>
-                    </a>
-                    <a class="btn" type="button">
-                        <i class="fab-fa-discord"></i>
-                        <span th:text="${user.nintendoInfo}"></span>
                     </a>
                 </div>
                 <hr class="my-0">
@@ -152,5 +149,6 @@
 <script th:src="@{/js/keys.js}"></script>
 <script th:src="@{/js/filestack.js}"></script>
 <script th:src="@{/js/userProfile.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
