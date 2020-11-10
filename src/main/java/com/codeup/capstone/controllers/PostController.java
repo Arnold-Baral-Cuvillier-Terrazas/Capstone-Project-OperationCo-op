@@ -1,71 +1,186 @@
 package com.codeup.capstone.controllers;
 
+import com.codeup.capstone.models.Group;
 import com.codeup.capstone.models.Post;
 import com.codeup.capstone.models.User;
+import com.codeup.capstone.repositories.GroupRepository;
 import com.codeup.capstone.repositories.PostRepository;
 import com.codeup.capstone.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
 public class PostController {
 
-//--------- Dependency Injection
-    private final PostRepository adDao;
+    //--------- Dependency Injection
+    private final PostRepository postDao;
     private final UserRepository userRepo;
+    private final GroupRepository groupDao;
 
-
-//    constructor
-    public PostController(PostRepository adDao, UserRepository userRepo) {
-        this.adDao = adDao;
+    //    constructor
+    public PostController(PostRepository postDao, UserRepository userRepo, GroupRepository groupDao) {
+        this.postDao = postDao;
+        this.groupDao = groupDao;
         this.userRepo = userRepo;
     }
 
-//    showing all the posts
-    @GetMapping("/posts")
-    public String index(Model model) {
-        model.addAttribute("posts", adDao.findAll());
-        return "posts/index";
-    }
 
-//    // Create Post Get Method
-    @GetMapping("/create")
-    public String createPost(Model model) {
-        model.addAttribute("post", new Post());
-        return "posts/create";
-    }
-
-    // Create Post Method
-    @PostMapping("/create")
-    public String savePost(@ModelAttribute Post post) throws ParseException, ParseException {
-
-        if (post.getId() == 0) {
-            // New Post
-            User author = (User) SecurityContextHolder
-                    .getContext()
-                    .getAuthentication()
-                    .getPrincipal();
-
-            // Set the currently logged in user to the newly created post
-            post.setUser(author);
-
-            // Get the current date/time and set in to the post
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            String createDate = format.format(new Date());
-            Date date = format.parse(createDate);
-            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-            post.setDate(sqlDate);
+    //    showing all the posts
+    @GetMapping("/groups/posts/{id}")
+    public String viewAllPosts(@PathVariable long id, Model model) {
+        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User thisUser = userRepo.getOne(thisAuthor.getId());
+        model.addAttribute("group_id", id);
+        for (Group group : thisUser.getGroups()) {
+            if (group.getId() == id) {
+                model.addAttribute("posts", group.getPosts());
+                model.addAttribute("post", new Post());
+                return "posts/showPosts";
+            }
         }
-        adDao.save(post);
-        return "redirect:/posts";
+        return "redirect:/profile";
     }
+
+    //    creating the posts and submitting it
+    @PostMapping("/groups/posts/{group_id}/submit")
+    public String createMessage(@ModelAttribute Post post, @PathVariable long group_id)
+            throws ParseException, ParseException {
+        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(thisAuthor);
+        Group thisGroup = groupDao.getOne(group_id);
+        post.setGroup(thisGroup);
+//        printing out the date in format
+        post.setDate(new Date());
+//        saving the information
+        postDao.save(post);
+        return "redirect:/groups/posts/" + thisGroup.getId();
+    }
+
+    //    editing posts
+    @GetMapping("/groups/posts/edit/{id}")
+    public String EditPost(@PathVariable long id, Model model) {
+        model.addAttribute("editPost", postDao.getOne(id));
+        model.addAttribute("date", new Date());
+        return "posts/editPost";
+    }
+
+    @PostMapping("/groups/posts/edit/{id}")
+    public String newEditPost(@PathVariable long id, @ModelAttribute Post editPost) {
+        long group_id = postDao.getOne(id).getGroup().getId();
+        Post post = postDao.getOne(id);
+        post.setMessage_body(editPost.getMessage_body());
+//        editPost.setDate(new Date());
+        postDao.save(post);
+        return "redirect:/groups/posts/" + group_id;
+    }
+
+    //    for deleting the posts
+    @GetMapping("/groups/posts/delete/{id}")
+    public String deletePost(@PathVariable long id) {
+        long group_id = postDao.getOne(id).getGroup().getId();
+        postDao.deleteById(id);
+        return "redirect:/groups/posts/" + group_id;
+    }
+
 
 }
+
+// ----------- FOR (PRODUCTION) Uncomment below and  Comment on TOP for file mapping purposes
+// ----------- FOR (ORIGIN) Comment below and  UnComment on TOP for file mapping purpose
+
+//package com.codeup.capstone.controllers;
+//
+//import com.codeup.capstone.models.Group;
+//import com.codeup.capstone.models.Post;
+//import com.codeup.capstone.models.User;
+//import com.codeup.capstone.repositories.GroupRepository;
+//import com.codeup.capstone.repositories.PostRepository;
+//import com.codeup.capstone.repositories.UserRepository;
+//import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
+//import org.springframework.web.bind.annotation.*;
+//
+//import java.text.ParseException;
+//import java.util.Date;
+//
+//@Controller
+//public class PostController {
+//
+//    //--------- Dependency Injection
+//    private final PostRepository postDao;
+//    private final UserRepository userRepo;
+//    private final GroupRepository groupDao;
+//
+//    //    constructor
+//    public PostController(PostRepository postDao, UserRepository userRepo, GroupRepository groupDao) {
+//        this.postDao = postDao;
+//        this.groupDao = groupDao;
+//        this.userRepo = userRepo;
+//    }
+//
+//
+//    //    showing all the posts
+//    @GetMapping("/groups/posts/{id}")
+//    public String viewAllPosts(@PathVariable long id, Model model) {
+//        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User thisUser = userRepo.getOne(thisAuthor.getId());
+//        model.addAttribute("group_id", id);
+//        for (Group group : thisUser.getGroups()) {
+//            if (group.getId() == id) {
+//                model.addAttribute("posts", group.getPosts());
+//                model.addAttribute("post", new Post());
+//                return "posts/showPosts";
+//            }
+//        }
+//        return "redirect:profile";
+//    }
+//
+//    //    creating the posts and submitting it
+//    @PostMapping("/groups/posts/{group_id}/submit")
+//    public String createMessage(@ModelAttribute Post post, @PathVariable long group_id)
+//            throws ParseException, ParseException {
+//        User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        post.setUser(thisAuthor);
+//        Group thisGroup = groupDao.getOne(group_id);
+//        post.setGroup(thisGroup);
+////        printing out the date in format
+//        post.setDate(new Date());
+////        saving the information
+//        postDao.save(post);
+//        return "redirect:groups/posts/" + thisGroup.getId();
+//    }
+//
+//    //    editing posts
+//    @GetMapping("/groups/posts/edit/{id}")
+//    public String EditPost(@PathVariable long id, Model model) {
+//        model.addAttribute("editPost", postDao.getOne(id));
+//        model.addAttribute("date", new Date());
+//        return "posts/editPost";
+//    }
+//
+//    @PostMapping("/groups/posts/edit/{id}")
+//    public String newEditPost(@PathVariable long id, @ModelAttribute Post editPost) {
+//        long group_id = postDao.getOne(id).getGroup().getId();
+//        Post post = postDao.getOne(id);
+//        post.setMessage_body(editPost.getMessage_body());
+////        editPost.setDate(new Date());
+//        postDao.save(post);
+//        return "redirect:groups/posts/" + group_id;
+//    }
+//
+//    //    for deleting the posts
+//    @GetMapping("/groups/posts/delete/{id}")
+//    public String deletePost(@PathVariable long id) {
+//        long group_id = postDao.getOne(id).getGroup().getId();
+//        postDao.deleteById(id);
+//        return "redirect:groups/posts/" + group_id;
+//    }
+//
+//
+//}

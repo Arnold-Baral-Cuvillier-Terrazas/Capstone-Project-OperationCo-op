@@ -1,80 +1,127 @@
+html {
+    background: #01131a;
+
+}
 body {
-    width: auto;
-    margin: auto;
-    padding: 5em;
+    background: radial-gradient(#011822 0%, #01131a 78%);
+
+}
+h1{
+    font-family: 'Goldman', cursive;
+}
+p, button{
+    font-family: 'Jura', sans-serif;
+
+}
+/*Login button for home page*/
+#hlogin{
+    font-family: 'Jura', sans-serif;
 }
 
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #f8f8f8;
-    font-size: 16px;
-    resize: none;
+.border-glow {
+    border: 1px solid #98D9F5;
+    box-shadow: 0px 0px 15px #98D9F5;
+    background: #181628;
+    color: rgb(197,198,200);
 }
 
-i {
+.btn {
+    background: #032f41;
+    color: #98d9f5;
+    box-shadow: 0px 0px 5px;
+    border-style: solid;
+    border-color: #98d9f5;
+    border-radius: 150px;
+    font-family: 'Jura', sans-serif;
+}
+
+.btn:hover {
+    background: #98d9f5;
+    color: #032f41;
+    box-shadow: 0px 0px 5px #011822;
+    border-style: solid;
+    border-width: 3px
+    border-color: #032f41;
+    border-radius: 150px;
+    font-family: 'Jura', sans-serif;
+}
+
+.pill {
     display: inline-block;
-}
-
-button {
-    background-color: skyblue;
-}
-
-.pb,.ib {
-    float: right;
-}
-
-.admin {
-    color: cornflowerblue;
-}
-
-
-/*!*profile pic*/
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
+    background: #032f41;
+    color: #98d9f5;
+    box-shadow: 0px 0px 1px;
+    border-style: solid;
+    border-color: #98d9f5;
+    font-size: .875rem;
+    line-height: 1.5;
+    width: 100%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 20px;
+    float: top;
     text-align: center;
+    font-family: 'Jura', sans-serif;
 }
 
-.h6 {
-    color: grey;
-    font-size: 18px;
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Goldman', cursive;
+    color: #98d9f5;
+}
+p, .btn, button,input,li,label,a {
+    font-family: 'Jura', sans-serif;
 }
 
 
 a {
-    text-decoration: none;
-    font-size: 22px;
-    color: dodgerblue;
+    color: #98d9f5;
+    font-family: 'Jura', sans-serif;
 }
 
-button:hover, a:hover {
-    opacity: 0.7;
+a:hover {
+    color: #98d9f5;
 }
 
-/*--------pills for tags*/
-.pill {
+hr {
+    background-color: #98d9f5;
+}
+
+p {
+    color: rgb(197,198,200);
+    font-family: 'Jura', sans-serif;
+}
+
+.signup-btn {
+    margin-top: 15px;
+}
+
+/*for navbar*/
+.navbar {
+    background-color: #032f41;
+    color: #98d9f5;
+    font-family: 'Jura', sans-serif;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 8px 0;
     display: inline-block;
-    border: 2px solid black;
-    border-radius: 32px;
-    margin: 1em;
-    padding: 8px 16px;
-    background: none;
-
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+    float: top;
 }
 
-/*.pill.active {*/
-/*    background: cyan;*/
-/*}*/
-
-/*.tags{*/
-/*    width: auto;*/
-/*    padding: 10px;*/
-/*    border: 2px solid gray;*/
-/*    margin: 2%;*/
-/*}*/
+.form-control {
+    font-family: 'Jura', sans-serif;
+    width: 100%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+    float: top;
+}

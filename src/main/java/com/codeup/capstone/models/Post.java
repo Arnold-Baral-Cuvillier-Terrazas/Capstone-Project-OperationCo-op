@@ -1,6 +1,8 @@
 package com.codeup.capstone.models;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,36 +17,36 @@ public class Post {
     @Column(nullable = false)
     private Date date;
 
-    @ManyToOne
+//    @Column(nullable = false, columnDefinition = "LONGTEXT")
+//    private String parent_post_id;
+
+    @Column(nullable = false, columnDefinition = "LONGTEXT")
+    private String message_body;
+
+    //Groups to User will be many-to-one because many messages can be posted by one group
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name = "group_id")
     private Group group;
 
+    //Messages to User will be many-to-one because many messages can be posted by one group
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn (name = "user_id")
     private User user;
-
-    @Column(nullable = false, length = 500)
-    private String parent_post_id;
-
-    @Column(nullable = false, length = 500)
-    private String message_body;
-
 
     //  ----------- Constructors
     public Post() {
     }
 
-    public Post(long id, Date date, Group group, User user, String parent_post_id, String message_body) {
+    public Post(long id, Date date, String message_body, Group group, User user) {
         this.id = id;
         this.date = date;
+        this.message_body = message_body;
         this.group = group;
         this.user = user;
-        this.parent_post_id = parent_post_id;
-        this.message_body = message_body;
     }
 
-//    getters and setters
-
+    //-----getters and setters
     public Date getDate() {
         return date;
     }
@@ -77,14 +79,6 @@ public class Post {
         this.user = user;
     }
 
-    public String getParent_post_id() {
-        return parent_post_id;
-    }
-
-    public void setParent_post_id(String parent_post_id) {
-        this.parent_post_id = parent_post_id;
-    }
-
     public String getMessage_body() {
         return message_body;
     }
@@ -92,4 +86,5 @@ public class Post {
     public void setMessage_body(String message_body) {
         this.message_body = message_body;
     }
+
 }
