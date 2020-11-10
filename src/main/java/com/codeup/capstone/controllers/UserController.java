@@ -47,7 +47,7 @@ public class UserController {
     @GetMapping("/sign-up")
     public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
-        return "/users/signup";
+        return "users/signup";
     }
 
     // What happens when a new user submits the register form?
@@ -55,7 +55,7 @@ public class UserController {
     public String saveUser(@ModelAttribute User user, @RequestParam(name = "confirmPassword") String confirmPassword,
                            @RequestParam(name = "password") String password) {
         if (!user.getPassword().equals(confirmPassword)) {
-            return "/users/signup";
+            return "redirect:/sign-up";
         }
         String hash = passwordEncoder.encode(user.getPassword()); // ~plaintext password
         user.setPassword(hash); // It's hashed
@@ -64,7 +64,7 @@ public class UserController {
             return "redirect:/login";
         } else {
             userDao.save(user);
-            return "/users/profile";
+            return "redirect:/profile";
         }
     }
 
@@ -74,7 +74,7 @@ public class UserController {
         User getUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", userDao.getOne(getUser.getId()));
         model.addAttribute("photoUrl", userDao.getOne(getUser.getId()).getProfilePic());
-        return "/users/profile";
+        return "users/profile";
     }
 
     @GetMapping("/profile/{id}")
@@ -82,7 +82,7 @@ public class UserController {
         User getUser = userDao.getOne(id);
         model.addAttribute("user", userDao.getOne(getUser.getId()));
         model.addAttribute("photoUrl", userDao.getOne(getUser.getId()).getProfilePic());
-        return "/users/profile";
+        return "users/profile";
     }
 
     //user's Profile pic  area
@@ -100,7 +100,7 @@ public class UserController {
         model.addAttribute("editUser", userDao.getOne(id));
         List<Tag> tagsList = tagDao.findAll();
         model.addAttribute("tagsList", tagsList);
-        return "/users/editProfile";
+        return "users/editProfile";
     }
 
 
