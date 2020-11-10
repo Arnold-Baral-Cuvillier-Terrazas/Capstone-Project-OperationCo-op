@@ -62,6 +62,9 @@ public class GroupController {
         user = userDao.getOne(user.getId());
         Group group = new Group();
         List<Tag> tagLists = new ArrayList<>();
+        for(long id : tags){
+            tagLists.add(tagDao.getOne(id));
+        }
         List<User> users = new ArrayList<>();
         List<Group> groups = user.getGroups();
         users.add(user);
