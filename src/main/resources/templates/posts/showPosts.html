@@ -32,7 +32,7 @@
 
 <div class="main">
     <main class="container">
-        <h1 style="margin-top: 10%" id="postheader"> Welcome to message dashboard </h1>
+        <h1 style="margin-top: 10%" id="postheader"> Welcome to <span th:text="${group.name}"></span>'s Chatting dashboard </h1>
 
         <div class="texts">
             <div class="row">
@@ -78,7 +78,6 @@
         </div>
     </main>
 </div>
-<footer th:replace="partials/footer :: footer"></footer>
 <scripts th:replace="partials/scripts :: scripts"></scripts>
 </body>
 </html>
