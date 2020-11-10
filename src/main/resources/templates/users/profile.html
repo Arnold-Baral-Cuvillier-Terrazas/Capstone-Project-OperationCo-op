@@ -27,7 +27,7 @@
                                 <img th:if="${user.profilePic}" class="imgP" th:src="${photoUrl}"
                                      style="width: 100%; height:100%; object-fit:cover"/>
                                 <img th:unless="${user.profilePic}" class="imgP"
-                                     th:src="@{img/default-profile-icon.jpg}"
+                                     th:src="@{https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg}"
                                      style="width: 100%; height:100%; object-fit:cover"/>
                                 <!--                                <img id="imgP" th:src="${photoUrl}" style="width: 100%; height:100%; object-fit:cover">-->
                             </div>
@@ -57,27 +57,28 @@
                 <!--Social Media Card-->
                 <div class="card-body">
                     <h5 class="h6 card-title">Socials</h5>
-                    <a class="btn m-1" type="button">
+
+                    <a th:if="${!#strings.isEmpty(user.twitchInfo)}" class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.twitchInfo}"></span>
                     </a>
-                    <a class="btn m-1" type="button">
+                    <a th:if="${!#strings.isEmpty(user.discordInfo)}" class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.discordInfo}"></span>
                     </a>
-                    <a class="btn m-1" type="button">
+                    <a th:if="${!#strings.isEmpty(user.steamInfo)}" class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.steamInfo}"></span>
                     </a>
-                    <a class="btn m-1" type="button">
+                    <a th:if="${!#strings.isEmpty(user.xboxLiveInfo)}" class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.xboxLiveInfo}"></span>
                     </a>
-                    <a class="btn m-1" type="button">
+                    <a th:if="${!#strings.isEmpty(user.psnInfo)}" class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.psnInfo}"></span>
                     </a>
-                    <a class="btn m-1" type="button">
+                    <a th:if="${!#strings.isEmpty(user.nintendoInfo)}" class="btn m-1" type="button">
                         <i class="fab-fa-discord"></i>
                         <span th:text="${user.nintendoInfo}"></span>
                     </a>
@@ -105,6 +106,7 @@
                                         <img th:src="${game.art_cover}"
                                              style="height: 200px; width: 200px; object-fit: cover"/>
                                         <h6 th:text="${game.title}"></h6>
+                                        <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${game.id}}">Remove</a>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +130,7 @@
                                     </h5>
                                     <p th:text="${group.description}"></p>
                                     <div th:if="${user.id == group.id}">
-                                        <a th:href="@{'/users/userDelete/' + ${user.id} + '?UserId=' + ${group.id}}">Leave
+                                        <a th:href="@{'/users/userLeave/' + ${user.id} + '?UserId=' + ${group.id}}">Leave
                                             Group</a>
                                     </div>
                                 </div>

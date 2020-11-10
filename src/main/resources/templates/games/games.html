@@ -15,10 +15,9 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 <body>
 <h3> Games </h3>
-<div class="container">
+<!--<div class="container">-->
 
-
-<div class="container mt-5">
+    <div class="container mt-5">
 
     <div class="row" id="store-list">
         <div class="card col col-md-6 col-xs-12 card-area game-card border-glow" th:each="game: ${games}">
@@ -27,7 +26,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-sm-5 img-box">
-                                <img th:src="${game.art_cover}">
+                                <img th:src="${game.art_cover}" style="max-width: 100%">
                                 <!--                            <a href="#"></a>-->
                             </div>
                             <div class="col-sm-7 card-info">

@@ -1,6 +1,6 @@
 # USE capstone_db;
 
-USE game_db;
+USE capstone_db;
 INSERT INTO games(title, art_cover, description) VALUES ('HASSLE 1977','117753','Break into the Baltic City and join the resistance force Free Breath! Show and prove your skills in PvP shootouts, PvE missions, online drift and street races among other players-rebels and earn respect among them!');
 INSERT INTO games(title, art_cover, description) VALUES ('Kentucky Route Zero: TV Edition','90105','Kentucky Route Zero is a magical realist adventure game about a secret highway in the caves beneath Kentucky, and the mysterious folks who travel it');
 INSERT INTO games(title, art_cover, description) VALUES ('Dark Prospect','111163','Dark Prospect is a FPS/RTS Hybrid, a genre mix, featuring 4v1 battles between upto 4 FPS player and 1 RTS player.');
