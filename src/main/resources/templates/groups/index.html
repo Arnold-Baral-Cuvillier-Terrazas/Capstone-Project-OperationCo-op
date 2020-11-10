@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-sm-6 card-info pull-right">
                             <h4 class="title-group">
-                                <strong><a href="#" th:text="${group.name}"></a></strong>
+                                <strong><a th:href="'/groups/profile/' + ${group.id}" th:text="${group.name}"></a></strong>
                             </h4>
                             <hr>
                             <!--                            <p th:text="${game.description}"></p>-->
