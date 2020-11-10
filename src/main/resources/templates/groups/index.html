@@ -13,6 +13,7 @@
             align-items: center;
             justify-content: center;
         }
+
     </style>
 </head>
 <body>
@@ -24,7 +25,7 @@
             <button class="btn btn-primary pull-right fav-button">Create A Group</button>
         </form>
     </div>
-    <div class="row" id="store-list">
+    <div class="row mt-5" id="store-list">
         <div class="card col col-md-6 col-xs-12 card-area game-card border-glow" th:each="group : ${groups}">
             <div class="panel">
                 <div class="panel-body">

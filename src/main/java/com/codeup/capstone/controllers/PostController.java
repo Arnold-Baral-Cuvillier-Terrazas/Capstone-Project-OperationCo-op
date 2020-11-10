@@ -36,6 +36,7 @@ public class PostController {
         User thisAuthor = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User thisUser = userRepo.getOne(thisAuthor.getId());
         model.addAttribute("group_id", id);
+        model.addAttribute("group", groupDao.getOne(id));
         for (Group group : thisUser.getGroups()) {
             if (group.getId() == id) {
                 model.addAttribute("posts", group.getPosts());

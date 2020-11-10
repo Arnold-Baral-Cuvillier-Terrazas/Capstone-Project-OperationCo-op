@@ -63,6 +63,7 @@ p, button{
 h1,h2,h3,h4,h5,h6 {
     font-family: 'Press Start 2P', cursive;
 }
+
 p, .btn, button,input,li,label,a {
     font-family: 'Ubuntu Mono', monospace;
 }
@@ -73,9 +74,9 @@ a {
     font-family: 'Ubuntu Mono', monospace;
 }
 
-a:hover {
-    color: #98d9f5;
-}
+/*a:hover {*/
+/*    color: #98d9f5;*/
+/*}*/
 
 hr {
     background-color: #98d9f5;
@@ -117,3 +118,10 @@ input[type=text], input[type=password] {
     border-radius: 20px;
     float: top;
 }
+
+/*h1,h2,h3,h4,h5,h6 {*/
+/*    font-family: 'Press Start 2P', cursive;*/
+/*}*/
+/*   p, .btn, button,input,li,label,a {*/
+/*       font-family: 'Ubuntu Mono', monospace;*/
+/*}*/
