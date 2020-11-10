@@ -65,8 +65,7 @@ header.masthead h1 {
 }
 
 .showcase .showcase-img {
-    min-height: 30rem;
-    background-size: cover;
+    min-height: 20rem;
 }
 
 @media (min-width: 768px) {
