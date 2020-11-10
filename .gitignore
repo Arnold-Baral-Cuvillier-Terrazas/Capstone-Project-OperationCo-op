@@ -32,8 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
-src/main/resources/application.properties
-
-src/main/resources/static/js/gamekeys.js
-
-src/main/resources/static/js/keys.js
+#src/main/resources/application.properties
+#
+#src/main/resources/static/js/gamekeys.js
+#
+#src/main/resources/static/js/keys.js
