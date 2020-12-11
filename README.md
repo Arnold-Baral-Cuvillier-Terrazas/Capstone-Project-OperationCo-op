@@ -31,7 +31,7 @@ Registered Users
 - Users will be able to visit game pages and see a list of groups that play
 - Users can create groups and become group admins.
 - Users can request to join other peoples groups
-- Users can chat with one another in the same groups
+- Users can join multiple groups and can chat with groupmates in the same group
 - Users can add gamer tags to themselves.
 
 Group Admins
