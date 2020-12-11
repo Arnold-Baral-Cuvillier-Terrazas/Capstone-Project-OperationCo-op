@@ -1,6 +1,7 @@
 # Capstone-Project-OperationCo-op
 
-Capstone Project Operation Co-op
+        Capstone Project Operation Co-op
+
 A full-stack social media application, built using Java, MVC design pattern, Springboot framework, MySQL, Thymeleaf, jQuery, and third party API’s, that allows gamers from all over the world to find their go-to squad to play their favorite games with.
 
 Contributors
