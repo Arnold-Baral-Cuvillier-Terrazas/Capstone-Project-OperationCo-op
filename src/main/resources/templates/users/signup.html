@@ -83,6 +83,8 @@
 
                                     <input id="username" type="text" placeholder="Enter your Username" name="username"
                                            th:field="*{userName}" required>
+<!--                                    adding validation  -->
+                                    <p th:if="${#fields.hasErrors('username')}" th:errors="*{userName}"></p>
                                 </div>
                                 <div class="col-4">
                                     <div class="form-group">

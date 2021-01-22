@@ -1,8 +1,6 @@
 package com.codeup.capstone.controllers;
 
-
 import com.codeup.capstone.models.*;
-
 import com.codeup.capstone.models.Game;
 import com.codeup.capstone.models.Group;
 import com.codeup.capstone.models.Tag;

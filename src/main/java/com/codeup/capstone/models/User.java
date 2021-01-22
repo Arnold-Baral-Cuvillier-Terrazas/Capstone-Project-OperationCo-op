@@ -3,6 +3,8 @@ package com.codeup.capstone.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -17,12 +19,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
+    @NotBlank(message = "User must have a userName")
+    @Size(min = 3, message = "userName must be at least 3 characters.")
     @Column(nullable = false, length = 100, unique = true)
     private String userName;
 
-    //    @Pattern(regexp = "([a-zA-Z0-9_.]+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.] {0,1}[a-zA-Z]+)", message = "email must be" +
-//            " valid email address")
     @Column(nullable = false, unique = true)
     private String email;
 
