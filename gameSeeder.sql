@@ -1,6 +1,4 @@
-# USE capstone_db;
 
-<<<<<<< HEAD
 USE game_db;
 INSERT INTO games(title, art_cover, description) VALUES ('HASSLE 1977','117753','Break into the Baltic City and join the resistance force Free Breath! Show and prove your skills in PvP shootouts, PvE missions, online drift and street races among other players-rebels and earn respect among them!');
 INSERT INTO games(title, art_cover, description) VALUES ('Kentucky Route Zero: TV Edition','90105','Kentucky Route Zero is a magical realist adventure game about a secret highway in the caves beneath Kentucky, and the mysterious folks who travel it');
@@ -22,8 +20,7 @@ INSERT INTO games(title, art_cover, description) VALUES ('NIGHT OF THE CONSUMERS
 --     IGNORE 1 LINES
 --     (title, release_date, description, critics_rating, art_cover, igdb_api_id);
 
-USE capstone_db;
-=======
+
 USE capstone_db;
 INSERT INTO games(title, art_cover, description) VALUES ('HASSLE 1977','117753','Break into the Baltic City and join the resistance force Free Breath! Show and prove your skills in PvP shootouts, PvE missions, online drift and street races among other players-rebels and earn respect among them!');
 INSERT INTO games(title, art_cover, description) VALUES ('Kentucky Route Zero: TV Edition','90105','Kentucky Route Zero is a magical realist adventure game about a secret highway in the caves beneath Kentucky, and the mysterious folks who travel it');
@@ -46,7 +43,6 @@ INSERT INTO games(title, art_cover, description) VALUES ('NIGHT OF THE CONSUMERS
 --     (title, release_date, description, critics_rating, art_cover, igdb_api_id);
 
 USE capstone_db;
->>>>>>> f6ead84b1aa9042b36b731d784c9188387afbdce
 LOAD DATA LOCAL INFILE '/Users/amaroterrazas/Documents/csv/games.csv'
     INTO TABLE games
     FIELDS TERMINATED BY '|' ENCLOSED BY '"'

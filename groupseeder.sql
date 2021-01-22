@@ -22,7 +22,7 @@ VALUES  ('Gamer '),
 
 # Use capstone_db;
 # INSERT INTO groups(name, description) VALUES ('AmoungUs','Love being the imposter!!');
-# # INSERT INTO groups(name, description) VALUES ('CyberWarriors','Love to fight but behind the screen!!');
+# INSERT INTO groups(name, description) VALUES ('CyberWarriors','Love to fight but behind the screen!!');
 # INSERT INTO groups(name, description) VALUES ('NewWonderers','Love wondering out there in the games!!');
 # INSERT INTO groups(name, description) VALUES ('TheOffice','Love Watching the Office!!');
 # INSERT INTO groups(name, description) VALUES ('TeamPlaystation','Love me PS!!');

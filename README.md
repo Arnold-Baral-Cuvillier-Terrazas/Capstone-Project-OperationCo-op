@@ -4,11 +4,12 @@
 
 A full-stack social media application, built using Java, MVC design pattern, Springboot framework, MySQL, Thymeleaf, jQuery, and third party API’s, that allows gamers from all over the world to find their go-to squad to play their favorite games with.
 
-**Contributors**
--Amaro Terrazas
--Binjita Kandel Baral
--Ryan Cuvillier
--Trevor Arnold
+   Contributors
+
+- Amaro Terrazas
+- Binjita Kandel Baral
+- Ryan Cuvillier
+- Trevor Arnold
 
         User stories
 
